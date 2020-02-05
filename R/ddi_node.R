@@ -37,7 +37,7 @@ ddi_node <- function(
 }
 
 ddi_root <- function(tagname, ...) {
-  ddi_node(tagname, ..., .subclass = "ddi_root")
+  ddi_node(tagname, ..., .root = TRUE)
 }
 
 is_ddi_node <- function(x) {
