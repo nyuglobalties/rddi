@@ -32,7 +32,7 @@ add_child_node <- function(.node, .child, .allowed_children, ...) {
 
     if (!xml_name(.child) %in% .allowed_children) {
       rddi_err(c(
-        "'{xml_name(.child)}' not an acceptable child element for {xml_name(.node)}.\n",
+        "'{xml_name(.child)}' is not an acceptable child element for {xml_name(.node)}.\n",
         "These are the allowed children: [{glue_collapse(.allowed_children, ', ')}]"
       ))
     }
