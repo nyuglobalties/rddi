@@ -16,3 +16,11 @@ Description: A direct interface to the underlying XML representation of DDI Code
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
+Suggests: 
+    testthat
+Imports: 
+    rlang,
+    glue,
+    xml2
