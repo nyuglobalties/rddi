@@ -44,17 +44,6 @@ is_ddi_node <- function(x) {
   inherits(x, "ddi_node")
 }
 
-dots_to_xml_components <- function(...) {
-  dots <- dots_partition(...)
-  attribs <- dots$named %if_empty% NULL
-  content <- dots$unnamed %if_empty% NULL
-
-  list(
-    attribs = attribs,
-    content = content
-  )
-}
-
 add_ddi_class <- function(node, root = FALSE) {
   stopifnot(inherits(node, "xml_node"))
 
