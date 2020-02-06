@@ -15,8 +15,8 @@
 #'
 #' @export
 ddi_var <- function(varname, database_id = NULL, discrete = TRUE, ...) {
-  stopifnot(is.character(varname) && is.character(database_id))
-  stopifnot(length(varname) == 1 && length(database_id) == 1)
+  stopifnot(is.character(varname))
+  stopifnot(length(varname) == 1)
 
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
