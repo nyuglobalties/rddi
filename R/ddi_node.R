@@ -64,6 +64,7 @@ add_ddi_class <- function(node, root = FALSE) {
 build_branch_node <- function(
   tagname,
   allowed_children = NULL,
+  required_children = NULL,
   root = FALSE,
   content = NULL,
   attribs = NULL
@@ -77,6 +78,18 @@ build_branch_node <- function(
   if (!is.null(content)) {
     if (!all(map_lgl(content, is_ddi_node))) {
       rddi_err("Unnamed arguments to `ddi_{tagname}()` must all be DDI nodes.")
+    }
+
+    if (!is.null(required_children)) {
+      if (!is.null(allowed_children)) {
+        stopifnot(all(required_children %in% allowed_children))
+      }
+
+      for (rc in required_children) {
+        if (!any(map_lgl(content, function(x, req) xml_name(x) == req, rc))) {
+          rddi_err("Required child '{rc}' not found for '{tagname}'.")
+        }
+      }
     }
 
     for (child in content) {
