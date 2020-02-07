@@ -59,6 +59,7 @@ ddi_stdyDscr <- function(...) {
 #' Citation entities belong in study and DDI document description blocks.
 #'
 #' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param language An xml:lang identifier representing the language of the parallel title (`ddi_parTitl()`)
 #' 
 #' @export
 ddi_citation <- function(...) {
@@ -96,10 +97,20 @@ ddi_titlStmt <- function(...) {
   )
 }
 
+#' @rdname ddi_citation
+#' @export
 ddi_titl <- simple_leaf_node("titl")
+
+#' @rdname ddi_citation
+#' @export
 ddi_subTitl <- simple_leaf_node("subTitl")
+
+#' @rdname ddi_citation
+#' @export
 ddi_altTitl <- simple_leaf_node("altTitl")
 
+#' @rdname ddi_citation
+#' @export
 ddi_parTitl <- function(language, ...) {
   stopifnot(is.character(language))
 
