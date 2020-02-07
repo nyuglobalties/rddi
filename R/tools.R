@@ -48,6 +48,17 @@ dots_to_xml_components <- function(...) {
   )
 }
 
+#' Validate generated codebook against DDI Codebook 2.5
+#'
+#' Validates your constructed codebook against the
+#' DDI Codebook 2.5 schema. While all built-in `ddi_` functions
+#' are written with the schema in mind, this is useful
+#' if you create your own DDI nodes (there are many and
+#' it will take a while to implement all of them).
+#'
+#' @param codebook The codebook root node, output of `ddi_codeBook()`
+#' @return A logical (with attributes containing any errors) that indicates passing or failing
+#' @export
 validate_codebook <- function(codebook) {
   stopifnot(is_ddi_node(codebook))
 
@@ -58,5 +69,9 @@ validate_codebook <- function(codebook) {
   codebook_xml <- as_xml(codebook)
   schema <- read_xml(system.file("codebook.xsd", package = "rddi"))
 
-  xml_validate(codebook_xml, schema)
+  # Constructed XML fails to validate correctly if each subelement of the root
+  # does not have a namespace provided as well. To get around this,
+  # cast the XML object to character and then read back in.
+  # See: https://github.com/r-lib/xml2/issues/189
+  xml_validate(read_xml(as.character(codebook_xml)), schema)
 }
