@@ -49,6 +49,7 @@ is_ddi_node <- function(x) {
   inherits(x, "ddi_node")
 }
 
+#' @export
 print.ddi_node <- function(x, ...) {
   xml_node <- as_xml(x)
   class(xml_node) <- setdiff(class(xml_node), "xml_document")
@@ -57,6 +58,7 @@ print.ddi_node <- function(x, ...) {
   invisible()
 }
 
+#' @export
 print.ddi_root <- function(x, ...) {
   xml_node <- as_xml(x)
   print(xml_node, ...)
@@ -77,10 +79,12 @@ add_ddi_class <- function(node, root = FALSE) {
   )
 }
 
+#' @export
 as_xml <- function(x, ...)  {
   UseMethod("as_xml")
 }
 
+#' @export
 as_xml.ddi_node <- function(x, parent = NULL, ...) {
   stopifnot(is.null(parent) || inherits(parent, "xml_node"))
 
@@ -105,6 +109,7 @@ as_xml.ddi_node <- function(x, parent = NULL, ...) {
   xml_node
 }
 
+#' @export
 as_xml.ddi_root <- function(x, ...) {
   xml_node <- xml_new_root(x$tag)
   xml_attrs(xml_node) <- x$attribs
@@ -118,9 +123,28 @@ as_xml.ddi_root <- function(x, ...) {
   xml_node
 }
 
+#' Create DDI nodes
+#'
+#' All `ddi_<tag>()` functions either create branch nodes or leaf nodes.
+#' Branches must only contain other nodes, whereas leaves may only have
+#' a single string for its content. All nodes may be empty, however.
+#' If no checks on function paramenters are necessary for leaf nodes, 
+#' use `simple_lead_node()`.
+#'
+#' @param tagname The name for the XML representation of this node
+#' @param allowed_children A character vector of allowed children's tag names. Defaults to `NULL`, indicating any child is allowed.
+#' @param required_children A character vector of required children's tag names. Default to `NULL`, indicating no children are strictly required.
+#' @param root An indicator whether this node is the document root. Should really be reserved for `ddi_codeBook()`
+#' @param content For a branch node, a list of child nodes. For a leaf node, a single string. Defaults to `NULL`, indicating no content.
+#' @param attribs A named list representing the XML attributes for this node
+#' @param components A shorthand object to `attribs` and `content`. If both `attribs` and `content` are `NULL`, `components` -- a list with "attribs" and "content" as fields -- will be used instead.
+#' @return A `ddi_node` object
+#'
+#' @rdname build_node
+#'
+#' @export
 build_branch_node <- function(
   tagname,
-  parent = NULL,
   allowed_children = NULL,
   required_children = NULL,
   root = FALSE,
@@ -134,9 +158,9 @@ build_branch_node <- function(
   }
 
   if (isTRUE(root)) {
-    stem_node <- ddi_root(tagname, !!!attribs)
+    branch_node <- ddi_root(tagname, !!!attribs)
   } else {
-    stem_node <- ddi_node(tagname, !!!attribs)
+    branch_node <- ddi_node(tagname, !!!attribs)
   }
 
   if (!is.null(content)) {
@@ -157,8 +181,8 @@ build_branch_node <- function(
     }
 
     for (child in content) {
-      stem_node <- ddi_add_child(
-        stem_node,
+      branch_node <- ddi_add_child(
+        branch_node,
         child,
         .allowed_children = allowed_children
       )
@@ -172,12 +196,13 @@ build_branch_node <- function(
     }
   }
 
-  stem_node
+  branch_node
 }
 
+#' @rdname build_node
+#' @export
 build_leaf_node <- function(
   tagname,
-  parent = NULL,
   content = NULL,
   attribs = NULL,
   components = NULL
@@ -200,6 +225,8 @@ build_leaf_node <- function(
   leaf_node
 }
 
+#' @rdname build_node
+#' @export
 simple_leaf_node <- function(tagname) {
   function(...) {
     components <- dots_to_xml_components(...)
