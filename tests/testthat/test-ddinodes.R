@@ -1,4 +1,4 @@
-context("DDI XML node creation")
+context("DDI node creation")
 
 test_that("Creation of branch nodes makes sense", {
 
@@ -22,4 +22,20 @@ test_that("Creation of branch nodes makes sense", {
   expect_error(test_branch("Invalid text content"), class = "rddi_error")
   expect_error(test_branch(x, y, z), class = "rddi_error")
   expect_silent(test_branch(x, y))
+
+  test_branch2 <- function(...) {
+    components <- dots_to_xml_components(...)
+
+    allowed_children <- c("x", "y")
+    req_children <- "x"
+
+    build_branch_node(
+      "branch",
+      allowed_children = children,
+      required_children = req_children,
+      components = components
+    )
+  }
+
+  expect_error(test_branch2(), class = "rddi_error")
 })
