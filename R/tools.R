@@ -51,12 +51,12 @@ dots_to_xml_components <- function(...) {
 validate_codebook <- function(codebook) {
   stopifnot(is_ddi_node(codebook))
 
-  if (xml_name(codebook) != "codeBook") {
+  if (codebook$tag != "codeBook") {
     rddi_err("Codebook validation is only applicable from the codebook XML node")
   }
 
-  codebook <- xml_new_root(codebook)
+  codebook_xml <- as_xml(codebook)
   schema <- read_xml(system.file("codebook.xsd", package = "rddi"))
 
-  xml_validate(codebook, schema)
+  xml_validate(codebook_xml, schema)
 }

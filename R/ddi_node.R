@@ -1,12 +1,15 @@
 ddi_node <- function(
   tagname, 
-  ..., 
-  .root = FALSE,
-  .with_document = FALSE
+  ...,
+  .root = FALSE
 ) {
-  stopifnot(is.character(tagname))
+  stopifnot(is.character(tagname) && length(tagname) == 1)
 
-  node <- xml_new_root(tagname)
+  node <- list(
+    tag = tagname,
+    attribs = NULL,
+    content = NULL
+  )
 
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
@@ -26,11 +29,13 @@ ddi_node <- function(
   }
 
   if (!is.null(attribs)) {
-    xml_attrs(node) <- attribs
+    stopifnot(is.list(attribs) && !is.null(names(attribs)))
+
+    node$attribs <- attribs
   }
 
   if (!is.null(content)) {
-    xml_text(node) <- content
+    node$content <- as.character(content)
   }
 
   add_ddi_class(node, root = .root)
@@ -44,15 +49,26 @@ is_ddi_node <- function(x) {
   inherits(x, "ddi_node")
 }
 
+print.ddi_node <- function(x, ...) {
+  xml_node <- as_xml(x)
+  class(xml_node) <- setdiff(class(xml_node), "xml_document")
+  print(xml_node, ...)
+
+  invisible()
+}
+
+print.ddi_root <- function(x, ...) {
+  xml_node <- as_xml(x)
+  print(xml_node, ...)
+
+  invisible()
+}
+
 add_ddi_class <- function(node, root = FALSE) {
-  stopifnot(inherits(node, "xml_node"))
-
-  old_classes <- setdiff(class(node), "xml_document")
-
   if (isTRUE(root)) {
-    new_classes <- c("ddi_root", "ddi_node", old_classes)
+    new_classes <- c("ddi_root", "ddi_node")
   } else {
-    new_classes <- c("ddi_node", old_classes)
+    new_classes <- "ddi_node"
   }
 
   structure(
@@ -61,14 +77,62 @@ add_ddi_class <- function(node, root = FALSE) {
   )
 }
 
+as_xml <- function(x, ...)  {
+  UseMethod("as_xml")
+}
+
+as_xml.ddi_node <- function(x, parent = NULL, ...) {
+  stopifnot(is.null(parent) || inherits(parent, "xml_node"))
+
+  if (!is.null(parent)) {
+    xml_node <- xml_add_child(parent, x$tag)
+  } else {
+    xml_node <- xml_new_root(x$tag)
+  }
+
+  xml_attrs(xml_node) <- x$attribs
+
+  if (!is.null(x$content)) {
+    if (is.character(x$content)) {
+      xml_text(xml_node) <- x$content 
+    } else {
+      for (child in x$content) {
+        as_xml(child, xml_node, ...)
+      }
+    }
+  }
+
+  xml_node
+}
+
+as_xml.ddi_root <- function(x, ...) {
+  xml_node <- xml_new_root(x$tag)
+  xml_attrs(xml_node) <- x$attribs
+
+  if (!is.null(x$content)) {
+    for (child in x$content) {
+      as_xml(child, xml_node, ...)
+    }
+  }
+  
+  xml_node
+}
+
 build_branch_node <- function(
   tagname,
+  parent = NULL,
   allowed_children = NULL,
   required_children = NULL,
   root = FALSE,
   content = NULL,
-  attribs = NULL
+  attribs = NULL, 
+  components = NULL
 ) {
+  if ((is.null(attribs) && is.null(content)) && !is.null(components)) {
+    attribs <- components$attribs
+    content <- components$content
+  }
+
   if (isTRUE(root)) {
     stem_node <- ddi_root(tagname, !!!attribs)
   } else {
@@ -86,7 +150,7 @@ build_branch_node <- function(
       }
 
       for (rc in required_children) {
-        if (!any(map_lgl(content, function(x, req) xml_name(x) == req, rc))) {
+        if (!any(map_lgl(content, function(x, req) x$tag == req, rc))) {
           rddi_err("Required child '{rc}' not found for '{tagname}'.")
         }
       }
@@ -99,16 +163,30 @@ build_branch_node <- function(
         .allowed_children = allowed_children
       )
     }
+  } else {
+    if (!is.null(required_children)) {
+      rddi_err(c(
+        "No children specified when some are required: ",
+        "[{glue_collapse(required_children, ', ')}]"
+      ))
+    }
   }
 
-  add_ddi_class(stem_node, root = root)
+  stem_node
 }
 
 build_leaf_node <- function(
   tagname,
+  parent = NULL,
   content = NULL,
-  attribs = NULL
+  attribs = NULL,
+  components = NULL
 ) {
+  if ((is.null(attribs) && is.null(content)) && !is.null(components)) {
+    attribs <- components$attribs
+    content <- components$content
+  }
+
   leaf_node <- ddi_node(tagname, !!!attribs)
 
   if (!is.null(content)) {
@@ -116,8 +194,15 @@ build_leaf_node <- function(
       rddi_err("Leaf nodes cannot have ddi_node content.")
     }
 
-    xml_text(leaf_node) <- as.character(content)
+    leaf_node$content <- as.character(content)
   }
 
-  add_ddi_class(leaf_node)
+  leaf_node
+}
+
+simple_leaf_node <- function(tagname) {
+  function(...) {
+    components <- dots_to_xml_components(...)
+    build_leaf_node(tagname, components = components)
+  }
 }
