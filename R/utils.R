@@ -1,5 +1,6 @@
 `%||%` <- function(x, y) if (is.null(x)) y else x
 `%if_empty%` <- function(x, y) if (length(x) == 0) y else x
+`%if_empty_string%` <- function(x, y) if (identical(x, "")) y else x
 
 rddi_err <- function(x, .envir = parent.frame()) {
   msg <- glue(glue_collapse(x), .envir = .envir)

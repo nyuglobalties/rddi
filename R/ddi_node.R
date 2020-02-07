@@ -1,3 +1,6 @@
+# Internal function that creates the ddi_node objects. Deals directly
+# with the underlying representation of the nodes. To model DDI elements,
+# use build_branch_node() or build_leaf_node().
 ddi_node <- function(
   tagname, 
   ...,
@@ -35,7 +38,7 @@ ddi_node <- function(
   }
 
   if (!is.null(content)) {
-    node$content <- as.character(content)
+      node$content <- as.character(content) %if_empty_string% NULL
   }
 
   add_ddi_class(node, root = .root)
@@ -77,50 +80,6 @@ add_ddi_class <- function(node, root = FALSE) {
     node,
     class = new_classes
   )
-}
-
-#' @export
-as_xml <- function(x, ...)  {
-  UseMethod("as_xml")
-}
-
-#' @export
-as_xml.ddi_node <- function(x, parent = NULL, ...) {
-  stopifnot(is.null(parent) || inherits(parent, "xml_node"))
-
-  if (!is.null(parent)) {
-    xml_node <- xml_add_child(parent, x$tag)
-  } else {
-    xml_node <- xml_new_root(x$tag)
-  }
-
-  xml_attrs(xml_node) <- x$attribs
-
-  if (!is.null(x$content)) {
-    if (is.character(x$content)) {
-      xml_text(xml_node) <- x$content 
-    } else {
-      for (child in x$content) {
-        as_xml(child, xml_node, ...)
-      }
-    }
-  }
-
-  xml_node
-}
-
-#' @export
-as_xml.ddi_root <- function(x, ...) {
-  xml_node <- xml_new_root(x$tag)
-  xml_attrs(xml_node) <- x$attribs
-
-  if (!is.null(x$content)) {
-    for (child in x$content) {
-      as_xml(child, xml_node, ...)
-    }
-  }
-  
-  xml_node
 }
 
 #' Create DDI nodes
