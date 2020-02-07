@@ -30,7 +30,7 @@ ddi_catValu(value)
 
 \item{missing}{If a category represents a missing response}
 
-\item{id_object}{All \code{ddi_} functions that have dots can specify an object's ID with id_object}
+\item{value}{The representation of the category in the data for \code{ddi_catValu()}}
 }
 \description{
 Variables are specified with the <var> tag, which has a litany of

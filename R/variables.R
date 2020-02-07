@@ -11,7 +11,7 @@
 #' @param ... Any other parameters from the DDI Codebook 2.5 schema
 #' @param level_name A category level name for hierarchical categorical variables (e.g. ordered categories)
 #' @param missing If a category represents a missing response
-#' @param id_object All `ddi_` functions that have dots can specify an object's ID with id_object
+#' @param value The representation of the category in the data for `ddi_catValu()`
 #'
 #' @export
 ddi_var <- function(varname, database_id = NULL, discrete = TRUE, ...) {

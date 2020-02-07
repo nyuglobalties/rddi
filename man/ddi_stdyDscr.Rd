@@ -6,6 +6,9 @@
 \usage{
 ddi_stdyDscr(...)
 }
+\arguments{
+\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+}
 \description{
 All DDI codebooks must have a study description which
 contains information about the study overall, including

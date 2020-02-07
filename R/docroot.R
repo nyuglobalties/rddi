@@ -34,6 +34,8 @@ ddi_codeBook <- function(...) {
 #' a citation to the work(s) referenced in the codebook. At least
 #' one citation must be present, capturing the whole study.
 #'
+#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#'
 #' @export
 ddi_stdyDscr <- function(...) {
   allowed_children <- c(
@@ -52,6 +54,13 @@ ddi_stdyDscr <- function(...) {
   )
 }
 
+#' Create a DDI citation
+#'
+#' Citation entities belong in study and DDI document description blocks.
+#'
+#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' 
+#' @export
 ddi_citation <- function(...) {
   allowed_children <- c(
     "titlStmt",
@@ -68,6 +77,8 @@ ddi_citation <- function(...) {
   )
 }
 
+#' @rdname ddi_citation
+#' @export
 ddi_titlStmt <- function(...) {
   allowed_children <- c(
     "titl",
