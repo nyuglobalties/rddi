@@ -32,7 +32,7 @@ devtools::install_github("Global-TIES-for-Children/rddi")
 
 Building components is quick and simple:
 
-```{r example}
+```{r example1}
 library(rddi)
 library(magrittr)
 
@@ -43,3 +43,29 @@ ddi_codeBook(ddi_stdyDscr(main_citation)) %>%
   as.character() %>% 
   cat()
 ```
+
+Assert expected or required elements:
+
+```{r example2}
+tryCatch(
+  ddi_codeBook(),
+  error = function(e) {
+    print(e$message)
+  }
+)
+
+tryCatch(
+  ddi_citation(ddi_titlStmt(ddi_titl("Oops")), ddi_dataDscr()),
+  error = function(e) {
+    print(e$message)
+  }
+)
+```
+
+Validate your work against the DDI Codebook 2.5 schema:
+
+```{r example3}
+ddi_codeBook(ddi_stdyDscr(main_citation)) %>% 
+  validate_codebook()
+```
+

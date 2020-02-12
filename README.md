@@ -50,3 +50,34 @@ ddi_codeBook(ddi_stdyDscr(main_citation)) %>%
 #>   </stdyDscr>
 #> </codeBook>
 ```
+
+Assert expected or required elements:
+
+``` r
+tryCatch(
+  ddi_codeBook(),
+  error = function(e) {
+    print(e$message)
+  }
+)
+#> No children specified when some are required: [stdyDscr]
+
+tryCatch(
+  ddi_citation(ddi_titlStmt(ddi_titl("Oops")), ddi_dataDscr()),
+  error = function(e) {
+    print(e$message)
+  }
+)
+#> 'dataDscr' is not an acceptable child element for citation.
+#> These are the allowed children: [titlStmt, biblCit]
+```
+
+Validate your work against the DDI Codebook 2.5 schema:
+
+``` r
+ddi_codeBook(ddi_stdyDscr(main_citation)) %>% 
+  validate_codebook()
+#> [1] TRUE
+#> attr(,"errors")
+#> character(0)
+```
