@@ -4,8 +4,12 @@
 \alias{create_object_id}
 \title{Create object IDs}
 \usage{
-create_object_id(object, ..., generator = getOption("rddi.id_generator"),
-  sep = ".")
+create_object_id(
+  object,
+  ...,
+  generator = getOption("rddi.id_generator"),
+  sep = "."
+)
 }
 \arguments{
 \item{object}{A character vector containing (presumably unique) object names}

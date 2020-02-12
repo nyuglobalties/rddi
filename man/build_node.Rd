@@ -6,12 +6,17 @@
 \alias{simple_leaf_node}
 \title{Create DDI nodes}
 \usage{
-build_branch_node(tagname, allowed_children = NULL,
-  required_children = NULL, root = FALSE, content = NULL,
-  attribs = NULL, components = NULL)
+build_branch_node(
+  tagname,
+  allowed_children = NULL,
+  required_children = NULL,
+  root = FALSE,
+  content = NULL,
+  attribs = NULL,
+  components = NULL
+)
 
-build_leaf_node(tagname, content = NULL, attribs = NULL,
-  components = NULL)
+build_leaf_node(tagname, content = NULL, attribs = NULL, components = NULL)
 
 simple_leaf_node(tagname)
 }
@@ -34,7 +39,7 @@ simple_leaf_node(tagname)
 A \code{ddi_node} object
 }
 \description{
-All \code{ddi_<tag>()} functions either create branch nodes or leaf nodes.
+All \verb{ddi_<tag>()} functions either create branch nodes or leaf nodes.
 Branches must only contain other nodes, whereas leaves may only have
 a single string for its content. All nodes may be empty, however.
 If no checks on function paramenters are necessary for leaf nodes,
