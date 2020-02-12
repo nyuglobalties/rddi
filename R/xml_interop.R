@@ -34,6 +34,19 @@ as_xml.ddi_node <- function(x, parent = NULL, ...) {
   xml_node
 }
 
+#' Shortcut to text representation of DDI XML
+#'
+#' Functionally equivalent to `as.character(as_xml(ddi_node_obj))`
+#'
+#' @param x A ddi_node object
+#' @return A string containing the text representation of XML
+#' @export
+as_xml_string <- function(x) {
+  stopifnot(is_ddi_node(x))
+
+  as.character(as_xml(x))
+}
+
 #' @export
 as_xml.ddi_root <- function(x, ...) {
   xml_node <- xml_new_root(x$tag)
