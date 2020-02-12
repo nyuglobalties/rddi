@@ -33,8 +33,8 @@ ddi_catValu(value)
 \item{value}{The representation of the category in the data for \code{ddi_catValu()}}
 }
 \description{
-Variables are specified with the <var> tag, which has a litany of
+Variables are specified with the var tag, which has a litany of
 attributes. The basic necessities of a variable, however, are given by its name, and type.
 If the variable is categorical, then the variable will have as many
-<catgry> (\code{ddi_catgry()}) entries as category levels. Missingness codes are specified in \code{ddi_catgry()}.
+catgry (\code{ddi_catgry()}) entries as category levels. Missingness codes are specified in \code{ddi_catgry()}.
 }

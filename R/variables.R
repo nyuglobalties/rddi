@@ -1,9 +1,9 @@
 #' DDI variable specification
 #'
-#' Variables are specified with the <var> tag, which has a litany of 
+#' Variables are specified with the var tag, which has a litany of 
 #' attributes. The basic necessities of a variable, however, are given by its name, and type. 
 #' If the variable is categorical, then the variable will have as many 
-#' <catgry> (`ddi_catgry()`) entries as category levels. Missingness codes are specified in `ddi_catgry()`.
+#' catgry (`ddi_catgry()`) entries as category levels. Missingness codes are specified in `ddi_catgry()`.
 #'
 #' @param varname The variable name
 #' @param database_id An ID to the database origin; useful if multiple datasets are described in a codebook
