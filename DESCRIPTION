@@ -13,6 +13,7 @@ Authors@R:
             role = "cph",
             comment = "https://research.steinhardt.nyu.edu/ihdsc/global-ties"))
 Description: A direct interface to the underlying XML representation of DDI Codebook 2.5 with flexible API creation.
+Depends: R (>= 3.1.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
