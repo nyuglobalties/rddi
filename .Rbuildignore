@@ -2,3 +2,4 @@
 ^\.github$
 ^codecov\.yml$
 ^\.github/workflows/R-CMD-check\.yaml$
+^README\.Rmd$
