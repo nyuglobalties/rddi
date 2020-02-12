@@ -39,8 +39,7 @@ library(magrittr)
 main_citation <- ddi_citation(ddi_titlStmt(ddi_titl("Study Title")))
 
 ddi_codeBook(ddi_stdyDscr(main_citation)) %>% 
-  as_xml() %>% 
-  as.character() %>% 
+  as_xml_string() %>% 
   cat()
 ```
 

@@ -36,8 +36,7 @@ library(magrittr)
 main_citation <- ddi_citation(ddi_titlStmt(ddi_titl("Study Title")))
 
 ddi_codeBook(ddi_stdyDscr(main_citation)) %>% 
-  as_xml() %>% 
-  as.character() %>% 
+  as_xml_string() %>% 
   cat()
 #> <?xml version="1.0" encoding="UTF-8"?>
 #> <codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
