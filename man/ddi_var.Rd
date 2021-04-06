@@ -2,35 +2,14 @@
 % Please edit documentation in R/variables.R
 \name{ddi_var}
 \alias{ddi_var}
-\alias{ddi_catLevel}
-\alias{ddi_catgry}
-\alias{ddi_catValu}
 \title{DDI variable specification}
 \usage{
-ddi_var(varname, database_id = NULL, discrete = TRUE, ...)
-
-ddi_catLevel(level_name, ...)
-
-ddi_catgry(..., missing = FALSE)
-
-ddi_catgry(..., missing = FALSE)
-
-ddi_catValu(value)
+ddi_var(varname, database_id = NULL, ...)
 }
 \arguments{
 \item{varname}{The variable name}
 
-\item{database_id}{An ID to the database origin; useful if multiple datasets are described in a codebook}
-
-\item{discrete}{If a variable has discrete or continuous values. Default to \code{TRUE}}
-
 \item{...}{Any other parameters from the DDI Codebook 2.5 schema}
-
-\item{level_name}{A category level name for hierarchical categorical variables (e.g. ordered categories)}
-
-\item{missing}{If a category represents a missing response}
-
-\item{value}{The representation of the category in the data for \code{ddi_catValu()}}
 }
 \description{
 Variables are specified with the var tag, which has a litany of
@@ -38,3 +17,9 @@ attributes. The basic necessities of a variable, however, are given by its name,
 If the variable is categorical, then the variable will have as many
 catgry (\code{ddi_catgry()}) entries as category levels. Missingness codes are specified in \code{ddi_catgry()}.
 }
+\section{DDI Codebook 2.5 Documentation}{
+
+
+\url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/var.html}
+}
+
