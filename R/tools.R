@@ -48,6 +48,13 @@ dots_to_xml_components <- function(...) {
   )
 }
 
+check_cardinality <- function(content, test) {
+  counter <- 0
+  for (c in content) {
+    if (c$tag == test) counter <- counter + 1
+  }
+  counter
+}
 #' Validate generated codebook against DDI Codebook 2.5
 #'
 #' Validates your constructed codebook against the

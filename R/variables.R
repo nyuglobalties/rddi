@@ -13,7 +13,7 @@
 #' @param ... Any other parameters from the DDI Codebook 2.5 schema
 #'
 #' @export
-ddi_var <- function(varname, database_id = NULL, ...) {
+ddi_var <- function(varname, ...) {
   stopifnot(is.character(varname))
   stopifnot(length(varname) == 1)
 
@@ -22,19 +22,15 @@ ddi_var <- function(varname, database_id = NULL, ...) {
 
   attribs$name <- varname
 
-  if (!is.null(database_id)) { # optional in DDI
-    attribs$files <- database_id
-  }
-
   allowed_attribs <- c(
     "ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "name", "wgt", "wgt-var", "weight",
     "qstn", "files", "vendor", "dcml", "intrvl", "rectype", "sdatrefs", "methrefs", "pubrefs", "access", "aggrMeth", "otherAggrMeth", "measUnit", 
     "scale", "origin", "nature", "temporal", "geog", "geoVocab", "catQnty", "representationType", "otherRepresentationType"
   ) 
 
-  check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "var")
+  check_attribs_in_set(names(attribs), allowed_attribs, field = "var")
 
-  check_attribs(attribs = attribs)
+  check_attribs(attribs)
 
   allowed_children <- c(
     "catgry", "catLevel", "labl", "qstn", "sumStat", "notes", "analysUnit", "imputation", "txt",
@@ -42,7 +38,9 @@ ddi_var <- function(varname, database_id = NULL, ...) {
     "valrng", "invalrng", "universe", "catgryGrp", "verStmt", "derivation", "geomap", "location"
   )
 
-  # checking cardinality of derivation & varFormat
+  # derivation and varFormat are only allowed once in var according to DDI 2.5
+  if(check_cardinality(components$content, "derivation") > 1) rddi_err("Only 0 or 1 derivation children are allowed in var")
+  if(check_cardinality(components$content, "varFormat") > 1) rddi_err("Only 0 or 1 varFormat children are allowed in var")
    
   build_branch_node(
     "var",
@@ -71,7 +69,7 @@ ddi_varGrp <- function(...) {
       "ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
       "type", "otherType", "var", "varGroup", "name", "sdatrefs", "methrefs", "pubrefs", "access" 
     )
-    check_attribs_in_set(attributes = names(attribs), vals = allowed_attribs, field = "varGrp")
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "varGrp")
     check_attribs(attribs)
     if("type" %in% names(attribs)) {
     check_attribs_in_set(attributes = attribs$type, vals = c("section", "multipleResp", "grid", "display", "repetition", "subject", "version", 
@@ -108,22 +106,20 @@ ddi_varGrp <- function(...) {
 #' @param ... Any other parameters from the DDI Codebook 2.5 schema
 #'
 #' @export
-ddi_catLevel <- function(level_name, ...) {
+ddi_catLevel <- function(...) {
   stopifnot(is.character(level_name))
 
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
   
-  attribs$levelnm <- level_name # optional in DDI
-
   if (!is.element("ID", names(attribs))) {
     rddi_err("Category levels must have an ID. Use the `id_object` parameter to set the ID.")
   }
 
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleURN", "ddiCodebookURN", "levelnm", "geoMap")
   
-  check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "catLevel")
-  check_attribs(attribs = attribs)
+  check_attribs_in_set(names(attribs), allowed_attribs, field = "catLevel")
+  check_attribs(attribs)
 
   build_leaf_node(
     "catLevel",
@@ -143,12 +139,10 @@ ddi_catLevel <- function(level_name, ...) {
 #' @param ... Any other parameters from the DDI Codebook 2.5 schema
 #' 
 #' @export
-ddi_catgry <- function(missing = FALSE, ...)  {
+ddi_catgry <- function(...)  {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
-  attribs$missing <- if (missing) "Y" else "N" # optional in DDI 2.5
-  
   allowed_children <- c(
     "catStat",
     "catValu", # allowed once
@@ -157,11 +151,15 @@ ddi_catgry <- function(missing = FALSE, ...)  {
     "mrow" # allowed once
   )
   
+  # catValu and mrow are only allowed once in var according to DDI 2.5
+  if(check_cardinality(components$content, "catValu") > 1) rddi_err("Only 0 or 1 catValu children are allowed in catgry")
+  if(check_cardinality(components$content, "mrow") > 1) rddi_err("Only 0 or 1 mrow children are allowed in catgry")
+  
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "missing", "missType", "country",
                       "sdatrefs", "catgry", "level", "excls")
 
-  check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "catgry")
-  check_attribs(attribs = attribs)
+  check_attribs_in_set(names(attribs), allowed_attribs, field = "catgry")
+  check_attribs(attribs)
 
   build_branch_node(
     "catgry",
@@ -170,27 +168,6 @@ ddi_catgry <- function(missing = FALSE, ...)  {
     content = components$content
   )
 }
-
-# WHAT'S THE DIFFERENCE BETWEEN THE BELOW AND THE ABOVE FUNCTIONS?
-#ddi_catgry <- function(..., missing = FALSE) {
-#  components <- dots_to_xml_components(...)
-#  attribs <- components$attribs
-#
-#  attribs$missing <- if (missing) "Y" else "N"
-#
-#  allowed_children <- c(
-#    "catStat",
-#    "catValu",
-#    "labl"
-#  )
-#
-#  build_branch_node(
-#    "catgry",
-#    allowed_children = allowed_children,
-#    attribs = attribs,
-#    content = components$content
-#  )
-#}
 
 #' DDI mrow specification
 #'
@@ -212,8 +189,8 @@ ddi_mrow <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "mrow")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "mrow")
+    check_attribs(attribs)
   }
 
   allowed_children <- c(
@@ -248,8 +225,8 @@ ddi_universe <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "level", "clusion") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "universe")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "universe")
+    check_attribs(attribs)
   }
 
   allowed_children <- c(
@@ -282,8 +259,8 @@ ddi_anlysUnit <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "anlysUnit")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "anlysUnit")
+    check_attribs(attribs)
   }
 
   allowed_children <- c(
@@ -317,8 +294,8 @@ ddi_catgryGrp <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
                         "missing", "missType", "catgry", "catGrp", "levelno", "levelnm", "compl", "excls") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "catgryGrp")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "catgryGrp")
+    check_attribs(attribs)
   }
 
   allowed_children <- c(
@@ -353,8 +330,8 @@ ddi_verStmt <- function(...) {
   
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "verStmt")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "verStmt")
+    check_attribs(attribs)
   }
 
   allowed_children <- c(
@@ -391,8 +368,8 @@ ddi_derivation <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "var") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "derviation")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "derviation")
+    check_attribs(attribs)
   }
 
   allowed_children <- c(
@@ -425,20 +402,17 @@ ddi_valrng <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "valrng")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "valrng")
+    check_attribs(attribs)
   }
 
-  # NEED TO CHECK THAT item OR range is included
-  # if item or range in components$content {
-  #   if(item) {
-  #     required_children <- c("item")
-  #   else required_children <- c("range")
-  # } else {
-  #  rddi_err message
-  # }
-  
+  if(check_cardinality(components$content, "item") > 0 & check_cardinality(components$content, "range") == 0) required_children <- "item"
+  else if(check_cardinality(components$content, "item") == 0 & check_cardinality(components$content, "range") > 0) required_children <- "range"
+  else rddi_err("valrng requires at least one item or at least one range child but cannot include an item and range child")
+ 
   allowed_children <- c(
+    "item",
+    "range",
     "key",
     "notes"
   )
@@ -469,20 +443,17 @@ ddi_invalrng <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "invalrng")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "invalrng")
+    check_attribs(attribs)
   }
 
-  # NEED TO CHECK THAT item OR range is included
-  # if item or range in components$content {
-  #   if(item) {
-  #     required_children <- c("item")
-  #   else required_children <- c("range")
-  # } else {
-  #  rddi_err message
-  # }
-  
+  if(check_cardinality(components$content, "item") > 0 & check_cardinality(components$content, "range") == 0) required_children <- "item"
+  else if(check_cardinality(components$content, "item") == 0 & check_cardinality(components$content, "range") > 0) required_children <- "range"
+  else rddi_err("valrng requires at least one item or at least one range child but cannot include an item and range child")
+ 
   allowed_children <- c(
+    "item",
+    "range",
     "key",
     "notes"
   )
@@ -513,8 +484,8 @@ ddi_catValu <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "catValu")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "catValu")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -543,8 +514,8 @@ ddi_labl <- function(...) {
  
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "level", "vendor", "country", "sdatrefs")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "labl")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "labl")
+    check_attribs(attribs)
   }
 
   build_leaf_node (
@@ -572,8 +543,8 @@ ddi_notes <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "type", "subject", "level", "resp",
                         "sdatrefs", "parent", "sameNote")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "notes")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "notes")
+    check_attribs(attribs)
   }
 
   build_leaf_node (
@@ -600,8 +571,8 @@ ddi_txt <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "level", "sdatrefs")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "txt")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "txt")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -629,8 +600,8 @@ ddi_imputation <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "imputation")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "imputation")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -661,8 +632,8 @@ ddi_qstn <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "qstn", "var", "seqNo", "sdatrefs",
                         "responseDomainType", "otherResponseDomainType")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "qstn")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "qstn")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -695,8 +666,8 @@ ddi_sumStat <- function(type, ...) {
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "wgtd", "wgt-var", "weight",
                       "type", "otherType")
 
-  check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "sumStat")
-  check_attribs(attribs = attribs)
+  check_attribs_in_set(names(attribs), allowed_attribs, field = "sumStat")
+  check_attribs(attribs)
   
 
   build_leaf_node(
@@ -724,8 +695,8 @@ ddi_codInstr <- function(...) {
     
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "codInstr")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "codInstr")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -752,8 +723,8 @@ ddi_TotlResp <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "TotlResp")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "TotlResp")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -781,8 +752,8 @@ ddi_security <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "date")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "security")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "security")
+    check_attribs(attribs)
   }
   build_leaf_node(
     "security",
@@ -810,8 +781,8 @@ ddi_embargo <- function(...) {
     
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "date", "event", "format")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "embargo")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "embargo")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -839,8 +810,8 @@ ddi_respUnit <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "respUnit")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "respUnit")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -867,8 +838,8 @@ ddi_undocCod <- function(...) {
  
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "undocCod")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "undocCod")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -895,8 +866,8 @@ ddi_stdCatgry <- function(...) {
    
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "date", "URI")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "stdCatgry")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "stdCatgry")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -925,8 +896,8 @@ ddi_concept <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "vocab", "vocabURI")
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "concept")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "concept")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -957,11 +928,11 @@ ddi_varFormat <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "formatname",
                         "schema", "otherSchema", "type", "category", "otherCategory", "URI") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "varFormat")
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "varFormat")
     if("type" %in% names(attribs)) {
       check_attribs_in_set(vals = attribs$type, attributes = c("numeric", "character"), field = "varFormat(type)")
     }  
-    check_attribs(attribs = attribs)
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -989,8 +960,8 @@ ddi_version <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "date", "type") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "version")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "version")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1018,8 +989,8 @@ ddi_verResp <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "affiliation") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "verResp")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "verResp")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1046,8 +1017,8 @@ ddi_drvdesc <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "drvdesc")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "drvdesc")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1076,8 +1047,8 @@ ddi_drvcmd <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "syntax") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "drvcmd")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "drvcmd")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1100,6 +1071,7 @@ ddi_drvcmd <- function(...) {
 #'  
 #' @export
 ddi_item <- function(value, ...) {
+  browser()
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
@@ -1108,9 +1080,9 @@ ddi_item <- function(value, ...) {
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "UNITS", "VALUE") 
 
-  check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "item")
+  check_attribs_in_set(names(attribs), allowed_attribs, field = "item")
 
-  check_attribs(attribs = attribs)
+  check_attribs(attribs)
 
   build_leaf_node(
     "item",
@@ -1138,8 +1110,8 @@ ddi_range <- function(...) {
   if(!is.null(attribs)) {
       allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "UNITS", "min", "minExclusive", "max", "maxExclusive") 
-      check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "range")
-      check_attribs(attribs = attribs)
+      check_attribs_in_set(names(attribs), allowed_attribs, field = "range")
+      check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1166,8 +1138,8 @@ ddi_key <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "key")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "key")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1196,8 +1168,8 @@ ddi_geomap <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "URI","mapformat", "levelno") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "geomap")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "geomap")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1229,8 +1201,8 @@ ddi_location <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "StartPos","EndPos", "width", "RecSegNo", "fileid", "locMap") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "location")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "location")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1256,8 +1228,8 @@ ddi_defntn <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "dfntn")
-    check_attribs(attribs = attribs)
+    check_attribs_in_set(names(attribs), allowed_attribs, field = "dfntn")
+    check_attribs(attribs)
   }
 
   build_leaf_node(
@@ -1288,9 +1260,9 @@ ddi_mi <- function(varRef, ...) {
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                     "varRef") 
 
-  check_attribs_in_set(attributes = allowed_attribs, vals = names(attribs), field = "mi")
+  check_attribs_in_set(names(attribs), allowed_attribs, field = "mi")
 
-  check_attribs(attribs = attribs)
+  check_attribs(attribs)
 
   build_leaf_node(
     "mi",
