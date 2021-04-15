@@ -5,6 +5,11 @@ test_that("Attribute is character string", {
     expect_error(check_strings(test_node$attribs), class = "rddi_error")
 })
 
+test_that("Attribute is an integer", {
+    test_node <- build_branch_node("branchtest", attribs = list(attr = "abc"))
+    expect_error(check_integer(test_node$attribs), class = "rddi_error")
+})
+
 test_that("XML NCname variables verifications", {
     test_node <- build_branch_node("branchtest", attribs = list(attr = "12"))
     expect_error(check_ncname(test_node$attribs), class = "rddi_error")
