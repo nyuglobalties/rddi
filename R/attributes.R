@@ -37,15 +37,16 @@ check_attribs <- function(attribs) {
     if ("xml:lang" %in% names(attribs)) check_xmlLanguage(attribs$`xml:lang`)   
  
     #check for character strings 
-    chr_strings <- c("name", "elementVersion", "vendor", "cdml", "rectype", "geoVocab", "measUnit", "scale", "origin", "geoVocab", 
+    chr_strings <- c("name", "elementVersion", "vendor", "cdml", "rectype", "geoVocab", "measUnit", "scale", "origin", "unit", 
                 "catQnty", "type", "subject", "levelnm", "missType", "country", "level", "resp", "seqNo", "date", "format", "URI", "mapformat",
                 "vocab", "vocabURI", "formatname", "levelno", "affiliation", "syntax", "VALUE", "min", "minExclusive", "max", "maxExclusive",
-                "StartPos", "EndPos", "width", "RecSegNo", "nCube", "MARCURI", "agency", "role", "abbr", "date", "version", "formNo", "email")
+                "StartPos", "EndPos", "width", "RecSegNo", "nCube", "MARCURI", "agency", "role", "abbr", "date", "version", "formNo", "email",
+                "location", "callno", "media", "formalLanguage", "label", "cycle")
     if(any(names(attribs) %in% chr_strings)) check_strings(attribs[names(attribs) %in% chr_strings])
     
     #check for NCName, the restriction on ID & IDREF. For loop for IDREFS
     ncnames <-c("ID", "wgt-var", "weight", "qstn", "files", "sdatrefs", "methrefs", "pubrefs", "access", "parent", "sameNote", "catgry", "catGrp", "var",
-                "varRef", "fileid", "locMap", "codeBookAgency")
+                "varRef", "fileid", "locMap", "codeBookAgency", "relatedProcesses")
     if(any(names(attribs) %in% ncnames)) check_ncname(attribs[names(attribs) %in% ncnames])
         
     # check for NMTOKEN 
@@ -57,6 +58,7 @@ check_attribs <- function(attribs) {
 
     # check for xs:dateTime, xs:date, xs:gYearMonth, xs:gYear
     if("elementVersionDate" %in% names(attribs)) check_elementVersionDate(attribs$elementVersionDate)
+    if("completionDate" %in% names(attribs)) check_elementVersionDate(attribs$completionDate)
 
     # check for integers
     int <- c("numberOfUnits")
@@ -80,7 +82,7 @@ check_strings <- function(attribs) {
 
 check_ncname <- function(attribs) {
     reg_expr <- "^[A-Za-z_][-._A-Za-z0-9]*$"
-    idrefs <- c("wgt-var", "weight", "qstn", "files", "sdatrefs", "methrefs", "pubrefs", "access", "catgry", "catGrp")
+    idrefs <- c("wgt-var", "weight", "qstn", "files", "sdatrefs", "methrefs", "pubrefs", "access", "catgry", "catGrp", "relatedProcesses")
     for(name in names(attribs)) {
         if(any(name %in% idrefs)) {
             for(a in unlist(strsplit(attribs[[name]], " "))) {
