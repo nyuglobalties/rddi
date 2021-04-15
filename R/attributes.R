@@ -30,6 +30,8 @@ check_attribs <- function(attribs) {
     if ("compl" %in% names(attribs)) check_attribs_in_set(attribs$compl, c("true", "false"), field = "compl")
     if ("event" %in% names(attribs)) check_attribs_in_set(attribs$event, c("notBefore", "notAfter"), field = "event")
     if ("UNITS" %in% names(attribs)) check_attribs_in_set(attribs$UNITS, c("INT", "REAL"), field = "UNITS")
+    if ("isPrimary" %in% names(attribs)) check_attribs_in_set(attribs$isPrimary, c("true", "false"), field = "isPrimary")
+    if ("required" %in% names(attribs)) check_attribs_in_set(attribs$required, c("yes", "no"), field = "required")
 
     # check for xml:lang
     if ("xml:lang" %in% names(attribs)) check_xmlLanguage(attribs$`xml:lang`)   
@@ -38,12 +40,12 @@ check_attribs <- function(attribs) {
     chr_strings <- c("name", "elementVersion", "vendor", "cdml", "rectype", "geoVocab", "measUnit", "scale", "origin", "geoVocab", 
                 "catQnty", "type", "subject", "levelnm", "missType", "country", "level", "resp", "seqNo", "date", "format", "URI", "mapformat",
                 "vocab", "vocabURI", "formatname", "levelno", "affiliation", "syntax", "VALUE", "min", "minExclusive", "max", "maxExclusive",
-                "StartPos", "EndPos", "width", "RecSegNo", "nCube")
+                "StartPos", "EndPos", "width", "RecSegNo", "nCube", "MARCURI", "agency", "role", "abbr", "date", "version", "formNo", "email")
     if(any(names(attribs) %in% chr_strings)) check_strings(attribs[names(attribs) %in% chr_strings])
     
     #check for NCName, the restriction on ID & IDREF. For loop for IDREFS
     ncnames <-c("ID", "wgt-var", "weight", "qstn", "files", "sdatrefs", "methrefs", "pubrefs", "access", "parent", "sameNote", "catgry", "catGrp", "var",
-                "varRef", "fileid", "locMap")
+                "varRef", "fileid", "locMap", "codeBookAgency")
     if(any(names(attribs) %in% ncnames)) check_ncname(attribs[names(attribs) %in% ncnames])
         
     # check for NMTOKEN 
@@ -56,7 +58,18 @@ check_attribs <- function(attribs) {
     # check for xs:dateTime, xs:date, xs:gYearMonth, xs:gYear
     if("elementVersionDate" %in% names(attribs)) check_elementVersionDate(attribs$elementVersionDate)
 
+    # check for integers
+    int <- c("numberOfUnits")
+    if(any(names(attribs) %in% int)) check_int(attribs[names(attribs) %in% int])
+
+
     invisible(attribs)
+}
+
+check_integer <- function(attribs) {
+    for(name in names(attribs)) {
+        if(!is.integer(attribs[[name]])) rddi_err("{name} must be a integer")
+    }
 }
 
 check_strings <- function(attribs) {
@@ -94,21 +107,31 @@ check_anyURI <- function(attribs) {
     }
 }
 
-check_elementVersionDate <- function(attribs) {
-    gYear <- "^[0-9]{4}$"
+# Function that actually checks the string
+validate_date_str <- function(date_str) {
+	gYear <- "^[0-9]{4}$"
     gYearMonth <- "^[0-9]{4}-[0-9]{2}"
     datetime <- "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$"
     dateOnly <- "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
-    if(grepl(gYear, attribs) | grepl(gYearMonth, attribs) | grepl(datetime, attribs) | grepl(dateOnly, attribs)) {
-        if(grepl(datetime, attribs)) {
-            if(is.na(as.POSIXct(strptime(attribs, format = "%Y-%m-%d %H:%M:%S")))) rddi_err("elementVersionDate must be a real date/time")
-        } else if(grepl(dateOnly, attribs)) {
-            if(is.na(as.POSIXct(strptime(attribs, format = "%Y-%m-%d")))) rddi_err("elementVersionDate must be a real date")
-        } else if(grepl(gYearMonth, attribs)) {
-            if (as.numeric(substr(attribs, 6, 7)) < 1 | as.numeric(substr(attribs, 6,7)) > 12) rddi_err("elementVersionDate must have a month between 1 and 12")
+    
+	if (grepl(gYear, date_str) || grepl(gYearMonth, date_str) || grepl(datetime, date_str) || grepl(dateOnly, date_str)) {
+        if (grepl(datetime, date_str)) {
+            if(is.na(as.POSIXct(strptime(date_str, format = "%Y-%m-%d %H:%M:%S")))) rddi_err("'{date_str}' must be a real date/time")
+        } else if (grepl(dateOnly, date_str)) {
+            if (is.na(as.POSIXct(strptime(date_str, format = "%Y-%m-%d")))) rddi_err("'{date_str}' must be a real date")
+        } else if (grepl(gYearMonth, date_str)) {
+            if (as.numeric(substr(date_str, 6, 7)) < 1 | as.numeric(substr(date_str, 6,7)) > 12) rddi_err("'{date_str}' must have a month between 1 and 12")
         }
     }
-    else rddi_err("elementVersionDate must be in YYYY, YYYY-MM, YYYY-MM-DD, or YYYY-MM-DD HH:MM:SS format")
+    else rddi_err("'{date_str}' must be in YYYY, YYYY-MM, YYYY-MM-DD, or YYYY-MM-DD HH:MM:SS format")
+}
+
+check_elementVersionDate <- function(attribs) {
+    validate_date_str(attribs$elementVersionDate)
+}
+
+check_content_date <- function(content) {
+	validate_date_str(content)
 }
 
 check_xmlLanguage <- function(attribs) {
