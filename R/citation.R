@@ -33,7 +33,7 @@ ddi_citation <- function(...) {
     if (!is.null(attribs)) {
         allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn"
                             , "MARCURI")
-        check_attribs_in_set(names(attribs), allowed_attribs, field = "dataDscr")
+        check_attribs_in_set(names(attribs), allowed_attribs, field = "citation")
         check_attribs(attribs)
     }
 
