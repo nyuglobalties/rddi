@@ -10,21 +10,18 @@
 #' 
 #' @export
 ddi_codeBook <- function(...) {
-#  schema <- list(
-#    version = "2.5",
-#    xmlns = "ddi:codebook:2_5",
-#    `xmlns:xsi` = "http://www.w3.org/2001/XMLSchema-instance",
-#    `xsi:schemaLocation` = "http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd"
-#  )
-# NEED TO ASK ABOUT ABOVE
-
   components <- dots_to_xml_components(...)
   content <- components$content
   attribs <- components$attribs
+  attribs$version <- "2.5"
+  attribs$xmlns <- "ddi:codebook:2_5"
+  attribs$`xmlns:xsi` <- "http://www.w3.org/2001/XMLSchema-instance"
+  attribs$`xsi:schemaLocation` <- "http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd"
+
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                        "version", "codeBookAgency")
+                        "version", "codeBookAgency", "xmlns", "xmlns:xsi", "xsi:schemaLocation")
     if(!is.null(attribs$version) & attribs$version != "2.5") attribs$version = "2.5"
     check_attribs_in_set(names(attribs), allowed_attribs, field = "codebook")
     check_attribs(attribs)
@@ -119,12 +116,10 @@ ddi_dataDscr <- function(...) {
     check_attribs(attribs)
   }
 
-  components <- dots_to_xml_components(...)
-
   build_branch_node(
     "dataDscr",
     allowed_children = allowed_children,
     attribs = attribs,
-    components = components
+    content = components$content
   )
 }
