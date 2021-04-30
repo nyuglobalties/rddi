@@ -2,24 +2,118 @@
 % Please edit documentation in R/variables.R
 \name{ddi_var}
 \alias{ddi_var}
-\title{DDI variable specification}
+\alias{ddi_catLevel}
+\alias{ddi_anlysUnit}
+\alias{ddi_imputation}
+\alias{ddi_qstn}
+\alias{ddi_sumStat}
+\alias{ddi_codInstr}
+\alias{ddi_TotlResp}
+\alias{ddi_security}
+\alias{ddi_embargo}
+\alias{ddi_respUnit}
+\alias{ddi_undocCod}
+\alias{ddi_stdCatgry}
+\alias{ddi_varFormat}
+\alias{ddi_geomap}
+\alias{ddi_location}
+\title{var and its leaf node children}
 \usage{
-ddi_var(varname, database_id = NULL, ...)
+ddi_var(varname, ...)
+
+ddi_catLevel(...)
+
+ddi_anlysUnit(...)
+
+ddi_imputation(...)
+
+ddi_qstn(...)
+
+ddi_sumStat(type, ...)
+
+ddi_codInstr(...)
+
+ddi_TotlResp(...)
+
+ddi_security(...)
+
+ddi_embargo(...)
+
+ddi_respUnit(...)
+
+ddi_undocCod(...)
+
+ddi_stdCatgry(...)
+
+ddi_varFormat(...)
+
+ddi_geomap(...)
+
+ddi_location(...)
 }
 \arguments{
 \item{varname}{The variable name}
 
-\item{...}{Any other parameters from the DDI Codebook 2.5 schema}
+\item{...}{Any parameters from the DDI Codebook 2.5 schema. See the references or go the branch node functions for more information.}
 }
 \description{
 Variables are specified with the var tag, which has a litany of
-attributes. The basic necessities of a variable, however, are given by its name, and type.
-If the variable is categorical, then the variable will have as many
-catgry (\code{ddi_catgry()}) entries as category levels. Missingness codes are specified in \code{ddi_catgry()}.
+attributes and children. More information on the allowed attributes for var
+and its child nodes can be found below and in the references.
 }
-\section{DDI Codebook 2.5 Documentation}{
+\section{Branch node children allowed}{
 
-
-\url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/var.html}
+\itemize{
+\item \code{\link[=ddi_catgry]{ddi_catgry()}}
+\item \code{\link[=ddi_catgryGrp]{ddi_catgryGrp()}}
+\item \code{\link[=ddi_derivation]{ddi_derivation()}}
+\item \code{\link[=ddi_invalrng]{ddi_invalrng()}}
+\item \code{\link[=ddi_valrng]{ddi_valrng()}}
+}
 }
 
+\section{General children allowed}{
+
+\itemize{
+\item \code{ddi_concept()}
+\item \code{ddi_labl()}
+\item \code{ddi_notes()}
+\item \code{ddi_txt()}
+\item \code{ddi_universe()}
+\item \code{ddi_verStmt()}
+}
+}
+
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/var.html}{var documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlysUnit.html}{anlysUnit documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catLevel.html}{catlevel documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codInstr.html}{codInstr documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/embargo.html}{embargo documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoMap.html}{geomap documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/imputation.html}{imputation documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/location.html}{location documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstn.html}{qstn documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respUnit.html}{respUnit documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/security.html}{security documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdCatgry.html}{stdCatgry documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sumStat.html}{sumStat documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/TotlResp.html}{TotlResp documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/undocCod.html}{undocCod documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varFormat.html}{varFormat documentation}
+}
