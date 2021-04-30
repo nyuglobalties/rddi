@@ -37,18 +37,18 @@ test_that("XML anyURI variables verification", {
     expect_error(check_anyURI(test_node$attribs), class = "rddi_error")
 })
 
-test_that("elementVersionDate verification", {
+test_that("datestring verification", {
     test_node <- build_branch_node("branchtest", attribs = list(attr = "84"))
-    expect_error(check_elementVersionDate(test_node$attribs), class = "rddi_error")    
+    expect_error(validate_date_str(test_node$attribs), class = "rddi_error")    
 
     test_node <- build_branch_node("branchtest", attribs = list(attr = "2004-14"))
-    expect_error(check_elementVersionDate(test_node$attribs), class = "rddi_error")    
+    expect_error(validate_date_str(test_node$attribs), class = "rddi_error")    
 
     test_node <- build_branch_node("branchtest", attribs = list(attr = "2004-02-30"))
-    expect_error(check_elementVersionDate(test_node$attribs), class = "rddi_error")    
+    expect_error(validate_date_str(test_node$attribs), class = "rddi_error")    
 
     test_node <- build_branch_node("branchtest", attribs = list(attr = "2004-02-20 11:63:00"))
-    expect_error(check_elementVersionDate(test_node$attribs), class = "rddi_error")    
+    expect_error(validate_date_str(test_node$attribs), class = "rddi_error")    
 })
 
 test_that("xs:language variable verification", {
