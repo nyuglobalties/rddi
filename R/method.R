@@ -1,11 +1,21 @@
-#' Methodology and Processing
+#' method and its child nodes
 #' 
-#' This section describes the methodology and processing involved in a data collection.
+#' This section describes the methodology and processing involved in a data collection. More information on allowed attributes and
+#' child nodes can be found below and in hte references.
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/method.html}
+#' @section Branch node children allowed:
+#' * [ddi_anlyInfo()]
+#' * [ddi_codingInstructions()]
+#' * [ddi_dataColl()]
+#' 
+#' @section General children allowed:
+#' * `ddi_notes()` 
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/method.html}{method documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataProcessing.html}{dataProcessing documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyClas.html}{stdyClas documentation}
 #' 
 #' @export
 ddi_method <- function(...) {
@@ -14,8 +24,7 @@ ddi_method <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "method")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "method")
   }
 
   allowed_children <- c(
@@ -38,15 +47,34 @@ ddi_method <- function(...) {
   )
 }
 
-#' Data Collection Methodology
+#' dataColl and its children
 #' 
-#' Information about the methodology employed in a data collection.
+#' Information about the data collection methodology employed in the codebook. More information on dataColl, its attributes, and 
+#' its allowed children can be found below and in the references.
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes. 
+#' 
+#' @section Branch node children allowed:
+#' * [ddi_sampleFrame()]
+#' * [ddi_sources()]
+#' * [ddi_targetSampleSize()]
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataColl.html}
-#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataColl.html}{dataColl documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/actMin.html}{actMin documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/cleanOps.html}{cleanOps documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/collectorTraining.html}{collectorTraining documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/collMode.html}{collMode documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/collSitu.html}{collSitu documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/ConOps.html}{ConOps documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataCollector.html}{dataCollector documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/deviat.html}{deviat documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/frequenc.html}{frequenc documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/instrumentDevelopment.html}{instrumentDevelopment documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/resInstru.html}{resInstru documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampProc.html}{sampProc documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/timeMeth.html}{timeMeth documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/weight.html}{weight documentation}
+#'  
 #' @export
 ddi_dataColl <- function(...) {
   components <- dots_to_xml_components(...)
@@ -54,8 +82,7 @@ ddi_dataColl <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "dataColl")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "dataColl")
   }
 
   allowed_children <- c(
@@ -88,15 +115,7 @@ ddi_dataColl <- function(...) {
   )
 }
 
-#' Actions to Minimize Losses
-#' 
-#' Summary of actions taken to minimize data loss. Includes information on actions such as follow-up visits, supervisory checks, historical matching, estimation, etc.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/actMin.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_actMin <- function(...) {
   components <- dots_to_xml_components(...)
@@ -104,8 +123,7 @@ ddi_actMin <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "actMin")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "actMin")
   }
 
   build_leaf_node(
@@ -115,16 +133,7 @@ ddi_actMin <- function(...) {
   )
 }
 
-#' Cleaning Operations
-#' 
-#' Methods used to "clean" the data collection, e.g., consistency checking, wild code checking, etc. The "agency" attribute permits specification of the 
-#' agency doing the data cleaning.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/cleanOps.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_cleanOps <- function(...) {
   components <- dots_to_xml_components(...)
@@ -133,8 +142,7 @@ ddi_cleanOps <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "agency")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "cleanOps")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "cleanOps")
   }
 
   build_leaf_node(
@@ -144,16 +152,7 @@ ddi_cleanOps <- function(...) {
   )
 }
 
-#' Collector Training
-#' 
-#' Describes the training provided to data collectors including internviewer training, process testing, compliance with standards etc. This is repeatable for language 
-#' and to capture different aspects of the training process. The type attribute allows specification of the type of training being described.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/collectorTraining.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_collectorTraining <- function(...) {
   components <- dots_to_xml_components(...)
@@ -162,8 +161,7 @@ ddi_collectorTraining <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "type")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "collectorTraining")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "collectorTraining")
   }
 
   build_leaf_node(
@@ -173,15 +171,7 @@ ddi_collectorTraining <- function(...) {
   )
 }
 
-#' Mode of Data Collection
-#' 
-#' The method used to collect the data; instrumentation characteristics.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/collMode.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_collMode <- function(...) {
   components <- dots_to_xml_components(...)
@@ -189,8 +179,7 @@ ddi_collMode <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "collMode")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "collMode")
   }
 
   build_leaf_node(
@@ -200,15 +189,7 @@ ddi_collMode <- function(...) {
   )
 }
 
-#' Characteristics of Data Collection Situation
-#' 
-#' Description of noteworthy aspects of the data collection situation. Includes information on factors such as cooperativeness of respondents, duration of interviews, number of call-backs, etc.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/collSitu.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_collSitu <- function(...) {
   components <- dots_to_xml_components(...)
@@ -216,8 +197,7 @@ ddi_collSitu <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "collSitu")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "collSitu")
   }
 
   build_leaf_node(
@@ -227,16 +207,7 @@ ddi_collSitu <- function(...) {
   )
 }
 
-#' Control Operations
-#' 
-#' Methods to facilitate data control performed by the primary investigator or by the data archive. Specify any special programs used for such operations. The "agency" 
-#' attribute maybe used to refer to the agency that performed the control operation.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/ConOps.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_ConOps <- function(...) {
   components <- dots_to_xml_components(...)
@@ -245,8 +216,7 @@ ddi_ConOps <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "agency")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "ConOps")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "ConOps")
   }
 
   build_leaf_node(
@@ -256,17 +226,7 @@ ddi_ConOps <- function(...) {
   )
 }
 
-#' Data Collector
-#' 
-#' The entity (individual, agency, or institution) responsible for administering the questionnaire or interview or compiling the data. This refers to the entity collecting 
-#' the data, not to the entity producing the documentation. Attribute "abbr" may be used to list common abbreviations given to agencies, etc. Attribute "affiliation" may be 
-#' used to record affiliation of the data collector. The role attribute specifies the role of person in the data collection process.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataCollector.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_dataCollector <- function(...) {
   components <- dots_to_xml_components(...)
@@ -275,8 +235,7 @@ ddi_dataCollector <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "abbr", "affiliation", "role")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "dataCollector")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "dataCollector")
   }
 
   build_leaf_node(
@@ -286,16 +245,7 @@ ddi_dataCollector <- function(...) {
   )
 }
 
-#' Major Deviations from the Sample Design
-#' 
-#' Information indicating correspondence as well as discrepancies between the sampled units (obtained) and available statistics for the population (age, 
-#' sex-ratio, marital status, etc.) as a whole.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/deviat.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_deviat <- function(...) {
   components <- dots_to_xml_components(...)
@@ -303,8 +253,7 @@ ddi_deviat <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "deviat")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "deviat")
   }
 
   build_leaf_node(
@@ -314,16 +263,7 @@ ddi_deviat <- function(...) {
   )
 }
 
-#' Frequency of Data Collection
-#' 
-#' For data collected at more than one point in time, the frequency with which the data were collected. The "freq" attribute is included to permit the development 
-#' of a controlled vocabulary for this element.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/frequenc.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_frequenc <- function(...) {
   components <- dots_to_xml_components(...)
@@ -332,8 +272,7 @@ ddi_frequenc <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "freq")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "frequenc")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "frequenc")
   }
 
   build_leaf_node(
@@ -343,16 +282,7 @@ ddi_frequenc <- function(...) {
   )
 }
 
-#' Instrument Development
-#' 
-#' Describe any development work on the data collection instrument. Type attribute allows for the optional use of a defined development type with or without 
-#' use of a controlled vocabulary.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/instrumentDevelopment.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_instrumentDevelopment <- function(...) {
   components <- dots_to_xml_components(...)
@@ -361,8 +291,7 @@ ddi_instrumentDevelopment <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "type")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "instrumentDevelopment")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "instrumentDevelopment")
   }
 
   build_leaf_node(
@@ -372,18 +301,7 @@ ddi_instrumentDevelopment <- function(...) {
   )
 }
 
-#' Type of Research Instrument
-#' 
-#' The type of data collection instrument used. "Structured" indicates an instrument in which all respondents are asked the same questions/tests, possibly with 
-#' precoded answers. If a small portion of such a questionnaire includes open-ended questions, provide appropriate comments. "Semi-structured" indicates that the 
-#' research instrument contains mainly open-ended questions. "Unstructured" indicates that in-depth interviews were conducted. The "type" attribute is included to 
-#' permit the development of a controlled vocabulary for this element.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/resInstru.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_resInstru <- function(...) {
   components <- dots_to_xml_components(...)
@@ -392,8 +310,7 @@ ddi_resInstru <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "type")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "resInstru")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "resInstru")
   }
 
   build_leaf_node(
@@ -403,16 +320,7 @@ ddi_resInstru <- function(...) {
   )
 }
 
-#' Sampling Procedure
-#' 
-#' The type of sample and sample design used to select the survey respondents to represent the population. May include reference to the target 
-#' sample size and the sampling fraction.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampProc.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_sampProc <- function(...) {
   components <- dots_to_xml_components(...)
@@ -420,8 +328,7 @@ ddi_sampProc <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "sampProc")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "sampProc")
   }
 
   build_leaf_node(
@@ -431,16 +338,7 @@ ddi_sampProc <- function(...) {
   )
 }
 
-#' Time Method
-#' 
-#' The time method or time dimension of the data collection. The "method" attribute is included to permit the development of a controlled vocabulary 
-#' for this element.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/timeMeth.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_timeMeth <- function(...) {
   components <- dots_to_xml_components(...)
@@ -449,8 +347,7 @@ ddi_timeMeth <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "method")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "timeMeth")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "timeMeth")
   }
 
   build_leaf_node(
@@ -460,17 +357,7 @@ ddi_timeMeth <- function(...) {
   )
 }
 
-#' Weighting
-#' 
-#' The use of sampling procedures may make it necessary to apply weights to produce accurate statistical results. Describe here the criteria for using weights 
-#' in analysis of a collection. If a weighting formula or coefficient was developed, provide this formula, define its elements, and indicate how the formula 
-#' is applied to data. 
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/timeMeth.html}
-#' 
+#' @rdname ddi_dataColl
 #' @export
 ddi_weight <- function(...) {
   components <- dots_to_xml_components(...)
@@ -478,8 +365,7 @@ ddi_weight <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "weight")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "weight")
   }
 
   build_leaf_node(
@@ -489,18 +375,29 @@ ddi_weight <- function(...) {
   )
 }
 
-#' Sample Frame
+#' sampleFrame and its children
 #' 
-#' Sample frame describes the sampling frame used for identifying the population from which the sample was taken. For example, a telephone book may be 
-#' a sample frame for a phone survey. In addition to the name, label and text describing the sample frame, this structure lists who maintains the sample 
-#' frame, the period for which it is valid, a use statement, the universe covered, the type of unit contained in the frame as well as the number of units 
-#' available, the reference period of the frame and procedures used to update the frame. Use multiple use statements to provide different uses under 
-#' different conditions. Repeat elements within the use statement to support multiple languages.
+#' Sample frame describes the sampling frame used for identifying the population from which the sample was taken. 
+#' More information on sampleFrame, its leaf and branch nodes, and their attributes can be found below and in the 
+#' references.
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleFrame.html}
+#' @section Branch node children allowed:
+#' * [ddi_frameUnit()]
+#' 
+#' @section General children allowed:
+#' * `ddi_labl()`
+#' * `ddi_txt()`
+#' * `ddi_universe()`
+#' * `ddi_useStmt()` 
+#'
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleFrame.html}{sampleFrame documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/custodian.html}{custodian documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/referencePeriod.html}{referencePeriod documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleFrameName.html}{sampleFrameName documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/updateProcedure.html}{updateProcedure documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/referencePeriod.html}{referencePeriod documentation}
 #' 
 #' @export
 ddi_sampleFrame <- function(...) {
@@ -509,8 +406,7 @@ ddi_sampleFrame <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "sampleFrame")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "sampleFrame")
   }
 
   allowed_children <- c(
@@ -534,16 +430,7 @@ ddi_sampleFrame <- function(...) {
   )
 }
 
-#' Custodian
-#' 
-#' Custodian identifies the agency or individual who is responsible for creating or maintaining the sample frame. Attribute affiliation provides the 
-#' affiliation of the custodian with an agency or organization. Attribute abbr provides an abbreviation for the custodian.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/custodian.html}
-#' 
+#' @rdname ddi_sampleFrame
 #' @export
 ddi_custodian <- function(...) {
   components <- dots_to_xml_components(...)
@@ -552,8 +439,7 @@ ddi_custodian <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "abbr")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "custodian")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "custodian")
   }
 
   build_leaf_node(
@@ -563,15 +449,7 @@ ddi_custodian <- function(...) {
   )
 }
 
-#' Reference Period
-#' 
-#' Indicates the period of time in which the sampling frame was actually used for the study in question. Use ISO 8601 date/time formats to enter the relevant date(s).
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/referencePeriod.html}
-#' 
+#' @rdname ddi_sampleFrame
 #' @export
 ddi_referencePeriod <- function(...) {
   components <- dots_to_xml_components(...)
@@ -580,9 +458,8 @@ ddi_referencePeriod <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "event")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "referencePeriod")
+    attribs <- validate_attributes(attribs, allowed_attribs, "referencePeriod")
     check_attribs_in_set(attribs$event, c("start", "end", "single"), field = "event (referencePeriod")
-    check_attribs(attribs)
   }
 
   check_content_date(components$content) 
@@ -594,15 +471,7 @@ ddi_referencePeriod <- function(...) {
   )
 }
 
-#' Sample Frame Name
-#' 
-#' Name of the sample frame.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleFrameName.html}
-#' 
+#' @rdname ddi_sampleFrame
 #' @export
 ddi_sampleFrameName <- function(...) {
   components <- dots_to_xml_components(...)
@@ -610,8 +479,7 @@ ddi_sampleFrameName <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "sampleFrameName")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "sampleFrameName")
   }
 
   build_leaf_node(
@@ -621,15 +489,7 @@ ddi_sampleFrameName <- function(...) {
   )
 }
 
-#' Instrument Development
-#' 
-#' Description of how and with what frequency the sample frame is updated.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/updateProcedure.html}
-#' 
+#' @rdname ddi_sampleFrame
 #' @export
 ddi_updateProcedure <- function(...) {
   components <- dots_to_xml_components(...)
@@ -637,8 +497,7 @@ ddi_updateProcedure <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "updateProcedure")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "updateProcedure")
   }
 
   build_leaf_node(
@@ -648,15 +507,7 @@ ddi_updateProcedure <- function(...) {
   )
 }
 
-#' Valid Period
-#' 
-#' Defines a time period for the validity of the sampling frame. Enter dates in YYYY-MM-DD format.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/referencePeriod.html}
-#' 
+#' @rdname ddi_sampleFrame
 #' @export
 ddi_validPeriod <- function(...) {
   components <- dots_to_xml_components(...)
@@ -665,9 +516,8 @@ ddi_validPeriod <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "event")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "validPeriod")
+    attribs <- validate_attributes(attribs, allowed_attribs, "validPeriod")
     check_attribs_in_set(attribs$event, c("start", "end", "single"), field = "event (validPeriod")
-    check_attribs(attribs)
   }
 
   check_content_date(components$content) 
@@ -679,14 +529,18 @@ ddi_validPeriod <- function(...) {
   )
 }
 
-#' Frame Unit
+#' frameUnit and its children
 #' 
-#' Provides information about the sampling frame unit. The attribute "isPrimary" is boolean, indicating whether the unit is primary or not.
+#' Provides information about the sampling frame unit. More information on frameUnit, its children nodes, and attributes can be found
+#' below and in the references
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/frameUnit.html}
+#' @section General children allowed:
+#' * `ddi_txt()`
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/frameUnit.html}{frameUnit documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/unitType.html}{unitType documentation}
 #' 
 #' @export
 ddi_frameUnit <- function(...) {
@@ -696,8 +550,7 @@ ddi_frameUnit <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "isPrimary")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "frameUnit")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "frameUnit")
   }
 
   allowed_children <- c(
@@ -713,15 +566,7 @@ ddi_frameUnit <- function(...) {
   )
 }
 
-#' Unit Type
-#' 
-#' Describes the type of sampling frame unit. The attribute "numberOfUnits" provides the number of units in the sampling frame.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/unitType.html}
-#' 
+#' @rdname ddi_frameUnit 
 #' @export
 ddi_unitType <- function(...) {
   components <- dots_to_xml_components(...)
@@ -730,8 +575,7 @@ ddi_unitType <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "numberOfUnits")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "unitType")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "unitType")
   }
 
   build_leaf_node(
@@ -741,280 +585,19 @@ ddi_unitType <- function(...) {
   )
 }
 
-#' Use Statement
-#' 
-#' Information on terms of use for the data collection. This element may be repeated only to support multiple language expressions of the content.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/useStmt.html}
-#' 
-#' @export
-ddi_useStmt <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
 
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "useStmt")
-    check_attribs(attribs)
-  }
-
-  allowed_children <- c(
-    "confDec",
-    "specPerm",
-    "restrctn",
-    "contact",
-    "citReq",
-    "deposReq",
-    "conditions",
-    "disclaimer"
-  )
-
-  build_branch_node(
-    "useStmt",
-    allowed_children = allowed_children,
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Confidentiality Declaration
-#' 
-#' This element is used to determine if signing of a confidentiality declaration is needed to access a resource. The "required" attribute is used to aid machine 
-#' processing of this element, and the default specification is "yes". The "formNo" attribute indicates the number or ID of the form that the user must fill out. 
-#' The "URI" attribute may be used to provide a URN or URL for online access to a confidentiality declaration form.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/unitType.html}
-#' 
-#' @export
-ddi_confDec <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                        "required", "formNo", "URI")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "confDec")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "confDec",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Citation Requirement
-#' 
-#' Text of requirement that a data collection should be cited properly in articles or other publications that are based on analysis of the data.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/citReq.html}
-#' 
-#' @export
-ddi_citReq <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "citReq")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "citReq",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Conditions
-#' 
-#' Indicates any additional information that will assist the user in understanding the access and use conditions of the data collection.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/conditions.html}
-#' 
-#' @export
-ddi_conditions <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "conditions")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "conditions",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Contact Persons
-#' 
-#' Names and addresses of individuals responsible for the work. Individuals listed as contact persons will be used as resource persons regarding problems or 
-#' questions raised by the user community. The URI attribute should be used to indicate a URN or URL for the homepage of the contact individual. The 
-#' email attribute is used to indicate an email address for the contact individual. 
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/contact.html}
-#' 
-#' @export
-ddi_contact <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                        "affiliation", "URI", "email")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "contact")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "contact",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Deposit Requirement
-#' 
-#' Information regarding user responsibility for informing archives of their use of data through providing citations to the published work or providing copies of the manuscripts. 
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/deposReq.html}
-#' 
-#' @export
-ddi_deposReq <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "deposReq")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "deposReq",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Disclaimer
-#' 
-#' Information regarding responsibility for uses of the data collection. This element may be repeated to support multiple language expressions of the content.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/disclaimer.html}
-#' 
-#' @export
-ddi_disclaimer <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "disclaimer")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "disclaimer",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Restrictions
-#' 
-#' Any restrictions on access to or use of the collection such as privacy certification or distribution restrictions should be indicated here. These 
-#' can be restrictions applied by the author, producer, or disseminator of the data collection. If the data are restricted to only a certain class of 
-#' user, specify which type. 
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/restrctn.html}
-#' 
-#' @export
-ddi_restrctn <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "restrctn")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "restrctn",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Special Permissions
-#' 
-#' This element is used to determine if any special permissions are required to access a resource. The "required" attribute is used to aid machine 
-#' processing of this element, and the default specification is "yes". The "formNo" attribute indicates the number or ID of the form that the user 
-#' must fill out. The "URI" attribute may be used to provide a URN or URL for online access to a special permissions form.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/specPerm.html}
-#' 
-#' @export
-ddi_specPerm <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                          "formNo", "URI")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "specPerm")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "specPerm",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Target Sample Size
+#' targetSampleSize and its children nodes
 #' 
 #' Provides both the target size of the sample (this is the number in the original sample, not the number of respondents) as well as the formula used for determining the sample size.
+#' More information on the allowed attributes and children can be found in the references
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/targetSampleSize.html}
+#' @section DDI Codebook 2.5 Documentation:
+#'
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/targetSampleSize.html}{targetSampleSize documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleSize.html}{sampleSize documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleSizeFormula.html}{sampleSizeFormula documentation}
 #' 
 #' @export
 ddi_targetSampleSize <- function(...) {
@@ -1023,8 +606,7 @@ ddi_targetSampleSize <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "targetSampleSize")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "targetSampleSize")
   }
 
   allowed_children <- c(
@@ -1042,15 +624,7 @@ ddi_targetSampleSize <- function(...) {
   )
 }
 
-#' Sample Size
-#' 
-#' This element provides the targeted sample size in integer format.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleSize.html}
-#' 
+#' @rdname ddi_targetSampleSize
 #' @export
 ddi_sampleSize <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1058,8 +632,7 @@ ddi_sampleSize <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "sampleSize")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "sampleSize")
   }
 
   if(!is.integer(components$content)) rddi_err("sampleSize must be an integer")
@@ -1071,15 +644,7 @@ ddi_sampleSize <- function(...) {
   )
 }
 
-#' Sample Size Formula
-#' 
-#' This element includes the formula that was used to determine the sample size.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleSizeFormula.html}
-#' 
+#' @rdname ddi_targetSampleSize
 #' @export
 ddi_sampleSizeFormula <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1087,8 +652,7 @@ ddi_sampleSizeFormula <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "sampleSizeFormula")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "sampleSizeFormula")
   }
 
   if(!is.character(components$content)) rddi_err("sampleSizeFormula must be a character string")
@@ -1107,7 +671,15 @@ ddi_sampleSizeFormula <- function(...) {
 #' 
 #' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
 #'
-#' @section DDI Codebook 2.5 Documentation
+#' @section Branch node children allowed:
+#' * [ddi_sourceCitation()]
+#' 
+#' @section General children allowed:
+#' * `ddi_dataSrc()`
+#' * `ddi_srcOrig()` 
+#' * `ddi_srcChar()` 
+#' * `ddi_srcDocu()`
+#' 
 #' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sources.html}
 #' 
 #' @export
@@ -1117,8 +689,7 @@ ddi_sources <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "sources")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "sources")
   }
 
   allowed_children <- c(
@@ -1129,7 +700,6 @@ ddi_sources <- function(...) {
     "srcDocu",
     "sources"
   )
-  # dataSrc, srcOrig, srcChar, srcDocu are crosslisted in resource, a child node of developmentActivity
 
   build_branch_node(
     "sources",
@@ -1140,60 +710,16 @@ ddi_sources <- function(...) {
 }
 
 
-#' Source Citation
-#' 
-#' This complex element allows the inclusion of a standard citation for the sources used in collecting and creating the dataset.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sourceCitation.html}
-#' 
-#' @export
-ddi_sourceCitation <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
-                        "Marcuri")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "sourceCitation")
-    check_attribs(attribs)
-  }
-
-  allowed_children <- c(
-    "titlStmt",
-    "respStmt",
-    "prodStmt",
-    "distStmt",
-    "serStmt",
-    "verStmt",
-    "biblCit",
-    "holdings"
-  )
-  #children are the same as citation
-
-  # rspStmt, prodStmt, and distStmt are only allowed once in citation according to DDI 2.5
-  if(check_cardinality(components$content, "rspStmt") > 1) rddi_err("Only 0 or 1 rspStmt children are allowed in citation")
-  if(check_cardinality(components$content, "prodStmt") > 1) rddi_err("Only 0 or 1 prodStmt children are allowed in citation")
-  if(check_cardinality(components$content, "distStmt") > 1) rddi_err("Only 0 or 1 distStmt children are allowed in citation")
-  
-  build_branch_node(
-    "sources",
-    allowed_children = allowed_children,
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Data Appraisal
+#' anlyInfo and its child nodes
 #' 
 #' Information on data appraisal.
 #' 
 #' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlyInfo.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlyInfo.html}{anylInfo documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataAppr.html}{dataAppr documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respRate.html}{respRate documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/EstSmpErr.html}{EstSmpErr documentation}
 #' 
 #' @export
 ddi_anlyInfo <- function(...) {
@@ -1202,8 +728,7 @@ ddi_anlyInfo <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "anlyInfo")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "anlyInfo")
   }
 
   allowed_children <- c(
@@ -1220,16 +745,7 @@ ddi_anlyInfo <- function(...) {
   )
 }
 
-#' Other Forms of Data Appraisal
-#' 
-#' Other issues pertaining to data appraisal. Describe here issues such as response variance, nonresponse rate and testing for bias, interviewer and response bias, 
-#' confidence levels, question bias, etc. Attribute type allows for optional typing of data appraisal processes and option for controlled vocabulary.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataAppr.html}
-#' 
+#' @rdname ddi_anlyInfo
 #' @export
 ddi_dataAppr <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1238,8 +754,7 @@ ddi_dataAppr <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "type")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "dataAppr")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "dataAppr")
   }
 
   build_leaf_node(
@@ -1249,15 +764,7 @@ ddi_dataAppr <- function(...) {
   )
 }
 
-#' Estimates of Sampling Error
-#' 
-#' Measure of how precisely one can estimate a population value from a given sample.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/EstSmpErr.html}
-#' 
+#' @rdname ddi_anlyInfo
 #' @export
 ddi_EstSmpErr <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1265,8 +772,7 @@ ddi_EstSmpErr <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "EstSmpErr")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "EstSmpErr")
   }
 
   build_leaf_node(
@@ -1276,15 +782,7 @@ ddi_EstSmpErr <- function(...) {
   )
 }
 
-#' Response Rate
-#' 
-#' The percentage of sample members who provided information. This may include a broader description of stratified response rates, information affecting resonse rates etc.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respRate.html}
-#' 
+#' @rdname ddi_anlyInfo
 #' @export
 ddi_respRate <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1292,8 +790,7 @@ ddi_respRate <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "respRate")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "respRate")
   }
 
   build_leaf_node(
@@ -1303,15 +800,18 @@ ddi_respRate <- function(...) {
   )
 }
 
-#' Coding Instructions
+#' codingInstructions and its child nodes
 #' 
-#' Describe specific coding instructions used in data processing, cleaning, assession, or tabulation. Element relatedProcesses allows linking a coding 
-#' instruction to one or more processes such as dataProcessing, dataAppr, cleanOps, etc. Use the txt element to describe instructions in a human readable form.
+#' Describe specific coding instructions used in data processing, cleaning, assession, or tabulation. 
+#' More information on codingInstructions allowed attributes and children can be found below and in the references.
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codingInstructions.html}
+#' @section General children allowed:
+#' * `ddi_txt()`
+#'
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codingInstructions.html}{codingInstructions documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/command.html}{command documentation}
 #' 
 #' @export
 ddi_codingInstructions <- function(...) {
@@ -1321,8 +821,7 @@ ddi_codingInstructions <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "type", "relatedProcesses")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "codingInstructions")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "codingInstructions")
   }
 
   allowed_children <- c(
@@ -1338,15 +837,7 @@ ddi_codingInstructions <- function(...) {
   )
 }
 
-#' Command
-#' 
-#' Provide command code for the coding instruction. The formalLanguage attribute identifies the language of the command code.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/command.html}
-#' 
+#' @rdname ddi_codingInstructions
 #' @export
 ddi_command <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1355,8 +846,7 @@ ddi_command <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                           "formalLanguage")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "command")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "command")
   }
 
   build_leaf_node(
@@ -1366,16 +856,7 @@ ddi_command <- function(...) {
   )
 }
 
-#' Data Processing
-#' 
-#' Describes various data processing procedures not captured elsewhere in the documentation, such as topcoding, recoding, suppression, tabulation, etc. 
-#' The "type" attribute supports better classification of this activity, including the optional use of a controlled vocabulary.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataProcessing.html}
-#' 
+#' @rdname ddi_method 
 #' @export
 ddi_dataProcessing <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1384,8 +865,7 @@ ddi_dataProcessing <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                           "type")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "dataProcessing")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "dataProcessing")
   }
 
   build_leaf_node(
@@ -1395,16 +875,7 @@ ddi_dataProcessing <- function(...) {
   )
 }
 
-#' Class of the Study
-#' 
-#' Generally used to give the data archive's class or study status number, which indicates the processing status of the study. May also be used as a text 
-#' field to describe processing status. This element may be repeated to support multiple language expressions of the content.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyClas.html}
-#' 
+#' @rdname ddi_method
 #' @export
 ddi_stdyClas <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1413,8 +884,7 @@ ddi_stdyClas <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                           "type")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "stdyClas")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "stdyClas")
   }
 
   build_leaf_node(
