@@ -1,11 +1,13 @@
-#' Study Authorization
+#' studyAuthorization and its leaf node children
 #' 
-#' Provides structured information on the agency that authorized the study, the date of authorization, and an authorization statement.
+#' Study Authorization provides structured information on the agency that authorized the study, the date of authorization, and an authorization statement.
+#' More information on the allowed attributes its child nodes can be found in the references. 
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyAuthorization.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyAuthorization.html}{studyAuthorization docuemntation}
+#' @references \href{{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizingAgency.html}}{authorizingAgency documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizationStatement.html}{authorizationStatement documentation}
 #' 
 #' @export
 ddi_studyAuthorization <- function(...) {
@@ -15,8 +17,7 @@ ddi_studyAuthorization <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "date")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "studyAuthorization")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "studyAuthorization")
     check_elementVersionDate(attribs$date)
   }
 
@@ -33,16 +34,7 @@ ddi_studyAuthorization <- function(...) {
   )   
 }
 
-#' Authorizing Agency
-#' 
-#' Name of the agent or agency that authorized the study. The "affiliation" attribute indicates the institutional affiliation of the authorizing agent or agency. The 
-#' "abbr" attribute holds the abbreviation of the authorizing agent's or agency's name.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizingAgency.html}
-#' 
+#' @rdname ddi_studyAuthorization
 #' @export
 ddi_authorizingAgency <- function(...) {
   components <- dots_to_xml_components(...)
@@ -51,8 +43,7 @@ ddi_authorizingAgency <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "affiliation", "abbr")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "authorizingAgency")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "authorizingAgency")
   }
 
   build_leaf_node(
@@ -62,15 +53,7 @@ ddi_authorizingAgency <- function(...) {
   )   
 }
 
-#' Authorization Statement
-#' 
-#' The text of the authorization. Use XHTML to capture significant structure in the document.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizationStatement.html}
-#' 
+#' @rdname ddi_studyAuthorization
 #' @export
 ddi_authorizationStatement <- function(...) {
   components <- dots_to_xml_components(...)
@@ -78,8 +61,7 @@ ddi_authorizationStatement <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "authorizationStatement")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "authorizationStatement")
   }
 
   build_leaf_node(
