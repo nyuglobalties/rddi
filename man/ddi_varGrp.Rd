@@ -2,9 +2,12 @@
 % Please edit documentation in R/variables.R
 \name{ddi_varGrp}
 \alias{ddi_varGrp}
-\title{DDI varGrp specification}
+\alias{ddi_defntn}
+\title{DDI varGrp specification and leaf node children}
 \usage{
 ddi_varGrp(...)
+
+ddi_defntn(...)
 }
 \arguments{
 \item{...}{Any parameters from the DDI Codebook 2.5 schema}
@@ -12,9 +15,27 @@ ddi_varGrp(...)
 \description{
 A group of variables that may share a common subject, arise from the interpretation of a single question, or are linked by some other factor.
 }
+\section{varGrp leaf node children allowed}{
+
+\itemize{
+\item \code{ddi_defntn} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/defntn.html}{DDI documentation}
+}
+}
+
+\section{General children allowed}{
+
+\itemize{
+\item \code{ddi_concept()}
+\item \code{ddi_labl()}
+\item \code{ddi_notes()}
+\item \code{ddi_txt()}
+\item \code{ddi_universe()}
+}
+}
+
 \section{DDI Codebook 2.5 Documentation}{
 
 
-\url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}{varGrp documentation}
 }
 
