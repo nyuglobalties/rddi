@@ -1,3 +1,10 @@
+validate_attributes <- function(attribs, allowed_attribs, field) {
+  if("lang" %in% names(attribs)) attribs <- change_lang(attribs)
+  check_attribs_in_set(names(attribs), allowed_attribs, field)
+  check_attribs(attribs)
+  attribs
+}
+
 # Checks if attributes are in the set
 check_attribs_in_set <- function(attributes, vals, field) {
     for(a in attributes) {
@@ -8,6 +15,12 @@ check_attribs_in_set <- function(attributes, vals, field) {
         }
     }
 	invisible(attributes)
+}
+
+change_lang <- function(attribs) {
+  attribs$`xml:lang` <- attribs$lang
+  attribs$lang <- NULL
+  attribs
 }
 
 check_attribs <- function(attribs) {
