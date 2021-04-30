@@ -2,21 +2,55 @@
 % Please edit documentation in R/variables.R
 \name{ddi_catgry}
 \alias{ddi_catgry}
-\title{DDI catgry specification}
+\alias{ddi_catgryGrp}
+\alias{ddi_catStat}
+\alias{ddi_catValu}
+\title{DDI catgry and catgryGrp specification and leaf node children}
 \usage{
-ddi_catgry(missing = FALSE, ...)
+ddi_catgry(...)
+
+ddi_catgryGrp(...)
+
+ddi_catStat(...)
+
+ddi_catValu(...)
 }
 \arguments{
-\item{missing}{If a category represents a missing response. Default to \code{FALSE}}
-
-\item{...}{Any other parameters from the DDI Codebook 2.5 schema}
+\item{...}{Any parameters from the DDI Codebook 2.5 schema}
 }
 \description{
-A description of a particluar categorical response
+\code{ddi_catgry()} is a description of a particluar categorical response.
+\code{ddi_catgryGrp()} groups the responses together.
 }
-\section{DDI Codebook 2.5 Documentation}{
+\section{catgry leaf node children allowed}{
 
+catgry accepts the following children as leaf nodes. catgryGrp also accepts catStat.
+\itemize{
+\item \code{ddi_catStat()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catStat.html}{DDI documentation}
+\item \code{ddi_catValue()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catValu.html}{DDI documentation}
+}
+}
 
-\url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}
+\section{Branch node children allowed}{
+
+\itemize{
+\item \code{ddi_mrow()}
+}
+}
+
+\section{General children allowed}{
+
+\itemize{
+\item \code{ddi_labl()}
+\item \code{ddi_txt()}
+}
+}
+
+\section{DDI 2.5 Documentation}{
+
+\itemize{
+\item \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}{catgry documentation}
+\item \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgryGrp.html}{catgryGrp documentation}
+}
 }
 
