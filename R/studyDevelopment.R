@@ -1,12 +1,19 @@
-#' Study Development
+#' studyDevelopment and developmentActivity
 #' 
-#' Describe the process of study development as a series of development activities. These activities can be typed using a controlled vocabulary. Describe the activity, 
-#' listing participants with their role and affiliation, resources used (sources of information), and the outcome of the development activity.
+#' studyDevelopment is the parent node of developmentActivity. It describes the process of study development as a series of development activities. 
+#' These activities can be typed using a controlled vocabulary that describes the activity, #' listing participants with their role and affiliation, 
+#' resources used (sources of information), and the outcome of the development activity. For more information on both elements and the child nodes of 
+#' developmentActivity see the resources.
 #' 
 #' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
 #'
-#' @section DDI Codebook 2.5 Documentation
+#' @section DDI Codebook 2.5 Documentation:
+#'
 #' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyDevelopment.html}
+#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/developmentActivity.html}
+#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/description.html}
+#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/participant.html}
+#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/outcome.html}
 #' 
 #' @export
 ddi_studyDevelopment <- function(...) {
@@ -15,8 +22,7 @@ ddi_studyDevelopment <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "studyAuthorization")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "studyDevelopment")
   }
 
   allowed_children <- c(
@@ -31,13 +37,7 @@ ddi_studyDevelopment <- function(...) {
   )   
 }
 
-#' Development Activity
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/developmentActivity.html}
-#' 
+#' @rdname ddi_studyDevelopment 
 #' @export
 ddi_developmentActivity <- function(...) {
   components <- dots_to_xml_components(...)
@@ -46,8 +46,7 @@ ddi_developmentActivity <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "type")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "developmentActivity")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "developmentActivity")
   }
 
   allowed_children <- c(
@@ -65,15 +64,7 @@ ddi_developmentActivity <- function(...) {
   )    
 }
 
-
-
-#' Description
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/description.html}
-#' 
+#' @rdname ddi_studyDevelopment
 #' @export
 ddi_description <- function(...) {
   components <- dots_to_xml_components(...)
@@ -81,8 +72,7 @@ ddi_description <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "description")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "description")
   }
 
   build_leaf_node(
@@ -92,13 +82,7 @@ ddi_description <- function(...) {
   )   
 }
 
-#' Participant
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/participant.html}
-#' 
+#' @rdname ddi_studyDevelopment
 #' @export
 ddi_participant <- function(...) {
   components <- dots_to_xml_components(...)
@@ -107,8 +91,7 @@ ddi_participant <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "affiliation", "abbr", "role")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "participant")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "participant")
   }
 
   build_leaf_node(
@@ -118,13 +101,7 @@ ddi_participant <- function(...) {
   )   
 }
 
-#' Outcome
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/outcome.html}
-#' 
+#' @rdname ddi_studyDevelopment
 #' @export
 ddi_outcome <- function(...) {
   components <- dots_to_xml_components(...)
@@ -132,8 +109,7 @@ ddi_outcome <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "outcome")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "outcome")
   }
 
   build_leaf_node(
@@ -143,12 +119,17 @@ ddi_outcome <- function(...) {
   )   
 }
 
-#' Resource
+#' resource
 #' 
 #' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
 #'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/resource.html}
+#' @section General children allowed:
+#' * [dataSrc()]
+#' * [srcOrig()]
+#' * [srcDocu()]
+#' * [srcOrig()]
+#'
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/resource.html}{resource documentation}
 #' 
 #' @export
 ddi_resource <- function(...) {
@@ -157,8 +138,7 @@ ddi_resource <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "resource")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "resource")
   }
 
   allowed_children <- c(
@@ -171,86 +151,6 @@ ddi_resource <- function(...) {
   build_branch_node(
     "resource",
     allowed_children = allowed_children,
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' dataSrc
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc_1.html}
-#' 
-#' @export
-ddi_dataSrc <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "dataSrc")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "dataSrc",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Characteristics of Source Noted
-#' 
-#' Assessment of characteristics and quality of source material. May not be relevant to survey data. This element may be repeated to support multiple 
-#' language expressions of the content.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc_1.html}
-#' 
-#' @export
-ddi_srcChar <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "srcChar")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "srcChar",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' Documentation and Access to Sources
-#' 
-#' Level of documentation of the original sources. May not be relevant to survey data. This element may be repeated to support multiple language expressions of the content.
-#' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
-#'
-#' @section DDI Codebook 2.5 Documentation
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcDocu.html}
-#' 
-#' @export
-ddi_srcDocu <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "srcDocu")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "srcDocu",
     attribs = attribs,
     content = components$content
   )
