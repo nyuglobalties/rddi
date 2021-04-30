@@ -1,16 +1,43 @@
-#' DDI variable specification
+#' var and its leaf node children
 #'
 #' Variables are specified with the var tag, which has a litany of 
-#' attributes. The basic necessities of a variable, however, are given by its name, and type. 
-#' If the variable is categorical, then the variable will have as many 
-#' catgry (`ddi_catgry()`) entries as category levels. Missingness codes are specified in `ddi_catgry()`.
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#'
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/var.html}
-#'
+#' attributes and children. More information on the allowed attributes for var 
+#' and its child nodes can be found below and in the references. 
+#'  
+#' @section Branch node children allowed:
+#' * [ddi_catgry()]
+#' * [ddi_catgryGrp()]
+#' * [ddi_derivation()]
+#' * [ddi_invalrng()]
+#' * [ddi_valrng()]
+#' 
+#' @section General children allowed:
+#' * `ddi_concept()`
+#' * `ddi_labl()` 
+#' * `ddi_notes()` 
+#' * `ddi_txt()`
+#' * `ddi_universe()`
+#' * `ddi_verStmt()` 
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/var.html}{var documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlysUnit.html}{anlysUnit documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catLevel.html}{catlevel documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codInstr.html}{codInstr documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/embargo.html}{embargo documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoMap.html}{geomap documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/imputation.html}{imputation documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/location.html}{location documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstn.html}{qstn documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respUnit.html}{respUnit documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/security.html}{security documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdCatgry.html}{stdCatgry documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sumStat.html}{sumStat documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/TotlResp.html}{TotlResp documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/undocCod.html}{undocCod documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varFormat.html}{varFormat documentation}
+#' 
 #' @param varname The variable name
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
+#' @param ... Any parameters from the DDI Codebook 2.5 schema. See the references or go the branch node functions for more information.
 #'
 #' @export
 ddi_var <- function(varname, ...) {
@@ -28,9 +55,7 @@ ddi_var <- function(varname, ...) {
     "scale", "origin", "nature", "temporal", "geog", "geoVocab", "catQnty", "representationType", "otherRepresentationType"
   ) 
 
-  check_attribs_in_set(names(attribs), allowed_attribs, field = "var")
-
-  check_attribs(attribs)
+  attribs <- validate_attributes(attribs, allowed_attribs, "var")
 
   allowed_children <- c(
     "catgry", "catLevel", "labl", "qstn", "sumStat", "notes", "analysUnit", "imputation", "txt",
@@ -50,14 +75,24 @@ ddi_var <- function(varname, ...) {
   )
 }
 
-#' DDI varGrp specification
+#' DDI varGrp specification and leaf node children
 #'
 #' A group of variables that may share a common subject, arise from the interpretation of a single question, or are linked by some other factor.
 #' @param ... Any parameters from the DDI Codebook 2.5 schema
 #'
+#' @section varGrp leaf node children allowed:
+#' * `ddi_defntn` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/defntn.html}{DDI documentation}
+#' 
+#' @section General children allowed:
+#' * `ddi_concept()`
+#' * `ddi_labl()` 
+#' * `ddi_notes()` 
+#' * `ddi_txt()`
+#' * `ddi_universe()`
+#' 
 #' @section DDI Codebook 2.5 Documentation:
 #'
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}
+#' \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}{varGrp documentation}
 #'
 #' @export
 ddi_varGrp <- function(...) {
@@ -69,10 +104,9 @@ ddi_varGrp <- function(...) {
       "ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
       "type", "otherType", "var", "varGroup", "name", "sdatrefs", "methrefs", "pubrefs", "access" 
     )
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "varGrp")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "varGrp")    
     if("type" %in% names(attribs)) {
-    check_attribs_in_set(attributes = attribs$type, vals = c("section", "multipleResp", "grid", "display", "repetition", "subject", "version", 
+      check_attribs_in_set(attributes = attribs$type, vals = c("section", "multipleResp", "grid", "display", "repetition", "subject", "version", 
                       "iteration", "analysis", "pragmatic", "record", "file", "randomized", "other"), field = "type (varGrp)")
     }
   }
@@ -94,32 +128,17 @@ ddi_varGrp <- function(...) {
   )
 }
 
-#' DDI catLevel specification
-#'
-#' Used to describe the levels of the category hierarchy. This field has no content.
-#' 
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catLevel.html} 
-#' 
-#' @param level_name A category level name for hierarchical categorical variables (e.g. ordered categories)
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#'
+#' @rdname ddi_var
 #' @export
 ddi_catLevel <- function(...) {
-  stopifnot(is.character(level_name))
-
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
   
-  if (!is.element("ID", names(attribs))) {
-    rddi_err("Category levels must have an ID. Use the `id_object` parameter to set the ID.")
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleURN", "ddiCodebookURN", 
+                    "levelnm", "geoMap")
+    attribs <- validate_attributes(attribs, allowed_attribs, "catLevel")
   }
-
-  allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleURN", "ddiCodebookURN", "levelnm", "geoMap")
-  
-  check_attribs_in_set(names(attribs), allowed_attribs, field = "catLevel")
-  check_attribs(attribs)
 
   build_leaf_node(
     "catLevel",
@@ -127,17 +146,29 @@ ddi_catLevel <- function(...) {
   )
 }
 
-#' DDI catgry specification
+#' DDI catgry and catgryGrp specification and leaf node children
 #'
-#' A description of a particluar categorical response
+#' `ddi_catgry()` is a description of a particluar categorical response. 
+#' `ddi_catgryGrp()` groups the responses together.
+#' 
+#' @param ... Any parameters from the DDI Codebook 2.5 schema
+#' 
+#' @section catgry leaf node children allowed:
+#' catgry accepts the following children as leaf nodes. catgryGrp also accepts catStat.
+#' * `ddi_catStat()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catStat.html}{DDI documentation}
+#' * `ddi_catValue()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catValu.html}{DDI documentation}
+#' 
+#' @section Branch node children allowed:
+#' * `ddi_mrow()`
+#' 
+#' @section General children allowed:
+#' * `ddi_labl()` 
+#' * `ddi_txt()`
 #'  
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}
-#' 
-#' @param missing If a category represents a missing response. Default to `FALSE`
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#' 
+#' @section DDI 2.5 Documentation:
+#' * \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}{catgry documentation}
+#' * \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgryGrp.html}{catgryGrp documentation}
+#'
 #' @export
 ddi_catgry <- function(...)  {
   components <- dots_to_xml_components(...)
@@ -155,11 +186,11 @@ ddi_catgry <- function(...)  {
   if(check_cardinality(components$content, "catValu") > 1) rddi_err("Only 0 or 1 catValu children are allowed in catgry")
   if(check_cardinality(components$content, "mrow") > 1) rddi_err("Only 0 or 1 mrow children are allowed in catgry")
   
-  allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "missing", "missType", "country",
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "missing", "missType", "country",
                       "sdatrefs", "catgry", "level", "excls")
-
-  check_attribs_in_set(names(attribs), allowed_attribs, field = "catgry")
-  check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "catgry")
+  }
 
   build_branch_node(
     "catgry",
@@ -169,16 +200,22 @@ ddi_catgry <- function(...)  {
   )
 }
 
-#' DDI mrow specification
+#' DDI mrow and mi specification 
 #'
-#' mrow or Mathematical Row is a wrapper containing the presentation expression mi (ddi_mi()). It creates a single string 
+#' mrow or Mathematical Row is a wrapper containing the presentation expression `ddi_mi()`. It creates a single string 
 #' without spaces consisting of the individual elements described within it. It can be used to create a single 
 #' variable by concatenating other variables into a single string. It is used to create linking variables composed
-#' of multiple non-contiguous parts, or to define unique strings for various category values of a single variable.
+#' of multiple non-contiguous parts, or to define unique strings for various category values of a single variable. `ddi_mi()`
+#' requires the varRef variable
+#' 
+#' 
+#' 
+#' @section Branch node children allowed:
+#' * `ddi_mi()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mi.html}{DDI documentation}
 #' 
 #' @section DDI Codebook 2.5 Documentation:
 #' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mrow.html}
+#' \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mrow.html}{mrow documentation}
 #' 
 #' @param ... Any parameters from the DDI Codebook 2.5 schema
 #' 
@@ -189,8 +226,7 @@ ddi_mrow <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "mrow")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "mrow")
   }
 
   allowed_children <- c(
@@ -205,53 +241,7 @@ ddi_mrow <- function(...) {
   )
 }
 
-#' DDI universe specification
-#'
-#' The group of persons or other elements that are the object of research and to which any analytic results refer. Age,nationality, and residence 
-#' commonly help to delineate a given universe, but any of a number of factors may be involved, such as sex, race, income, veteran status, criminal convictions, etc. 
-#' The universe may consist of elements other than persons, such as housing units, court cases, deaths, countries, etc. In general, it should be possible to tell from 
-#' the description of the universe whether a given individual or element (hypothetical or real) is a member of the population under study.
-#' 
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/universe.html}
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#' 
-#' @export
-ddi_universe <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "level", "clusion") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "universe")
-    check_attribs(attribs)
-  }
-
-  allowed_children <- c(
-    "concept",
-    "txt"
-  )
-
-  build_branch_node(
-    "universe",
-    allowed_children = allowed_children,
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' DDI Analysis Unit specification
-#'
-#' Provides information regarding whom or what the variable/nCube describes. The element may be repeated only to support multiple language expressions of the content.
-#' 
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlysUnit.html}
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#' 
+#' @rdname ddi_var
 #' @export
 ddi_anlysUnit <- function(...) {
   components <- dots_to_xml_components(...)
@@ -259,16 +249,10 @@ ddi_anlysUnit <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "anlysUnit")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "anlysUnit")
   }
 
-  allowed_children <- c(
-    "concept",
-    "txt"
-  )
-
-  build_branch_node(
+  build_leaf_node(
     "anlysUnit",
     allowed_children = allowed_children,
     attribs = attribs,
@@ -276,16 +260,7 @@ ddi_anlysUnit <- function(...) {
   )
 }
 
-#' DDI Category Group specification
-#'
-#' A description of response categories that might be grouped together. 
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgryGrp.html}
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#' 
+#' @rdname ddi_catgry 
 #' @export
 ddi_catgryGrp <- function(...) {
   components <- dots_to_xml_components(...)
@@ -294,8 +269,7 @@ ddi_catgryGrp <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
                         "missing", "missType", "catgry", "catGrp", "levelno", "levelnm", "compl", "excls") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "catgryGrp")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "catgryGrp")
   }
 
   allowed_children <- c(
@@ -312,54 +286,22 @@ ddi_catgryGrp <- function(...) {
   )
 }
 
-#' DDI Version Statement specification
-#' 
-#' This is the version statement for the work at the appropriate level: marked-up document; marked-up document source; study; study description, other material; 
-#' other material for study. A version statement may also be included for a data file, a variable, or an nCube.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/verStmt.html}
-#'  
-#' @export
-ddi_verStmt <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-  
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "verStmt")
-    check_attribs(attribs)
-  }
-
-  allowed_children <- c(
-    "version",
-    "verResp",
-    "notes"
-  )
-
-  build_branch_node(
-    "verStmt",
-    allowed_children = allowed_children,
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' DDI Derivation specification
+#' DDI derivation specification and leaf node children
 #' 
 #' Used only in the case of a derived variable, this element provides both a description of how the derivation was performed and the command used to generate 
 #' the derived variable, as well as a specification of the other variables in the study used to generate the derivation. The "var" attribute provides the ID values of the 
 #' other variables in the study used to generate this derived variable.
 #' 
+#' @section derivation leaf node children allowed:
+#' * `ddi_drvcmd()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvcmd.html}{DDI documentation}
+#' * `ddi_drvdesc()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvdesc.html}{DDI documentation}
+#' 
 #' @param ... Any parameters from the DDI Codebook 2.5 schema
 #'
 #' @section DDI Codebook 2.5 Documentation:
 #' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}
-#'  
+#' \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}{derivation documentation}
+#'
 #' @export
 ddi_derivation <- function(...) {
   components <- dots_to_xml_components(...)
@@ -368,8 +310,7 @@ ddi_derivation <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "var") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "derviation")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "derivation")
   }
 
   allowed_children <- c(
@@ -385,16 +326,24 @@ ddi_derivation <- function(...) {
   )
 }
 
-#' DDI Range of Valid Data Values Specification
-#' 
-#' Values for a particular variable that represent legitimate responses. Must include item or range as a child element
-#' 
+#' Valid and invalid data values specification and leaf node children
+#'
+#' Values for a particular variable that represent legitimate responses (valrng) or illegitamate response (invalrng). Must include item or range as a child element
+#'
 #' @param ... Any other parameters from the DDI Codebook 2.5 schema
 #'
-#' @section DDI Codebook 2.5 Documentation:
+#' @section valrng and invalrng leaf node children allowed:
+#' * ddi_item: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/item.html}{DDI documentation}
+#' * ddi_range: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/range.html}{DDI documentation}
+#' * ddi_key: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/key.html}{DDI documentation}
 #' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}
-#'  
+#' @section General children allowed:
+#' * `ddi_notes()` 
+#' 
+#' @section DDI Codebook 2.5 Documentation:
+#' * \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
+#' * \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation} 
+#' 
 #' @export
 ddi_valrng <- function(...) {
   components <- dots_to_xml_components(...)
@@ -402,8 +351,7 @@ ddi_valrng <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "valrng")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "valrng")
   }
 
   if(check_cardinality(components$content, "item") > 0 & check_cardinality(components$content, "range") == 0) required_children <- "item"
@@ -426,16 +374,7 @@ ddi_valrng <- function(...) {
   )
 }
 
-#' DDI Range of Invalid Data Values Specification
-#' 
-#' Values for a particular variable that represent missing data, not applicable responses, etc. Must include item or range as a child element
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}
-#'  
+#' @rdname ddi_valrng 
 #' @export
 ddi_invalrng <- function(...) {
   components <- dots_to_xml_components(...)
@@ -443,8 +382,7 @@ ddi_invalrng <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "invalrng")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "invalrng")
   }
 
   if(check_cardinality(components$content, "item") > 0 & check_cardinality(components$content, "range") == 0) required_children <- "item"
@@ -467,25 +405,17 @@ ddi_invalrng <- function(...) {
   )
 }
 
-#' DDI Category Value spcification
-#' 
-#' The value of a specific category
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catValu.html}
-#'  
+#' @rdname ddi_catgry 
 #' @export
-ddi_catValu <- function(...) {
+ddi_catStat <- function(...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
   if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "catValu")
-    check_attribs(attribs)
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                        "type", "otherType", "URI", "methrefs", "wgtd", "wgt_var", "weight", "sdatrefs")
+    attribs <- validate_attributes(attribs, allowed_attribs, "catStat")
+    if(!is.null(attribs$type)) check_attribs_in_set(attribs$type, c("freq", "percent", "crosstab", "other"), field = "type (catStat)")
   }
 
   build_leaf_node(
@@ -495,104 +425,25 @@ ddi_catValu <- function(...) {
   )
 }
 
-#' DDI Label specification
-#' 
-#' A short description of the parent element. In the variable label, the length of this phrase may depend on the statistical analysis system 
-#' used (e.g., some versions of SAS permit 40-character labels, while some versions of SPSS permit 120 characters), although the DDI itself imposes no restrictions 
-#' on the number of characters allowed.
-#'
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/labl.html}
-#'  
+#' @rdname ddi_catgry 
 #' @export
-ddi_labl <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
- 
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "level", "vendor", "country", "sdatrefs")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "labl")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node (
-    "labl",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' DDI Notes and Comments specification
-#' 
-#' For clarifying information/annotation regarding the parent element
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/notes.html}
-#'  
-#' @export
-ddi_notes <- function(...) {
+ddi_catValu <- function(...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
   if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "type", "subject", "level", "resp",
-                        "sdatrefs", "parent", "sameNote")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "notes")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node (
-    "notes",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' DDI Descriptive Text specification
-#' 
-#' Lengthier description of the parent element
-#'
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/txt.html}
-#'  
-#' @export
-ddi_txt <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "level", "sdatrefs")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "txt")
-    check_attribs(attribs)
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "catValue")
   }
 
   build_leaf_node(
-    "txt",
+    "catValu",
     attribs = attribs,
-    content = components$content 
+    content = components$content
   )
 }
 
-#' DDI Imputation specification
-#' 
-#' According to the Statistical Terminology glossary maintained by the National Science Foundation, this is "the process by which one estimates missing values 
-#' for items that a survey respondent failed to provide," and if applicable in this context, it refers to the type of procedure used. 
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/imputation.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_imputation <- function(...) {
   components <- dots_to_xml_components(...)
@@ -600,8 +451,7 @@ ddi_imputation <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "imputation")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "imputation")
   }
 
   build_leaf_node(
@@ -611,19 +461,7 @@ ddi_imputation <- function(...) {
   )
 }
 
-#' DDI Question specification
-#' 
-#' The question element may have mixed content. The element itself may contain text for the question, with the subelements being used to provide further information 
-#' about the question. Alternatively, the question element may be empty and only the subelements used. The element has a unique question ID attribute which can be used to link 
-#' a variable with other variables where the same question has been asked. This would allow searching for all variables that share the same question ID, perhaps because the questions 
-#' was asked several times in a panel design.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstn.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_qstn <- function(...) {
   components <- dots_to_xml_components(...)
@@ -632,8 +470,7 @@ ddi_qstn <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "qstn", "var", "seqNo", "sdatrefs",
                         "responseDomainType", "otherResponseDomainType")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "qstn")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "var")
   }
 
   build_leaf_node(
@@ -643,32 +480,20 @@ ddi_qstn <- function(...) {
   )
 }
 
-#' DDI Summary Statistics specification
-#' 
-#' One or more statistical measures that describe the responses to a particular variable and may include one or more standard summaries, e.g., minimum and 
-#' maximum values, median, mode, etc. This element sumStat requires the type attribute with the value of mean, medn, mode, vald, invd, min, max, stdev, or other.
-#' 
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#' @param type The statistics being shown:mean, median, mode, valid cases, invalid cases, minimum, maximum, or standard deviation. If a value of "other" is used here, a value taken from a controlled vocabulary should be put in the "otherType" attribute. This option should only be used when applying a controlled vocabulary to this attribute. 
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sumStat.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_sumStat <- function(type, ...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
   attribs$type <- type
+
   check_attribs_in_set(attribs$type, c("mean", "medn", "mode", "vald", "invd", "min", "max", "stdev", "other"), field = "type (sumStat")
   
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "wgtd", "wgt-var", "weight",
                       "type", "otherType")
 
-  check_attribs_in_set(names(attribs), allowed_attribs, field = "sumStat")
-  check_attribs(attribs)
-  
+  attribs <- validate_attributes(attribs, allowed_attribs, "sumStat")  
 
   build_leaf_node(
     "sumStat",
@@ -677,17 +502,7 @@ ddi_sumStat <- function(type, ...) {
   )
 }
 
-#' DDI Coder Instructions specification
-#' 
-#' One or more statistical measures that describe the responses to a particular variable and may include one or more standard summaries, e.g., minimum and 
-#' maximum values, median, mode, etc.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codInstr.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_codInstr <- function(...) {
   components <- dots_to_xml_components(...)
@@ -695,8 +510,7 @@ ddi_codInstr <- function(...) {
     
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "codInstr")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "codInstr")
   }
 
   build_leaf_node(
@@ -706,16 +520,7 @@ ddi_codInstr <- function(...) {
   )
 }
 
-#' DDI Total Responses specifications
-#' The number of responses to this variable. This element might be used if the number of responses does not match added case counts. It may also be used to sum the 
-#' frequencies for variable categories.
-#' 
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/TotlResp.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_TotlResp <- function(...) {
   components <- dots_to_xml_components(...)
@@ -723,8 +528,7 @@ ddi_TotlResp <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "TotlResp")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "TotlResp")
   }
 
   build_leaf_node(
@@ -734,17 +538,7 @@ ddi_TotlResp <- function(...) {
   )
 }
 
-#' DDI Security specification
-#' 
-#' Provides information regarding levels of access, e.g., public, subscriber, need to know. The ISO standard for dates (YYYY-MM-DD) is recommended for use with the 
-#' date attribute.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/security.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_security <- function(...) {
   components <- dots_to_xml_components(...)
@@ -752,9 +546,9 @@ ddi_security <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "date")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "security")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "security")
   }
+
   build_leaf_node(
     "security",
     attribs = attribs,
@@ -762,18 +556,7 @@ ddi_security <- function(...) {
   )
 }
 
-#' DDI Embargo specification
-#' 
-#' Provides information on variables/nCubes which are not currently available because of policies established by the principal investigators and/or data producers. 
-#' The ISO standard for dates (YYYY-MM-DD) is recommended for use with the "date" attribute. An "event" attribute is provided to specify "notBefore" or "notAfter" ("notBefore" is 
-#' the default). A "format" attribute is provided to ensure that this information will be machine-processable, and specifies a format for the embargo element.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/embargo.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_embargo <- function(...) {
   components <- dots_to_xml_components(...)
@@ -781,8 +564,7 @@ ddi_embargo <- function(...) {
     
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "date", "event", "format")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "embargo")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "embargo")
   }
 
   build_leaf_node(
@@ -792,17 +574,7 @@ ddi_embargo <- function(...) {
   )
 }
 
-#' DDI Response Unit specification
-#' 
-#' Provides information regarding who provided the information contained within the variable/nCube, e.g., respondent, proxy, interviewer. This element may be repeated 
-#' only to support multiple language expressions of the content.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respUnit.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_respUnit <- function(...) {
   components <- dots_to_xml_components(...)
@@ -810,8 +582,7 @@ ddi_respUnit <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "respUnit")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "respUnit")
   }
 
   build_leaf_node(
@@ -821,16 +592,7 @@ ddi_respUnit <- function(...) {
   )
 }
 
-#' DDI List of Undocumented Codes specification
-#' 
-#' Values whose meaning is unknown
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/undocCod.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_undocCod <- function(...) {
   components <- dots_to_xml_components(...)
@@ -838,8 +600,7 @@ ddi_undocCod <- function(...) {
  
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "undocCod")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "undocCod")
   }
 
   build_leaf_node(
@@ -849,16 +610,7 @@ ddi_undocCod <- function(...) {
   )
 }
 
-#' DDI Standard Categories specification
-#' 
-#' Standard category codes used in the variable, like industry codes, employment codes, or social class codes
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdCatgry.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_stdCatgry <- function(...) {
   components <- dots_to_xml_components(...)
@@ -866,8 +618,7 @@ ddi_stdCatgry <- function(...) {
    
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "date", "URI")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "stdCatgry")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "stdCatgry")
   }
 
   build_leaf_node(
@@ -877,49 +628,7 @@ ddi_stdCatgry <- function(...) {
   )
 }
 
-#' DDI Concept specification
-#' 
-#' The general subject to which the parent element may be seen as pertaining. This element serves the same purpose as the keywords and topic classification elements, 
-#' but at the data description level. The "vocab" attribute is provided to indicate the controlled vocabulary, if any, used in the element, e.g., LCSH (Library of Congress Subject 
-#' Headings), MeSH (Medical Subject Headings), etc. The "vocabURI" attribute specifies the location for the full controlled vocabulary.
-#' 
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/concept.html}
-#'  
-#' @export
-ddi_concept <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "vocab", "vocabURI")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "concept")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "concept",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' DDI Variable Format specification
-#' 
-#' The technical format of the variable in question. ttributes for this element include: "type," which indicates if the variable is character or numeric; 
-#' "formatname," which in some cases may provide the name of the particular, proprietary format actually used; "schema," which identifies the vendor or standards 
-#' body that defined the format (acceptable choices are SAS, SPSS, IBM, ANSI, ISO, XML-data or other); "category," which describes what kind of data the format 
-#' represents, and includes date, time, currency, or "other" conceptual possibilities; and "URI," which supplies a network identifier for the format definition.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varFormat.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_varFormat <- function(...) {
   components <- dots_to_xml_components(...)
@@ -928,11 +637,10 @@ ddi_varFormat <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "formatname",
                         "schema", "otherSchema", "type", "category", "otherCategory", "URI") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "varFormat")
+    attribs <- validate_attributes(attribs, allowed_attribs, "varFormat")
     if("type" %in% names(attribs)) {
       check_attribs_in_set(vals = attribs$type, attributes = c("numeric", "character"), field = "varFormat(type)")
-    }  
-    check_attribs(attribs)
+    }
   }
 
   build_leaf_node(
@@ -942,74 +650,7 @@ ddi_varFormat <- function(...) {
   )
 }
 
-#' DDI Version specification
-#' Also known as release or edition. If there have been substantive changes in the data/documentation since their creation, this statement should be 
-#' used at the appropriate level. 
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/version.html}
-#'  
-#' @export
-ddi_version <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                        "date", "type") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "version")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "version",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' DDI Version Responsibility Statement specification
-#' 
-#' The organization or person responsible for the version of the work.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/verResp.html}
-#'  
-#' @export
-ddi_verResp <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                      "affiliation") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "verResp")
-    check_attribs(attribs)
-  }
-
-  build_leaf_node(
-    "verResp",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' DDI Derivation Description specification
-#' 
-#' A textual description of the way in which this variable was derived. The element may be repeated to support multiple language expressions of the content.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvdesc.html}
-#'  
+#' @rdname ddi_derivation 
 #' @export
 ddi_drvdesc <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1017,8 +658,7 @@ ddi_drvdesc <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "drvdesc")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "drvdesc")
   }
 
   build_leaf_node(
@@ -1028,17 +668,7 @@ ddi_drvdesc <- function(...) {
   )
 }
 
-#' DDI Derivation Command specification
-#' 
-#' The actual command used to generate the derived variable. The "syntax" attribute is used to indicate the command language employed (e.g., SPSS, SAS, Fortran, etc.). 
-#' The element may be repeated to support multiple language expressions of the content.
-#' 
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvcmd.html}
-#'  
+#' @rdname ddi_derivation 
 #' @export
 ddi_drvcmd <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1047,8 +677,7 @@ ddi_drvcmd <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "syntax") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "drvcmd")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "drvcmd")
   }
 
   build_leaf_node(
@@ -1058,17 +687,7 @@ ddi_drvcmd <- function(...) {
   )
 }
 
-#' DDI Value Item specification
-#' 
-#' The counterpart to Range; used to encode individual values. This is an empty element consisting only of its attributes. The "UNITS" attribute permits the 
-#' specification of integer/real numbers. The "VALUE" attribute is required specifies the actual value.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/item.html}
-#'  
+#' @rdname ddi_valrng 
 #' @export
 ddi_item <- function(value, ...) {
   browser()
@@ -1079,10 +698,7 @@ ddi_item <- function(value, ...) {
   
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "UNITS", "VALUE") 
-
-  check_attribs_in_set(names(attribs), allowed_attribs, field = "item")
-
-  check_attribs(attribs)
+  attribs <- validate_attributes(attribs, allowed_attribs, "item")
 
   build_leaf_node(
     "item",
@@ -1090,28 +706,16 @@ ddi_item <- function(value, ...) {
   )
 }
 
-#' DDI Value Range specification
-#' 
-#' This is the actual range of values. The "UNITS" attribute permits the specification of integer/real numbers. The "min" and "max" attributes specify the lowest 
-#' and highest values that are part of the range. The "minExclusive" and "maxExclusive" attributes specify values that are immediately outside the range. This is an empty element 
-#' consisting only of its attributes.
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/range.html}
-#'  
+#' @rdname ddi_valrng 
 #' @export
 ddi_range <- function(...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
   if(!is.null(attribs)) {
-      allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "UNITS", "min", "minExclusive", "max", "maxExclusive") 
-      check_attribs_in_set(names(attribs), allowed_attribs, field = "range")
-      check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "range")
   }
 
   build_leaf_node(
@@ -1120,17 +724,7 @@ ddi_range <- function(...) {
   )
 }
 
-#' DDI Range Key specification
-#' 
-#' This element permits a listing of the category values and labels. While this information is coded separately in the Category element, there may be some value in 
-#' having this information in proximity to the range of valid and invalid values. 
-#' 
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/key.html}
-#'  
+#' @rdname ddi_valrng
 #' @export
 ddi_key <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1138,8 +732,7 @@ ddi_key <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "key")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "key")
   }
 
   build_leaf_node(
@@ -1149,17 +742,7 @@ ddi_key <- function(...) {
   )
 }
 
-#' DDI Geographic Map specification
-#' 
-#' This element is used to point, using a "URI" attribute, to an external map that displays the geography in question. The "levelno" attribute indicates the level 
-#' of the geographic hierarchy relayed in the map. The "mapformat" attribute indicates the format of the map. This is an empty element consisting only of attributes
-#' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoMap.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_geomap <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1168,8 +751,7 @@ ddi_geomap <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "URI","mapformat", "levelno") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "geomap")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "geomap")
   }
 
   build_leaf_node(
@@ -1178,21 +760,7 @@ ddi_geomap <- function(...) {
   )
 }
 
-#' DDI Location specification
-#' 
-#' This is an empty element containing only attributes. Attributes include "StartPos" (starting position of variable), "EndPos" (ending position of variable), "width" (number 
-#' of columns the variable occupies), "RecSegNo" (the record segment number, deck or card number the variable is located on), and "fileid", an IDREF link to the fileDscr element 
-#' for the file that this location is within (this is necessary in cases where the same variable may be coded in two different files, e.g., a logical record length type file and 
-#' a card image type file). Note that if there is no width or ending position, then the starting position should be the ordinal position in the file, and the file would be 
-#' described as free-format. The attribute "locMap" is an IDREF to the element locMap and serves as a pointer to indicate that the location information for the nCube's 
-#' cells (aggregate data) is located in that section. 
-#' 
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/location.html}
-#'  
+#' @rdname ddi_var 
 #' @export
 ddi_location <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1201,8 +769,7 @@ ddi_location <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "StartPos","EndPos", "width", "RecSegNo", "fileid", "locMap") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "location")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "location")
   }
 
   build_leaf_node(
@@ -1211,16 +778,7 @@ ddi_location <- function(...) {
   )
 }
 
-#' DDI Definition specification
-#' 
-#' Rationale for why the group was constituted in this way.
-#'  
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/defntn.html}
-#'  
+#' @rdname ddi_varGrp
 #' @export
 ddi_defntn <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1228,8 +786,7 @@ ddi_defntn <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn") 
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "dfntn")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "defntn")
   }
 
   build_leaf_node(
@@ -1239,17 +796,7 @@ ddi_defntn <- function(...) {
   )
 }
 
-#' DDI Mathematical Identifier specification
-#' 
-#' Token element containing the smallest unit in the Mathematical Row (`mrow()`) that carries meaning.
-#' 
-#' @param varRef A required attribute consisting of a variable's IDREF
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mi.html}
-#'  
+#' @rdname ddi_mrow 
 #' @export
 ddi_mi <- function(varRef, ...) {
   components <- dots_to_xml_components(...)
@@ -1260,9 +807,7 @@ ddi_mi <- function(varRef, ...) {
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                     "varRef") 
 
-  check_attribs_in_set(names(attribs), allowed_attribs, field = "mi")
-
-  check_attribs(attribs)
+  attribs <- validate_attributes(attribs, allowed_attribs, "mi")
 
   build_leaf_node(
     "mi",
