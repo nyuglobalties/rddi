@@ -2,9 +2,15 @@
 % Please edit documentation in R/variables.R
 \name{ddi_derivation}
 \alias{ddi_derivation}
-\title{DDI Derivation specification}
+\alias{ddi_drvdesc}
+\alias{ddi_drvcmd}
+\title{DDI derivation specification and leaf node children}
 \usage{
 ddi_derivation(...)
+
+ddi_drvdesc(...)
+
+ddi_drvcmd(...)
 }
 \arguments{
 \item{...}{Any parameters from the DDI Codebook 2.5 schema}
@@ -14,9 +20,17 @@ Used only in the case of a derived variable, this element provides both a descri
 the derived variable, as well as a specification of the other variables in the study used to generate the derivation. The "var" attribute provides the ID values of the
 other variables in the study used to generate this derived variable.
 }
+\section{derivation leaf node children allowed}{
+
+\itemize{
+\item \code{ddi_drvcmd()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvcmd.html}{DDI documentation}
+\item \code{ddi_drvdesc()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvdesc.html}{DDI documentation}
+}
+}
+
 \section{DDI Codebook 2.5 Documentation}{
 
 
-\url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}{derivation documentation}
 }
 
