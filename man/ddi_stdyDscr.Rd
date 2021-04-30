@@ -15,3 +15,8 @@ contains information about the study overall, including
 a citation to the work(s) referenced in the codebook. At least
 one citation must be present, capturing the whole study.
 }
+\section{DDI Codebook 2.5 Documentation}{
+
+url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyDscr.html}
+}
+
