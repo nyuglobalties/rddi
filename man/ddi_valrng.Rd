@@ -2,19 +2,49 @@
 % Please edit documentation in R/variables.R
 \name{ddi_valrng}
 \alias{ddi_valrng}
-\title{DDI Range of Valid Data Values Specification}
+\alias{ddi_invalrng}
+\alias{ddi_item}
+\alias{ddi_range}
+\alias{ddi_key}
+\title{Valid and invalid data values specification and leaf node children}
 \usage{
 ddi_valrng(...)
+
+ddi_invalrng(...)
+
+ddi_item(value, ...)
+
+ddi_range(...)
+
+ddi_key(...)
 }
 \arguments{
 \item{...}{Any other parameters from the DDI Codebook 2.5 schema}
 }
 \description{
-Values for a particular variable that represent legitimate responses. Must include item or range as a child element
+Values for a particular variable that represent legitimate responses (valrng) or illegitamate response (invalrng). Must include item or range as a child element
 }
+\section{valrng and invalrng leaf node children allowed}{
+
+\itemize{
+\item ddi_item: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/item.html}{DDI documentation}
+\item ddi_range: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/range.html}{DDI documentation}
+\item ddi_key: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/key.html}{DDI documentation}
+}
+}
+
+\section{General children allowed}{
+
+\itemize{
+\item \code{ddi_notes()}
+}
+}
+
 \section{DDI Codebook 2.5 Documentation}{
 
-
-\url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}
+\itemize{
+\item \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
+\item \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation}
+}
 }
 
