@@ -23,8 +23,7 @@ ddi_codeBook <- function(...) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "version", "codeBookAgency", "xmlns", "xmlns:xsi", "xsi:schemaLocation")
     if(!is.null(attribs$version) & attribs$version != "2.5") attribs$version = "2.5"
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "codebook")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "codeBook")
   }
   
   allowed_children <- c(
@@ -76,8 +75,7 @@ ddi_stdyDscr <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                         "access")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "stdyDscr")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "stdyDscr")
   }
 
   build_branch_node(
@@ -95,7 +93,7 @@ ddi_stdyDscr <- function(...) {
 #' @param ... Child nodes or attributes. 
 #'
 #' @section DDI Codebook 2.5 Documentation:
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}
+#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}
 #' 
 #' @export
 ddi_dataDscr <- function(...) {
@@ -112,8 +110,7 @@ ddi_dataDscr <- function(...) {
   
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    check_attribs_in_set(names(attribs), allowed_attribs, field = "dataDscr")
-    check_attribs(attribs)
+    attribs <- validate_attributes(attribs, allowed_attribs, "dataDscr")
   }
 
   build_branch_node(
