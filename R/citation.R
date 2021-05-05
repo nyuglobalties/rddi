@@ -1,4 +1,4 @@
-#' citation, sourceCitation and their child nodes
+#' citation, sourceCitation, fileCitation and their child nodes
 #'
 #' Citation entities for the study including general citations and source citations. More information on citation and
 #' source citation can be found below and in the references.
@@ -18,6 +18,7 @@
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/citation.html}{citation documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sourceCitation.html}{sourceCitation documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileCitation.html}{fileCitation documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serInfo.html}{serInfo documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/holdings.html}{holdings documentation}
 #' 
@@ -58,7 +59,6 @@ ddi_citation <- function(...) {
   )
 }
 
-
 #' @rdname ddi_citation
 #' @export
 ddi_sourceCitation <- function(...) {
@@ -67,7 +67,7 @@ ddi_sourceCitation <- function(...) {
 
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
-                        "Marcuri")
+                        "MARCURI")
     attribs <- validate_attributes(attribs, allowed_attribs, "sourceCitation")
   }
 
@@ -83,18 +83,53 @@ ddi_sourceCitation <- function(...) {
   )
 
   # rspStmt, prodStmt, and distStmt are only allowed once in citation according to DDI 2.5
-  if(check_cardinality(components$content, "rspStmt") > 1) rddi_err("Only 0 or 1 rspStmt children are allowed in citation")
-  if(check_cardinality(components$content, "prodStmt") > 1) rddi_err("Only 0 or 1 prodStmt children are allowed in citation")
-  if(check_cardinality(components$content, "distStmt") > 1) rddi_err("Only 0 or 1 distStmt children are allowed in citation")
+  if(check_cardinality(components$content, "rspStmt") > 1) rddi_err("Only 0 or 1 rspStmt children are allowed in sourceCitation")
+  if(check_cardinality(components$content, "prodStmt") > 1) rddi_err("Only 0 or 1 prodStmt children are allowed in sourceCitation")
+  if(check_cardinality(components$content, "distStmt") > 1) rddi_err("Only 0 or 1 distStmt children are allowed in sourceCitation")
   
   build_branch_node(
-    "sources",
+    "sourceCitation",
     allowed_children = allowed_children,
     attribs = attribs,
     content = components$content
   )
 }
 
+#' @rdname ddi_citation
+#' @export
+ddi_fileCitation <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
+                        "MARCURI")
+    attribs <- validate_attributes(attribs, allowed_attribs, "fileCitation")
+  }
+
+  allowed_children <- c(
+    "titlStmt",
+    "respStmt",
+    "prodStmt",
+    "distStmt",
+    "serStmt",
+    "verStmt",
+    "biblCit",
+    "holdings"
+  )
+
+  # rspStmt, prodStmt, and distStmt are only allowed once in citation according to DDI 2.5
+  if(check_cardinality(components$content, "rspStmt") > 1) rddi_err("Only 0 or 1 rspStmt children are allowed in fileCitation")
+  if(check_cardinality(components$content, "prodStmt") > 1) rddi_err("Only 0 or 1 prodStmt children are allowed in fileCitation")
+  if(check_cardinality(components$content, "distStmt") > 1) rddi_err("Only 0 or 1 distStmt children are allowed in fileCitation")
+  
+  build_branch_node(
+    "fileCitation",
+    allowed_children = allowed_children,
+    attribs = attribs,
+    content = components$content
+  )
+}
 #' titleStmt and its child nodes
 #' 
 #' Title statement for the work at the appropriate level: marked-up document; marked-up document source; study; study description, other materials; other materials for the study.
