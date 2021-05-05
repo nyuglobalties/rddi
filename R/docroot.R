@@ -4,9 +4,7 @@
 #' 
 #' @param ... Child nodes or attributes
 #'
-#' @section DDI Codebook 2.5 Documentation:
-#'
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeBook.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeBook.html}{codeBook documentation}
 #' 
 #' @export
 ddi_codeBook <- function(...) {
@@ -44,7 +42,7 @@ ddi_codeBook <- function(...) {
   )
 }
 
-#' Study description
+#' stdyDscr and its children
 #' 
 #' All DDI codebooks must have a study description which
 #' contains information about the study overall, including
@@ -53,8 +51,7 @@ ddi_codeBook <- function(...) {
 #'
 #' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
 #'
-#' @section DDI Codebook 2.5 Documentation:
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyDscr.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyDscr.html}{stdyDscr documentation}
 #' 
 #' @export
 ddi_stdyDscr <- function(...) {
@@ -87,13 +84,13 @@ ddi_stdyDscr <- function(...) {
   )
 }
 
-#' Variable description
+#' dataDscr and its children
 #' 
 #' Description of variables within the Codebook. 
+#' 
 #' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation:
-#' \url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
 #' 
 #' @export
 ddi_dataDscr <- function(...) {
@@ -115,6 +112,41 @@ ddi_dataDscr <- function(...) {
 
   build_branch_node(
     "dataDscr",
+    allowed_children = allowed_children,
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' fileDscr and its children
+#' 
+#' Information about the data file(s) that comprises a collection. 
+#' 
+#' @param ... Child nodes or attributes. 
+#'
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
+#' 
+#' @export
+ddi_fileDscr <- function(...) {
+  allowed_children <- c(
+    "fileTxt",
+    "locMap",
+    "notes"
+  )
+
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                        "URI", "sdatrefs", "methrefs", "pubrefs")
+    attribs <- validate_attributes(attribs, allowed_attribs, "fileDscr")
+  }
+
+  if(check_cardinality(components$content, "locMap") > 1) rddi_err("Only 0 or 1 locMap children are allowed in fileDscr")
+
+  build_branch_node(
+    "fileDscr",
     allowed_children = allowed_children,
     attribs = attribs,
     content = components$content
