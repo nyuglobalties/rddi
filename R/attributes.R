@@ -45,6 +45,7 @@ check_attribs <- function(attribs) {
     if ("UNITS" %in% names(attribs)) check_attribs_in_set(attribs$UNITS, c("INT", "REAL"), field = "UNITS")
     if ("isPrimary" %in% names(attribs)) check_attribs_in_set(attribs$isPrimary, c("true", "false"), field = "isPrimary")
     if ("required" %in% names(attribs)) check_attribs_in_set(attribs$required, c("yes", "no"), field = "required")
+    if ("recidvar" %in% names(attribs)) check_attribs_in_set(attribs$recidvar, c("numeric", "character"), field = "recidvar")
 
     # check for xml:lang
     if ("xml:lang" %in% names(attribs)) check_xmlLanguage(attribs$`xml:lang`)   
@@ -54,12 +55,13 @@ check_attribs <- function(attribs) {
                 "catQnty", "type", "subject", "levelnm", "missType", "country", "level", "resp", "seqNo", "date", "format", "URI", "mapformat",
                 "vocab", "vocabURI", "formatname", "levelno", "affiliation", "syntax", "VALUE", "min", "minExclusive", "max", "maxExclusive",
                 "StartPos", "EndPos", "width", "RecSegNo", "nCube", "MARCURI", "agency", "role", "abbr", "date", "version", "formNo", "email",
-                "location", "callno", "media", "formalLanguage", "label", "cycle")
+                "location", "callno", "media", "formalLanguage", "label", "cycle", "charset", "rectype", "rtypeloc", "rtypewidth", "recidvar",
+                "coordNo", "coordVal", "startPos", "width", "endPos")
     if(any(names(attribs) %in% chr_strings)) check_strings(attribs[names(attribs) %in% chr_strings])
     
     #check for NCName, the restriction on ID & IDREF. For loop for IDREFS
     ncnames <-c("ID", "wgt-var", "weight", "qstn", "files", "sdatrefs", "methrefs", "pubrefs", "access", "parent", "sameNote", "catgry", "catGrp", "var",
-                "varRef", "fileid", "locMap", "codeBookAgency", "relatedProcesses")
+                "varRef", "nCubeRef", "fileid", "locMap", "codeBookAgency", "relatedProcesses", "fileStrcRef", "recGrp", "keyvar", "coordValRef", "recRef")
     if(any(names(attribs) %in% ncnames)) check_ncname(attribs[names(attribs) %in% ncnames])
         
     # check for NMTOKEN 
@@ -95,7 +97,7 @@ check_strings <- function(attribs) {
 
 check_ncname <- function(attribs) {
     reg_expr <- "^[A-Za-z_][-._A-Za-z0-9]*$"
-    idrefs <- c("wgt-var", "weight", "qstn", "files", "sdatrefs", "methrefs", "pubrefs", "access", "catgry", "catGrp", "relatedProcesses")
+    idrefs <- c("wgt-var", "weight", "qstn", "files", "sdatrefs", "methrefs", "pubrefs", "access", "catgry", "catGrp", "relatedProcesses", "recGrp", "keyvar")
     for(name in names(attribs)) {
         if(any(name %in% idrefs)) {
             for(a in unlist(strsplit(attribs[[name]], " "))) {
