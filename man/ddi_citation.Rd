@@ -3,13 +3,16 @@
 \name{ddi_citation}
 \alias{ddi_citation}
 \alias{ddi_sourceCitation}
+\alias{ddi_fileCitation}
 \alias{ddi_biblCit}
 \alias{ddi_holdings}
-\title{citation, sourceCitation and their child nodes}
+\title{citation, sourceCitation, fileCitation and their child nodes}
 \usage{
 ddi_citation(...)
 
 ddi_sourceCitation(...)
+
+ddi_fileCitation(...)
 
 ddi_biblCit(...)
 
@@ -45,6 +48,8 @@ source citation can be found below and in the references.
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/citation.html}{citation documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sourceCitation.html}{sourceCitation documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileCitation.html}{fileCitation documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serInfo.html}{serInfo documentation}
 
