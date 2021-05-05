@@ -2,7 +2,7 @@
 % Please edit documentation in R/docroot.R
 \name{ddi_dataDscr}
 \alias{ddi_dataDscr}
-\title{Variable description}
+\title{dataDscr and its children}
 \usage{
 ddi_dataDscr(...)
 }
@@ -12,8 +12,6 @@ ddi_dataDscr(...)
 \description{
 Description of variables within the Codebook.
 }
-\section{DDI Codebook 2.5 Documentation}{
-
-\url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
 }
-
