@@ -2,7 +2,7 @@
 % Please edit documentation in R/docroot.R
 \name{ddi_stdyDscr}
 \alias{ddi_stdyDscr}
-\title{Study description}
+\title{stdyDscr and its children}
 \usage{
 ddi_stdyDscr(...)
 }
@@ -15,8 +15,6 @@ contains information about the study overall, including
 a citation to the work(s) referenced in the codebook. At least
 one citation must be present, capturing the whole study.
 }
-\section{DDI Codebook 2.5 Documentation}{
-
-url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyDscr.html}
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyDscr.html}{stdyDscr documentation}
 }
-
