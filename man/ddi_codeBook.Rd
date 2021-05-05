@@ -12,9 +12,6 @@ ddi_codeBook(...)
 \description{
 The root node of a DDI 2.5 Codebook file. This file must contain stdyDscr
 }
-\section{DDI Codebook 2.5 Documentation}{
-
-
-\url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeBook.html}
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeBook.html}{codeBook documentation}
 }
-
