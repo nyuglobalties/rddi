@@ -41,7 +41,7 @@ check_attribs <- function(attribs) {
     if ("excls" %in% names(attribs)) check_attribs_in_set(attribs$excls, c("true", "false"), field = "excls")
     if ("clusion" %in% names(attribs)) check_attribs_in_set(attribs$clusion, c("I", "E"), field = "clusion")
     if ("compl" %in% names(attribs)) check_attribs_in_set(attribs$compl, c("true", "false"), field = "compl")
-    if ("event" %in% names(attribs)) check_attribs_in_set(attribs$event, c("notBefore", "notAfter"), field = "event")
+    if ("event" %in% names(attribs)) check_attribs_in_set(attribs$event, c("notBefore", "notAfter", "start", "end", "single"), field = "event")
     if ("UNITS" %in% names(attribs)) check_attribs_in_set(attribs$UNITS, c("INT", "REAL"), field = "UNITS")
     if ("isPrimary" %in% names(attribs)) check_attribs_in_set(attribs$isPrimary, c("true", "false"), field = "isPrimary")
     if ("required" %in% names(attribs)) check_attribs_in_set(attribs$required, c("yes", "no"), field = "required")
