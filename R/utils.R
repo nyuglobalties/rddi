@@ -2,10 +2,14 @@
 `%if_empty%` <- function(x, y) if (length(x) == 0) y else x
 `%if_empty_string%` <- function(x, y) if (identical(x, "")) y else x
 
-rddi_err <- function(x, .envir = parent.frame()) {
+cat_line <- function(x, ...) {
+  cat(x, "\n", ...)
+}
+
+rddi_err <- function(x, .type = NULL, .envir = parent.frame()) {
   msg <- glue(glue_collapse(x), .envir = .envir)
 
-  rlang::abort(.subclass = "rddi_error", message = msg)
+  rlang::abort(class = c(.type, "rddi_error"), message = msg)
 }
 
 dots_partition <- function(...) {

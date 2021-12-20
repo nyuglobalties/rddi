@@ -1,11 +1,9 @@
 # Internal function that creates the ddi_node objects. Deals directly
 # with the underlying representation of the nodes. To model DDI elements,
 # use build_branch_node() or build_leaf_node().
-ddi_node <- function(
-  tagname, 
-  ...,
-  .root = FALSE
-) {
+ddi_node <- function(tagname,
+                     ...,
+                     .root = FALSE) {
   stopifnot(is.character(tagname) && length(tagname) == 1)
 
   node <- list(
@@ -38,7 +36,7 @@ ddi_node <- function(
   }
 
   if (!is.null(content)) {
-      node$content <- as.character(content) %if_empty_string% NULL
+    node$content <- as.character(content) %if_empty_string% NULL
   }
 
   add_ddi_class(node, root = .root)
@@ -87,7 +85,7 @@ add_ddi_class <- function(node, root = FALSE) {
 #' All `ddi_<tag>()` functions either create branch nodes or leaf nodes.
 #' Branches must only contain other nodes, whereas leaves may only have
 #' a single string for its content. All nodes may be empty, however.
-#' If no checks on function paramenters are necessary for leaf nodes, 
+#' If no checks on function paramenters are necessary for leaf nodes,
 #' use `simple_lead_node()`.
 #'
 #' @param tagname The name for the XML representation of this node
@@ -102,15 +100,13 @@ add_ddi_class <- function(node, root = FALSE) {
 #' @rdname build_node
 #'
 #' @export
-build_branch_node <- function(
-  tagname,
-  allowed_children = NULL,
-  required_children = NULL,
-  root = FALSE,
-  content = NULL,
-  attribs = NULL, 
-  components = NULL
-) {
+build_branch_node <- function(tagname,
+                              allowed_children = NULL,
+                              required_children = NULL,
+                              root = FALSE,
+                              content = NULL,
+                              attribs = NULL,
+                              components = NULL) {
   if ((is.null(attribs) && is.null(content)) && !is.null(components)) {
     attribs <- components$attribs
     content <- components$content
@@ -160,12 +156,10 @@ build_branch_node <- function(
 
 #' @rdname build_node
 #' @export
-build_leaf_node <- function(
-  tagname,
-  content = NULL,
-  attribs = NULL,
-  components = NULL
-) {
+build_leaf_node <- function(tagname,
+                            content = NULL,
+                            attribs = NULL,
+                            components = NULL) {
   if ((is.null(attribs) && is.null(content)) && !is.null(components)) {
     attribs <- components$attribs
     content <- components$content

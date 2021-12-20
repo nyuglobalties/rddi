@@ -33,3 +33,31 @@ map_chr <- function(.x, .f, ...) {
 map_cpl <- function(.x, .f, ...) {
   map_mold(.x, .f, complex(1), ...)
 }
+
+map2 <- function(.x, .y, .f, ...) {
+  out <- mapply(.f, .x, .y, MoreArgs = list(...), SIMPLIFY = FALSE)
+  if (length(out) == length(.x)) {
+    rlang::set_names(out, names(.x))
+  } else {
+    rlang::set_names(out, NULL)
+  }
+}
+
+map2_lgl <- function(.x, .y, .f, ...) {
+  as.vector(map2(.x, .y, .f, ...), "logical")
+}
+
+map2_int <- function(.x, .y, .f, ...) {
+  as.vector(map2(.x, .y, .f, ...), "integer")
+}
+
+map2_dbl <- function(.x, .y, .f, ...) {
+  as.vector(map2(.x, .y, .f, ...), "double")
+}
+map2_chr <- function(.x, .y, .f, ...) {
+  as.vector(map2(.x, .y, .f, ...), "character")
+}
+
+map2_cpl <- function(.x, .y, .f, ...) {
+  as.vector(map2(.x, .y, .f, ...), "complex")
+}
