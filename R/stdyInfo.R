@@ -485,7 +485,7 @@ ddi_anlyUnit <- function(...) {
   }
 
   build_leaf_node(
-    "anylUnit",
+    "anlyUnit",
     attribs = attribs,
     content = components$content
   )
