@@ -73,18 +73,22 @@ ddi_universe <- function(...) {
                       "level", "clusion") 
     attribs <- validate_attributes(attribs, allowed_attribs, "universe")
   }
-
-  allowed_children <- c(
-    "concept",
-    "txt"
-  )
-
-  build_branch_node(
-    "universe",
-    allowed_children = allowed_children,
-    attribs = attribs,
-    content = components$content
-  )
+  browser()
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "concept",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "universe",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' concept node
