@@ -118,40 +118,106 @@ build_branch_node <- function(tagname,
     branch_node <- ddi_node(tagname, !!!attribs)
   }
 
+
+  if (!is.null(required_children) && !is.null(allowed_children)) {
+    stopifnot(all(required_children %in% allowed_children))
+  }
+
+  check_allowed_content(content, branch_node, allowed_children)
+  check_required_content(content, branch_node, required_children)
+
   if (!is.null(content)) {
-    if (!all(map_lgl(content, is_ddi_node))) {
-      rddi_err("Unnamed arguments to `ddi_{tagname}()` must all be DDI nodes.")
-    }
-
-    if (!is.null(required_children)) {
-      if (!is.null(allowed_children)) {
-        stopifnot(all(required_children %in% allowed_children))
-      }
-
-      for (rc in required_children) {
-        if (!any(map_lgl(content, function(x, req) x$tag == req, rc))) {
-          rddi_err("Required child '{rc}' not found for '{tagname}'.")
-        }
-      }
-    }
-
     for (child in content) {
       branch_node <- ddi_add_child(
         branch_node,
-        child,
-        .allowed_children = allowed_children
+        child
       )
-    }
-  } else {
-    if (!is.null(required_children)) {
-      rddi_err(c(
-        "No children specified when some are required: ",
-        "[{glue_collapse(required_children, ', ')}]"
-      ))
     }
   }
 
   branch_node
+}
+
+check_allowed_content <- function(content, parent, allowed, ...) {
+  UseMethod("check_allowed_content", content)
+}
+
+#' @export
+check_allowed_content.default <- function(content, parent, allowed, ...) {
+  if (!is.null(allowed)) {
+    if (length(content) < 1) {
+      return(TRUE)
+    }
+
+    for (child in content) {
+      if (!is_ddi_node(child)) {
+        rddi_err("Non-DDI node content passed to XML wrapped context")
+      }
+
+      check_allowed_content(child, parent, allowed, ...)
+    }
+  }
+
+  TRUE
+}
+
+#' @export
+check_allowed_content.ddi_unwrapped <- function(content, parent, allowed, ...) { # nolint
+  ddi_content <- map_lgl(content$content, is_ddi_node)
+
+  check_allowed_content(content$content[ddi_content], parent, allowed, ...)
+}
+
+#' @export
+check_allowed_content.ddi_node <- function(content, parent, allowed, ...) {
+  if (!content$tag %in% allowed) {
+    rddi_err(c(
+      "'{content$tag}' is not an acceptable child element for {parent$tag}.\n",
+      "These are the allowed children: [{glue_collapse(allowed, ', ')}]"
+    ), .type = "rddi_unallowed_child_error")
+  }
+
+  TRUE
+}
+
+check_required_content <- function(content, parent, required, ...) {
+  UseMethod("check_required_content", content)
+}
+
+#' @export
+check_required_content.default <- function(content, parent, required, ...) {
+  if (is.null(content)) {
+    if (!is.null(required)) {
+      rddi_err(c(
+        "No children specified when some are required: ",
+        "[{glue_collapse(required, ', ')}]"
+      ))
+    }
+  } else {
+    if (is_unwrapped(content[[1]])) {
+      return(check_required_content(content[[1]], parent, required, ...))
+    }
+
+    if (!is.null(required)) {
+      for (rc in required) {
+        if (!any(map_lgl(content, function(x, req) x$tag == req, rc))) {
+          rddi_err(
+            "Required child '{rc}' not found for '{parent$tag}'.",
+            .type = "rddi_missing_required_child_error"
+          )
+        }
+      }
+    }
+  }
+
+  TRUE
+}
+
+#' @export
+check_required_content.ddi_unwrapped <- function(content, parent, required, ...) { # nolint
+  ddi_content <- map_lgl(content$content, is_ddi_node)
+
+  check_required_content(content$content[ddi_content], parent, required, ...)
 }
 
 #' @rdname build_node

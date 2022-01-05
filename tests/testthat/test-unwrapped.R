@@ -65,3 +65,48 @@ test_that("Unwrapped argument forwarding for node creation works", {
     "text<labl>label</labl>"
   )
 })
+
+test_that("Child inspection forwarding occurs correctly", {
+  concept <- simple_leaf_node("concept")
+  txt <- simple_leaf_node("txt")
+  bad <- simple_leaf_node("bad")
+
+  test_uni1 <- function(...) {
+    components <- dots_to_xml_components(...)
+    content <- unwrap_content(components$content)
+    attribs <- components$attribs
+
+    build_branch_node(
+      "uni",
+      content = content,
+      attribs = attribs,
+      allowed_children = c("txt", "concept")
+    )
+  }
+
+  test_uni2 <- function(...) {
+    components <- dots_to_xml_components(...)
+    content <- unwrap_content(components$content)
+    attribs <- components$attribs
+
+    build_branch_node(
+      "uni",
+      content = content,
+      attribs = attribs,
+      allowed_children = c("txt", "concept"),
+      required_children = "concept"
+    )
+  }
+
+  expect_error(test_uni1(
+    "Text",
+    txt("text"),
+    concept("concept"),
+    bad("this is bad")
+  ), class = "rddi_unallowed_child_error")
+
+  expect_error(test_uni2(
+    "more text",
+    txt("text")
+  ), class = "rddi_missing_required_child_error")
+})
