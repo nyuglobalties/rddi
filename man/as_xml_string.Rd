@@ -4,10 +4,12 @@
 \alias{as_xml_string}
 \title{Shortcut to text representation of DDI XML}
 \usage{
-as_xml_string(x)
+as_xml_string(x, ...)
 }
 \arguments{
 \item{x}{A ddi_node object}
+
+\item{...}{Arguments forwarded to \code{as_xml()}}
 }
 \value{
 A string containing the text representation of XML

@@ -1,7 +1,6 @@
 context("DDI node creation")
 
 test_that("Creation of branch nodes makes sense", {
-
   test_branch <- function(...) {
     components <- dots_to_xml_components(...)
 
@@ -31,7 +30,7 @@ test_that("Creation of branch nodes makes sense", {
 
     build_branch_node(
       "branch",
-      allowed_children = children,
+      allowed_children = allowed_children,
       required_children = req_children,
       components = components
     )
