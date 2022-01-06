@@ -1,6 +1,6 @@
 #' Create object IDs
 #'
-#' In the DDI Codebook 2.5 specification, object IDs are not necessary, 
+#' In the DDI Codebook 2.5 specification, object IDs are not necessary,
 #' but they are recommended to create linkages. For example, variables being
 #' specific to a certain database file should include an ID reference to
 #' that file.
@@ -20,6 +20,18 @@ create_object_id <- function(object, ..., generator = getOption("rddi.id_generat
   generator(object, ...)
 }
 
+#' Split variable arguments into content and attributes
+#'
+#' @param ... Any mix of named and unnamed arguments
+#' @return A list with members "attribs" and "content"
+#'
+#' @details ## ID attributes
+#' Entities in DDI schema can have IDs. As of DDI 3, entities
+#' are requried to have URNs. As this package is an API for
+#' DDI 2.5, it is not a requirement to include entity IDs. If
+#' you'd like to specify them, use the 'id_object' parameter.
+#' See [create_object_id] for more details.
+#' @export
 dots_to_xml_components <- function(...) {
   dots <- dots_partition(...)
   attribs <- dots$named %if_empty% NULL
