@@ -182,11 +182,21 @@ ddi_collMode <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "collMode")
   }
 
-  build_leaf_node(
-    "collMode",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "collMode",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "collMode",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_dataColl
@@ -313,11 +323,21 @@ ddi_resInstru <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "resInstru")
   }
 
-  build_leaf_node(
-    "resInstru",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "resInstru",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "resInstru",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_dataColl
@@ -331,11 +351,21 @@ ddi_sampProc <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "sampProc")
   }
 
-  build_leaf_node(
-    "sampProc",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "sampProc",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "sampProc",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_dataColl
@@ -350,11 +380,21 @@ ddi_timeMeth <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "timeMeth")
   }
 
-  build_leaf_node(
-    "timeMeth",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "timeMeth",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "timeMeth",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_dataColl

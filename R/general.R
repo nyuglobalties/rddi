@@ -73,10 +73,10 @@ ddi_universe <- function(...) {
                       "level", "clusion") 
     attribs <- validate_attributes(attribs, allowed_attribs, "universe")
   }
-  browser()
+  
   if(length(components$content) == 1 & is.character(components$content[[1]])) {
     build_leaf_node(
-      "concept",
+      "universe",
       attribs = attribs,
       content = components$content
     )

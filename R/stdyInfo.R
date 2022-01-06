@@ -484,11 +484,22 @@ ddi_anlyUnit <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "anlyUnit")
   }
 
-  build_leaf_node(
-    "anlyUnit",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "anlyUnit",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "anlyUnit",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
+  
 }
 
 #' boundPoly and its leaf node children
@@ -647,11 +658,22 @@ ddi_dataKind<- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "dataKind")
   }
 
-  build_leaf_node(
-    "dataKind",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "dataKind",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "dataKind",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
+  
 }
 
 #' geoBndBox and its leaf node children
@@ -784,11 +806,21 @@ ddi_geogCover <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "geogCover")
   }
 
-  build_leaf_node(
-    "geogCover",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "geogCover",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "geogCover",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_sumDscr
@@ -802,11 +834,21 @@ ddi_geogUnit <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "geogUnit")
   }
 
-  build_leaf_node(
-    "geogUnit",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "geogUnit",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "geogUnit",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_sumDscr
@@ -821,11 +863,21 @@ ddi_nation <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "nation")
   }
 
-  build_leaf_node(
-    "nation",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "nation",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("txt", "concept")
+    build_branch_node(
+      "nation",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_sumDscr

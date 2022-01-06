@@ -50,11 +50,21 @@ ddi_othRefs <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "othRefs")
   }
 
-  build_leaf_node(
-    "othRefs",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "othRefs",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("citation")
+    build_branch_node(
+      "othRefs",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_othrStdyMat
@@ -69,11 +79,21 @@ ddi_relMat <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "relMat")
   }
 
-  build_leaf_node(
-    "relMat",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "relMat",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("citation")
+    build_branch_node(
+      "relMat",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_othrStdyMat
@@ -87,11 +107,21 @@ ddi_relPubl <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "relPubl")
   }
 
-  build_leaf_node(
-    "relPubl",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "relPubl",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("citation")
+    build_branch_node(
+      "relPubl",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_othrStdyMat
@@ -105,9 +135,19 @@ ddi_relStdy <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "relStdy")
   }
 
-  build_leaf_node(
-    "relStdy",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "relStdy",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("citation")
+    build_branch_node(
+      "relStdy",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
