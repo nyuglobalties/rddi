@@ -7,7 +7,7 @@
 \usage{
 ddi_mrow(...)
 
-ddi_mi(varRef, ...)
+ddi_mi(...)
 }
 \arguments{
 \item{...}{Any parameters from the DDI Codebook 2.5 schema}
@@ -26,9 +26,6 @@ requires the varRef variable
 }
 }
 
-\section{DDI Codebook 2.5 Documentation}{
-
-
+\references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mrow.html}{mrow documentation}
 }
-

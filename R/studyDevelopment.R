@@ -124,10 +124,10 @@ ddi_outcome <- function(...) {
 #' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
 #'
 #' @section General children allowed:
-#' * [dataSrc()]
-#' * [srcOrig()]
-#' * [srcDocu()]
-#' * [srcOrig()]
+#' * [ddi_dataSrc()]
+#' * [ddi_srcOrig()]
+#' * [ddi_srcDocu()]
+#' * [ddi_srcOrig()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/resource.html}{resource documentation}
 #' 

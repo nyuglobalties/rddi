@@ -633,8 +633,6 @@ ddi_unitType <- function(...) {
 #' 
 #' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation:
-#'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/targetSampleSize.html}{targetSampleSize documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleSize.html}{sampleSize documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleSizeFormula.html}{sampleSizeFormula documentation}
@@ -720,7 +718,7 @@ ddi_sampleSizeFormula <- function(...) {
 #' * `ddi_srcChar()` 
 #' * `ddi_srcDocu()`
 #' 
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sources.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sources.html}{sources documentation}
 #' 
 #' @export
 ddi_sources <- function(...) {

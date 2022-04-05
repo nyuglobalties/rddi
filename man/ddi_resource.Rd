@@ -15,10 +15,10 @@ resource
 \section{General children allowed}{
 
 \itemize{
-\item \code{\link[=dataSrc]{dataSrc()}}
-\item \code{\link[=srcOrig]{srcOrig()}}
-\item \code{\link[=srcDocu]{srcDocu()}}
-\item \code{\link[=srcOrig]{srcOrig()}}
+\item \code{\link[=ddi_dataSrc]{ddi_dataSrc()}}
+\item \code{\link[=ddi_srcOrig]{ddi_srcOrig()}}
+\item \code{\link[=ddi_srcDocu]{ddi_srcDocu()}}
+\item \code{\link[=ddi_srcOrig]{ddi_srcOrig()}}
 }
 }
 

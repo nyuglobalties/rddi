@@ -15,6 +15,9 @@ ddi_evaluator(...)
 
 ddi_outcomes(...)
 }
+\arguments{
+\item{...}{Child nodes or attributes.}
+}
 \description{
 Post Evaluation Procedures describes evaluation procedures not address in data evaluation processes. These may include issues such as timing of the study, sequencing
 issues, cost/budget issues, relevance, instituional or legal arrangments etc. of the study. More information on hte allowed attributes and child nodes can be found below

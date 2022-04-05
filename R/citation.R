@@ -11,7 +11,7 @@
 #' * [ddi_rspStmt()]
 #' * [ddi_serStmt()]
 #' * [ddi_titlStmt()]
-#' * [ddi_verstmt()]
+#' * [ddi_verStmt()]
 #' 
 #' @section General children allowed:
 #' * [ddi_notes()]

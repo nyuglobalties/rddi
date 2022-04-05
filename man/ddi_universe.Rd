@@ -16,5 +16,5 @@ The universe may consist of elements other than persons, such as housing units, 
 the description of the universe whether a given individual or element (hypothetical or real) is a member of the population under study.
 }
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/universe.html}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/universe.html}{universe documentation}
 }

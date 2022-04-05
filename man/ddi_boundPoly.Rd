@@ -3,6 +3,7 @@
 \name{ddi_boundPoly}
 \alias{ddi_boundPoly}
 \alias{ddi_polygon}
+\alias{ddi_point}
 \alias{ddi_gringLat}
 \alias{ddi_gringLon}
 \title{boundPoly and its leaf node children}
@@ -10,6 +11,8 @@
 ddi_boundPoly(...)
 
 ddi_polygon(...)
+
+ddi_point(...)
 
 ddi_gringLat(...)
 
@@ -39,7 +42,7 @@ westBL, eastBL, southBL, and northBL of the geoBndBox should each be represented
 
 \itemize{
 \item \code{\link[=ddi_gringLat]{ddi_gringLat()}}
-\item \code{\link[=ddi_gringLong]{ddi_gringLong()}}
+\item \code{\link[=ddi_gringLon]{ddi_gringLon()}}
 }
 }
 

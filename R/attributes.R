@@ -77,7 +77,7 @@ check_attribs <- function(attribs) {
 
     # check for integers
     int <- c("numberOfUnits")
-    if(any(names(attribs) %in% int)) check_int(attribs[names(attribs) %in% int])
+    if(any(names(attribs) %in% int)) check_integer(attribs[names(attribs) %in% int])
 
 
     invisible(attribs)

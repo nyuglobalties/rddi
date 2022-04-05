@@ -58,7 +58,7 @@ ddi_var <- function(varname, ...) {
   attribs <- validate_attributes(attribs, allowed_attribs, "var")
 
   allowed_children <- c(
-    "catgry", "catLevel", "labl", "qstn", "sumStat", "notes", "analysUnit", "imputation", "txt",
+    "catgry", "catLevel", "labl", "qstn", "sumStat", "notes", "anlysUnit", "imputation", "txt",
     "codInstr", "TotlResp", "security", "embargo", "respUnit", "undocCod", "stdCatgry", "concept", "varFormat",
     "valrng", "invalrng", "universe", "catgryGrp", "verStmt", "derivation", "geomap", "location"
   )
@@ -208,14 +208,10 @@ ddi_catgry <- function(...)  {
 #' of multiple non-contiguous parts, or to define unique strings for various category values of a single variable. `ddi_mi()`
 #' requires the varRef variable
 #' 
-#' 
-#' 
 #' @section Branch node children allowed:
 #' * `ddi_mi()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mi.html}{DDI documentation}
 #' 
-#' @section DDI Codebook 2.5 Documentation:
-#' 
-#' \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mrow.html}{mrow documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mrow.html}{mrow documentation}
 #' 
 #' @param ... Any parameters from the DDI Codebook 2.5 schema
 #' 
@@ -254,7 +250,6 @@ ddi_anlysUnit <- function(...) {
 
   build_leaf_node(
     "anlysUnit",
-    allowed_children = allowed_children,
     attribs = attribs,
     content = components$content
   )
@@ -340,9 +335,8 @@ ddi_derivation <- function(...) {
 #' @section General children allowed:
 #' * `ddi_notes()` 
 #' 
-#' @section DDI Codebook 2.5 Documentation:
-#' * \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
-#' * \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation} 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation} 
 #' 
 #' @export
 ddi_valrng <- function(...) {
@@ -482,13 +476,11 @@ ddi_qstn <- function(...) {
 
 #' @rdname ddi_var 
 #' @export
-ddi_sumStat <- function(type, ...) {
+ddi_sumStat <- function(...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
-  attribs$type <- type
-
-  check_attribs_in_set(attribs$type, c("mean", "medn", "mode", "vald", "invd", "min", "max", "stdev", "other"), field = "type (sumStat")
+  if(!is.null(attribs$type)) check_attribs_in_set(attribs$type, c("mean", "medn", "mode", "vald", "invd", "min", "max", "stdev", "other"), field = "type (sumStat")
   
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "wgtd", "wgt-var", "weight",
                       "type", "otherType")
@@ -689,12 +681,14 @@ ddi_drvcmd <- function(...) {
 
 #' @rdname ddi_valrng 
 #' @export
-ddi_item <- function(value, ...) {
+ddi_item <- function(...) {
   browser()
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
-  attribs$VALUE <- value
+  if(check_cardinality(components$content, "item") > 0 & check_cardinality(components$content, "range") == 0) required_children <- "item"
+  else if(check_cardinality(components$content, "item") == 0 & check_cardinality(components$content, "range") > 0) required_children <- "range"
+  else rddi_err("valrng requires at least one item or at least one range child but cannot include an item and range child")
   
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "UNITS", "VALUE") 
@@ -798,11 +792,9 @@ ddi_defntn <- function(...) {
 
 #' @rdname ddi_mrow 
 #' @export
-ddi_mi <- function(varRef, ...) {
+ddi_mi <- function(...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
-
-  attribs$varRef <- varRef
   
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                     "varRef") 

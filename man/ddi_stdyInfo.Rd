@@ -25,7 +25,7 @@ on the allowed attributes for stdyINfo and its child nodes can be found below an
 
 \itemize{
 \item \code{\link[=ddi_exPostEvaluation]{ddi_exPostEvaluation()}}
-\item \code{\link[=ddi_qualityStatmeent]{ddi_qualityStatmeent()}}
+\item \code{\link[=ddi_qualityStatement]{ddi_qualityStatement()}}
 \item \code{\link[=ddi_subject]{ddi_subject()}}
 \item \code{\link[=ddi_sumDscr]{ddi_sumDscr()}}
 }

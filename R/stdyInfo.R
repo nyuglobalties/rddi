@@ -9,7 +9,7 @@
 #' 
 #' @section Branch node children allowed:
 #' * [ddi_exPostEvaluation()]
-#' * [ddi_qualityStatmeent()]
+#' * [ddi_qualityStatement()]
 #' * [ddi_subject()]
 #' * [ddi_sumDscr()]
 #' 
@@ -75,6 +75,8 @@ ddi_abstract <- function(...) {
 #' issues, cost/budget issues, relevance, instituional or legal arrangments etc. of the study. More information on hte allowed attributes and child nodes can be found below
 #' and in the references
 #'
+#' @param ... Child nodes or attributes. 
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/exPostEvaluation.html}{exPostEvaluation documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/evaluationProcess.html}{evaluationProcess documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/evaluator.html}{evaluator documentation}
@@ -519,7 +521,7 @@ ddi_anlyUnit <- function(...) {
 #'
 #' @section ddi_point leaf nodes:
 #' * [ddi_gringLat()]
-#' * [ddi_gringLong()]
+#' * [ddi_gringLon()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/boundPoly.html}{boundPoly documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/polygon.html}{polygon documentation}
@@ -566,7 +568,7 @@ ddi_polygon <- function(...) {
   )
 }
 
-#' @references ddi_boundPoly
+#' @rdname ddi_boundPoly
 #' @export
 ddi_point <- function(...) {
   components <- dots_to_xml_components(...)
@@ -701,12 +703,8 @@ ddi_geoBndBox <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "geoBndBox")
   }
 
-  allowed_children (
-      "westBL",
-      "eastBL",
-      "southBL",
-      "northBL"
-  )
+  allowed_children = c("westBL", "eastBL", "southBL", "northBL")
+  
   build_branch_node(
     "geoBndBox",
     allowed_children = allowed_children,

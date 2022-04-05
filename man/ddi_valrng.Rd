@@ -12,7 +12,7 @@ ddi_valrng(...)
 
 ddi_invalrng(...)
 
-ddi_item(value, ...)
+ddi_item(...)
 
 ddi_range(...)
 
@@ -40,11 +40,8 @@ Values for a particular variable that represent legitimate responses (valrng) or
 }
 }
 
-\section{DDI Codebook 2.5 Documentation}{
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
 
-\itemize{
-\item \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
-\item \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation}
 }
-}
-

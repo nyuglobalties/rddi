@@ -4,3 +4,5 @@
 ^\.github/workflows/R-CMD-check\.yaml$
 ^README\.Rmd$
 ^README\.html$
+^.*\.Rproj$
+^\.Rproj\.user$

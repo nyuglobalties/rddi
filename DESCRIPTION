@@ -21,8 +21,11 @@ RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 Suggests: 
     testthat,
-    covr
+    covr,
+    knitr,
+    rmarkdown
 Imports: 
     rlang,
     glue,
     xml2
+VignetteBuilder: knitr

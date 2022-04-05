@@ -1,0 +1,114 @@
+---
+title: "Introduction to the rddi package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to the rddi package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, eval = FALSE}
+library(rddi)
+```
+
+## Introduction
+
+The `rddi` package is developer-focused package provides R representations of DDI Codebook 2.5 elements to safely construct fully-validated XML while still being flexible. This package covers all elements in the DDI codebook schema, including the attributes and constraints of each element. 
+
+## Installation
+
+`rddi` is not yet on CRAN, so please download the devleopment version with: 
+
+```{r eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("Global-TIES-for-Children/rddi")
+```
+
+## What is the Data Documentation Initiative (DDI)?
+
+The Data Documentation Initiative (DDI) is an international standard for describing data from surveys in the social and health sciences. There are currently two versions in use, the DDI-Codebook (v 2.5), which is used for single datasets, and DDI Lifecycle (3.0) which tracks a project through it's lifecycle. This package only covers the codebook. For more information go to <https://ddialliance.org>.
+
+A DDI-Codebook is structured as follows
+
+|- codeBook
+|----docDscr
+|----stdyDscr
+|----fileDscr
+|----dataDscr
+
+codeBook serves as the root node, the stdyDscr holds study level metadata, dataDscr holds variable level metadata, and the fileDscr and docDscr holds administrative metadata about the dataset. The only required element is titl in the stdyDscr.
+
+## Designed uses of rddi
+
+`rddi` was designed to work with [blueprintr](https://github.com/nyuglobalties/blueprintr), a plugin to the drake and targets packages. It's meant to describe the data that is produced through these kinds of pipelines. 
+
+There is a `ddi_` function for each DDI-Codebook element that accepts a dots function  (`...`) consisting of other `ddi_` functions and attributes. The root node is always `ddi_codebook()` followed by one or more of the following functions (`ddi_docDscr()`, `ddi_stdyDscr()`, `ddi_fileDscr()`, or `ddi_dataDscr()`) and their children. Element attributes are named variables within each function along with children nodes. Each function also checks for the elements constraints (allowed children, allowed attributes, and the cardinality of each child and attribute if designated by the DDI-Codebook schema).
+ 
+In order to use rddi, vectorized functions like the `apply()` family of functions in base R or the `map()` functions from the `purrr` package, might be necessary depending on the number of repeating elements. 
+
+To use them, you first need to create a splat() function to convert the results into a dots function. A sample splat function is below
+
+```{r eval = FALSE}
+splat <- function(x, f) {
+  do.call(f, x)
+}
+```
+
+## Example
+
+```{r example, eval = FALSE}
+library(purrr)
+
+# to convert to dots (...)
+splat <- function(x, f) {
+  do.call(f, x)
+}
+
+# read in metadata held in a csv
+ds <- read_csv("insert path to file here")
+
+# create a variable to add var to dataset
+descr_var <- pmap(
+  .l = list(name = ds$name, description = ds$description),
+  .f = function(name, description) ddi_var(varname = name, ddi_labl(description))
+)
+
+# Build the codebook
+codebook <- ddi_codeBook(
+  ddi_stdyDscr(
+    ddi_citation(
+      ddi_titlStmt(
+        ddi_titl("test")
+      )
+    )
+  ),
+  splat(descr_many_var, ddi_dataDscr) # var elements in data description
+)
+```
+
+## Validate against the DDI-Codebook schema 
+
+```{r validate, eval = FALSE}
+codebook %>% 
+  validate_codebook()
+#> [1] TRUE
+#> attr(,"errors")
+#> character(0)`
+```
+
+## Export as XML
+
+Use the `as_xml()` and `write_xml` functions in `xml2` package to convert to xml and export.
+
+```{r export, eval = FALSE}
+library(xml2)
+
+write_xml(as_xml(codebook), "codebook.xml")
+```

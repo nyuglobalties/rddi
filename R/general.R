@@ -32,7 +32,7 @@ ddi_labl <- function(...) {
 #' 
 #' @param ... Any parameters from the DDI Codebook 2.5 schema
 #'
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/notes.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/notes.html}{notes documentation}
 #'  
 #' @export
 ddi_notes <- function(...) {
@@ -59,7 +59,7 @@ ddi_notes <- function(...) {
 #' The universe may consist of elements other than persons, such as housing units, court cases, deaths, countries, etc. In general, it should be possible to tell from 
 #' the description of the universe whether a given individual or element (hypothetical or real) is a member of the population under study.
 #' 
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/universe.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/universe.html}{universe documentation}
 #' 
 #' @param ... Any parameters from the DDI Codebook 2.5 schema
 #' 
@@ -99,7 +99,7 @@ ddi_universe <- function(...) {
 #' 
 #' @param ... Any other parameters from the DDI Codebook 2.5 schema
 #'
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/concept.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/concept.html}{concept documentation}
 #'  
 #' @export
 ddi_concept <- function(...) {
@@ -283,7 +283,7 @@ ddi_contact <- function(...) {
 #' 
 #' @param ... Child nodes or attributes. 
 #'
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc_1.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc_1.html}{dataSrc documentation}
 #' 
 #' @export
 ddi_dataSrc <- function(...) {

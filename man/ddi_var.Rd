@@ -29,7 +29,7 @@ ddi_imputation(...)
 
 ddi_qstn(...)
 
-ddi_sumStat(type, ...)
+ddi_sumStat(...)
 
 ddi_codInstr(...)
 

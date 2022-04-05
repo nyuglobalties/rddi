@@ -33,7 +33,7 @@ source citation can be found below and in the references.
 \item \code{\link[=ddi_rspStmt]{ddi_rspStmt()}}
 \item \code{\link[=ddi_serStmt]{ddi_serStmt()}}
 \item \code{\link[=ddi_titlStmt]{ddi_titlStmt()}}
-\item \code{\link[=ddi_verstmt]{ddi_verstmt()}}
+\item \code{\link[=ddi_verStmt]{ddi_verStmt()}}
 }
 }
 

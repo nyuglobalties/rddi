@@ -28,7 +28,8 @@ statements, each of which could contain the facts about an individual source. Th
 \item \code{ddi_srcChar()}
 \item \code{ddi_srcDocu()}
 }
-
-url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sources.html}
 }
 
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sources.html}{sources documentation}
+}
