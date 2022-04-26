@@ -31,10 +31,43 @@ ddi_specPerm(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Information on terms of use for the data collection. This element may be repeated only to support multiple language expressions of the content.
-For more information on useStmt, its attributes and its children see the references
+Information on terms of use for the data collection. This element may be
+repeated only to support multiple language expressions of the content.
+More information on these elements, especially their allowed attributes, can
+be found in the references.
 }
-\section{General children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{useStmt} is contained in the following elements: \code{dataAccs} and \code{sampleFrame}.
+
+\emph{useStmt specific child nodes}
+\itemize{
+\item \code{ddi_citReq()} is the citation requirement. This is the text of requirement that
+a data collection should be cited properly in articles or other publications
+that are based on analysis of the data.
+\item \code{ddi_conditions()} indicates any additional information that will assist the
+user in understanding the access and use conditions of the data collection.
+\item \code{ddi_confDec()} is the confidentiality declaration. This element is used to
+determine if signing of a confidentiality declaration is needed to access a
+resource.
+\item \code{ddi_deposReq()} is the deposit requirement. This is information regarding
+user responsibility for informing archives of their use of data through
+providing citations to the published work or providing copies of the
+manuscripts.
+\item \code{ddi_disclaimer()} is information regarding responsibility for uses of the
+data collection. This element may be repeated to support multiple language
+expressions of the content.
+\item \code{ddi_restrctn()} are any restrictions on access to or use of the collection
+such as privacy certification or distribution restrictions should be
+indicated here. These can be restrictions applied by the author, producer,
+or disseminator of the data collection. If the data are restricted to only
+a certain class of user, specify which type.
+\item \code{ddi_specPerm()} is used to determine if any special permissions are required
+to access a resource.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_contact]{ddi_contact()}}

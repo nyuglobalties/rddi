@@ -10,7 +10,15 @@ ddi_srcDocu(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Level of documentation of the original sources. May not be relevant to survey data. This element may be repeated to support multiple language expressions of the content.
+Level of documentation of the original sources. May not be relevant to
+survey data. This element may be repeated to support multiple language
+expressions of the content. More information on this element, especially its
+allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{srcDocu} is contained in the following elements: \code{sources} and \code{resource}.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcDocu.html}{srcDocu documentation}

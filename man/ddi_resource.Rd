@@ -2,21 +2,27 @@
 % Please edit documentation in R/studyDevelopment.R
 \name{ddi_resource}
 \alias{ddi_resource}
-\title{resource}
+\title{resource and its child nodes}
 \usage{
 ddi_resource(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-resource
+Resources used in the development of the activity. More information on these
+elements, especially their allowed attributes, can be found in the references.
 }
-\section{General children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{resource} is contained in \code{developmentActivity}.
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_dataSrc]{ddi_dataSrc()}}
-\item \code{\link[=ddi_srcOrig]{ddi_srcOrig()}}
+\item \code{\link[=ddi_srcChar]{ddi_srcChar()}}
 \item \code{\link[=ddi_srcDocu]{ddi_srcDocu()}}
 \item \code{\link[=ddi_srcOrig]{ddi_srcOrig()}}
 }

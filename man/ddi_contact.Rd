@@ -10,9 +10,18 @@ ddi_contact(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Names and addresses of individuals responsible for the work. Individuals listed as contact persons will be used as resource persons regarding problems or
-questions raised by the user community. The URI attribute should be used to indicate a URN or URL for the homepage of the contact individual. The
-email attribute is used to indicate an email address for the contact individual.
+Names and addresses of individuals responsible for the work. Individuals
+listed as contact persons will be used as resource persons regarding problems
+or questions raised by the user community. The URI attribute should be used
+to indicate a URN or URL for the homepage of the contact individual. The
+email attribute is used to indicate an email address for the contact
+individual. More information on this element, especially its allowed
+attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{contact} is contained in the following elements: \code{distStmt} and \code{useStmt}.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/contact.html}{contact documentation}

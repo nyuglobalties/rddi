@@ -7,12 +7,21 @@
 ddi_labl(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-A short description of the parent element. In the variable label, the length of this phrase may depend on the statistical analysis system
-used (e.g., some versions of SAS permit 40-character labels, while some versions of SPSS permit 120 characters), although the DDI itself imposes no restrictions
-on the number of characters allowed.
+A short description of the parent element. In the variable label, the length
+of this phrase may depend on the statistical analysis system
+used (e.g., some versions of SAS permit 40-character labels, while some
+versions of SPSS permit 120 characters), although the DDI itself imposes no
+restrictions on the number of characters allowed. More information on this
+element, especially its allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{labl} is contained in the following elements: \code{catgry}; \code{catgryGrp}; \code{nCube};
+\code{nCubeGrp}; \code{otherMat}; \code{recGrp}; \code{sampleFrame}; \code{var}; and \code{varGrp}.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/labl.html}{labl documentation}

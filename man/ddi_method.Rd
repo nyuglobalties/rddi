@@ -16,22 +16,35 @@ ddi_stdyClas(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-This section describes the methodology and processing involved in a data collection. More information on allowed attributes and
-child nodes can be found below and in hte references.
+This section describes the methodology and processing involved in a data
+collection. More information on these elements, especially their allowed
+attributes, can be found in the references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{method} is contained in \code{stdyDscr}.
+
+\emph{method specific child nodes}
+\itemize{
+\item \code{ddi_dataProcessing()} describes various data processing procedures not
+captured elsewhere in the documentation, such as topcoding, recoding,
+suppression, tabulation, etc. The "type" attribute supports better
+classification of this activity, including the optional use of a controlled
+vocabulary.
+\item \code{ddi_stdyClas()} is generally used to give the data archive's class or
+study status number, which indicates the processing status of the study. May
+also be used as a text field to describe processing status. This element may
+be repeated to support multiple language expressions of the content.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_anlyInfo]{ddi_anlyInfo()}}
 \item \code{\link[=ddi_codingInstructions]{ddi_codingInstructions()}}
 \item \code{\link[=ddi_dataColl]{ddi_dataColl()}}
-}
-}
-
-\section{General children allowed}{
-
-\itemize{
-\item \code{ddi_notes()}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
 }
 }
 

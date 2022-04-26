@@ -1,25 +1,47 @@
 #' citation, sourceCitation, fileCitation and their child nodes
 #'
-#' Citation entities for the study including general citations and source citations. More information on citation and
-#' source citation can be found below and in the references.
-#'
+#' Citation entities for the study including general citations and source 
+#' citations. Citation is a required element in the DDI-Codebook.
+#' `fileCitation` provides a full bibliographic citation option for each data file described 
+#' in `fileDscr`. The minimum element set includes: `titl`, `IDNo`, `authEnty`, `producer`, and 
+#' `prodDate`. If a DOI is available for the data enter this in the `IDNo`. 
+#' More information on these elements, especially their allowed attributes, can 
+#' be found in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `citation` is contained in the following elements: `docDscr`; `othRefs`; 
+#' `otherMat`; `relMat`; `relPubl`; `relStdy`; and `stdyDscr`. `sourceCitation` 
+#' is contained in the `sources` element. `fileCitation` is included in the 
+#' `fileTxt` element.
+#' 
+#' \emph{citation, sourceCitation, and fileCitation specific child nodes}
+#' 
+#' `ddi_biblCit()` is the complete bibliographic reference containing all of the 
+#' standard elements of a citation that can be used to cite the work. The "format" 
+#' attribute is provided to enable specification of the particular citation style 
+#' used, e.g., APA, MLA, Chicago, etc.
+#' 
+#' `ddi_holdings()` is information concerning either the physical or electronic 
+#' holdings of the cited work. Attributes include: location--The physical location 
+#' where a copy is held; callno--The call number for a work at the location 
+#' specified; and URI--A URN or URL for accessing the electronic copy of the cited work. 
+#' 
 #' @param ... Child nodes or attributes. 
 #'
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes: 
 #' * [ddi_distStmt()]
+#' * [ddi_notes()]
 #' * [ddi_prodStmt()]
 #' * [ddi_rspStmt()]
 #' * [ddi_serStmt()]
 #' * [ddi_titlStmt()]
 #' * [ddi_verStmt()]
-#' 
-#' @section General children allowed:
-#' * [ddi_notes()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/citation.html}{citation documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sourceCitation.html}{sourceCitation documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileCitation.html}{fileCitation documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serInfo.html}{serInfo documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sourceCitation.html}{sourceCitation documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/biblCit.html}{biblCit documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/holdings.html}{holdings documentation}
 #' 
 #' @export
@@ -53,7 +75,6 @@ ddi_citation <- function(...) {
   build_branch_node(
     "citation",
     allowed_children = allowed_children,
-    required_children = "titlStmt",
     components = components,
     attribs = attribs
   )
@@ -130,19 +151,44 @@ ddi_fileCitation <- function(...) {
     content = components$content
   )
 }
-#' titleStmt and its child nodes
+
+#' titlStmt and its child nodes
 #' 
-#' Title statement for the work at the appropriate level: marked-up document; marked-up document source; study; study description, other materials; other materials for the study.
-#' More information on the allowed attributes and child nodes can be found below and in the references.
+#' Title statement for the work at the appropriate level: marked-up document; 
+#' marked-up document source; study; study description, other materials; other 
+#' materials for the study. Both `titlStmt` and `titl` are required elements in the `citation`
+#' branch of a DDI-Codebook. More information on these elements, especially 
+#' their allowed attributes, can be found in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `titlStmt` is contained in the following elements: `citation`; `docSrc`; 
+#' `fileCitation`; and `sourceCitation`.
+#' 
+#' \emph{titlStmt specific child nodes}
+#' 
+#' `ddi_altTitl()` is the alternative title. A title by which the work is commonly referred, or an 
+#' abbreviation of the title.
+#' 
+#' `ddi_IDNo()` is the identification number. This is a unique string or number (producer's or 
+#' archive's number). Can be a DOI. An "agency" attribute is supplied. Identification Number 
+#' of data collection maps to Dublin Core Identifier element. 
+#' 
+#' `ddi_partTitl()` is the parallel title. Title translated into another language.
+#' 
+#' `ddi_subTitl()` is the subtitle. A secondary title used to amplify or state certain limitations 
+#' on the main title. It may repeat information already in the main title. 
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @section Shared and complex child nodes:
+#' * [ddi_titl()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/titlStmt.html}{titlStmt documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/titl.html}{titl documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/subTitl.html}{subTitl documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/altTitl.html}{altTitl documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/parTitl.html}{parTitl documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/IDNo.html}{IDNo documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/parTitl.html}{parTitl documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/subTitl.html}{subTitl documentation}
 #' 
 #' @export
 ddi_titlStmt <- function(...) {
@@ -165,7 +211,6 @@ ddi_titlStmt <- function(...) {
   build_branch_node(
     "titlStmt",
     allowed_children = allowed_children,
-    required_children = "titl",
     components = components,
     attribs = attribs
   )
@@ -173,17 +218,55 @@ ddi_titlStmt <- function(...) {
 
 #' @rdname ddi_titlStmt
 #' @export
-ddi_titl <-  function(...) {
+ddi_altTitl <- function(...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
-
+  
   if(!is.null(attribs)) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    attribs <- validate_attributes(attribs, allowed_attribs, "titl")
+    attribs <- validate_attributes(attribs, allowed_attribs, "altTitl")
   }
-
+  
   build_leaf_node(
-    "titl",
+    "altTitl",
+    attribs = attribs,
+    content = components$content
+  ) 
+}
+
+#' @rdname ddi_titlStmt
+#' @export
+ddi_IDNo <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "agency", "level")
+    attribs <- validate_attributes(attribs, allowed_attribs, "IDNo")
+    if(!is.null(attribs$level)) check_attribs_in_set(names(attribs), c("study", "file", "project"), field = "level (IDNo)")
+  }
+  
+  build_leaf_node(
+    "IDNo",
+    attribs = attribs,
+    content = components$content
+  )   
+}
+
+#' @rdname ddi_titlStmt
+#' @export
+ddi_parTitl <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "parTitl")
+  }
+  
+  build_leaf_node(
+    "parTitl",
     attribs = attribs,
     content = components$content
   )
@@ -207,68 +290,41 @@ ddi_subTitl <- function(...) {
   )
 }
 
-#' @rdname ddi_titlStmt
-#' @export
-ddi_altTitl <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    attribs <- validate_attributes(attribs, allowed_attribs, "altTitl")
-  }
-
-  build_leaf_node(
-    "altTitl",
-    attribs = attribs,
-    content = components$content
-  ) 
-}
-
-#' @rdname ddi_titlStmt
-#' @export
-ddi_parTitl <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    attribs <- validate_attributes(attribs, allowed_attribs, "parTitl")
-  }
-
-  build_leaf_node(
-    "parTitl",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' @rdname ddi_titlStmt
-#' @export
-ddi_IDNo <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                        "agency", "level")
-    attribs <- validate_attributes(attribs, allowed_attribs, "IDNo")
-    if(!is.null(attribs$level)) check_attribs_in_set(names(attribs), c("study", "file", "project"), field = "level (IDNo)")
-  }
-
-  build_leaf_node(
-    "IDNo",
-    attribs = attribs,
-    content = components$content
-  )   
-}
-
 #' rspStmt and its child nodes
 #' 
 #' Responsibility statement for the creation of the work at the appropriate level: marked-up document; marked-up document source; study; study description, other material; other 
-#' material for study. More information on rspStmt, its allowed attributes, and its child nodes can be found below and in the references
+#' material for study. More information on these elements, especially their allowed attributes, can 
+#' be found in the references.
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' \emph{Parent nodes}
+#' 
+#' `rspStmt` is contained in the following elements: `citation`; `docSrc`; 
+#' `fileCitation`; and `sourceCitation`.
+#' 
+#' \emph{rspStmt specific child nodes}
+#' 
+#' `ddi_AuthEnty()` is the person, corporate body, or agency responsible for the 
+#' work's substantive and intellectual content. Repeat the element for each author, 
+#' and use "affiliation" attribute if available. Invert first and last name and 
+#' use commas. Author of data collection (codeBook/stdyDscr/citation/rspStmt/AuthEnty) 
+#' maps to Dublin Core Creator element. Inclusion of this element in codebook is recommended.
+#'
+#' The "author" in the Document Description should be the individual(s) or 
+#' organization(s) directly responsible for the intellectual content of the DDI 
+#' version, as distinct from the person(s) or organization(s) responsible for the 
+#' intellectual content of the earlier paper or electronic edition from which the 
+#' DDI edition may have been derived.
+#' 
+#' `ddi_othId()` are the statements of responsibility not recorded in the title 
+#' and statement of responsibility areas. Indicate here the persons or bodies 
+#' connected with the work, or significant persons or bodies connected with 
+#' previous editions and not already named in the description. For example, the 
+#' name of the person who edited the marked-up documentation might be cited in 
+#' codeBook/docDscr/rspStmt/othId, using the "role" and "affiliation" attributes. 
+#' Other identifications/acknowledgments for data collection 
+#' (codeBook/stdyDscr/citation/rspStmt/othId) maps to Dublin Core Contributor element.
+#' 
+#' @param ... Child nodes or attributes.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/rspStmt.html}{rspStmt documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/AuthEnty.html}{AuthEnty documentation}
@@ -337,18 +393,53 @@ ddi_othId <- function(...) {
 
 #' prodStmt and its child nodes
 #' 
-#' Production statement for the work at the appropriate level: marked-up document; marked-up document source; study; study description, other material; 
-#' other material for study. More information on prodStmt, its allowed children and attributes can be found below and in the references.
+#' Production statement for the work at the appropriate level: marked-up document; 
+#' marked-up document source; study; study description, other material; 
+#' other material for study. More information on these elements, especially 
+#' their allowed attributes, can be found in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `prodStmt` is contained in the following elements: `citation`; `docSrc`; 
+#' `fileCitation`; and `sourceCitation`.
+#'
+#' \emph{prdStmt specific child nodes}
+#' 
+#' `ddi_copyright()` is the copyright statement for the work at the appropriate 
+#' level. Copyright for data collection (codeBook/stdyDscr/citation/prodStmt/copyright) 
+#' maps to Dublin Core Rights. Inclusion of this element is recommended.
+#' 
+#' `ddi_fundAg()` is the source(s) of funds for production of the work. If 
+#' different funding agencies sponsored different stages of the production 
+#' process, use the "role" attribute to distinguish them.
+#' 
+#' `ddi_grantNo()` is the grant/contract number of the project that sponsored 
+#' the effort. If more than one, indicate the appropriate agency using the 
+#' "agency" attribute. If different funding agencies sponsored different stages 
+#' of the production process, use the "role" attribute to distinguish the grant 
+#' numbers. 
+#' 
+#' `ddi_prodDate()` is the date when the marked-up document/marked-up document 
+#' source/data collection/other material(s) were produced (not distributed or 
+#' archived). The ISO standard for dates (YYYY-MM-DD) is recommended for use 
+#' with the date attribute. Production date for data collection 
+#' (codeBook/stdyDscr/citation/prodStmt/prodDate) maps to Dublin Core Date element.
+#' 
+#' `ddi_software()` is the software used to produce the work. A "version" 
+#' attribute permits specification of the software version number. The 
+#' "date" attribute is provided to enable specification of the date (if any) 
+#' for the software release. The ISO standard for dates (YYYY-MM-DD) is 
+#' recommended for use with the date attribute.
 #' 
 #' @param ... Child nodes or attributes. 
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/prodStmt.html}{prodStmt documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/copyright.html}{copyright documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fundAg.html}{fundAg documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/grantNo.html}{grantNo documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/prodDate.html}{prodDate documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/prodPlac.html}{prodPlac documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/software.html}{software documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fundAg.html}{fundAg documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/grantNo.html}{grantNo documentation}
 #' 
 #' @export
 ddi_prodStmt <- function(...) {
@@ -391,6 +482,44 @@ ddi_copyright <- function(...) {
 
   build_leaf_node(
     "copyright",
+    attribs = attribs,
+    content = components$content
+  )   
+}
+
+#' @rdname ddi_prodStmt
+#' @export
+ddi_fundAg <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "abbr", "role")
+    attribs <- validate_attributes(attribs, allowed_attribs, "fundAg")
+  }
+  
+  build_leaf_node(
+    "fundAg",
+    attribs = attribs,
+    content = components$content
+  )   
+}
+
+#' @rdname ddi_prodStmt
+#' @export
+ddi_grantNo <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "agency", "role")
+    attribs <- validate_attributes(attribs, allowed_attribs, "grantNo")
+  }
+  
+  build_leaf_node(
+    "grantNo",
     attribs = attribs,
     content = components$content
   )   
@@ -452,54 +581,31 @@ ddi_software <- function(...) {
   )   
 }
 
-#' @rdname ddi_prodStmt
-#' @export
-ddi_fundAg <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                        "abbr", "role")
-    attribs <- validate_attributes(attribs, allowed_attribs, "fundAg")
-  }
-
-  build_leaf_node(
-    "fundAg",
-    attribs = attribs,
-    content = components$content
-  )   
-}
-
-#' @rdname ddi_prodStmt
-#' @export
-ddi_grantNo <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                        "agency", "role")
-    attribs <- validate_attributes(attribs, allowed_attribs, "grantNo")
-  }
-
-  build_leaf_node(
-    "grantNo",
-    attribs = attribs,
-    content = components$content
-  )   
-}
 
 #' serStmt and its child nodes
 #' 
-#' Series statement for the work at the appropriate level: marked-up document; marked-up document source; study; study description, other material; other material 
-#' for study. More information on its child nodes and attributes can be found below.
+#' Series statement for the work at the appropriate level: marked-up document; 
+#' marked-up document source; study; study description, other material; other 
+#' material for study. More information on these elements, especially their 
+#' allowed attributes, can be found in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `serStmt` is contained in the following elements: `citation`; `docSrc`; 
+#' `fileCitation`; and `sourceCitation`.
+#' 
+#' \emph{serStmt specific child nodes}
+#' 
+#' `ddi_serInfo()` is the series information. This element contains a history of 
+#' the series and a summary of those features that apply to the series as a whole.
+#' 
+#' `ddi_serName()` is the name of the series to which the work belongs.
 #' 
 #' @param ... Child nodes or attributes. 
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serStmt.html}{serStmt documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serName.html}{serName documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serInfo.html}{serInfo documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serName.html}{serName documentation}
 #' 
 #' @export
 ddi_serStmt <- function(...) {
@@ -527,6 +633,24 @@ ddi_serStmt <- function(...) {
 
 #' @rdname ddi_serStmt
 #' @export
+ddi_serInfo <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "serInfo")
+  }
+  
+  build_leaf_node(
+    "serInfo",
+    attribs = attribs,
+    content = components$content
+  )   
+}
+
+#' @rdname ddi_serStmt
+#' @export
 ddi_serName <- function(...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
@@ -539,24 +663,6 @@ ddi_serName <- function(...) {
 
   build_leaf_node(
     "serName",
-    attribs = attribs,
-    content = components$content
-  )   
-}
-
-#' @rdname ddi_serStmt
-#' @export
-ddi_serInfo <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    attribs <- validate_attributes(attribs, allowed_attribs, "serInfo")
-  }
-
-  build_leaf_node(
-    "serInfo",
     attribs = attribs,
     content = components$content
   )   
@@ -602,12 +708,39 @@ ddi_holdings <- function(...) {
 
 #' ddi_distStmt and its children
 #'
-#' Distribution statement for the work at the appropriate level: marked-up document; marked-up document source; study; study 
-#' description, other material; other material for study. For more information see the references.
+#' Distribution statement for the work at the appropriate level: marked-up 
+#' document; marked-up document source; study; study description, 
+#' other material; other material for study. More information on these 
+#' elements, especially their allowed attributes, can be found in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `distStmt` is contained in the following elements: `citation`; `docSrc`; 
+#' `fileCitation`; and `sourceCitation`.
+#' 
+#' \emph{distStmt specific child nodes}
+#' 
+#' `ddi_depDate()` is the date that the work was deposited with the archive that 
+#' originally received it. The ISO standard for dates (YYYY-MM-DD) is recommended 
+#' for use with the "date" attribute.
+#' 
+#' `ddi_depositr()` is the name of the person (or institution) who provided this 
+#' work to the archive storing it. 
+#' 
+#' `ddi_distDate()` is the date that the work was made available for 
+#' distribution/presentation. The ISO standard for dates (YYYY-MM-DD) is 
+#' recommended for use with the "date" attribute. If using a text entry in the 
+#' element content, the element may be repeated to support multiple language expressions.
+#' 
+#' `ddi_distrbtr()` is the organization designated by the author or producer to 
+#' generate copies of the particular work including any necessary editions or 
+#' revisions. Names and addresses may be specified and other archives may be 
+#' co-distributors. A URI attribute is included to provide an URN or URL to the 
+#' ordering service or download facility on a Web site. 
 #'
 #' @param ... Child nodes or attributes. 
 #'
-#' @section General children allowed:
+#' @section Shared and complex child nodes:
 #' * [ddi_contact()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/distStmt.html}{distStmt documentation}

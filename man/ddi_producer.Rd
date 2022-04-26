@@ -10,10 +10,20 @@ ddi_producer(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-The producer is the person or organization with the financial or administrative responsibility for the physical processes whereby the document was brought into
-existence. Use the "role" attribute to distinguish different stages of involvement in the production process, such as original producer. Producer of data collection
-(codeBook/stdyDscr/citation/prodStmt/producer) maps to Dublin Core Publisher element. The "producer" in the Document Description should be the agency or person that
-prepared the marked-up document.
+The producer is the person or organization with the financial or
+administrative responsibility for the physical processes whereby the
+document was brought into existence. Use the "role" attribute to distinguish
+different stages of involvement in the production process, such as original
+producer. Producer of data collection
+(codeBook/stdyDscr/citation/prodStmt/producer) maps to Dublin Core Publisher
+element. The "producer" in the Document Description should be the agency or
+person that prepared the marked-up document. More information on this
+element, especially its allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{producer} is contained in the following elements: \code{prodStmt} and \code{standard}.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/producer.html}{producer documentation}

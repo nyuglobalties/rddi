@@ -2,24 +2,42 @@
 % Please edit documentation in R/general.R
 \name{ddi_verStmt}
 \alias{ddi_verStmt}
-\alias{ddi_version}
 \alias{ddi_verResp}
+\alias{ddi_version}
 \title{verStmt and its child nodes}
 \usage{
 ddi_verStmt(...)
 
-ddi_version(...)
-
 ddi_verResp(...)
+
+ddi_version(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-This is the version statement for the work at the appropriate level: marked-up document; marked-up document source; study; study description, other material;
-other material for study. More information on verStmt, its children, and attributes can be found in hte references.
+This is the version statement for the work at the appropriate level:
+marked-up document; marked-up document source; study; study description,
+other material; other material for study. More information on these elements,
+especially their allowed attributes, can be found in the references.
 }
-\section{General children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{verStmt} is contained in the following elements: \code{citation}; \code{docSrc};
+\code{fileCitation}; \code{fileTxt}; \code{nCube}; \code{sourceCitation}; and \code{var}.
+
+\emph{verStmt specific child nodes}
+\itemize{
+\item \code{ddi_verRsp()} is the organization or person responsible for the version of the
+work.
+\item \code{ddi_version()} is also known as release or edition. If there have been
+substantive changes in the data/documentation since their creation, this
+statement should be used at the appropriate level. The ISO standard for
+dates (YYYY-MM-DD) is recommended for use with the "date" attribute.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_notes]{ddi_notes()}}
@@ -29,7 +47,7 @@ other material for study. More information on verStmt, its children, and attribu
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/verStmt.html}{verStmt documentation}
 
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/version.html}{version documentation}
-
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/verResp.html}{verResp documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/version.html}{version documentation}
 }

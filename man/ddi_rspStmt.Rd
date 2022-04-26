@@ -13,11 +13,41 @@ ddi_AuthEnty(...)
 ddi_othId(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
 Responsibility statement for the creation of the work at the appropriate level: marked-up document; marked-up document source; study; study description, other material; other
-material for study. More information on rspStmt, its allowed attributes, and its child nodes can be found below and in the references
+material for study. More information on these elements, especially their allowed attributes, can
+be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{rspStmt} is contained in the following elements: \code{citation}; \code{docSrc};
+\code{fileCitation}; and \code{sourceCitation}.
+
+\emph{rspStmt specific child nodes}
+
+\code{ddi_AuthEnty()} is the person, corporate body, or agency responsible for the
+work's substantive and intellectual content. Repeat the element for each author,
+and use "affiliation" attribute if available. Invert first and last name and
+use commas. Author of data collection (codeBook/stdyDscr/citation/rspStmt/AuthEnty)
+maps to Dublin Core Creator element. Inclusion of this element in codebook is recommended.
+
+The "author" in the Document Description should be the individual(s) or
+organization(s) directly responsible for the intellectual content of the DDI
+version, as distinct from the person(s) or organization(s) responsible for the
+intellectual content of the earlier paper or electronic edition from which the
+DDI edition may have been derived.
+
+\code{ddi_othId()} are the statements of responsibility not recorded in the title
+and statement of responsibility areas. Indicate here the persons or bodies
+connected with the work, or significant persons or bodies connected with
+previous editions and not already named in the description. For example, the
+name of the person who edited the marked-up documentation might be cited in
+codeBook/docDscr/rspStmt/othId, using the "role" and "affiliation" attributes.
+Other identifications/acknowledgments for data collection
+(codeBook/stdyDscr/citation/rspStmt/othId) maps to Dublin Core Contributor element.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/rspStmt.html}{rspStmt documentation}

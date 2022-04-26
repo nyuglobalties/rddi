@@ -3,29 +3,38 @@
 \name{ddi_mrow}
 \alias{ddi_mrow}
 \alias{ddi_mi}
-\title{DDI mrow and mi specification}
+\title{mrow and its child nodes}
 \usage{
 ddi_mrow(...)
 
 ddi_mi(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-mrow or Mathematical Row is a wrapper containing the presentation expression \code{ddi_mi()}. It creates a single string
-without spaces consisting of the individual elements described within it. It can be used to create a single
-variable by concatenating other variables into a single string. It is used to create linking variables composed
-of multiple non-contiguous parts, or to define unique strings for various category values of a single variable. \code{ddi_mi()}
-requires the varRef variable
+mrow or Mathematical Row is a wrapper containing the presentation expression
+\code{mi}. It creates a single string without spaces consisting of the individual
+elements described within it. It can be used to create a single variable by
+concatenating other variables into a single string. It is used to create
+linking variables composed of multiple non-contiguous parts, or to define
+unique strings for various category values of a single variable. More
+information on these elements, especially their allowed attributes, can be
+found in the references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
 
+\code{mrow} is contained in \code{catgry}.
+
+\emph{mrow specific child nodes}
 \itemize{
-\item \code{ddi_mi()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mi.html}{DDI documentation}
+\item \code{ddi_mi()} is the mathematical identifier. This is the token element
+containing the smallest unit in the mrow that carries meaning.
 }
 }
-
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mrow.html}{mrow documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mi.html}{mi documentation}
 }

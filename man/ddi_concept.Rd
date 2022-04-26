@@ -7,12 +7,24 @@
 ddi_concept(...)
 }
 \arguments{
-\item{...}{Any other parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-The general subject to which the parent element may be seen as pertaining. This element serves the same purpose as the keywords and topic classification elements,
-but at the data description level. The "vocab" attribute is provided to indicate the controlled vocabulary, if any, used in the element, e.g., LCSH (Library of Congress Subject
-Headings), MeSH (Medical Subject Headings), etc. The "vocabURI" attribute specifies the location for the full controlled vocabulary.
+The general subject to which the parent element may be seen as pertaining.
+This element serves the same purpose as the keywords and topic classification
+elements, but at the data description level. The "vocab" attribute is
+provided to indicate the controlled vocabulary, if any, used in the element,
+e.g., LCSH (Library of Congress Subject Headings), MeSH (Medical Subject
+Headings), etc. The "vocabURI" attribute specifies the location for the full
+controlled vocabulary. More information on this element, especially its
+allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{concept} is contained in the following elements: \code{anlyUnit}; \code{anlysUnit};
+\code{collMode}; \code{dataKind}; \code{geogCover}; \code{geogUnit}; \code{nCubeGrp}; \code{nation};
+\code{resInstru}; \code{sampProc}; \code{srcOrig}; \code{timeMeth}; \code{universe}; \code{var}; and \code{varGrp}.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/concept.html}{concept documentation}

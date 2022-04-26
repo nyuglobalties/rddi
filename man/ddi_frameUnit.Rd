@@ -13,13 +13,25 @@ ddi_unitType(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Provides information about the sampling frame unit. More information on frameUnit, its children nodes, and attributes can be found
-below and in the references
+Provides information about the sampling frame unit. More information on
+these elements, especially their allowed attributes, can be found in the
+references.
 }
-\section{General children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{frameUnit} is contained in \code{sampleFrame}.
+
+\emph{frameUnit specific child nodes}
+\itemize{
+\item \code{ddi_unitType()} describes the type of sampling frame unit. The attribute
+"numberOfUnits" provides the number of units in the sampling frame.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
-\item \code{ddi_txt()}
+\item \code{\link[=ddi_txt]{ddi_txt()}}
 }
 }
 

@@ -43,13 +43,13 @@ A DDI-Codebook is structured as follows
 |----fileDscr
 |----dataDscr
 
-codeBook serves as the root node, the stdyDscr holds study level metadata, dataDscr holds variable level metadata, and the fileDscr and docDscr holds administrative metadata about the dataset. The only required element is titl in the stdyDscr.
+codeBook serves as the root node, the stdyDscr holds study level metadata, dataDscr holds variable level metadata, and the fileDscr and docDscr holds administrative metadata about the dataset. The only required element is titl in stdyDscr/citation/titleStmt.
 
 ## Designed uses of rddi
 
 `rddi` was designed to work with [blueprintr](https://github.com/nyuglobalties/blueprintr), a plugin to the drake and targets packages. It's meant to describe the data that is produced through these kinds of pipelines. 
 
-There is a `ddi_` function for each DDI-Codebook element that accepts a dots function  (`...`) consisting of other `ddi_` functions and attributes. The root node is always `ddi_codebook()` followed by one or more of the following functions (`ddi_docDscr()`, `ddi_stdyDscr()`, `ddi_fileDscr()`, or `ddi_dataDscr()`) and their children. Element attributes are named variables within each function along with children nodes. Each function also checks for the elements constraints (allowed children, allowed attributes, and the cardinality of each child and attribute if designated by the DDI-Codebook schema).
+There is a `ddi_` function for each DDI-Codebook element that accepts a dots function  (`...`) consisting of other `ddi_` functions and attributes. The root node is always `ddi_codebook()` followed by one or more of the following functions (`ddi_docDscr()`, `ddi_stdyDscr()`, `ddi_fileDscr()`, or `ddi_dataDscr()`) and their children. Element attributes are named variables within each function along with children nodes. Each function also checks for the elements constraints (allowed children, allowed attributes, and the cardinality of each child and attribute if designated by the DDI-Codebook schema). For information on the constraints and attributes of each element a link to the DDI documentation is included in the function's documentation.
  
 In order to use rddi, vectorized functions like the `apply()` family of functions in base R or the `map()` functions from the `purrr` package, might be necessary depending on the number of repeating elements. 
 

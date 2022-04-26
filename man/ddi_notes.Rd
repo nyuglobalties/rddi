@@ -7,10 +7,21 @@
 ddi_notes(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-For clarifying information/annotation regarding the parent element
+For clarifying information/annotation regarding the parent element. More
+information on this element, especially its allowed attributes, can be found
+in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{notes} is contained in the following elements: \code{citation}; \code{dataAccs};
+\code{dataDscr}; \code{docDscr}; \code{docSrc}; \code{fileCitation}; \code{fileDscr}' \code{fileStrc};
+\code{invalrng}; \code{method}; \code{nCube}; \code{nCubeGrp}; \code{otherMat}; \code{setAvail};
+\code{sourceCitation}; \code{stdyDscr}; \code{stdyInfo}; \code{valrng}; \code{var}; \code{varGrp}; and
+\code{verStmt}.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/notes.html}{notes documentation}

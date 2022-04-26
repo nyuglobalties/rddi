@@ -3,22 +3,36 @@
 \name{ddi_standard}
 \alias{ddi_standard}
 \alias{ddi_standardName}
-\title{standard}
+\title{standard and its child nodes}
 \usage{
 ddi_standard(...)
 
 ddi_standardName(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Standard describes a standard with which the study complies. More information on the element, its attributes and its child nodes can be found
-below and in the references
+Standard describes a standard with which the study complies. More information
+on these elements, especially their allowed attributes, can be found in the
+references.
 }
-\section{General children allowed}{
+\details{
+\emph{Parent nodes}
 
-*\code{\link[=ddi_producer]{ddi_producer()}}
+\code{standard} is contained in \code{standardsCompliance}.
+
+\emph{standard specific child nodes}
+\itemize{
+\item \code{ddi_standardName()} contains the name of the standard with which the
+study complies.
+}
+}
+\section{Shared and complex child nodes}{
+
+\itemize{
+\item \code{\link[=ddi_producer]{ddi_producer()}}
+}
 }
 
 \references{

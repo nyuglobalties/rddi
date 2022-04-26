@@ -4,7 +4,7 @@
 \alias{ddi_subject}
 \alias{ddi_keyword}
 \alias{ddi_topcClas}
-\title{subject}
+\title{subject and its child nodes}
 \usage{
 ddi_subject(...)
 
@@ -16,8 +16,26 @@ ddi_topcClas(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Subject describes the data collection's intellectual content. More information on the allowed attributes and child nodes for subject
-can be found below and in the references.
+Subject describes the data collection's intellectual content. More
+information on these elements, especially their allowed attributes, can be
+found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{subject} is contained in \code{stdyInfo}.
+
+\emph{subject specific child nodes}
+\itemize{
+\item \code{ddi_keyword()} are words or phrases that describe salient aspects of a
+data collection's content. Can be used for building keyword indexes and for
+classification and retrieval purposes. A controlled vocabulary can be
+employed. Maps to Dublin Core Subject element.
+\item \code{ddi_topcClas()} indicates the broad substantive topic(s) that the data
+cover. Library of Congress subject terms may be used here. Maps to Dublin
+Core Subject element. Inclusion of this element in the codebook is
+recommended.
+}
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/subject.html}{subject documentation}

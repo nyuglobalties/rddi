@@ -13,13 +13,28 @@ ddi_command(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Describe specific coding instructions used in data processing, cleaning, assession, or tabulation.
-More information on codingInstructions allowed attributes and children can be found below and in the references.
+Describe specific coding instructions used in data processing, cleaning,
+assession, or tabulation. Element relatedProcesses allows linking a coding
+instruction to one or more processes such as dataProcessing, dataAppr,
+cleanOps, etc. Use the txt element to describe instructions in a human
+readable form. More information on these elements, especially their allowed
+attributes, can be found in the references.
 }
-\section{General children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{codingInstructions} is contained in \code{method}.
+
+\emph{codingInstructions specific child nodes}
+\itemize{
+\item \code{ddi_command()} provides command code for the coding instruction. The
+formalLanguage attribute identifies the language of the command code.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
-\item \code{ddi_txt()}
+\item \code{\link[=ddi_txt]{ddi_txt()}}
 }
 }
 

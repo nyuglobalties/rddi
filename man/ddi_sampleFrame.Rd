@@ -25,24 +25,37 @@ ddi_validPeriod(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Sample frame describes the sampling frame used for identifying the population from which the sample was taken.
-More information on sampleFrame, its leaf and branch nodes, and their attributes can be found below and in the
-references.
+Sample frame describes the sampling frame used for identifying the population
+from which the sample was taken. More information on these elements,
+especially their allowed attributes, can be found in the references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{sampleFrame} is contained in \code{dataColl}.
+
+\emph{sampleFrame specific child nodes}
+\itemize{
+\item \code{ddi_custodian()} identifies the agency or individual who is responsible
+for creating or maintaining the sample frame.
+\item \code{ddi_referencePeriod()} indicates the period of time in which the sampling
+frame was actually used for the study in question. Use ISO 8601 date/time
+formats to enter the relevant date(s).
+\item \code{ddi_sampleFrameName()} is the name of the sample frame.
+\item \code{ddi_updateProcedure()} is the description of how and with what frequency
+the sample frame is updated.
+\item \code{ddi_validPeriod()} defines a time period for the validity of the sampling
+frame. Enter dates in YYYY-MM-DD format.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_frameUnit]{ddi_frameUnit()}}
-}
-}
-
-\section{General children allowed}{
-
-\itemize{
-\item \code{ddi_labl()}
-\item \code{ddi_txt()}
-\item \code{ddi_universe()}
-\item \code{ddi_useStmt()}
+\item \code{\link[=ddi_labl]{ddi_labl()}}
+\item \code{\link[=ddi_txt]{ddi_txt()}}
+\item \code{\link[=ddi_universe]{ddi_universe()}}
+\item \code{\link[=ddi_useStmt]{ddi_useStmt()}}
 }
 }
 
@@ -57,5 +70,5 @@ references.
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/updateProcedure.html}{updateProcedure documentation}
 
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/referencePeriod.html}{referencePeriod documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/validPeriod.html}{validPeriod documentation}
 }

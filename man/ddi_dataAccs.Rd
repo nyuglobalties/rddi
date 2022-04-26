@@ -10,21 +10,23 @@ ddi_dataAccs(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-This section describes data access conditions and terms of use for the data collection. In cases where access conditions differ across individual files
-or variables, multiple access conditions can be specified.  For more information see the references section.
+This section describes data access conditions and terms of use for the data
+collection. In cases where access conditions differ across individual files
+or variables, multiple access conditions can be specified.  More information
+on this element, especially the allowed attributes, can be found in the
+references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent node}
 
-\itemize{
-\item \code{\link[=ddi_setAvail]{ddi_setAvail()}}
-\item \code{\link[=ddi_useStmt]{ddi_useStmt()}}
+\code{dataAccs} is contained in \code{stdyDscr}.
 }
-}
-
-\section{General children allowed}{
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_notes]{ddi_notes()}}
+\item \code{\link[=ddi_setAvail]{ddi_setAvail()}}
+\item \code{\link[=ddi_useStmt]{ddi_useStmt()}}
 }
 }
 

@@ -7,16 +7,20 @@
 ddi_locMap(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
 This element maps individual data entries to one or more physical storage
 locations. It is used to describe the physical location of aggregate/tabular
-data in cases where the nCube model is employed. More information
-on the allowed attributes for fileTxt and its child nodes can be found
-below and in the references.
+data in cases where the nCube model is employed. More information on these
+elements, especially their allowed attributes, can be found in the references.
+
+\emph{Parent nodes}
 }
-\section{Branch node children allowed}{
+\details{
+\code{locMap} is contained in \code{fileDscr}.
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_dataItem]{ddi_dataItem()}}

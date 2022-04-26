@@ -6,7 +6,7 @@
 \alias{ddi_northBL}
 \alias{ddi_southBL}
 \alias{ddi_westBL}
-\title{geoBndBox and its leaf node children}
+\title{geoBndBox and its child nodes}
 \usage{
 ddi_geoBndBox(...)
 
@@ -22,10 +22,40 @@ ddi_westBL(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-The fundamental geometric description for any dataset that models geography. GeoBndBox is the minimum box, defined by west and east
-longitudes and north and south latitudes, that includes the largest geographic extent of the dataset's geographic coverage. This
-element is used in the first pass of a coordinate-based search. If the boundPoly element is included, then the geoBndBox element MUST be included.
-More informaiton on geoBndBox, its attributes and its children can be found in the references
+The fundamental geometric description for any dataset that models geography.
+GeoBndBox is the minimum box, defined by west and east longitudes and north
+and south latitudes, that includes the largest geographic extent of the
+dataset's geographic coverage. This element is used in the first pass of a
+coordinate-based search. If the boundPoly element is included, then the
+geoBndBox element MUST be included. More information on these elements,
+especially their allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{geoBndBox} is contained in \code{sumDscr}.
+
+\emph{geoBndBox specific child nodes}
+\itemize{
+\item \code{ddi_eastBL()} is the easternmost coordinate delimiting the geographic
+extent of the dataset. A valid range of values, expressed in decimal degrees
+(positive east and positive north), is: -180,0 <= East Bounding Longitude
+Value <= 180,0.
+\item \code{ddi_northBL()} is the northernmost coordinate delimiting the geographic
+extent of the dataset. A valid range of values, expressed in decimal degrees
+(positive east and positive north), is: -90,0 <= North Bounding Latitude
+Value <= 90,0 ; North Bounding Latitude Value >= South Bounding Latitude
+Value.
+\item \code{ddi_southBL()} is the southernmost coordinate delimiting the geographic
+extent of the dataset. A valid range of values, expressed in decimal degrees
+(positive east and positive north), is: -90,0 <=South Bounding Latitude
+Value <= 90,0 ; South Bounding Latitude Value <= North Bounding Latitude
+Value.
+\item \code{ddi_westBL()} is the westernmost coordinate delimiting the geographic
+extent of the dataset. A valid range of values, expressed in decimal degrees
+(positive east and positive north), is: -180,0 <=West Bounding Longitude
+Value <= 180,0.
+}
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoBndBox.html}{geoBndBox documentation}

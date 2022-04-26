@@ -52,10 +52,63 @@ ddi_weight(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Information about the data collection methodology employed in the codebook. More information on dataColl, its attributes, and
-its allowed children can be found below and in the references.
+Information about the data collection methodology employed in the codebook.
+More information on these elements, especially their allowed attributes, can
+be found in the references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{dataColl} is contained in \code{method}.
+
+\emph{dataColl specific child nodes}
+\itemize{
+\item \code{ddi_actMin()}is the summary of actions taken to minimize data loss.
+Includes information on actions such as follow-up visits, supervisory
+checks, historical matching, estimation, etc.
+\item \code{ddi_cleanOps()} are the methods used to "clean" the data collection,
+e.g., consistency checking, wild code checking, etc. The "agency" attribute
+permits specification of the agency doing the data cleaning.
+\item \code{ddi_collectorTraining()} describes the training provided to data
+collectors including interviewer training, process testing, compliance with
+standards etc. This is repeatable for language and to capture different
+aspects of the training process. The type attribute allows specification of
+the type of training being described.
+\item \code{ddi_collMode()} is the method used to collect the data; instrumentation
+characteristics.
+\item \code{ddi_collSitu()} is the description of noteworthy aspects of the data
+collection situation. Includes information on factors such as
+cooperativeness of respondents, duration of interviews, number of
+call-backs, etc.
+\item \code{ddi_ConOps()} are control operations. These are methods to facilitate
+data control performed by the primary investigator or by the data archive.
+Specify any special programs used for such operations. The "agency"
+attribute maybe used to refer to the agency that performed the control
+operation.
+\item \code{ddi_dataCollector()} is the entity (individual, agency, or institution)
+responsible for administering the questionnaire or interview or compiling
+the data. This refers to the entity collecting the data, not to the entity
+producing the documentation.
+\item \code{ddi_deviat()} are major deviations from the sample design. This is
+information indicating correspondence as well as discrepancies between the
+sampled units (obtained) and available statistics for the population (age,
+sex-ratio, marital status, etc.) as a whole.
+\item \code{ddi_frequenc()} is the frequency of data collection. It's for data
+collected at more than one point in time.
+\item \code{ddi_instrumentDevelopment()} describes any development work on the data
+collection instrument.
+\item \code{ddi_resInstru()} is the type of data collection instrument used.
+\item \code{ddi_sampProc()} is the type of sample and sample design used to select
+the survey respondents to represent the population. May include reference
+to the target sample size and the sampling fraction.
+\item \code{ddi_weight()} defines the weights used to produce accurate statistical
+results within the sampling procedures. Describe here the criteria for
+using weights in analysis of a collection. If a weighting formula or
+coefficient was developed, provide this formula, define its elements, and
+indicate how the formula is applied to data.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_sampleFrame]{ddi_sampleFrame()}}

@@ -2,58 +2,40 @@
 % Please edit documentation in R/stdyInfo.R
 \name{ddi_boundPoly}
 \alias{ddi_boundPoly}
-\alias{ddi_polygon}
-\alias{ddi_point}
-\alias{ddi_gringLat}
-\alias{ddi_gringLon}
-\title{boundPoly and its leaf node children}
+\title{boundPoly and its child nodes}
 \usage{
 ddi_boundPoly(...)
-
-ddi_polygon(...)
-
-ddi_point(...)
-
-ddi_gringLat(...)
-
-ddi_gringLon(...)
 }
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
 \description{
-The geographic bounding polygon field allows the creation of multiple polygons to describe in a more detailed manner the geographic area covered by the dataset. It should only
-be used to define the outer boundaries of a covered area. For example, in the United States, such polygons can be created to define boundaries for Hawaii,
-Alaska, and the continental United States, but not interior boundaries for the contiguous states. This field is used to refine a coordinate-based search,
-not to actually map an area.
+The geographic bounding polygon field allows the creation of multiple
+polygons to describe in a more detailed manner the geographic area covered
+by the dataset. It should only be used to define the outer boundaries of a
+covered area. For example, in the United States, such polygons can be created
+to define boundaries for Hawaii, Alaska, and the continental United States,
+but not interior boundaries for the contiguous states. This field is used to
+refine a coordinate-based search, not to actually map an area. If the
+boundPoly element is used, then geoBndBox MUST be present, and all points
+enclosed by the boundPoly MUST be contained within the geoBndBox. Elements
+westBL, eastBL, southBL, and northBL of the geoBndBox should each be
+represented in at least one point of the boundPoly description. More
+information on these elements, especially their allowed attributes, can be
+found in the references.
 }
 \details{
-If the boundPoly element is used, then geoBndBox MUST be present, and all points enclosed by the boundPoly MUST be contained within the geoBndBox. Elements
-westBL, eastBL, southBL, and northBL of the geoBndBox should each be represented in at least one point of the boundPoly description.
+\emph{Parent nodes}
+
+\code{boundPoly} is contained in \code{sumDscr}.
 }
-\section{Branch node children}{
+\section{Shared and complex child nodes}{
 
 \itemize{
-\item \code{\link[=ddi_polygon]{ddi_polygon()}} - \code{\link[=ddi_polygon]{ddi_polygon()}} has \code{\link[=ddi_point]{ddi_point()}} as a branch node child
-}
-}
-
-\section{ddi_point leaf nodes}{
-
-\itemize{
-\item \code{\link[=ddi_gringLat]{ddi_gringLat()}}
-\item \code{\link[=ddi_gringLon]{ddi_gringLon()}}
+\item \code{\link[=ddi_polygon]{ddi_polygon()}}
 }
 }
 
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/boundPoly.html}{boundPoly documentation}
-
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/polygon.html}{polygon documentation}
-
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/point.html}{point documentation}
-
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/gringLat.html}{gringLat documentation}
-
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/gringLon.html}{gringLon documentation}
 }

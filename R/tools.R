@@ -13,6 +13,8 @@
 #' @param generator A function that takes `object` and `...` and returns a character vector of IDs. Setting the "rddi.id_generator" option will override this functionality.
 #' @param sep Any spaces in each element of `object` will be replaced with `sep`. Note: strings of whitespace will be replaced by a single `sep`, not multiple.
 #' @param ... Arguments passed onto `generator`
+#' 
+#' @noRd
 create_object_id <- function(object, ..., generator = getOption("rddi.id_generator"), sep = ".") {
   stopifnot(is.character(object))
 
@@ -31,7 +33,7 @@ create_object_id <- function(object, ..., generator = getOption("rddi.id_generat
 #' DDI 2.5, it is not a requirement to include entity IDs. If
 #' you'd like to specify them, use the 'id_object' parameter.
 #' See [create_object_id] for more details.
-#' @export
+#' @noRd
 dots_to_xml_components <- function(...) {
   dots <- dots_partition(...)
   attribs <- dots$named %if_empty% NULL
@@ -75,8 +77,8 @@ check_cardinality <- function(content, test) {
 #' if you create your own DDI nodes (there are many and
 #' it will take a while to implement all of them).
 #'
-#' @param codebook The codebook root node, output of `ddi_codeBook()`
-#' @return A logical (with attributes containing any errors) that indicates passing or failing
+#' @param codebook The codebook root node, output of `ddi_codeBook()`.
+#' @return A logical (with attributes containing any errors) that indicates passing or failing.
 #' @export
 validate_codebook <- function(codebook) {
   stopifnot(is_ddi_node(codebook))

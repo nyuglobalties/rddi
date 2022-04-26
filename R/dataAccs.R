@@ -1,16 +1,21 @@
 #' dataAccs and its children
 #'
-#' This section describes data access conditions and terms of use for the data collection. In cases where access conditions differ across individual files 
-#' or variables, multiple access conditions can be specified.  For more information see the references section.
+#' This section describes data access conditions and terms of use for the data 
+#' collection. In cases where access conditions differ across individual files 
+#' or variables, multiple access conditions can be specified.  More information 
+#' on this element, especially the allowed attributes, can be found in the 
+#' references.
+#' 
+#' \emph{Parent node}
+#'
+#' `dataAccs` is contained in `stdyDscr`.
 #'
 #' @param ... Child nodes or attributes. 
 #'
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes:
+#' * [ddi_notes()]
 #' * [ddi_setAvail()]
 #' * [ddi_useStmt()]
-#' 
-#' @section General children allowed:
-#' * [ddi_notes()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataAccs.html}{dataAccs documentation}
 #' 
@@ -40,11 +45,46 @@ ddi_dataAccs <- function(...) {
 
 #' setAvail and its children
 #' 
-#' Information on availability and storage of the data set collection. For more information on setAvail and its children and attributes see the references.
+#' Information on availability and storage of the data set collection. More 
+#' information on this element, especially the allowed attributes, can 
+#' be found in the references.
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' \emph{Parent node}
 #'
-#' @section General Children allowed:
+#' `setAvail` is contained in `dataAccs`.
+#' 
+#' \emph{setAvail specific child nodes}
+#' 
+#' `ddi_accsPlac()` is the location where the data collection is currently stored. 
+#' Use the URI attribute to provide a URN or URL for the storage site or the 
+#' actual address from which the data may be downloaded.
+#' 
+#' `ddi_avlStatus()` is the statement of collection availability. An archive may 
+#' need to indicate that a collection is unavailable because it is embargoed 
+#' for a period of time, because it has been superseded, because a new edition
+#' is imminent, etc. 
+#' 
+#' `ddi_collSize()` summarizes the number of physical files that exist in a 
+#' collection, recording the number of files that contain data and noting 
+#' whether the collection contains machine-readable documentation and/or other 
+#' supplementary files and information such as data dictionaries, data 
+#' definition statements, or data collection instruments. 
+#' 
+#' `ddi_complete()` is the completeness of study stored. This item indicates the 
+#' relationship of the data collected to the amount of data coded and stored 
+#' in the data collection. Information as to why certain items of collected 
+#' information were not included in the data file stored by the archive should 
+#' be provided.
+#' 
+#' `ddi_fileQnty()` is the total number of physical files associated with a 
+#' collection.
+#' 
+#' `ddi_orgArch()` is the archive from which the data collection was obtained; 
+#' the originating archive. 
+#' 
+#' @param ... Child nodes or attributes. 
+#'
+#' @section Shared and complex child nodes:
 #' * [ddi_notes()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/setAvail.html}{setAvail documentation}

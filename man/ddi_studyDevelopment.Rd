@@ -2,38 +2,31 @@
 % Please edit documentation in R/studyDevelopment.R
 \name{ddi_studyDevelopment}
 \alias{ddi_studyDevelopment}
-\alias{ddi_developmentActivity}
-\alias{ddi_description}
-\alias{ddi_participant}
-\alias{ddi_outcome}
-\title{studyDevelopment and developmentActivity}
+\title{studyDevelopment and its child nodes}
 \usage{
 ddi_studyDevelopment(...)
-
-ddi_developmentActivity(...)
-
-ddi_description(...)
-
-ddi_participant(...)
-
-ddi_outcome(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-studyDevelopment is the parent node of developmentActivity. It describes the process of study development as a series of development activities.
-These activities can be typed using a controlled vocabulary that describes the activity, #' listing participants with their role and affiliation,
-resources used (sources of information), and the outcome of the development activity. For more information on both elements and the child nodes of
-developmentActivity see the resources.
+Describe the process of study development as a series of development
+activities. These activities can be typed using a controlled vocabulary.
+More information on these elements, especially their allowed
+attributes, can be found in the references.
 }
-\section{DDI Codebook 2.5 Documentation}{
+\details{
+\emph{Parent nodes}
 
+\code{studyDevelopment} is contained in \code{stdyDscr}.
+}
+\section{Shared and complex child nodes}{
 
-url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyDevelopment.html}
-url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/developmentActivity.html}
-url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/description.html}
-url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/participant.html}
-url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/outcome.html}
+\itemize{
+\item \code{\link[=ddi_developmentActivity]{ddi_developmentActivity()}}
+}
 }
 
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyDevelopment.html}{studyDevelopment documentation}
+}

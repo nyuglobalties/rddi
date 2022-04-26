@@ -2,27 +2,42 @@
 % Please edit documentation in R/citation.R
 \name{ddi_serStmt}
 \alias{ddi_serStmt}
-\alias{ddi_serName}
 \alias{ddi_serInfo}
+\alias{ddi_serName}
 \title{serStmt and its child nodes}
 \usage{
 ddi_serStmt(...)
 
-ddi_serName(...)
-
 ddi_serInfo(...)
+
+ddi_serName(...)
 }
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Series statement for the work at the appropriate level: marked-up document; marked-up document source; study; study description, other material; other material
-for study. More information on its child nodes and attributes can be found below.
+Series statement for the work at the appropriate level: marked-up document;
+marked-up document source; study; study description, other material; other
+material for study. More information on these elements, especially their
+allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{serStmt} is contained in the following elements: \code{citation}; \code{docSrc};
+\code{fileCitation}; and \code{sourceCitation}.
+
+\emph{serStmt specific child nodes}
+
+\code{ddi_serInfo()} is the series information. This element contains a history of
+the series and a summary of those features that apply to the series as a whole.
+
+\code{ddi_serName()} is the name of the series to which the work belongs.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serStmt.html}{serStmt documentation}
 
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serName.html}{serName documentation}
-
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serInfo.html}{serInfo documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serName.html}{serName documentation}
 }

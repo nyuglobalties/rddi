@@ -7,13 +7,26 @@
 ddi_universe(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-The group of persons or other elements that are the object of research and to which any analytic results refer. Age,nationality, and residence
-commonly help to delineate a given universe, but any of a number of factors may be involved, such as sex, race, income, veteran status, criminal convictions, etc.
-The universe may consist of elements other than persons, such as housing units, court cases, deaths, countries, etc. In general, it should be possible to tell from
-the description of the universe whether a given individual or element (hypothetical or real) is a member of the population under study.
+The group of persons or other elements that are the object of research and
+to which any analytic results refer. Age, nationality, and residence
+commonly help to delineate a given universe, but any of a number of factors
+may be involved, such as sex, race, income, veteran status, criminal
+convictions, etc. The universe may consist of elements other than persons,
+such as housing units, court cases, deaths, countries, etc. In general, it
+should be possible to tell from the description of the universe whether a
+given individual or element (hypothetical or real) is a member of the
+population under study. More information on this element, especially its
+allowed attributes, can be found
+in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{universe} is contained in the following elements: \code{nCube}; \code{nCubeGrp};
+\code{sampleFrame}; \code{sumDscr}; \code{var}; and \code{varGrp}.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/universe.html}{universe documentation}

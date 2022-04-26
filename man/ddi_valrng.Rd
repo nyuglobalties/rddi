@@ -4,9 +4,8 @@
 \alias{ddi_valrng}
 \alias{ddi_invalrng}
 \alias{ddi_item}
-\alias{ddi_range}
 \alias{ddi_key}
-\title{Valid and invalid data values specification and leaf node children}
+\title{valrng, invalrng, and their child nodes}
 \usage{
 ddi_valrng(...)
 
@@ -14,29 +13,38 @@ ddi_invalrng(...)
 
 ddi_item(...)
 
-ddi_range(...)
-
 ddi_key(...)
 }
 \arguments{
-\item{...}{Any other parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Values for a particular variable that represent legitimate responses (valrng) or illegitamate response (invalrng). Must include item or range as a child element
+Values for a particular variable that represent legitimate responses
+(valrng) or illegitamate response (invalrng). Must include item or range as
+a child element.
 }
-\section{valrng and invalrng leaf node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{valrng} and \code{invalrng} are contained in \code{var}.
+
+\emph{valrng and invalrng specific child nodes}
+
+\code{ddi_item()} is the counterpart to range; used to encode individual values.
+This is an empty element consisting only of its attributes. The "UNITS"
+attribute permits the specification of integer/real numbers. The "VALUE"
+attribute specifies the actual value.
+
+\code{ddi_key()} is the range key. This element permits a listing of the category
+values and labels. While this information is coded separately in the Category
+element, there may be some value in having this information in proximity to
+the range of valid and invalid values. A table is permissible in this element.
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
-\item ddi_item: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/item.html}{DDI documentation}
-\item ddi_range: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/range.html}{DDI documentation}
-\item ddi_key: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/key.html}{DDI documentation}
-}
-}
-
-\section{General children allowed}{
-
-\itemize{
-\item \code{ddi_notes()}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
+\item \code{\link[=ddi_range]{ddi_range()}}
 }
 }
 
@@ -44,4 +52,8 @@ Values for a particular variable that represent legitimate responses (valrng) or
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/item.html}{item documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/key.html}{key documentation}
 }

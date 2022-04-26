@@ -10,8 +10,24 @@ ddi_fileDscr(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Information about the data file(s) that comprises a collection.
+Information about the data file(s) that comprises a collection. This section
+can be repeated for collections with multiple files. More information on
+this element, especially the allowed attributes, can be found in the references.
 }
+\details{
+\emph{Parent node}
+
+\code{fileDscr} is contained in \code{codeBook}.
+}
+\section{Shared and complex child nodes}{
+
+\itemize{
+\item \code{\link[=ddi_fileTxt]{ddi_fileTxt()}}
+\item \code{\link[=ddi_locMap]{ddi_locMap()}}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
+}
+}
+
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
 }

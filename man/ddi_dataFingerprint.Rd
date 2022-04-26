@@ -16,12 +16,24 @@ ddi_algorithmVersion(...)
 ddi_digitalFingerprintValue(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
 Allows for assigning a hash value (digital fingerprint) to the data or
-data file. More information on the allowed attributes for fileTxt and
-its child nodes can be found below and in the references.
+data file. More information on these elements, especially their allowed
+attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{dataFingerprint} is contained in \code{fileDscr}.
+
+\emph{dataFingerprint specific child nodes}
+\itemize{
+\item \code{ddi_algorithmSpecification()}
+\item \code{ddi_algorithmVersion()}
+\item \code{ddi_digitalFingerprintValue()}
+}
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataFingerprint.html}{dataFingerprint documentation}

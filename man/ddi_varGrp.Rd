@@ -3,39 +3,54 @@
 \name{ddi_varGrp}
 \alias{ddi_varGrp}
 \alias{ddi_defntn}
-\title{DDI varGrp specification and leaf node children}
+\title{varGrp and its child nodes}
 \usage{
 ddi_varGrp(...)
 
 ddi_defntn(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-A group of variables that may share a common subject, arise from the interpretation of a single question, or are linked by some other factor.
+A group of variables that may share a common subject, arise from the
+interpretation of a single question, or are linked by some other factor.
+Variable groups are created this way in order to permit variables to belong
+to multiple groups, including multiple subject groups such as a group of
+variables on sex and income, or to a subject and a multiple response group,
+without causing overlapping groups. Variables that are linked by use of the
+same question need not be identified by a Variable Group element because they
+are linked by a common unique question identifier in the Variable element.
+Note that as a result of the strict sequencing required by XML, all Variable
+Groups must be marked up before the Variable element is opened. That is, the
+mark-up author cannot mark up a Variable Group, then mark up its constituent
+variables, then mark up another Variable Group. More information on these
+elements, especially their allowed attributes, can be found in the
+references.
 }
-\section{varGrp leaf node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{varGrp} is contained in \code{dataDscr}.
+
+\emph{varGrp specific child nodes}
+\itemize{
+\item \code{ddi_defntn()} is the rationale for why the variable group was constituted.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
-\item \code{ddi_defntn} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/defntn.html}{DDI documentation}
+\item \code{\link[=ddi_concept]{ddi_concept()}}
+\item \code{\link[=ddi_labl]{ddi_labl()}}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
+\item \code{\link[=ddi_txt]{ddi_txt()}}
+\item \code{\link[=ddi_universe]{ddi_universe()}}
 }
 }
 
-\section{General children allowed}{
-
-\itemize{
-\item \code{ddi_concept()}
-\item \code{ddi_labl()}
-\item \code{ddi_notes()}
-\item \code{ddi_txt()}
-\item \code{ddi_universe()}
-}
-}
-
-\section{DDI Codebook 2.5 Documentation}{
-
-
+\references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}{varGrp documentation}
-}
 
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/defntn.html}{defntn documentation}
+}

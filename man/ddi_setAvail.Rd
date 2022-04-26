@@ -25,12 +25,48 @@ ddi_fileQnty(...)
 ddi_origArch(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Information on availability and storage of the data set collection. For more information on setAvail and its children and attributes see the references.
+Information on availability and storage of the data set collection. More
+information on this element, especially the allowed attributes, can
+be found in the references.
 }
-\section{General Children allowed}{
+\details{
+\emph{Parent node}
+
+\code{setAvail} is contained in \code{dataAccs}.
+
+\emph{setAvail specific child nodes}
+
+\code{ddi_accsPlac()} is the location where the data collection is currently stored.
+Use the URI attribute to provide a URN or URL for the storage site or the
+actual address from which the data may be downloaded.
+
+\code{ddi_avlStatus()} is the statement of collection availability. An archive may
+need to indicate that a collection is unavailable because it is embargoed
+for a period of time, because it has been superseded, because a new edition
+is imminent, etc.
+
+\code{ddi_collSize()} summarizes the number of physical files that exist in a
+collection, recording the number of files that contain data and noting
+whether the collection contains machine-readable documentation and/or other
+supplementary files and information such as data dictionaries, data
+definition statements, or data collection instruments.
+
+\code{ddi_complete()} is the completeness of study stored. This item indicates the
+relationship of the data collected to the amount of data coded and stored
+in the data collection. Information as to why certain items of collected
+information were not included in the data file stored by the archive should
+be provided.
+
+\code{ddi_fileQnty()} is the total number of physical files associated with a
+collection.
+
+\code{ddi_orgArch()} is the archive from which the data collection was obtained;
+the originating archive.
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_notes]{ddi_notes()}}

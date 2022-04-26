@@ -7,10 +7,20 @@
 ddi_txt(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Lengthier description of the parent element
+Lengthier description of the parent element. More information on this
+element, especially its allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{txt} is contained in the following elements: \code{anlyUnit}; \code{anlysUnit};
+\code{catgry}; \code{catgryGrp}; \code{codingInstructions}; \code{collMode}; \code{dataKind};
+\code{frameUnit}; \code{geogCover}; \code{geogUnit}; \code{nCube}; \code{nCubeGrp}; \code{nation};
+\code{otherMat}; \code{resInstru}; \code{sampProc}; \code{sampleFrame}; \code{srcOrig}; \code{timeMeth};
+\code{universe}; \code{var}; and \code{varGrp}.
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/txt.html}{txt documentation}

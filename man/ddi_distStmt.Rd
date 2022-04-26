@@ -22,10 +22,38 @@ ddi_distrbtr(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Distribution statement for the work at the appropriate level: marked-up document; marked-up document source; study; study
-description, other material; other material for study. For more information see the references.
+Distribution statement for the work at the appropriate level: marked-up
+document; marked-up document source; study; study description,
+other material; other material for study. More information on these
+elements, especially their allowed attributes, can be found in the references.
 }
-\section{General children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{distStmt} is contained in the following elements: \code{citation}; \code{docSrc};
+\code{fileCitation}; and \code{sourceCitation}.
+
+\emph{distStmt specific child nodes}
+
+\code{ddi_depDate()} is the date that the work was deposited with the archive that
+originally received it. The ISO standard for dates (YYYY-MM-DD) is recommended
+for use with the "date" attribute.
+
+\code{ddi_depositr()} is the name of the person (or institution) who provided this
+work to the archive storing it.
+
+\code{ddi_distDate()} is the date that the work was made available for
+distribution/presentation. The ISO standard for dates (YYYY-MM-DD) is
+recommended for use with the "date" attribute. If using a text entry in the
+element content, the element may be repeated to support multiple language expressions.
+
+\code{ddi_distrbtr()} is the organization designated by the author or producer to
+generate copies of the particular work including any necessary editions or
+revisions. Names and addresses may be specified and other archives may be
+co-distributors. A URI attribute is included to provide an URN or URL to the
+ordering service or download facility on a Web site.
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_contact]{ddi_contact()}}

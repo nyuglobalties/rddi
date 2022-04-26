@@ -1,43 +1,84 @@
-#' var and its leaf node children
+#' var and its child nodes
 #'
-#' Variables are specified with the var tag, which has a litany of 
-#' attributes and children. More information on the allowed attributes for var 
-#' and its child nodes can be found below and in the references. 
+#' This element describes all of the features of a single variable in a social 
+#' science data file. The following elements are repeatable to support 
+#' multi-language content: anlysUnit, embargo, imputation, respUnit, security, 
+#' TotlResp. More information on these elements, especially their allowed 
+#' attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `var` is contained in `dataDscr`.
+#' 
+#' \emph{var specific child nodes}
+#' 
+#' * `ddi_catLevel()` is used to describe the levels of the category hierarchy. 
+#' 
+#' * `ddi_codInstr()` are coder instructions. These are any special instructions 
+#' to those who converted information from one form to another for a particular 
+#' variable. This might include the reordering of numeric information into 
+#' another form or the conversion of textual information into numeric information.
+#' 
+#' * `ddi_geomap()` is a geographic map. This element is used to point, using a 
+#' "URI" attribute, to an external map that displays the geography in question.
+#' 
+#' * `ddi_qstn()` is the question asked. The element may have mixed content. The 
+#' element itself may contain text for the question, with the subelements being 
+#' used to provide further information about the question. Alternatively, the 
+#' question element may be empty and only the subelements used. The element has 
+#' a unique question ID attribute which can be used to link a variable with 
+#' other variables where the same question has been asked. This would allow 
+#' searching for all variables that share the same question ID, perhaps because 
+#' the questions was asked several times in a panel design.
+#' 
+#' * `ddi_stdCatgry()` are standard category codes used in the variable, like 
+#' industry codes, employment codes, or social class codes.
+#' 
+#' * `ddi_sumStat()` is one or more statistical measures that describe the 
+#' responses to a particular variable and may include one or more standard 
+#' summaries, e.g., minimum and maximum values, median, mode, etc. 
+#' 
+#' * `ddi_TotlResp()` are the number of responses to this variable. This element 
+#' might be used if the number of responses does not match added case counts. 
+#' It may also be used to sum the frequencies for variable categories.
+#' 
+#' * `ddi_undocCod()` is the list of undocumented codes where the meaning of the 
+#' values are unknown.
+#' 
+#' * `ddi_varFormat()` is the technical format of the variable in question. 
 #'  
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes:
+#' * [ddi_anlysUnit()]
 #' * [ddi_catgry()]
 #' * [ddi_catgryGrp()]
+#' * [ddi_concept()]
 #' * [ddi_derivation()]
+#' * [ddi_embargo()]
+#' * [ddi_imputation()]
 #' * [ddi_invalrng()]
+#' * [ddi_labl()] 
+#' * [ddi_location()]
+#' * [ddi_notes()] 
+#' * [ddi_respUnit()]
+#' * [ddi_security()]
+#' * [ddi_txt()]
+#' * [ddi_universe()]
 #' * [ddi_valrng()]
-#' 
-#' @section General children allowed:
-#' * `ddi_concept()`
-#' * `ddi_labl()` 
-#' * `ddi_notes()` 
-#' * `ddi_txt()`
-#' * `ddi_universe()`
-#' * `ddi_verStmt()` 
+#' * [ddi_verStmt()] 
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/var.html}{var documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlysUnit.html}{anlysUnit documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catLevel.html}{catlevel documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catLevel.html}{catLevel documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codInstr.html}{codInstr documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/embargo.html}{embargo documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoMap.html}{geomap documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/imputation.html}{imputation documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/location.html}{location documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstn.html}{qstn documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respUnit.html}{respUnit documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/security.html}{security documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdCatgry.html}{stdCatgry documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sumStat.html}{sumStat documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/TotlResp.html}{TotlResp documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/undocCod.html}{undocCod documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varFormat.html}{varFormat documentation}
 #' 
-#' @param varname The variable name
-#' @param ... Any parameters from the DDI Codebook 2.5 schema. See the references or go the branch node functions for more information.
+#' @param varname The variable name.
+#' @param ... Child nodes or attributes.
 #'
 #' @export
 ddi_var <- function(varname, ...) {
@@ -75,24 +116,42 @@ ddi_var <- function(varname, ...) {
   )
 }
 
-#' DDI varGrp specification and leaf node children
+#' varGrp and its child nodes
 #'
-#' A group of variables that may share a common subject, arise from the interpretation of a single question, or are linked by some other factor.
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section varGrp leaf node children allowed:
-#' * `ddi_defntn` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/defntn.html}{DDI documentation}
+#' A group of variables that may share a common subject, arise from the 
+#' interpretation of a single question, or are linked by some other factor. 
+#' Variable groups are created this way in order to permit variables to belong 
+#' to multiple groups, including multiple subject groups such as a group of 
+#' variables on sex and income, or to a subject and a multiple response group, 
+#' without causing overlapping groups. Variables that are linked by use of the 
+#' same question need not be identified by a Variable Group element because they 
+#' are linked by a common unique question identifier in the Variable element. 
+#' Note that as a result of the strict sequencing required by XML, all Variable 
+#' Groups must be marked up before the Variable element is opened. That is, the 
+#' mark-up author cannot mark up a Variable Group, then mark up its constituent 
+#' variables, then mark up another Variable Group. More information on these 
+#' elements, especially their allowed attributes, can be found in the 
+#' references. 
 #' 
-#' @section General children allowed:
-#' * `ddi_concept()`
-#' * `ddi_labl()` 
-#' * `ddi_notes()` 
-#' * `ddi_txt()`
-#' * `ddi_universe()`
+#' \emph{Parent nodes}
 #' 
-#' @section DDI Codebook 2.5 Documentation:
+#' `varGrp` is contained in `dataDscr`.
+#' 
+#' \emph{varGrp specific child nodes}
+#' 
+#' * `ddi_defntn()` is the rationale for why the variable group was constituted. 
+#' 
+#' @param ... Child nodes or attributes.
 #'
-#' \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}{varGrp documentation}
+#' @section Shared and complex child nodes:
+#' * [ddi_concept()]
+#' * [ddi_labl()]
+#' * [ddi_notes()] 
+#' * [ddi_txt()]
+#' * [ddi_universe()]
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}{varGrp documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/defntn.html}{defntn documentation}
 #'
 #' @export
 ddi_varGrp <- function(...) {
@@ -128,6 +187,308 @@ ddi_varGrp <- function(...) {
   )
 }
 
+#' nCube and its child nodes
+#'
+#' Describes the logical structure of an n-dimensional array, in which each 
+#' coordinate intersects with every other dimension at a single point. The 
+#' nCube has been designed for use in the markup of aggregate data. Repetition 
+#' of the following elements is provided to support multi-language content: 
+#' anlysUnit, embargo, imputation, purpose, respUnit, and security. More 
+#' information on these elements, especially their allowed attributes, can be 
+#' found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `nCube` is contained in `dataDscr`.
+#' 
+#' \emph{nCube specific child nodes}
+#' 
+#' * `ddi_measure()` indicates the measurement features of the cell content: type of 
+#' aggregation used, measurement unit, and measurement scale. An origin point 
+#' is recorded for anchored scales, to be used in determining relative movement 
+#' along the scale. Additivity indicates whether an aggregate is a stock 
+#' (like the population at a given point in time) or a flow (like the number of 
+#' births or deaths over a certain period of time). The non-additive flag is to 
+#' be used for measures that for logical reasons cannot be aggregated to a 
+#' higher level - for instance, data that only make sense at a certain level of 
+#' aggregation, like a classification. Two nCubes may be identical except for 
+#' their measure - for example, a count of persons by age and percent of 
+#' persons by age. Measure is an empty element.
+#' 
+#' * `ddi_purpose()` explains the purpose for which a particular nCube was created.
+#' 
+#' @param ... Child nodes or attributes.
+#'
+#' @section Shared and complex child nodes:
+#' 
+#' * [ddi_anlysUnit()]
+#' * [ddi_embargo()]
+#' * [ddi_imputation()]
+#' * [ddi_labl()]
+#' * [ddi_location()]
+#' * [ddi_notes()]
+#' * [ddi_respUnit()]
+#' * [ddi_security()]
+#' * [ddi_txt()]
+#' * [ddi_universe()]
+#' * [ddi_verStmt()]
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/nCube.html}{nCube documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/measure.html}{measure documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/purpose.html}{purpose documentation}
+#'
+#' @export
+ddi_nCube <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c(
+      "ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
+      "name", "sdatrefs", "methrefs", "pubrefs", "access", "dmnsQnty", "cellQnty"
+    )
+    attribs <- validate_attributes(attribs, allowed_attribs, "nCube")    
+  }
+  
+  allowed_children <- c(
+    "location",
+    "labl",
+    "txt",
+    "universe",
+    "imputation",
+    "security",
+    "embargo",
+    "respUnit",
+    "anlysUnit",
+    "verStmt",
+    "purpose",
+    "dmns",
+    "measure",
+    "notes"
+  )
+  
+  build_branch_node(
+    "nCube",
+    allowed_children = allowed_children,
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' nCubeGrp and its child nodes
+#'
+#' A group of nCubes that may share a common subject, arise from the 
+#' interpretation of a single question, or are linked by some other factor. 
+#' This element makes it possible to identify all nCubes derived from a simple 
+#' presentation table, and to provide the original table title and universe, 
+#' as well as reference the source. Specific nesting patterns can be described 
+#' using the attribute nCubeGrp. nCube groups are also created this way in 
+#' order to permit nCubes to belong to multiple groups, including multiple 
+#' subject groups, without causing overlapping groups. nCubes that are linked 
+#' by the same use of the same variable need not be identified by an nCubeGrp 
+#' element because they are already linked by a common variable element. Note 
+#' that as a result of the strict sequencing required by XML, all nCube Groups 
+#' must be marked up before the Variable element is opened. That is, the 
+#' mark-up author cannot mark up a nCube Group, then mark up its constituent 
+#' nCubes, then mark up another nCube Group. More information on these elements, 
+#' especially their allowed attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `nCubeGrp` is contained in `dataDscr`.
+#' 
+#' @param ... Child nodes or attributes.
+#'
+#' @section Shared and complex child nodes:
+#' 
+#' * [ddi_concept()]
+#' * [ddi_defntn()]
+#' * [ddi_labl()]
+#' * [ddi_notes()]
+#' * [ddi_txt()]
+#' * [ddi_universe()]
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/nCubeGrp.html}{nCubeGrp documentation}
+#'
+#' @export
+ddi_nCubeGrp <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c(
+      "ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
+      "type", "otherType", "nCube", "nCubeGrp", "name", "sdatrefs", "methrefs", "pubrefs", "access"
+    )
+    attribs <- validate_attributes(attribs, allowed_attribs, "nCubeGrp")
+    if(!is.null(attribs$type)) {
+      check_attribs_in_set(attribs$type, c("section", 
+                                           "multipleResp", 
+                                           "grid", 
+                                           "display", 
+                                           "repetition", 
+                                           "subject", 
+                                           "version", 
+                                           "iteration", 
+                                           "analysis",
+                                           "pragmatic",
+                                           "record",
+                                           "file",
+                                           "randomized",
+                                           "other"
+                                           ), 
+                           field = "type (nCubeGrp)")
+    }
+  }
+  
+  allowed_children <- c(
+    "labl",
+    "txt",
+    "concept",
+    "defntn",
+    "universe",
+    "notes"
+  )
+  
+  build_branch_node(
+    "nCubeGrp",
+    allowed_children = allowed_children,
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' @rdname ddi_nCube
+#' @export
+ddi_measure <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "varRef", "aggrMeth", "otherAggrMeth", "measUnit", "scale", "origin", "additivity"
+                         )
+    attribs <- validate_attributes(attribs, allowed_attribs, "measure")
+  }
+  
+  build_leaf_node(
+    "measure",
+    attribs = attribs
+  )
+}
+
+#' @rdname ddi_nCube
+#' @export
+ddi_purpose <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "sdatrefs", "methrefs", "pubrefs", "URI"
+    )
+    attribs <- validate_attributes(attribs, allowed_attribs, "purpose")
+  }
+  
+  build_leaf_node(
+    "purpose",
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' dmns and its child nodes
+#'
+#' This element defines a variable as a dimension of the nCube, and should be 
+#' repeated to describe each of the cube's dimensions. The attribute "rank" is 
+#' used to define the coordinate order (rank="1", rank="2", etc.). The attribute 
+#' "varRef" is an IDREF that points to the variable that makes up this dimension 
+#' of the nCube. More information on these elements, especially their allowed 
+#' attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `dmns` is contained in `nCube`.
+#' 
+#' @param ... Child nodes or attributes.
+#'
+#' @section Shared and complex child nodes:
+#' 
+#' * [ddi_cohort()]
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dmns.html}{dmns documentation}
+#'
+#' @export
+ddi_dmns <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c(
+      "ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
+      "rank", "varRef"
+    )
+    attribs <- validate_attributes(attribs, allowed_attribs, "dmns")    
+  }
+  
+  allowed_children <- c(
+    "cohort"
+  )
+  
+  build_branch_node(
+    "dmns",
+    allowed_children = allowed_children,
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' cohort and its child nodes
+#'
+#' The element cohort is used when the nCube contains a limited number of 
+#' categories from a particular variable, as opposed to the full range of 
+#' categories. The attribute "catRef" is an IDREF to the actual category 
+#' being used. The attribute "value" indicates the actual value attached to 
+#' the category that is being used. More information on these elements, 
+#' especially their allowed attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `cohort` is contained in `dmns`.
+#' 
+#' @param ... Child nodes or attributes.
+#'
+#' @section Shared and complex child nodes:
+#' 
+#' * [ddi_range()]
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/cohort.html}{cohort documentation}
+#'
+#' @export
+ddi_cohort <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c(
+      "ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
+      "catRef", "value"
+    )
+    attribs <- validate_attributes(attribs, allowed_attribs, "cohort")    
+  }
+  
+  allowed_children <- c(
+    "range"
+  )
+  
+  build_branch_node(
+    "cohort",
+    allowed_children = allowed_children,
+    attribs = attribs,
+    content = components$content
+  )
+}
+
 #' @rdname ddi_var
 #' @export
 ddi_catLevel <- function(...) {
@@ -146,28 +507,79 @@ ddi_catLevel <- function(...) {
   )
 }
 
-#' DDI catgry and catgryGrp specification and leaf node children
+#' @rdname ddi_var 
+#' @export
+ddi_codInstr <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "codInstr")
+  }
+  
+  build_leaf_node(
+    "codInstr",
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' @rdname ddi_var 
+#' @export
+ddi_geomap <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "URI","mapformat", "levelno") 
+    attribs <- validate_attributes(attribs, allowed_attribs, "geomap")
+  }
+  
+  build_leaf_node(
+    "geomap",
+    attribs = attribs
+  )
+}
+
+
+#' catgry, catgryGrp and their child nodes
 #'
-#' `ddi_catgry()` is a description of a particluar categorical response. 
-#' `ddi_catgryGrp()` groups the responses together.
+#' `catgry` is a description of a particular categorical response. 
+#' `ddi_catgryGrp()` groups the responses together. More information on these 
+#' elements, especially their allowed attributes, can be found in the references. 
 #' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
+#' \emph{Parent nodes}
 #' 
-#' @section catgry leaf node children allowed:
-#' catgry accepts the following children as leaf nodes. catgryGrp also accepts catStat.
-#' * `ddi_catStat()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catStat.html}{DDI documentation}
-#' * `ddi_catValue()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catValu.html}{DDI documentation}
+#' `catgry` and `catgryGrp` is contained in `var`.
 #' 
-#' @section Branch node children allowed:
-#' * `ddi_mrow()`
+#' \emph{catgry and catgryGrp specific child nodes}
 #' 
-#' @section General children allowed:
-#' * `ddi_labl()` 
-#' * `ddi_txt()`
+#' * `ddi_catStat()` is a category level statistic. May include frequencies, 
+#' percentages, or crosstabulation results. The attribute "type" indicates the 
+#' type of statistics presented - frequency, percent, or crosstabulation. If a 
+#' value of "other" is used for this attribute, the "otherType" attribute should 
+#' take a value from a controlled vocabulary. This option should only be used 
+#' when applying a controlled vocabulary to this attribute. Use the complex 
+#' element controlledVocabUsed to identify the controlled vocabulary to which 
+#' the selected term belongs.
+#' 
+#' \emph{catgry specific child nodes}
+#' 
+#' * `ddi_catValue()` is the category value.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @section Shared and complex child nodes:
+#' * [ddi_labl()] 
+#' * [ddi_mrow()]
+#' * [ddi_txt()]
 #'  
-#' @section DDI 2.5 Documentation:
-#' * \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}{catgry documentation}
-#' * \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgryGrp.html}{catgryGrp documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}{catgry documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgryGrp.html}{catgryGrp documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catStat.html}{catStat documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catValu.html}{catValu documentation}
 #'
 #' @export
 ddi_catgry <- function(...)  {
@@ -200,20 +612,30 @@ ddi_catgry <- function(...)  {
   )
 }
 
-#' DDI mrow and mi specification 
+#' mrow and its child nodes 
 #'
-#' mrow or Mathematical Row is a wrapper containing the presentation expression `ddi_mi()`. It creates a single string 
-#' without spaces consisting of the individual elements described within it. It can be used to create a single 
-#' variable by concatenating other variables into a single string. It is used to create linking variables composed
-#' of multiple non-contiguous parts, or to define unique strings for various category values of a single variable. `ddi_mi()`
-#' requires the varRef variable
+#' mrow or Mathematical Row is a wrapper containing the presentation expression 
+#' `mi`. It creates a single string without spaces consisting of the individual 
+#' elements described within it. It can be used to create a single variable by 
+#' concatenating other variables into a single string. It is used to create 
+#' linking variables composed of multiple non-contiguous parts, or to define 
+#' unique strings for various category values of a single variable. More 
+#' information on these elements, especially their allowed attributes, can be 
+#' found in the references. 
 #' 
-#' @section Branch node children allowed:
-#' * `ddi_mi()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mi.html}{DDI documentation}
+#' \emph{Parent nodes}
+#' 
+#' `mrow` is contained in `catgry`.
+#' 
+#' \emph{mrow specific child nodes}
+#' 
+#' * `ddi_mi()` is the mathematical identifier. This is the token element 
+#' containing the smallest unit in the mrow that carries meaning.
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mrow.html}{mrow documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mi.html}{mi documentation}
 #' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
+#' @param ... Child nodes or attributes.
 #' 
 #' @export
 ddi_mrow <- function(...) {
@@ -237,7 +659,21 @@ ddi_mrow <- function(...) {
   )
 }
 
-#' @rdname ddi_var
+#' anlysUnit node
+#' 
+#' Provides information regarding whom or what the variable/nCube describes. 
+#' The element may be repeated only to support multiple language expressions of 
+#' the content. More information on this element, especially its allowed 
+#' attributes, can be found in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `anlysUnit` is contained in `nCube` and `var`.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlysUnit.html}{anlysUnit documentation}
+#' 
 #' @export
 ddi_anlysUnit <- function(...) {
   components <- dots_to_xml_components(...)
@@ -281,21 +717,36 @@ ddi_catgryGrp <- function(...) {
   )
 }
 
-#' DDI derivation specification and leaf node children
+#' derivation and its child nodes
 #' 
-#' Used only in the case of a derived variable, this element provides both a description of how the derivation was performed and the command used to generate 
-#' the derived variable, as well as a specification of the other variables in the study used to generate the derivation. The "var" attribute provides the ID values of the 
-#' other variables in the study used to generate this derived variable.
+#' Used only in the case of a derived variable, this element provides both a 
+#' description of how the derivation was performed and the command used to 
+#' generate the derived variable, as well as a specification of the other 
+#' variables in the study used to generate the derivation. The "var" attribute 
+#' provides the ID values of the other variables in the study used to generate 
+#' this derived variable. More information on these elements, especially their 
+#' allowed attributes, can be found in the references. 
 #' 
-#' @section derivation leaf node children allowed:
-#' * `ddi_drvcmd()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvcmd.html}{DDI documentation}
-#' * `ddi_drvdesc()` - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvdesc.html}{DDI documentation}
+#' \emph{Parent nodes}
 #' 
-#' @param ... Any parameters from the DDI Codebook 2.5 schema
-#'
-#' @section DDI Codebook 2.5 Documentation:
+#' `derivation` is included in `var`.
 #' 
-#' \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}{derivation documentation}
+#' \emph{derivation specific child nodes}
+#' 
+#' * `ddi_drvcmd()` is the actual command used to generate the derived variable. 
+#' The "syntax" attribute is used to indicate the command language employed 
+#' (e.g., SPSS, SAS, Fortran, etc.). The element may be repeated to support 
+#' multiple language expressions of the content.
+#' 
+#' * `ddi_drvdesc()` is a textual description of the way in which this variable 
+#' was derived. The element may be repeated to support multiple language 
+#' expressions of the content.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}{derivation documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvcmd.html}{drvcmd documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvdesc.html}{drvdesc documentation}
 #'
 #' @export
 ddi_derivation <- function(...) {
@@ -321,22 +772,38 @@ ddi_derivation <- function(...) {
   )
 }
 
-#' Valid and invalid data values specification and leaf node children
+#' valrng, invalrng, and their child nodes
 #'
-#' Values for a particular variable that represent legitimate responses (valrng) or illegitamate response (invalrng). Must include item or range as a child element
-#'
-#' @param ... Any other parameters from the DDI Codebook 2.5 schema
-#'
-#' @section valrng and invalrng leaf node children allowed:
-#' * ddi_item: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/item.html}{DDI documentation}
-#' * ddi_range: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/range.html}{DDI documentation}
-#' * ddi_key: \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/key.html}{DDI documentation}
+#' Values for a particular variable that represent legitimate responses 
+#' (valrng) or illegitamate response (invalrng). Must include item or range as 
+#' a child element.
 #' 
-#' @section General children allowed:
-#' * `ddi_notes()` 
+#' \emph{Parent nodes}
+#' 
+#' `valrng` and `invalrng` are contained in `var`.
+#' 
+#' \emph{valrng and invalrng specific child nodes}
+#' 
+#' `ddi_item()` is the counterpart to range; used to encode individual values. 
+#' This is an empty element consisting only of its attributes. The "UNITS" 
+#' attribute permits the specification of integer/real numbers. The "VALUE" 
+#' attribute specifies the actual value.
+#' 
+#' `ddi_key()` is the range key. This element permits a listing of the category 
+#' values and labels. While this information is coded separately in the Category 
+#' element, there may be some value in having this information in proximity to 
+#' the range of valid and invalid values. A table is permissible in this element. 
+#' 
+#' @param ... Child nodes or attributes.
+#'
+#' @section Shared and complex child nodes:
+#' * [ddi_notes()] 
+#' * [ddi_range()]
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation} 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/item.html}{item documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/key.html}{key documentation}
 #' 
 #' @export
 ddi_valrng <- function(...) {
@@ -437,7 +904,26 @@ ddi_catValu <- function(...) {
   )
 }
 
-#' @rdname ddi_var 
+#' imputation node
+#' 
+#' According to the Statistical Terminology glossary maintained by the National 
+#' Science Foundation, this is "the process by which one estimates missing 
+#' values for items that a survey respondent failed to provide," and if 
+#' applicable in this context, it refers to the type of procedure used. When 
+#' applied to an nCube, imputation takes into consideration all of the 
+#' dimensions that are part of that nCube. This element may be repeated to 
+#' support multiple language expressions of the content. More information on 
+#' this element, especially its allowed attributes, can be found in the 
+#' references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `imputation` is contained in `nCube` and `var`.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/imputation.html}{imputation documentation}
+#' 
 #' @export
 ddi_imputation <- function(...) {
   components <- dots_to_xml_components(...)
@@ -476,6 +962,24 @@ ddi_qstn <- function(...) {
 
 #' @rdname ddi_var 
 #' @export
+ddi_stdCatgry <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "date", "URI")
+    attribs <- validate_attributes(attribs, allowed_attribs, "stdCatgry")
+  }
+  
+  build_leaf_node(
+    "stdCatgry",
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' @rdname ddi_var 
+#' @export
 ddi_sumStat <- function(...) {
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
@@ -489,24 +993,6 @@ ddi_sumStat <- function(...) {
 
   build_leaf_node(
     "sumStat",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' @rdname ddi_var 
-#' @export
-ddi_codInstr <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-    
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    attribs <- validate_attributes(attribs, allowed_attribs, "codInstr")
-  }
-
-  build_leaf_node(
-    "codInstr",
     attribs = attribs,
     content = components$content
   )
@@ -530,7 +1016,21 @@ ddi_TotlResp <- function(...) {
   )
 }
 
-#' @rdname ddi_var 
+#' security node
+#' 
+#' Provides information regarding levels of access, e.g., public, subscriber, 
+#' need to know. The ISO standard for dates (YYYY-MM-DD) is recommended for use
+#' with the date attribute. More information on this element, especially its 
+#' allowed attributes, can be found in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `security` is contained in `nCube` and `var`.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/security.html}{security documentation}
+#' 
 #' @export
 ddi_security <- function(...) {
   components <- dots_to_xml_components(...)
@@ -548,7 +1048,21 @@ ddi_security <- function(...) {
   )
 }
 
-#' @rdname ddi_var 
+#' embargo node
+#' 
+#' Provides information on variables/nCubes which are not currently available 
+#' because of policies established by the principal investigators and/or data 
+#' producers. This element may be repeated to support multiple language 
+#' expressions of the content.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `embargo` is contained in `nCube` and `var`.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/embargo.html}{embargo documentation}
+#' 
 #' @export
 ddi_embargo <- function(...) {
   components <- dots_to_xml_components(...)
@@ -566,7 +1080,22 @@ ddi_embargo <- function(...) {
   )
 }
 
-#' @rdname ddi_var 
+#' respUnit node
+#' 
+#' Provides information regarding who provided the information contained within 
+#' the variable/nCube, e.g., respondent, proxy, interviewer. This element may be 
+#' repeated only to support multiple language expressions of the content. More 
+#' information on this element, especially its allowed attributes, can be found 
+#' in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `respUnit` is contained in `nCube` and `var`.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respUnit.html}{respUnit documentation}
+#' 
 #' @export
 ddi_respUnit <- function(...) {
   components <- dots_to_xml_components(...)
@@ -597,24 +1126,6 @@ ddi_undocCod <- function(...) {
 
   build_leaf_node(
     "undocCod",
-    attribs = attribs,
-    content = components$content
-  )
-}
-
-#' @rdname ddi_var 
-#' @export
-ddi_stdCatgry <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-   
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", "date", "URI")
-    attribs <- validate_attributes(attribs, allowed_attribs, "stdCatgry")
-  }
-
-  build_leaf_node(
-    "stdCatgry",
     attribs = attribs,
     content = components$content
   )
@@ -700,7 +1211,25 @@ ddi_item <- function(...) {
   )
 }
 
-#' @rdname ddi_valrng 
+#' range node
+#' 
+#' This is the actual range of values. The "UNITS" attribute permits 
+#' the specification of integer/real numbers. The "min" and "max" attributes 
+#' specify the lowest and highest values that are part of the range. The 
+#' "minExclusive" and "maxExclusive" attributes specify values that are 
+#' immediately outside the range. This is an empty element consisting only of 
+#' its attributes. More information on this element, especially its allowed 
+#' attributes, can be found in the references.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `range` is contained in the following elements: `valrng`; `invalrng`; and 
+#' `cohort`.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/range.html}{range documentation}
+#'
 #' @export
 ddi_range <- function(...) {
   components <- dots_to_xml_components(...)
@@ -736,25 +1265,20 @@ ddi_key <- function(...) {
   )
 }
 
-#' @rdname ddi_var 
-#' @export
-ddi_geomap <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-  
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
-                        "URI","mapformat", "levelno") 
-    attribs <- validate_attributes(attribs, allowed_attribs, "geomap")
-  }
-
-  build_leaf_node(
-    "geomap",
-    attribs = attribs
-  )
-}
-
-#' @rdname ddi_var 
+#' location node
+#' 
+#' The physical or digital location of the variable. It is an empty element. 
+#' More information on these elements, especially their allowed attributes, 
+#' can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `location` is contained in `nCube` and `var`.
+#' 
+#' @param ... Child nodes or attributes.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/location.html}{location documentation}
+#' 
 #' @export
 ddi_location <- function(...) {
   components <- dots_to_xml_components(...)

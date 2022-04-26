@@ -4,7 +4,7 @@
 \alias{ddi_derivation}
 \alias{ddi_drvdesc}
 \alias{ddi_drvcmd}
-\title{DDI derivation specification and leaf node children}
+\title{derivation and its child nodes}
 \usage{
 ddi_derivation(...)
 
@@ -13,24 +13,37 @@ ddi_drvdesc(...)
 ddi_drvcmd(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Used only in the case of a derived variable, this element provides both a description of how the derivation was performed and the command used to generate
-the derived variable, as well as a specification of the other variables in the study used to generate the derivation. The "var" attribute provides the ID values of the
-other variables in the study used to generate this derived variable.
+Used only in the case of a derived variable, this element provides both a
+description of how the derivation was performed and the command used to
+generate the derived variable, as well as a specification of the other
+variables in the study used to generate the derivation. The "var" attribute
+provides the ID values of the other variables in the study used to generate
+this derived variable. More information on these elements, especially their
+allowed attributes, can be found in the references.
 }
-\section{derivation leaf node children allowed}{
+\details{
+\emph{Parent nodes}
 
+\code{derivation} is included in \code{var}.
+
+\emph{derivation specific child nodes}
 \itemize{
-\item \code{ddi_drvcmd()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvcmd.html}{DDI documentation}
-\item \code{ddi_drvdesc()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvdesc.html}{DDI documentation}
+\item \code{ddi_drvcmd()} is the actual command used to generate the derived variable.
+The "syntax" attribute is used to indicate the command language employed
+(e.g., SPSS, SAS, Fortran, etc.). The element may be repeated to support
+multiple language expressions of the content.
+\item \code{ddi_drvdesc()} is a textual description of the way in which this variable
+was derived. The element may be repeated to support multiple language
+expressions of the content.
 }
 }
-
-\section{DDI Codebook 2.5 Documentation}{
-
-
+\references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}{derivation documentation}
-}
 
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvcmd.html}{drvcmd documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvdesc.html}{drvdesc documentation}
+}

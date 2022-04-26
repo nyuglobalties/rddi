@@ -10,7 +10,7 @@
 \alias{ddi_fileType}
 \alias{ddi_format}
 \alias{ddi_ProcStat}
-\title{fileTxt and its leaf node children}
+\title{fileTxt and its children}
 \usage{
 ddi_fileTxt(...)
 
@@ -31,28 +31,59 @@ ddi_format(...)
 ddi_ProcStat(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema. See the references or go the branch node functions for more information.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Provides descriptive information about the data file. More information
-on the allowed attributes for fileTxt and its child nodes can be found
-below and in the references.
+Provides descriptive information about the data file. More information on
+these elements, especially their allowed attributes, can be found in the
+references.
+
+\emph{Parent nodes}
 }
-\section{Branch node children allowed}{
+\details{
+\code{fileTxt} is contained in \code{fileDscr}.
+
+\emph{fileTxt specific child nodes}
+\itemize{
+\item \code{\link[=ddi_dataChck]{ddi_dataChck()}} are the types of checks and operations performed on the
+data file at the file level.
+\item \code{\link[=ddi_dataMsng]{ddi_dataMsng()}} can be used to give general information about missing
+data, e.g., that missing data have been standardized across the collection,
+missing data are present because of merging, etc.
+\item \code{\link[=ddi_fileCont]{ddi_fileCont()}} are the file contents. It is the abstract or description
+of the file. A summary describing the purpose, nature, and scope of the data
+file, special characteristics of its contents, major subject areas covered,
+and what questions the PIs attempted to answer when they created the file.
+A listing of major variables in the file is important here. In the case of
+multi-file collections, this uniquely describes the contents of each file.
+\item \code{\link[=ddi_fileName]{ddi_fileName()}} contains a short title that will be used to distinguish a
+particular file/part from other files/parts in the data collection. The
+element may be repeated to support multiple language expressions of the
+content.
+\item \code{\link[=ddi_filePlac]{ddi_filePlac()}} indicates where the file was produced, whether at an
+archive or elsewhere.
+\item \code{\link[=ddi_fileType]{ddi_fileType()}} are the types of data files. These include raw data
+(ASCII, EBCDIC, etc.) and software-dependent files such as SAS datasets,
+SPSS export files, etc. If the data are of mixed types (e.g., ASCII and
+packed decimal), state that here.
+\item \code{\link[=ddi_format]{ddi_format()}} is the physical format of the data file: Logical record
+length format, card-image format (i.e., data with multiple records per case),
+delimited format, free format, etc. The element may be repeated to support
+multiple language expressions of the content.
+\item \code{\link[=ddi_ProcStat]{ddi_ProcStat()}} is the processing status of the file. Some data producers
+and social science data archives employ data processing strategies that
+provide for release of data and documentation at various stages of processing.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_dataFingerprint]{ddi_dataFingerprint()}}
 \item \code{\link[=ddi_dimensns]{ddi_dimensns()}}
 \item \code{\link[=ddi_fileCitation]{ddi_fileCitation()}}
 \item \code{\link[=ddi_fileStrc]{ddi_fileStrc()}}
+\item \code{\link[=ddi_software]{ddi_software()}}
 \item \code{\link[=ddi_verStmt]{ddi_verStmt()}}
-}
-}
-
-\section{General children allowed}{
-
-\itemize{
-\item \code{ddi_software()}
 }
 }
 

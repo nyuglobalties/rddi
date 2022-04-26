@@ -2,31 +2,34 @@
 % Please edit documentation in R/method.R
 \name{ddi_sources}
 \alias{ddi_sources}
-\title{Sources Statement}
+\title{sources and its child nodes}
 \usage{
 ddi_sources(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Description of sources used for the data collection. The element is nestable so that the sources statement might encompass a series of discrete source
-statements, each of which could contain the facts about an individual source. This element maps to Dublin Core Source element.
+Description of sources used for the data collection. The element is nestable
+so that the sources statement might encompass a series of discrete source
+statements, each of which could contain the facts about an individual source.
+This element maps to Dublin Core Source element. More information on this
+element, especially its allowed attributes, can be found in the references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{sources} is contained in the following elements: \code{dataColl} and \code{sources}.
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
+\item \code{\link[=ddi_dataSrc]{ddi_dataSrc()}}
 \item \code{\link[=ddi_sourceCitation]{ddi_sourceCitation()}}
-}
-}
-
-\section{General children allowed}{
-
-\itemize{
-\item \code{ddi_dataSrc()}
-\item \code{ddi_srcOrig()}
-\item \code{ddi_srcChar()}
-\item \code{ddi_srcDocu()}
+\item \code{\link[=ddi_sources]{ddi_sources()}}
+\item \code{\link[=ddi_srcChar]{ddi_srcChar()}}
+\item \code{\link[=ddi_srcDocu]{ddi_srcDocu()}}
+\item \code{\link[=ddi_srcOrig]{ddi_srcOrig()}}
 }
 }
 

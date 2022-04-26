@@ -3,22 +3,36 @@
 \name{ddi_standardsCompliance}
 \alias{ddi_standardsCompliance}
 \alias{ddi_complianceDescription}
-\title{standardsCompliance and its leaf node chidlren}
+\title{standardsCompliance and its child nodes}
 \usage{
 ddi_standardsCompliance(...)
 
 ddi_complianceDescription(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-The standards compliance section lists all specific standards complied with during the execution of this study. Specify the standard(s)' name(s) and producer(s) and describe how
-the study complied with each standard in complianceDescription. More information can be found below and in the references.
+The standards compliance section lists all specific standards complied with
+during the execution of this study.  More information on these elements,
+especially their allowed attributes, can be found in the references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
 
-*\code{\link[=ddi_standard]{ddi_standard()}}
+\code{standardsCompliance} is contained in \code{qualityStatement}.
+
+\emph{standardsCompliance specific child nodes}
+\itemize{
+\item \code{ddi_complianceDescription} describes how the study complied with each
+standard.
+}
+}
+\section{Shared and complex child nodes}{
+
+\itemize{
+\item \code{\link[=ddi_standard]{ddi_standard()}}
+}
 }
 
 \references{

@@ -22,13 +22,39 @@ ddi_holdings(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Citation entities for the study including general citations and source citations. More information on citation and
-source citation can be found below and in the references.
+Citation entities for the study including general citations and source
+citations. Citation is a required element in the DDI-Codebook.
+\code{fileCitation} provides a full bibliographic citation option for each data file described
+in \code{fileDscr}. The minimum element set includes: \code{titl}, \code{IDNo}, \code{authEnty}, \code{producer}, and
+\code{prodDate}. If a DOI is available for the data enter this in the \code{IDNo}.
+More information on these elements, especially their allowed attributes, can
+be found in the references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{citation} is contained in the following elements: \code{docDscr}; \code{othRefs};
+\code{otherMat}; \code{relMat}; \code{relPubl}; \code{relStdy}; and \code{stdyDscr}. \code{sourceCitation}
+is contained in the \code{sources} element. \code{fileCitation} is included in the
+\code{fileTxt} element.
+
+\emph{citation, sourceCitation, and fileCitation specific child nodes}
+
+\code{ddi_biblCit()} is the complete bibliographic reference containing all of the
+standard elements of a citation that can be used to cite the work. The "format"
+attribute is provided to enable specification of the particular citation style
+used, e.g., APA, MLA, Chicago, etc.
+
+\code{ddi_holdings()} is information concerning either the physical or electronic
+holdings of the cited work. Attributes include: location--The physical location
+where a copy is held; callno--The call number for a work at the location
+specified; and URI--A URN or URL for accessing the electronic copy of the cited work.
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_distStmt]{ddi_distStmt()}}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
 \item \code{\link[=ddi_prodStmt]{ddi_prodStmt()}}
 \item \code{\link[=ddi_rspStmt]{ddi_rspStmt()}}
 \item \code{\link[=ddi_serStmt]{ddi_serStmt()}}
@@ -37,21 +63,14 @@ source citation can be found below and in the references.
 }
 }
 
-\section{General children allowed}{
-
-\itemize{
-\item \code{\link[=ddi_notes]{ddi_notes()}}
-}
-}
-
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/citation.html}{citation documentation}
 
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sourceCitation.html}{sourceCitation documentation}
-
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileCitation.html}{fileCitation documentation}
 
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serInfo.html}{serInfo documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sourceCitation.html}{sourceCitation documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/biblCit.html}{biblCit documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/holdings.html}{holdings documentation}
 }

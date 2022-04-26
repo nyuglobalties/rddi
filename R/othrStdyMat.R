@@ -1,12 +1,46 @@
-#' othrStdyMat and its leaf node children
+#' othrStdyMat and its child nodes
 #'
-#' Other study description materials relating to the study description. This section describes other materials that are related to the study description that are primarily 
-#' descriptions of the content and use of the study, such as appendices, sampling information, weighting details, methodological and technical details, 
-#' publications based upon the study content, related studies or collections of studies, etc. This section may point to other materials related to the 
-#' description of the study through use of the generic citation element, which is available for each element in this section. This maps to Dublin Core 
-#' Relation element. More informaiton on othrStdyMat including its attributes and children can be found in the references.
+#' Other study description materials relating to the study description. This 
+#' section describes other materials that are related to the study description 
+#' that are primarily descriptions of the content and use of the study, such as 
+#' appendices, sampling information, weighting details, methodological and 
+#' technical details, publications based upon the study content, related 
+#' studies or collections of studies, etc. This section may point to other 
+#' materials related to the description of the study through use of the generic 
+#' citation element, which is available for each element in this section. This 
+#' maps to Dublin Core Relation element.More information on these elements, 
+#' especially their allowed attributes, can be found in the references.  
 #'
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' \emph{Parent nodes}
+#' 
+#' `othrStdyMat` is contained in `stdyDscr`.
+#' 
+#' \emph{othrStdyMat specific child nodes}
+#' 
+#' * `ddi_othRefs()` indicates other pertinent references. Can take the form of 
+#' bibliographic citations. 
+#' 
+#' * `ddi_relMat()` describes materials related to the study description, such 
+#' as appendices, additional information on sampling found in other documents, 
+#' etc. Can take the form of bibliographic citations. This element can contain 
+#' either PCDATA or a citation or both, and there can be multiple occurrences of 
+#' both the citation and PCDATA within a single element. May consist of a single 
+#' URI or a series of URIs comprising a series of citations/references to 
+#' external materials which can be objects as a whole (journal articles) or 
+#' parts of objects (chapters or appendices in articles or documents).
+#' 
+#' * `ddi_relPubl()` are bibliographic and access information about articles 
+#' and reports based on the data in this collection. Can take the form of 
+#' bibliographic citations. 
+#' 
+#' * `ddi_relStudy()` is information on the relationship of the current data 
+#' collection to others (e.g., predecessors, successors, other waves or rounds) 
+#' or to other editions of the same file. This would include the names of 
+#' additional data collections generated from the same data collection vehicle 
+#' plus other collections directed at the same general topic. Can take the form 
+#' of bibliographic citations.
+#'
+#' @param ... Child nodes or attributes. 
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/othrStdyMat.html}{othrStdyMat documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/othRefs.html}{othRefs documentation}

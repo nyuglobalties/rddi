@@ -1,20 +1,40 @@
-#' stdyInfo and its leaf node children
+#' stdyInfo and its child nodes
 #' 
 #'
-#' stdyInfo is the study scope. It contains information about the data collection's scope 
-#' across several dimensions, including substantive content, geography, and time. More information
-#' on the allowed attributes for stdyINfo and its child nodes can be found below and in the references.
-#' #'
+#' stdyInfo is the study scope. It contains information about the data 
+#' collection's scope across several dimensions, including substantive content, 
+#' geography, and time. More information on these elements, especially their 
+#' allowed attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `stdyInfo` is contained in `stdyDscr`.
+#' 
+#' \emph{stdyInfo specific child nodes}
+#' 
+#' * `ddi_abstract()` is an unformatted summary describing the purpose, nature, 
+#' and scope of the data collection, special characteristics of its contents, 
+#' major subject areas covered, and what questions the PIs attempted to answer 
+#' when they conducted the study. A listing of major variables in the study is 
+#' important here. In cases where a codebook contains more than one abstract 
+#' (for example, one might be supplied by the data producer and another 
+#' prepared by the data archive where the data are deposited), the "source" 
+#' and "date" attributes may be used to distinguish the abstract versions. Maps 
+#' to Dublin Core Description element. Inclusion of this element in the 
+#' codebook is recommended. The "date" attribute should follow ISO convention 
+#' of YYYY-MM-DD. 
+#' 
+#' * `ddi_studyBudget()`is used to describe the budget of the project in as 
+#' much detail as needed. 
+#' 
 #' @param ... Child nodes or attributes. 
 #' 
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes:
 #' * [ddi_exPostEvaluation()]
+#' * [ddi_notes()]
 #' * [ddi_qualityStatement()]
 #' * [ddi_subject()]
 #' * [ddi_sumDscr()]
-#' 
-#' @section General children allowed:
-#' * [ddi_notes()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyInfo.html}{stdyInfo documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/abstract.html}{abstract documentation}
@@ -69,11 +89,26 @@ ddi_abstract <- function(...) {
   )
 }
 
-#' exPostEvaluation and its leaf node children
+#' exPostEvaluation and its child nodes
 #'
-#' Post Evaluation Procedures describes evaluation procedures not address in data evaluation processes. These may include issues such as timing of the study, sequencing 
-#' issues, cost/budget issues, relevance, instituional or legal arrangments etc. of the study. More information on hte allowed attributes and child nodes can be found below
-#' and in the references
+#' Post Evaluation Procedures describes evaluation procedures not addressed in 
+#' data evaluation processes. These may include issues such as timing of the 
+#' study, sequencing issues, cost/budget issues, relevance, institutional or 
+#' legal arrangements etc. of the study. More information on these elements, 
+#' especially their allowed attributes, can be found in the references. 
+#'
+#' \emph{Parent nodes}
+#' 
+#' `exPostEvaluation` is contained in `stdyInfo`.
+#' 
+#' \emph{exPostEvaluation specific child nodes}
+#' 
+#' * `ddi_evaluationProcess()` describes the evaluation process followed.
+#' 
+#' * `ddi_evaluator()` identifies persons or organizations involved in the 
+#' evaluation. 
+#' 
+#' * `ddi_outcomes()` describes the outcomes of the evaluation.
 #'
 #' @param ... Child nodes or attributes. 
 #' 
@@ -162,16 +197,26 @@ ddi_outcomes <- function(...) {
   )
 }
 
-#' qualityStatement
+#' qualityStatement and its child nodes
 #'
-#' The Quality Statment consists of two parts, standardsCompliance and otherQualityStatements. In standardsCompliance list all specific standards complied with during 
-#' the execution of this study. Note the standard name and producer and how the study complied with the standard. Enter any additional quality statements in 
-#' otherQualityStatements. More information on the allowed attributes for qualityStatement and its child nodes can be found below 
-#' and in the references
+#' The Quality Statement consists of two parts, standardsCompliance and 
+#' otherQualityStatements. In standardsCompliance list all specific standards 
+#' complied with during the execution of this study. Note the standard name and 
+#' producer and how the study complied with the standard. More information on 
+#' these elements, especially their allowed attributes, can be found in the 
+#' references. 
 #'
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' \emph{Parent nodes}
+#' 
+#' `qualiyStatement` is contained in `stdyInfo`.
+#' 
+#' \emph{qualityStatment specific child nodes}
+#' 
+#' * `ddi_otherQualityStatement()` holds additional quality statements. 
 #'
-#' @section Branch node children allowed:
+#' @param ... Child nodes or attributes.
+#'
+#' @section Shared and complex child nodes:
 #' * [ddi_standardsCompliance()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qualityStatement.html}{qualityStatment documentation}
@@ -218,15 +263,25 @@ ddi_otherQualityStatement <- function(...) {
   )
 }
 
-#' standardsCompliance and its leaf node chidlren
+#' standardsCompliance and its child nodes
 #'
-#' The standards compliance section lists all specific standards complied with during the execution of this study. Specify the standard(s)' name(s) and producer(s) and describe how 
-#' the study complied with each standard in complianceDescription. More information can be found below and in the references.
+#' The standards compliance section lists all specific standards complied with 
+#' during the execution of this study.  More information on these elements, 
+#' especially their allowed attributes, can be found in the references. 
 #'
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' \emph{Parent nodes}
+#' 
+#' `standardsCompliance` is contained in `qualityStatement`.
+#' 
+#' \emph{standardsCompliance specific child nodes}
+#' 
+#' * `ddi_complianceDescription` describes how the study complied with each 
+#' standard. 
 #'
-#' @section Branch node children allowed:
-#' *[ddi_standard()]
+#' @param ... Child nodes or attributes.
+#'
+#' @section Shared and complex child nodes:
+#' * [ddi_standard()]
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/standardsCompliance.html}{standardsCompliance documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/complianceDescription.html}{complianceDescription documentation}
@@ -273,15 +328,25 @@ ddi_complianceDescription <- function(...) {
   )
 }
 
-#' standard
+#' standard and its child nodes
 #'
-#' Standard describes a standard with which the study complies. More information on the element, its attributes and its child nodes can be found
-#' below and in the references
+#' Standard describes a standard with which the study complies. More information 
+#' on these elements, especially their allowed attributes, can be found in the 
+#' references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `standard` is contained in `standardsCompliance`.
+#' 
+#' \emph{standard specific child nodes}
+#' 
+#' * `ddi_standardName()` contains the name of the standard with which the 
+#' study complies. 
 #'
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes.
 #'
-#' @section General children allowed:
-#' *[ddi_producer()]
+#' @section Shared and complex child nodes:
+#' * [ddi_producer()]
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/standard.html}{standard documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/standardName.html}{standardName documentation}
@@ -346,11 +411,28 @@ ddi_studyBudget <- function(...) {
   )
 }
 
-#' subject
+#' subject and its child nodes
 #'
-#' Subject describes the data collection's intellectual content. More information on the allowed attributes and child nodes for subject
-#' can be found below and in the references.
+#' Subject describes the data collection's intellectual content. More 
+#' information on these elements, especially their allowed attributes, can be 
+#' found in the references. 
 #'
+#' \emph{Parent nodes}
+#' 
+#' `subject` is contained in `stdyInfo`.
+#' 
+#' \emph{subject specific child nodes}
+#' 
+#' * `ddi_keyword()` are words or phrases that describe salient aspects of a 
+#' data collection's content. Can be used for building keyword indexes and for 
+#' classification and retrieval purposes. A controlled vocabulary can be 
+#' employed. Maps to Dublin Core Subject element. 
+#' 
+#' * `ddi_topcClas()` indicates the broad substantive topic(s) that the data 
+#' cover. Library of Congress subject terms may be used here. Maps to Dublin 
+#' Core Subject element. Inclusion of this element in the codebook is 
+#' recommended.
+#' 
 #' @param ... Child nodes or attributes. 
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/subject.html}{subject documentation}
@@ -418,18 +500,58 @@ ddi_topcClas <- function(...) {
   )
 }
 
-#' sumDscr and its children
+#' sumDscr and its child nodes
 #'
-#' This is the summary data description and it contains information about the geographic coverage of the study and 
-#' unit of analysis.
+#' This is the summary data description and it contains information about the 
+#' geographic coverage of the study and unit of analysis. More information on 
+#' these elements, especially their allowed attributes, can be found in the 
+#' references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `sumDscr` is contained in `stdyInfo`.
+#' 
+#' \emph{sumDscr specific child nodes}
+#' 
+#' * `ddi_anlyUnit()` is the basic unit of analysis or observation that the file 
+#' describes: individuals, families/households, groups, 
+#' institutions/organizations, administrative units, etc. 
+#' 
+#' * `ddi_collDate()` contains the date(s) when the data were collected. Maps to 
+#' Dublin Core Coverage element. Inclusion of this element in the codebook is 
+#' recommended.
+#' 
+#' * `ddi_dataKind()` is the type of data included in the file: survey data, 
+#' census/enumeration data, aggregate data, clinical data, event/transaction 
+#' data, program source code, machine-readable text, administrative records 
+#' data, experimental data, psychological test, textual data, coded textual, 
+#' coded documents, time budget diaries, observation data/ratings, 
+#' process-produced data, etc. This element maps to Dublin Core Type element. 
+#' 
+#' * `ddi_geogCover()` is information on the geographic coverage of the data. 
+#' Includes the total geographic scope of the data, and any additional levels 
+#' of geographic coding provided in the variables. Maps to Dublin Core Coverage 
+#' element. 
+#' 
+#' * `ddi_geogUnit()` is the lowest level of geographic aggregation covered by 
+#' the data.
+#' 
+#' * `ddi_nation()` indicates the country or countries covered in the file. 
+#' Attribute "abbr" may be used to list common abbreviations; use of ISO country 
+#' codes is recommended. Maps to Dublin Core Coverage element. Inclusion of 
+#' this element is recommended.
+#' 
+#' * `ddi_timePrd()` is the time period to which the data refer. This item 
+#' reflects the time period covered by the data, not the dates of coding or 
+#' making documents machine-readable or the dates the data were collected. Also 
+#' known as span. Maps to Dublin Core Coverage element. Inclusion of this 
+#' element is recommended. 
 #'
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' @param ... Child nodes or attributes.
 #'
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes:
 #' * [ddi_boundPoly()]
 #' * [ddi_geoBndBox()]
-#' 
-#' @section General children allowed:
 #' * [ddi_universe()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sumDscr.html}{sumDscr documentation}
@@ -504,30 +626,32 @@ ddi_anlyUnit <- function(...) {
   
 }
 
-#' boundPoly and its leaf node children
+#' boundPoly and its child nodes
 #'
-#' The geographic bounding polygon field allows the creation of multiple polygons to describe in a more detailed manner the geographic area covered by the dataset. It should only 
-#' be used to define the outer boundaries of a covered area. For example, in the United States, such polygons can be created to define boundaries for Hawaii, 
-#' Alaska, and the continental United States, but not interior boundaries for the contiguous states. This field is used to refine a coordinate-based search, 
-#' not to actually map an area.
+#' The geographic bounding polygon field allows the creation of multiple 
+#' polygons to describe in a more detailed manner the geographic area covered 
+#' by the dataset. It should only be used to define the outer boundaries of a 
+#' covered area. For example, in the United States, such polygons can be created 
+#' to define boundaries for Hawaii, Alaska, and the continental United States, 
+#' but not interior boundaries for the contiguous states. This field is used to 
+#' refine a coordinate-based search, not to actually map an area. If the 
+#' boundPoly element is used, then geoBndBox MUST be present, and all points 
+#' enclosed by the boundPoly MUST be contained within the geoBndBox. Elements 
+#' westBL, eastBL, southBL, and northBL of the geoBndBox should each be 
+#' represented in at least one point of the boundPoly description. More 
+#' information on these elements, especially their allowed attributes, can be 
+#' found in the references. 
+#'
+#' \emph{Parent nodes}
 #' 
-#' If the boundPoly element is used, then geoBndBox MUST be present, and all points enclosed by the boundPoly MUST be contained within the geoBndBox. Elements 
-#' westBL, eastBL, southBL, and northBL of the geoBndBox should each be represented in at least one point of the boundPoly description.
+#' `boundPoly` is contained in `sumDscr`.
 #'
 #' @param ... Child nodes or attributes. 
 #'
-#' @section Branch node children:
-#' * [ddi_polygon()] - [ddi_polygon()] has [ddi_point()] as a branch node child
-#'
-#' @section ddi_point leaf nodes:
-#' * [ddi_gringLat()]
-#' * [ddi_gringLon()]
+#' @section Shared and complex child nodes:
+#' * [ddi_polygon()] 
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/boundPoly.html}{boundPoly documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/polygon.html}{polygon documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/point.html}{point documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/gringLat.html}{gringLat documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/gringLon.html}{gringLon documentation}
 #' 
 #' @export
 ddi_boundPoly <- function(...) {
@@ -548,7 +672,24 @@ ddi_boundPoly <- function(...) {
   )
 }
 
-#' @rdname ddi_boundPoly
+#' polygon and its child nodes
+#' 
+#' The minimum polygon that covers a geographical area, and is delimited by at 
+#' least 4 points (3 sides), in which the last point coincides with the first 
+#' point.More information on these elements, especially their allowed 
+#' attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `polygon` is contained in `boundPoly`.
+#' 
+#' @param ... Child nodes or attributes. 
+#'
+#' @section Shared and complex child nodes:
+#' * [ddi_point()] 
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/polygon.html}{polygon documentation}
+#' 
 #' @export
 ddi_polygon <- function(...) {
   components <- dots_to_xml_components(...)
@@ -568,7 +709,30 @@ ddi_polygon <- function(...) {
   )
 }
 
-#' @rdname ddi_boundPoly
+#' point and its child nodes
+#' 
+#' 0-dimensional geometric primitive, representing a position, but not having 
+#' extent. In this declaration, point is limited to a longitude/latitude 
+#' coordinate system.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `point` is contained in `polygon`.
+#' 
+#' \emph{point specific child nodes}
+#' 
+#' * `ddi_gringLat()` is the latitude (y coordinate) of a point. Valid range 
+#' expressed in decimal degrees is as follows: -90,0 to 90,0 degrees (latitude).
+#' 
+#' * `ddi_gringLon()` is the longitude (x coordinate) of a point. Valid range 
+#' expressed in decimal degrees is as follows: -180,0 to 180,0 degrees (longitude).
+#' 
+#' @param ... Child nodes or attributes. 
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/point.html}{point documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/gringLat.html}{gringLat documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/gringLon.html}{gringLon documentation}
+#' 
 #' @export
 ddi_point <- function(...) {
   components <- dots_to_xml_components(...)
@@ -588,7 +752,7 @@ ddi_point <- function(...) {
   )
 }
 
-#' @rdname ddi_boundPoly
+#' @rdname ddi_point
 #' @export
 ddi_gringLat <- function(...) {
   components <- dots_to_xml_components(...)
@@ -608,7 +772,7 @@ ddi_gringLat <- function(...) {
   )
 }
 
-#' @rdname ddi_boundPoly 
+#' @rdname ddi_point 
 #' @export
 ddi_gringLon <- function(...) {
   components <- dots_to_xml_components(...)
@@ -678,12 +842,43 @@ ddi_dataKind<- function(...) {
   
 }
 
-#' geoBndBox and its leaf node children
+#' geoBndBox and its child nodes
 #' 
-#' The fundamental geometric description for any dataset that models geography. GeoBndBox is the minimum box, defined by west and east 
-#' longitudes and north and south latitudes, that includes the largest geographic extent of the dataset's geographic coverage. This 
-#' element is used in the first pass of a coordinate-based search. If the boundPoly element is included, then the geoBndBox element MUST be included.
-#' More informaiton on geoBndBox, its attributes and its children can be found in the references
+#' The fundamental geometric description for any dataset that models geography. 
+#' GeoBndBox is the minimum box, defined by west and east longitudes and north 
+#' and south latitudes, that includes the largest geographic extent of the 
+#' dataset's geographic coverage. This element is used in the first pass of a 
+#' coordinate-based search. If the boundPoly element is included, then the 
+#' geoBndBox element MUST be included. More information on these elements, 
+#' especially their allowed attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `geoBndBox` is contained in `sumDscr`.
+#' 
+#' \emph{geoBndBox specific child nodes}
+#' 
+#' * `ddi_eastBL()` is the easternmost coordinate delimiting the geographic 
+#' extent of the dataset. A valid range of values, expressed in decimal degrees 
+#' (positive east and positive north), is: -180,0 <= East Bounding Longitude 
+#' Value <= 180,0.
+#' 
+#' * `ddi_northBL()` is the northernmost coordinate delimiting the geographic 
+#' extent of the dataset. A valid range of values, expressed in decimal degrees 
+#' (positive east and positive north), is: -90,0 <= North Bounding Latitude 
+#' Value <= 90,0 ; North Bounding Latitude Value >= South Bounding Latitude 
+#' Value.
+#' 
+#' * `ddi_southBL()` is the southernmost coordinate delimiting the geographic 
+#' extent of the dataset. A valid range of values, expressed in decimal degrees 
+#' (positive east and positive north), is: -90,0 <=South Bounding Latitude 
+#' Value <= 90,0 ; South Bounding Latitude Value <= North Bounding Latitude 
+#' Value.
+#' 
+#' * `ddi_westBL()` is the westernmost coordinate delimiting the geographic 
+#' extent of the dataset. A valid range of values, expressed in decimal degrees 
+#' (positive east and positive north), is: -180,0 <=West Bounding Longitude 
+#' Value <= 180,0.
 #' 
 #' @param ... Child nodes or attributes. 
 #' 

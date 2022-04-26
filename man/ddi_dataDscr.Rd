@@ -10,8 +10,25 @@ ddi_dataDscr(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Description of variables within the Codebook.
+Description of variables within the Codebook. More information on this
+element, especially the allowed attributes, can be found in the references.
 }
+\details{
+\emph{Parent node}
+
+\code{dataDscr} is contained in \code{codeBook}.
+}
+\section{Shared and complex child nodes}{
+
+\itemize{
+\item \code{\link[=ddi_nCube]{ddi_nCube()}}
+\item \code{\link[=ddi_nCubeGrp]{ddi_nCubeGrp()}}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
+\item \code{\link[=ddi_var]{ddi_var()}}
+\item \code{\link[=ddi_varGrp]{ddi_varGrp()}}
+}
+}
+
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
 }

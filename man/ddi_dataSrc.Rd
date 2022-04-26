@@ -10,8 +10,16 @@ ddi_dataSrc(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-dataSrc node
+Used to list the book(s), article(s), serial(s), and/or machine-readable
+data file(s)--if any--that served as the source(s) of the data collection.
+More information on this element, especially its allowed attributes, can be
+found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{dataSrc} is contained in the following elements: \code{sources} and \code{resource}.
 }
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc_1.html}{dataSrc documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc.html}{dataSrc documentation}
 }

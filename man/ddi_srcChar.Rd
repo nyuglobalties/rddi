@@ -10,11 +10,16 @@ ddi_srcChar(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Assessment of characteristics and quality of source material. May not be relevant to survey data. This element may be repeated to support multiple
-language expressions of the content.
+Assessment of characteristics and quality of source material. May not be
+relevant to survey data. This element may be repeated to support multiple
+language expressions of the content. More information on this element,
+especially its allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{srcChar} is contained in the following elements: \code{sources} and \code{resource}.
 }
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc.html}{dataSrc documentation when in sources}
-
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc_1.html}{dataSrc documentation when in resources}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcChar.html}{srcChar documentation}
 }

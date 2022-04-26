@@ -7,14 +7,38 @@
 ddi_stdyDscr(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-All DDI codebooks must have a study description which
-contains information about the study overall, including
-a citation to the work(s) referenced in the codebook. At least
-one citation must be present, capturing the whole study.
+All DDI codebooks must have a study description which contains information
+about the study overall. The Study Description consists of information about the data
+collection, study, or compilation that the DDI-compliant documentation file
+describes. This section includes information about how the study should be
+cited, who collected or compiled the data, who distributes the data,
+keywords about the content of the data, summary (abstract) of the content
+of the data, data collection methods and processing, etc. At least
+one citation must be present, capturing the whole study. More information
+on this element, especially the allowed attributes, can be found in the references.
 }
+\details{
+\emph{Parent node}
+
+\code{stdyDscr} is contained in \code{codeBook}.
+}
+\section{Shared and complex child nodes}{
+
+\itemize{
+\item \code{\link[=ddi_citation]{ddi_citation()}}
+\item \code{\link[=ddi_dataAccs]{ddi_dataAccs()}}
+\item \code{\link[=ddi_method]{ddi_method()}}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
+\item \code{\link[=ddi_othrStdyMat]{ddi_othrStdyMat()}}
+\item \code{\link[=ddi_stdyInfo]{ddi_stdyInfo()}}
+\item \code{\link[=ddi_studyAuthorization]{ddi_studyAuthorization()}}
+\item \code{\link[=ddi_studyDevelopment]{ddi_studyDevelopment()}}
+}
+}
+
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyDscr.html}{stdyDscr documentation}
 }

@@ -5,7 +5,7 @@
 \alias{ddi_evaluationProcess}
 \alias{ddi_evaluator}
 \alias{ddi_outcomes}
-\title{exPostEvaluation and its leaf node children}
+\title{exPostEvaluation and its child nodes}
 \usage{
 ddi_exPostEvaluation(...)
 
@@ -19,9 +19,24 @@ ddi_outcomes(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Post Evaluation Procedures describes evaluation procedures not address in data evaluation processes. These may include issues such as timing of the study, sequencing
-issues, cost/budget issues, relevance, instituional or legal arrangments etc. of the study. More information on hte allowed attributes and child nodes can be found below
-and in the references
+Post Evaluation Procedures describes evaluation procedures not addressed in
+data evaluation processes. These may include issues such as timing of the
+study, sequencing issues, cost/budget issues, relevance, institutional or
+legal arrangements etc. of the study. More information on these elements,
+especially their allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{exPostEvaluation} is contained in \code{stdyInfo}.
+
+\emph{exPostEvaluation specific child nodes}
+\itemize{
+\item \code{ddi_evaluationProcess()} describes the evaluation process followed.
+\item \code{ddi_evaluator()} identifies persons or organizations involved in the
+evaluation.
+\item \code{ddi_outcomes()} describes the outcomes of the evaluation.
+}
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/exPostEvaluation.html}{exPostEvaluation documentation}

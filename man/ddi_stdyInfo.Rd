@@ -4,7 +4,7 @@
 \alias{ddi_stdyInfo}
 \alias{ddi_abstract}
 \alias{ddi_studyBudget}
-\title{stdyInfo and its leaf node children}
+\title{stdyInfo and its child nodes}
 \usage{
 ddi_stdyInfo(...)
 
@@ -16,25 +16,41 @@ ddi_studyBudget(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-stdyInfo is the study scope. It contains information about the data collection's scope
-across several dimensions, including substantive content, geography, and time. More information
-on the allowed attributes for stdyINfo and its child nodes can be found below and in the references.
-#'
+stdyInfo is the study scope. It contains information about the data
+collection's scope across several dimensions, including substantive content,
+geography, and time. More information on these elements, especially their
+allowed attributes, can be found in the references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{stdyInfo} is contained in \code{stdyDscr}.
+
+\emph{stdyInfo specific child nodes}
+\itemize{
+\item \code{ddi_abstract()} is an unformatted summary describing the purpose, nature,
+and scope of the data collection, special characteristics of its contents,
+major subject areas covered, and what questions the PIs attempted to answer
+when they conducted the study. A listing of major variables in the study is
+important here. In cases where a codebook contains more than one abstract
+(for example, one might be supplied by the data producer and another
+prepared by the data archive where the data are deposited), the "source"
+and "date" attributes may be used to distinguish the abstract versions. Maps
+to Dublin Core Description element. Inclusion of this element in the
+codebook is recommended. The "date" attribute should follow ISO convention
+of YYYY-MM-DD.
+\item \code{ddi_studyBudget()}is used to describe the budget of the project in as
+much detail as needed.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_exPostEvaluation]{ddi_exPostEvaluation()}}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
 \item \code{\link[=ddi_qualityStatement]{ddi_qualityStatement()}}
 \item \code{\link[=ddi_subject]{ddi_subject()}}
 \item \code{\link[=ddi_sumDscr]{ddi_sumDscr()}}
-}
-}
-
-\section{General children allowed}{
-
-\itemize{
-\item \code{\link[=ddi_notes]{ddi_notes()}}
 }
 }
 

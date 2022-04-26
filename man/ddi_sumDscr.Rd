@@ -9,7 +9,7 @@
 \alias{ddi_geogUnit}
 \alias{ddi_nation}
 \alias{ddi_timePrd}
-\title{sumDscr and its children}
+\title{sumDscr and its child nodes}
 \usage{
 ddi_sumDscr(...)
 
@@ -28,23 +28,55 @@ ddi_nation(...)
 ddi_timePrd(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-This is the summary data description and it contains information about the geographic coverage of the study and
-unit of analysis.
+This is the summary data description and it contains information about the
+geographic coverage of the study and unit of analysis. More information on
+these elements, especially their allowed attributes, can be found in the
+references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{sumDscr} is contained in \code{stdyInfo}.
+
+\emph{sumDscr specific child nodes}
+\itemize{
+\item \code{ddi_anlyUnit()} is the basic unit of analysis or observation that the file
+describes: individuals, families/households, groups,
+institutions/organizations, administrative units, etc.
+\item \code{ddi_collDate()} contains the date(s) when the data were collected. Maps to
+Dublin Core Coverage element. Inclusion of this element in the codebook is
+recommended.
+\item \code{ddi_dataKind()} is the type of data included in the file: survey data,
+census/enumeration data, aggregate data, clinical data, event/transaction
+data, program source code, machine-readable text, administrative records
+data, experimental data, psychological test, textual data, coded textual,
+coded documents, time budget diaries, observation data/ratings,
+process-produced data, etc. This element maps to Dublin Core Type element.
+\item \code{ddi_geogCover()} is information on the geographic coverage of the data.
+Includes the total geographic scope of the data, and any additional levels
+of geographic coding provided in the variables. Maps to Dublin Core Coverage
+element.
+\item \code{ddi_geogUnit()} is the lowest level of geographic aggregation covered by
+the data.
+\item \code{ddi_nation()} indicates the country or countries covered in the file.
+Attribute "abbr" may be used to list common abbreviations; use of ISO country
+codes is recommended. Maps to Dublin Core Coverage element. Inclusion of
+this element is recommended.
+\item \code{ddi_timePrd()} is the time period to which the data refer. This item
+reflects the time period covered by the data, not the dates of coding or
+making documents machine-readable or the dates the data were collected. Also
+known as span. Maps to Dublin Core Coverage element. Inclusion of this
+element is recommended.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_boundPoly]{ddi_boundPoly()}}
 \item \code{\link[=ddi_geoBndBox]{ddi_geoBndBox()}}
-}
-}
-
-\section{General children allowed}{
-
-\itemize{
 \item \code{\link[=ddi_universe]{ddi_universe()}}
 }
 }

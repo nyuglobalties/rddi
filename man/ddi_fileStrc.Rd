@@ -7,22 +7,25 @@
 ddi_fileStrc(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Type of file structure. More information on the allowed attributes
-for fileStrc and its child nodes can be found below and in the references.
+Type of file structure. The file structure is fully described in the first
+\code{fileTxt} within the \code{fileDscr} and then the \code{fileStrc} in subsequent
+\code{fileTxt} descriptions would reference the first fileStrcRef attribute rather
+than repeat the details. More information on these elements, especially
+their allowed attributes, can be found in the references.
 }
 \details{
-#' @section Branch node children allowed:
-\itemize{
-\item \code{\link[=ddi_recGrp]{ddi_recGrp()}}
+\emph{Parent node}
+
+\code{fileStrc} is contained in \code{fileTxt}.
 }
-}
-\section{General children allowed}{
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_notes]{ddi_notes()}}
+\item \code{\link[=ddi_recGrp]{ddi_recGrp()}}
 }
 }
 

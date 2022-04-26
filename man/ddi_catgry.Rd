@@ -5,7 +5,7 @@
 \alias{ddi_catgryGrp}
 \alias{ddi_catStat}
 \alias{ddi_catValu}
-\title{DDI catgry and catgryGrp specification and leaf node children}
+\title{catgry, catgryGrp and their child nodes}
 \usage{
 ddi_catgry(...)
 
@@ -16,41 +16,50 @@ ddi_catStat(...)
 ddi_catValu(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-\code{ddi_catgry()} is a description of a particluar categorical response.
-\code{ddi_catgryGrp()} groups the responses together.
+\code{catgry} is a description of a particular categorical response.
+\code{ddi_catgryGrp()} groups the responses together. More information on these
+elements, especially their allowed attributes, can be found in the references.
 }
-\section{catgry leaf node children allowed}{
+\details{
+\emph{Parent nodes}
 
-catgry accepts the following children as leaf nodes. catgryGrp also accepts catStat.
+\code{catgry} and \code{catgryGrp} is contained in \code{var}.
+
+\emph{catgry and catgryGrp specific child nodes}
 \itemize{
-\item \code{ddi_catStat()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catStat.html}{DDI documentation}
-\item \code{ddi_catValue()} - \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catValu.html}{DDI documentation}
-}
+\item \code{ddi_catStat()} is a category level statistic. May include frequencies,
+percentages, or crosstabulation results. The attribute "type" indicates the
+type of statistics presented - frequency, percent, or crosstabulation. If a
+value of "other" is used for this attribute, the "otherType" attribute should
+take a value from a controlled vocabulary. This option should only be used
+when applying a controlled vocabulary to this attribute. Use the complex
+element controlledVocabUsed to identify the controlled vocabulary to which
+the selected term belongs.
 }
 
-\section{Branch node children allowed}{
+\emph{catgry specific child nodes}
+\itemize{
+\item \code{ddi_catValue()} is the category value.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
-\item \code{ddi_mrow()}
+\item \code{\link[=ddi_labl]{ddi_labl()}}
+\item \code{\link[=ddi_mrow]{ddi_mrow()}}
+\item \code{\link[=ddi_txt]{ddi_txt()}}
 }
 }
 
-\section{General children allowed}{
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}{catgry documentation}
 
-\itemize{
-\item \code{ddi_labl()}
-\item \code{ddi_txt()}
-}
-}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgryGrp.html}{catgryGrp documentation}
 
-\section{DDI 2.5 Documentation}{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catStat.html}{catStat documentation}
 
-\itemize{
-\item \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}{catgry documentation}
-\item \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgryGrp.html}{catgryGrp documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catValu.html}{catValu documentation}
 }
-}
-

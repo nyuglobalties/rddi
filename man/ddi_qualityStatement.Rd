@@ -3,22 +3,34 @@
 \name{ddi_qualityStatement}
 \alias{ddi_qualityStatement}
 \alias{ddi_otherQualityStatement}
-\title{qualityStatement}
+\title{qualityStatement and its child nodes}
 \usage{
 ddi_qualityStatement(...)
 
 ddi_otherQualityStatement(...)
 }
 \arguments{
-\item{...}{Child nodes or attributes. To set a DDI ID, use \code{id_object} in any \code{ddi_} function to assign the identifier.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-The Quality Statment consists of two parts, standardsCompliance and otherQualityStatements. In standardsCompliance list all specific standards complied with during
-the execution of this study. Note the standard name and producer and how the study complied with the standard. Enter any additional quality statements in
-otherQualityStatements. More information on the allowed attributes for qualityStatement and its child nodes can be found below
-and in the references
+The Quality Statement consists of two parts, standardsCompliance and
+otherQualityStatements. In standardsCompliance list all specific standards
+complied with during the execution of this study. Note the standard name and
+producer and how the study complied with the standard. More information on
+these elements, especially their allowed attributes, can be found in the
+references.
 }
-\section{Branch node children allowed}{
+\details{
+\emph{Parent nodes}
+
+\code{qualiyStatement} is contained in \code{stdyInfo}.
+
+\emph{qualityStatment specific child nodes}
+\itemize{
+\item \code{ddi_otherQualityStatement()} holds additional quality statements.
+}
+}
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_standardsCompliance]{ddi_standardsCompliance()}}

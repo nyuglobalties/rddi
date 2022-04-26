@@ -7,26 +7,26 @@
 ddi_recGrp(...)
 }
 \arguments{
-\item{...}{Any parameters from the DDI Codebook 2.5 schema.}
+\item{...}{Child nodes or attributes.}
 }
 \description{
 Used to describe record groupings if the file is hierarchical or relational.
-More information on the allowed attributes for fileStrc and its child nodes
-can be found below and in the references.
+More information on these elements, especially their allowed attributes,
+can be found in the references.
 }
 \details{
-#' @section Branch node children allowed:
-\itemize{
-\item \code{\link[=ddi_recDimnsn]{ddi_recDimnsn()}}
+\emph{Parent nodes}
+
+\code{recGrp} is contained in \code{fileStrc}.
 }
-}
-\section{General children allowed}{
+\section{Shared and complex child nodes}{
 
 \itemize{
 \item \code{\link[=ddi_labl]{ddi_labl()}}
+\item \code{\link[=ddi_recDimnsn]{ddi_recDimnsn()}}
 }
 }
 
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileStrc.html}{fileStrc documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/recGrp.html}{recGrp documentation}
 }

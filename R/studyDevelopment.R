@@ -1,19 +1,20 @@
-#' studyDevelopment and developmentActivity
+#' studyDevelopment and its child nodes
 #' 
-#' studyDevelopment is the parent node of developmentActivity. It describes the process of study development as a series of development activities. 
-#' These activities can be typed using a controlled vocabulary that describes the activity, #' listing participants with their role and affiliation, 
-#' resources used (sources of information), and the outcome of the development activity. For more information on both elements and the child nodes of 
-#' developmentActivity see the resources.
+#' Describe the process of study development as a series of development 
+#' activities. These activities can be typed using a controlled vocabulary.  
+#' More information on these elements, especially their allowed 
+#' attributes, can be found in the references. 
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' \emph{Parent nodes}
+#' 
+#' `studyDevelopment` is contained in `stdyDscr`.
+#' 
+#' @section Shared and complex child nodes:
+#' * [ddi_developmentActivity()] 
+#' 
+#' @param ... Child nodes or attributes. 
 #'
-#' @section DDI Codebook 2.5 Documentation:
-#'
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyDevelopment.html}
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/developmentActivity.html}
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/description.html}
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/participant.html}
-#' url{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/outcome.html}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyDevelopment.html}{studyDevelopment documentation}
 #' 
 #' @export
 ddi_studyDevelopment <- function(...) {
@@ -37,7 +38,35 @@ ddi_studyDevelopment <- function(...) {
   )   
 }
 
-#' @rdname ddi_studyDevelopment 
+#' developmentActivity and its child nodes
+#' 
+#' Describe the activity, listing participants with their role and affiliation, 
+#' resources used (sources of information), and the outcome of the development 
+#' activity.
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `developmentActivity` is contained in `studyDevelopment`.
+#' 
+#' \emph{developmentActivity specific child nodes}
+#' 
+#' * `ddi_description()` describes the development activity.
+#' 
+#' * `ddi_outcome()` describes the outcome of the development activity.
+#' 
+#' * `ddi_participant()` lists teh participants conducting or designing the 
+#' development activity.
+#'
+#' @section Shared and complex child nodes:
+#' * [ddi_resource()] 
+#' 
+#' @param ... Child nodes or attributes. 
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/developmentActivity.html}{developmentActivity documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/description.html}{description documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/outcome.html}{outcome documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/participant.html}{participant documentation}
+#' 
 #' @export
 ddi_developmentActivity <- function(...) {
   components <- dots_to_xml_components(...)
@@ -64,7 +93,7 @@ ddi_developmentActivity <- function(...) {
   )    
 }
 
-#' @rdname ddi_studyDevelopment
+#' @rdname ddi_developmentActivity
 #' @export
 ddi_description <- function(...) {
   components <- dots_to_xml_components(...)
@@ -82,7 +111,25 @@ ddi_description <- function(...) {
   )   
 }
 
-#' @rdname ddi_studyDevelopment
+#' @rdname ddi_developmentActivity
+#' @export
+ddi_outcome <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "outcome")
+  }
+  
+  build_leaf_node(
+    "outcome",
+    attribs = attribs,
+    content = components$content
+  )   
+}
+
+#' @rdname ddi_developmentActivity
 #' @export
 ddi_participant <- function(...) {
   components <- dots_to_xml_components(...)
@@ -101,31 +148,20 @@ ddi_participant <- function(...) {
   )   
 }
 
-#' @rdname ddi_studyDevelopment
-#' @export
-ddi_outcome <- function(...) {
-  components <- dots_to_xml_components(...)
-  attribs <- components$attribs
-
-  if(!is.null(attribs)) {
-    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
-    attribs <- validate_attributes(attribs, allowed_attribs, "outcome")
-  }
-
-  build_leaf_node(
-    "outcome",
-    attribs = attribs,
-    content = components$content
-  )   
-}
-
-#' resource
+#' resource and its child nodes
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' Resources used in the development of the activity. More information on these 
+#' elements, especially their allowed attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `resource` is contained in `developmentActivity`.
+#' 
+#' @param ... Child nodes or attributes.
 #'
-#' @section General children allowed:
+#' @section Shared and complex child nodes:
 #' * [ddi_dataSrc()]
-#' * [ddi_srcOrig()]
+#' * [ddi_srcChar()]
 #' * [ddi_srcDocu()]
 #' * [ddi_srcOrig()]
 #'

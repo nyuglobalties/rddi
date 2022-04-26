@@ -16,8 +16,22 @@ ddi_sampleSizeFormula(...)
 \item{...}{Child nodes or attributes.}
 }
 \description{
-Provides both the target size of the sample (this is the number in the original sample, not the number of respondents) as well as the formula used for determining the sample size.
-More information on the allowed attributes and children can be found in the references
+Provides both the target size of the sample (this is the number in the
+original sample, not the number of respondents) as well as the formula used
+for determining the sample size. More information on these elements,
+especially their allowed attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{targetSampleSize} is contained in \code{dataColl}.
+
+\emph{targetSampleSize specific child nodes}
+\itemize{
+\item \code{ddi_sampleSize()} provides the targeted sample size in integer format.
+\item \code{ddi_sampleSizeFormula()} includes the formula that was used to determine
+the sample size.
+}
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/targetSampleSize.html}{targetSampleSize documentation}

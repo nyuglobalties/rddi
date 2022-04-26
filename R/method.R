@@ -1,17 +1,33 @@
 #' method and its child nodes
 #' 
-#' This section describes the methodology and processing involved in a data collection. More information on allowed attributes and
-#' child nodes can be found below and in hte references.
+#' This section describes the methodology and processing involved in a data 
+#' collection. More information on these elements, especially their allowed 
+#' attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `method` is contained in `stdyDscr`.
+#' 
+#' \emph{method specific child nodes}
+#' 
+#' * `ddi_dataProcessing()` describes various data processing procedures not 
+#' captured elsewhere in the documentation, such as topcoding, recoding, 
+#' suppression, tabulation, etc. The "type" attribute supports better 
+#' classification of this activity, including the optional use of a controlled 
+#' vocabulary.
+#' 
+#' * `ddi_stdyClas()` is generally used to give the data archive's class or 
+#' study status number, which indicates the processing status of the study. May 
+#' also be used as a text field to describe processing status. This element may 
+#' be repeated to support multiple language expressions of the content.
 #' 
 #' @param ... Child nodes or attributes. 
 #'
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes:
 #' * [ddi_anlyInfo()]
 #' * [ddi_codingInstructions()]
 #' * [ddi_dataColl()]
-#' 
-#' @section General children allowed:
-#' * `ddi_notes()` 
+#' * [ddi_notes()] 
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/method.html}{method documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataProcessing.html}{dataProcessing documentation}
@@ -49,12 +65,75 @@ ddi_method <- function(...) {
 
 #' dataColl and its children
 #' 
-#' Information about the data collection methodology employed in the codebook. More information on dataColl, its attributes, and 
-#' its allowed children can be found below and in the references.
+#' Information about the data collection methodology employed in the codebook. 
+#' More information on these elements, especially their allowed attributes, can 
+#' be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `dataColl` is contained in `method`.
+#' 
+#'  \emph{dataColl specific child nodes}
+#'  
+#'  * `ddi_actMin()`is the summary of actions taken to minimize data loss. 
+#'  Includes information on actions such as follow-up visits, supervisory 
+#'  checks, historical matching, estimation, etc.
+#'  
+#'  * `ddi_cleanOps()` are the methods used to "clean" the data collection, 
+#'  e.g., consistency checking, wild code checking, etc. The "agency" attribute 
+#'  permits specification of the agency doing the data cleaning.
+#'  
+#'  * `ddi_collectorTraining()` describes the training provided to data 
+#'  collectors including interviewer training, process testing, compliance with 
+#'  standards etc. This is repeatable for language and to capture different 
+#'  aspects of the training process. The type attribute allows specification of 
+#'  the type of training being described.
+#'  
+#'  * `ddi_collMode()` is the method used to collect the data; instrumentation 
+#'  characteristics.
+#'  
+#'  * `ddi_collSitu()` is the description of noteworthy aspects of the data 
+#'  collection situation. Includes information on factors such as 
+#'  cooperativeness of respondents, duration of interviews, number of 
+#'  call-backs, etc.
+#'  
+#'  * `ddi_ConOps()` are control operations. These are methods to facilitate 
+#'  data control performed by the primary investigator or by the data archive. 
+#'  Specify any special programs used for such operations. The "agency" 
+#'  attribute maybe used to refer to the agency that performed the control 
+#'  operation.
+#'  
+#'  * `ddi_dataCollector()` is the entity (individual, agency, or institution) 
+#'  responsible for administering the questionnaire or interview or compiling 
+#'  the data. This refers to the entity collecting the data, not to the entity 
+#'  producing the documentation. 
+#'  
+#'  * `ddi_deviat()` are major deviations from the sample design. This is 
+#'  information indicating correspondence as well as discrepancies between the 
+#'  sampled units (obtained) and available statistics for the population (age, 
+#'  sex-ratio, marital status, etc.) as a whole. 
+#'  
+#'  * `ddi_frequenc()` is the frequency of data collection. It's for data 
+#'  collected at more than one point in time.
+#'  
+#'  * `ddi_instrumentDevelopment()` describes any development work on the data 
+#'  collection instrument. 
+#'  
+#'  * `ddi_resInstru()` is the type of data collection instrument used.
+#'  
+#'  * `ddi_sampProc()` is the type of sample and sample design used to select 
+#'  the survey respondents to represent the population. May include reference 
+#'  to the target sample size and the sampling fraction.
+#'  
+#'  * `ddi_weight()` defines the weights used to produce accurate statistical 
+#'  results within the sampling procedures. Describe here the criteria for 
+#'  using weights in analysis of a collection. If a weighting formula or 
+#'  coefficient was developed, provide this formula, define its elements, and 
+#'  indicate how the formula is applied to data. 
 #' 
 #' @param ... Child nodes or attributes. 
 #' 
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes:
 #' * [ddi_sampleFrame()]
 #' * [ddi_sources()]
 #' * [ddi_targetSampleSize()]
@@ -417,27 +496,46 @@ ddi_weight <- function(...) {
 
 #' sampleFrame and its children
 #' 
-#' Sample frame describes the sampling frame used for identifying the population from which the sample was taken. 
-#' More information on sampleFrame, its leaf and branch nodes, and their attributes can be found below and in the 
-#' references.
+#' Sample frame describes the sampling frame used for identifying the population 
+#' from which the sample was taken. More information on these elements, 
+#' especially their allowed attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `sampleFrame` is contained in `dataColl`.
+#' 
+#' \emph{sampleFrame specific child nodes}
+#' 
+#' * `ddi_custodian()` identifies the agency or individual who is responsible 
+#' for creating or maintaining the sample frame.
+#' 
+#' * `ddi_referencePeriod()` indicates the period of time in which the sampling 
+#' frame was actually used for the study in question. Use ISO 8601 date/time 
+#' formats to enter the relevant date(s).
+#' 
+#' * `ddi_sampleFrameName()` is the name of the sample frame.
+#' 
+#' * `ddi_updateProcedure()` is the description of how and with what frequency 
+#' the sample frame is updated.
+#' 
+#' * `ddi_validPeriod()` defines a time period for the validity of the sampling 
+#' frame. Enter dates in YYYY-MM-DD format.
 #' 
 #' @param ... Child nodes or attributes. 
 #'
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes:
 #' * [ddi_frameUnit()]
-#' 
-#' @section General children allowed:
-#' * `ddi_labl()`
-#' * `ddi_txt()`
-#' * `ddi_universe()`
-#' * `ddi_useStmt()` 
+#' * [ddi_labl()]
+#' * [ddi_txt()]
+#' * [ddi_universe()]
+#' * [ddi_useStmt()] 
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleFrame.html}{sampleFrame documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/custodian.html}{custodian documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/referencePeriod.html}{referencePeriod documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleFrameName.html}{sampleFrameName documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/updateProcedure.html}{updateProcedure documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/referencePeriod.html}{referencePeriod documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/validPeriod.html}{validPeriod documentation}
 #' 
 #' @export
 ddi_sampleFrame <- function(...) {
@@ -571,13 +669,23 @@ ddi_validPeriod <- function(...) {
 
 #' frameUnit and its children
 #' 
-#' Provides information about the sampling frame unit. More information on frameUnit, its children nodes, and attributes can be found
-#' below and in the references
+#' Provides information about the sampling frame unit. More information on 
+#' these elements, especially their allowed attributes, can be found in the 
+#' references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `frameUnit` is contained in `sampleFrame`.
+#' 
+#' \emph{frameUnit specific child nodes}
+#' 
+#' * `ddi_unitType()` describes the type of sampling frame unit. The attribute 
+#' "numberOfUnits" provides the number of units in the sampling frame.
 #' 
 #' @param ... Child nodes or attributes. 
 #'
-#' @section General children allowed:
-#' * `ddi_txt()`
+#' @section Shared and complex child nodes:
+#' * [ddi_txt()]
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/frameUnit.html}{frameUnit documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/unitType.html}{unitType documentation}
@@ -628,8 +736,21 @@ ddi_unitType <- function(...) {
 
 #' targetSampleSize and its children nodes
 #' 
-#' Provides both the target size of the sample (this is the number in the original sample, not the number of respondents) as well as the formula used for determining the sample size.
-#' More information on the allowed attributes and children can be found in the references
+#' Provides both the target size of the sample (this is the number in the 
+#' original sample, not the number of respondents) as well as the formula used 
+#' for determining the sample size. More information on these elements, 
+#' especially their allowed attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `targetSampleSize` is contained in `dataColl`.
+#' 
+#' \emph{targetSampleSize specific child nodes}
+#' 
+#' * `ddi_sampleSize()` provides the targeted sample size in integer format.
+#' 
+#' * `ddi_sampleSizeFormula()` includes the formula that was used to determine 
+#' the sample size.
 #' 
 #' @param ... Child nodes or attributes. 
 #'
@@ -702,21 +823,27 @@ ddi_sampleSizeFormula <- function(...) {
   )
 }
 
-#' Sources Statement
+#' sources and its child nodes
 #' 
-#' Description of sources used for the data collection. The element is nestable so that the sources statement might encompass a series of discrete source 
-#' statements, each of which could contain the facts about an individual source. This element maps to Dublin Core Source element.
+#' Description of sources used for the data collection. The element is nestable 
+#' so that the sources statement might encompass a series of discrete source 
+#' statements, each of which could contain the facts about an individual source. 
+#' This element maps to Dublin Core Source element. More information on this 
+#' element, especially its allowed attributes, can be found in the references.
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' \emph{Parent nodes}
+#' 
+#' `sources` is contained in the following elements: `dataColl` and `sources`.
+#' 
+#' @param ... Child nodes or attributes.
 #'
-#' @section Branch node children allowed:
+#' @section Shared and complex child nodes:
+#' * [ddi_dataSrc()]
 #' * [ddi_sourceCitation()]
-#' 
-#' @section General children allowed:
-#' * `ddi_dataSrc()`
-#' * `ddi_srcOrig()` 
-#' * `ddi_srcChar()` 
-#' * `ddi_srcDocu()`
+#' * [ddi_sources()]
+#' * [ddi_srcChar()] 
+#' * [ddi_srcDocu()]
+#' * [ddi_srcOrig()] 
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sources.html}{sources documentation}
 #' 
@@ -752,7 +879,27 @@ ddi_sources <- function(...) {
 #' 
 #' Information on data appraisal.
 #' 
-#' @param ... Child nodes or attributes. To set a DDI ID, use `id_object` in any `ddi_` function to assign the identifier.
+#' \emph{Parent nodes}
+#' 
+#' `anlyInfo` is contained in `method`.
+#' 
+#' \emph{anlyInfo specific child nodes}
+#' 
+#' * `ddi_dataAppr()` are other issues pertaining to data appraisal. Describe 
+#' here issues such as response variance, nonresponse rate and testing for bias, 
+#' interviewer and response bias, confidence levels, question bias, etc. 
+#' Attribute type allows for optional typing of data appraisal processes and 
+#' option for controlled vocabulary.
+#' 
+#' * `ddi_EstSmpErr()` are estimates of sampling error. This element is a 
+#' measure of how precisely one can estimate a population value from a given 
+#' sample.
+#' 
+#' * `ddi_respRate()` is the response rate. The percentage of sample members 
+#' who provided information. This may include a broader description of 
+#' stratified response rates, information affecting resonse rates etc.
+#' 
+#' @param ... Child nodes or attributes.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlyInfo.html}{anylInfo documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataAppr.html}{dataAppr documentation}
@@ -840,13 +987,26 @@ ddi_respRate <- function(...) {
 
 #' codingInstructions and its child nodes
 #' 
-#' Describe specific coding instructions used in data processing, cleaning, assession, or tabulation. 
-#' More information on codingInstructions allowed attributes and children can be found below and in the references.
+#' Describe specific coding instructions used in data processing, cleaning, 
+#' assession, or tabulation. Element relatedProcesses allows linking a coding 
+#' instruction to one or more processes such as dataProcessing, dataAppr, 
+#' cleanOps, etc. Use the txt element to describe instructions in a human 
+#' readable form. More information on these elements, especially their allowed 
+#' attributes, can be found in the references. 
+#' 
+#' \emph{Parent nodes}
+#' 
+#' `codingInstructions` is contained in `method`.
+#' 
+#' \emph{codingInstructions specific child nodes}
+#' 
+#' * `ddi_command()` provides command code for the coding instruction. The 
+#' formalLanguage attribute identifies the language of the command code.
 #' 
 #' @param ... Child nodes or attributes. 
 #'
-#' @section General children allowed:
-#' * `ddi_txt()`
+#' @section Shared and complex child nodes:
+#' * [ddi_txt()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codingInstructions.html}{codingInstructions documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/command.html}{command documentation}
