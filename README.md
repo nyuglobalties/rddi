@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/nyuglobalties/rddi/workflows/R-CMD-check/badge.svg)](https://github.com/nyuglobalties/rddi/actions)
 <!-- badges: end -->
 
 This developer-focused package provides R representations of [DDI
@@ -20,63 +21,55 @@ missing elements of the schema.
 rddi is not yet on CRAN, so please download the development version
 with:
 
-``` r
-# install.packages("devtools")
-devtools::install_github("Global-TIES-for-Children/rddi")
-```
+    # install.packages("devtools")
+    devtools::install_github("nyuglobalties/rddi")
 
 ## Example
 
 Building components is quick and simple:
 
-``` r
-library(rddi)
-library(magrittr)
+    library(rddi)
+    library(magrittr)
 
-main_citation <- ddi_citation(ddi_titlStmt(ddi_titl("Study Title")))
+    main_citation <- ddi_citation(ddi_titlStmt(ddi_titl("Study Title")))
 
-ddi_codeBook(ddi_stdyDscr(main_citation)) %>% 
-  as_xml_string() %>% 
-  cat()
-#> <?xml version="1.0" encoding="UTF-8"?>
-#> <codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
-#>   <stdyDscr>
-#>     <citation>
-#>       <titlStmt>
-#>         <titl>Study Title</titl>
-#>       </titlStmt>
-#>     </citation>
-#>   </stdyDscr>
-#> </codeBook>
-```
+    ddi_codeBook(ddi_stdyDscr(main_citation)) %>%
+      as_xml_string() %>%
+      cat()
+    #> <?xml version="1.0" encoding="UTF-8"?>
+    #> <codeBook xmlns="ddi:codebook:2_5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://www.ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/codebook.xsd">
+    #>   <stdyDscr>
+    #>     <citation>
+    #>       <titlStmt>
+    #>         <titl>Study Title</titl>
+    #>       </titlStmt>
+    #>     </citation>
+    #>   </stdyDscr>
+    #> </codeBook>
 
 Assert expected or required elements:
 
-``` r
-tryCatch(
-  ddi_codeBook(),
-  error = function(e) {
-    print(e$message)
-  }
-)
-#> No children specified when some are required: [stdyDscr]
+    tryCatch(
+      ddi_codeBook(),
+      error = function(e) {
+        print(e$message)
+      }
+    )
+    #> No children specified when some are required: [stdyDscr]
 
-tryCatch(
-  ddi_citation(ddi_titlStmt(ddi_titl("Oops")), ddi_dataDscr()),
-  error = function(e) {
-    print(e$message)
-  }
-)
-#> 'dataDscr' is not an acceptable child element for citation.
-#> These are the allowed children: [titlStmt, biblCit]
-```
+    tryCatch(
+      ddi_citation(ddi_titlStmt(ddi_titl("Oops")), ddi_dataDscr()),
+      error = function(e) {
+        print(e$message)
+      }
+    )
+    #> 'dataDscr' is not an acceptable child element for citation.
+    #> These are the allowed children: [titlStmt, rspStmt, prodStmt, distStmt, serStmt, verStmt, biblCit, holdings, notes]
 
 Validate your work against the DDI Codebook 2.5 schema:
 
-``` r
-ddi_codeBook(ddi_stdyDscr(main_citation)) %>% 
-  validate_codebook()
-#> [1] TRUE
-#> attr(,"errors")
-#> character(0)
-```
+    ddi_codeBook(ddi_stdyDscr(main_citation)) %>%
+      validate_codebook()
+    #> [1] TRUE
+    #> attr(,"errors")
+    #> character(0)

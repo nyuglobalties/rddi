@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # rddi
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/nyuglobalties/rddi/workflows/R-CMD-check/badge.svg)](https://github.com/nyuglobalties/rddi/actions)
 <!-- badges: end -->
 
 This developer-focused package provides R representations of [DDI Codebook 2.5](https://ddialliance.org/Specification/DDI-Codebook/2.5/) elements to safely construct fully-validated XML while still being flexible. There are 351 elements in the codebook schema, and while it is the intention of the package to ultimately cover most (if not all) of these, rddi also provides safe node creation tools to quickly create missing elements of the schema.
@@ -26,7 +27,7 @@ rddi is not yet on CRAN, so please download the development version with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("Global-TIES-for-Children/rddi")
+devtools::install_github("nyuglobalties/rddi")
 ```
 ## Example
 
@@ -38,8 +39,8 @@ library(magrittr)
 
 main_citation <- ddi_citation(ddi_titlStmt(ddi_titl("Study Title")))
 
-ddi_codeBook(ddi_stdyDscr(main_citation)) %>% 
-  as_xml_string() %>% 
+ddi_codeBook(ddi_stdyDscr(main_citation)) %>%
+  as_xml_string() %>%
   cat()
 ```
 
@@ -64,7 +65,7 @@ tryCatch(
 Validate your work against the DDI Codebook 2.5 schema:
 
 ```{r example3}
-ddi_codeBook(ddi_stdyDscr(main_citation)) %>% 
+ddi_codeBook(ddi_stdyDscr(main_citation)) %>%
   validate_codebook()
 ```
 

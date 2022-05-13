@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Rproj.user
+.Renviron
 README.html
 inst/doc
 /doc/

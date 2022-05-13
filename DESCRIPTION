@@ -5,15 +5,21 @@ Authors@R:
     c(person(
             given = "Patrick", 
             family = "Anker", 
-            role = c("aut", "cre"),
+            role = "aut",
             email = "psanker@nyu.edu",
-            comment = c(ORCID = "0000-0003-2302-0445")), 
+            comment = c(ORCID = "0000-0003-2302-0445")),
+        person(
+            given = "Daniel",
+            family = "Woulfin",
+            role = c("aut", "cre"),
+            email = "dw2896@nyu.edu",
+            comment = c(ORCID = "0000-0001-5502-9861")),
         person(
             given = "Global TIES for Children", 
             role = "cph",
-            comment = "https://research.steinhardt.nyu.edu/ihdsc/global-ties"))
+            comment = "https://steinhardt.nyu.edu/ihdsc/global-ties"))
 Description: A direct interface to the underlying XML representation of DDI Codebook 2.5 with flexible API creation.
-Depends: R (>= 3.1.0)
+Depends: R (>= 3.4.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -23,7 +29,8 @@ Suggests:
     testthat,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    magrittr
 Imports: 
     rlang,
     glue,
