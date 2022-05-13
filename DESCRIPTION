@@ -36,3 +36,5 @@ Imports:
     glue,
     xml2
 VignetteBuilder: knitr
+Config/Needs/readme:
+    rmarkdown
