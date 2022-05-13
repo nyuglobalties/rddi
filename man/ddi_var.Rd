@@ -3,38 +3,124 @@
 \name{ddi_var}
 \alias{ddi_var}
 \alias{ddi_catLevel}
-\alias{ddi_catgry}
-\alias{ddi_catValu}
-\title{DDI variable specification}
+\alias{ddi_codInstr}
+\alias{ddi_geomap}
+\alias{ddi_qstn}
+\alias{ddi_stdCatgry}
+\alias{ddi_sumStat}
+\alias{ddi_TotlResp}
+\alias{ddi_undocCod}
+\alias{ddi_varFormat}
+\title{var and its child nodes}
 \usage{
-ddi_var(varname, database_id = NULL, discrete = TRUE, ...)
+ddi_var(varname, ...)
 
-ddi_catLevel(level_name, ...)
+ddi_catLevel(...)
 
-ddi_catgry(..., missing = FALSE)
+ddi_codInstr(...)
 
-ddi_catgry(..., missing = FALSE)
+ddi_geomap(...)
 
-ddi_catValu(value)
+ddi_qstn(...)
+
+ddi_stdCatgry(...)
+
+ddi_sumStat(...)
+
+ddi_TotlResp(...)
+
+ddi_undocCod(...)
+
+ddi_varFormat(...)
 }
 \arguments{
-\item{varname}{The variable name}
+\item{varname}{The variable name.}
 
-\item{database_id}{An ID to the database origin; useful if multiple datasets are described in a codebook}
-
-\item{discrete}{If a variable has discrete or continuous values. Default to \code{TRUE}}
-
-\item{...}{Any other parameters from the DDI Codebook 2.5 schema}
-
-\item{level_name}{A category level name for hierarchical categorical variables (e.g. ordered categories)}
-
-\item{missing}{If a category represents a missing response}
-
-\item{value}{The representation of the category in the data for \code{ddi_catValu()}}
+\item{...}{Child nodes or attributes.}
 }
 \description{
-Variables are specified with the var tag, which has a litany of
-attributes. The basic necessities of a variable, however, are given by its name, and type.
-If the variable is categorical, then the variable will have as many
-catgry (\code{ddi_catgry()}) entries as category levels. Missingness codes are specified in \code{ddi_catgry()}.
+This element describes all of the features of a single variable in a social
+science data file. The following elements are repeatable to support
+multi-language content: anlysUnit, embargo, imputation, respUnit, security,
+TotlResp. More information on these elements, especially their allowed
+attributes, can be found in the references.
+}
+\details{
+\emph{Parent nodes}
+
+\code{var} is contained in \code{dataDscr}.
+
+\emph{var specific child nodes}
+\itemize{
+\item \code{ddi_catLevel()} is used to describe the levels of the category hierarchy.
+\item \code{ddi_codInstr()} are coder instructions. These are any special instructions
+to those who converted information from one form to another for a particular
+variable. This might include the reordering of numeric information into
+another form or the conversion of textual information into numeric information.
+\item \code{ddi_geomap()} is a geographic map. This element is used to point, using a
+"URI" attribute, to an external map that displays the geography in question.
+\item \code{ddi_qstn()} is the question asked. The element may have mixed content. The
+element itself may contain text for the question, with the subelements being
+used to provide further information about the question. Alternatively, the
+question element may be empty and only the subelements used. The element has
+a unique question ID attribute which can be used to link a variable with
+other variables where the same question has been asked. This would allow
+searching for all variables that share the same question ID, perhaps because
+the questions was asked several times in a panel design.
+\item \code{ddi_stdCatgry()} are standard category codes used in the variable, like
+industry codes, employment codes, or social class codes.
+\item \code{ddi_sumStat()} is one or more statistical measures that describe the
+responses to a particular variable and may include one or more standard
+summaries, e.g., minimum and maximum values, median, mode, etc.
+\item \code{ddi_TotlResp()} are the number of responses to this variable. This element
+might be used if the number of responses does not match added case counts.
+It may also be used to sum the frequencies for variable categories.
+\item \code{ddi_undocCod()} is the list of undocumented codes where the meaning of the
+values are unknown.
+\item \code{ddi_varFormat()} is the technical format of the variable in question.
+}
+}
+\section{Shared and complex child nodes}{
+
+\itemize{
+\item \code{\link[=ddi_anlysUnit]{ddi_anlysUnit()}}
+\item \code{\link[=ddi_catgry]{ddi_catgry()}}
+\item \code{\link[=ddi_catgryGrp]{ddi_catgryGrp()}}
+\item \code{\link[=ddi_concept]{ddi_concept()}}
+\item \code{\link[=ddi_derivation]{ddi_derivation()}}
+\item \code{\link[=ddi_embargo]{ddi_embargo()}}
+\item \code{\link[=ddi_imputation]{ddi_imputation()}}
+\item \code{\link[=ddi_invalrng]{ddi_invalrng()}}
+\item \code{\link[=ddi_labl]{ddi_labl()}}
+\item \code{\link[=ddi_location]{ddi_location()}}
+\item \code{\link[=ddi_notes]{ddi_notes()}}
+\item \code{\link[=ddi_respUnit]{ddi_respUnit()}}
+\item \code{\link[=ddi_security]{ddi_security()}}
+\item \code{\link[=ddi_txt]{ddi_txt()}}
+\item \code{\link[=ddi_universe]{ddi_universe()}}
+\item \code{\link[=ddi_valrng]{ddi_valrng()}}
+\item \code{\link[=ddi_verStmt]{ddi_verStmt()}}
+}
+}
+
+\references{
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/var.html}{var documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catLevel.html}{catLevel documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codInstr.html}{codInstr documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoMap.html}{geomap documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstn.html}{qstn documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdCatgry.html}{stdCatgry documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sumStat.html}{sumStat documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/TotlResp.html}{TotlResp documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/undocCod.html}{undocCod documentation}
+
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varFormat.html}{varFormat documentation}
 }

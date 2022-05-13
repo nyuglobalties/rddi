@@ -3,3 +3,6 @@
 .RData
 .Rproj.user
 README.html
+inst/doc
+/doc/
+/Meta/

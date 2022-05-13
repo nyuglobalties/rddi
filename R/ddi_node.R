@@ -99,7 +99,7 @@ add_ddi_class <- function(node, root = FALSE) {
 #'
 #' @rdname build_node
 #'
-#' @export
+#' @noRd
 build_branch_node <- function(tagname,
                               allowed_children = NULL,
                               required_children = NULL,
@@ -221,7 +221,7 @@ check_required_content.ddi_unwrapped <- function(content, parent, required, ...)
 }
 
 #' @rdname build_node
-#' @export
+#' @noRd
 build_leaf_node <- function(tagname,
                             content = NULL,
                             attribs = NULL,
@@ -245,7 +245,7 @@ build_leaf_node <- function(tagname,
 }
 
 #' @rdname build_node
-#' @export
+#' @noRd
 simple_leaf_node <- function(tagname) {
   function(...) {
     components <- dots_to_xml_components(...)

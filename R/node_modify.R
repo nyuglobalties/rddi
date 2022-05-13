@@ -37,7 +37,7 @@ add_child_node <- function(.node, .child, .allowed_children, ...) {
   if (is.null(.node$content)) {
     .node$content <- list(.child)
   } else {
-    .node$content <- c(.node$content, .child)
+    .node$content <- append(.node$content, list(.child))
   }
 
   .node

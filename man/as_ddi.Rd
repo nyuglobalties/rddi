@@ -7,12 +7,12 @@
 as_ddi(x, ...)
 }
 \arguments{
-\item{x}{An \code{xml_node} object}
+\item{x}{An \code{xml_node} object.}
 
-\item{...}{Arguments to pass to methods}
+\item{...}{Arguments to pass to methods.}
 }
 \value{
-The DDI equivalent of the XML tree
+The DDI equivalent of the XML tree.
 }
 \description{
 Convert XML trees to DDI objects

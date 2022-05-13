@@ -13,7 +13,7 @@
 #' @param content A content list, most likely from `dots_to_xml_components()`
 #' @return `content` contained in an "unwrapping" context
 #'
-#' @export
+#' @noRd
 #' @examples
 #' if (FALSE) {
 #'   # Building a custom "universe" tag

@@ -1,8 +1,8 @@
 #' Get XML representation of ddi_node objects
 #'
-#' @param x A `ddi_node` object (or subclass)
-#' @param ... Arguments to pass to methods
-#' @return An `xml_document` or `xml_node` object whether the object is a root node or not, respectively
+#' @param x A `ddi_node` object (or subclass).
+#' @param ... Arguments to pass to methods.
+#' @return An `xml_document` or `xml_node` object whether the object is a root node or not, respectively.
 #'
 #' @export
 as_xml <- function(x, ...) {
@@ -67,11 +67,11 @@ as_xml.ddi_unwrapped <- function(x, parent = NULL, rooted = FALSE, ...) {
 
 #' Shortcut to text representation of DDI XML
 #'
-#' Functionally equivalent to `as.character(as_xml(ddi_node_obj))`
+#' Functionally equivalent to `as.character(as_xml(ddi_node_obj))`.
 #'
-#' @param x A ddi_node object
-#' @param ... Arguments forwarded to `as_xml()`
-#' @return A string containing the text representation of XML
+#' @param x A ddi_node object.
+#' @param ... Arguments forwarded to `as_xml()`.
+#' @return A string containing the text representation of XML.
 #' @export
 as_xml_string <- function(x, ...) {
   stopifnot(is_ddi_node(x))
@@ -95,9 +95,9 @@ as_xml.ddi_root <- function(x, ...) {
 
 #' Convert XML trees to DDI objects
 #'
-#' @param x An `xml_node` object
-#' @param ... Arguments to pass to methods
-#' @return The DDI equivalent of the XML tree
+#' @param x An `xml_node` object.
+#' @param ... Arguments to pass to methods.
+#' @return The DDI equivalent of the XML tree.
 #' @export
 as_ddi <- function(x, ...) {
   UseMethod("as_ddi")

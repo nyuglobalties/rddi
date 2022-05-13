@@ -7,10 +7,10 @@
 validate_codebook(codebook)
 }
 \arguments{
-\item{codebook}{The codebook root node, output of \code{ddi_codeBook()}}
+\item{codebook}{The codebook root node, output of \code{ddi_codeBook()}.}
 }
 \value{
-A logical (with attributes containing any errors) that indicates passing or failing
+A logical (with attributes containing any errors) that indicates passing or failing.
 }
 \description{
 Validates your constructed codebook against the

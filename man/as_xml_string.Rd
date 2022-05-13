@@ -7,13 +7,13 @@
 as_xml_string(x, ...)
 }
 \arguments{
-\item{x}{A ddi_node object}
+\item{x}{A ddi_node object.}
 
-\item{...}{Arguments forwarded to \code{as_xml()}}
+\item{...}{Arguments forwarded to \code{as_xml()}.}
 }
 \value{
-A string containing the text representation of XML
+A string containing the text representation of XML.
 }
 \description{
-Functionally equivalent to \code{as.character(as_xml(ddi_node_obj))}
+Functionally equivalent to \code{as.character(as_xml(ddi_node_obj))}.
 }

@@ -7,12 +7,12 @@
 as_xml(x, ...)
 }
 \arguments{
-\item{x}{A \code{ddi_node} object (or subclass)}
+\item{x}{A \code{ddi_node} object (or subclass).}
 
-\item{...}{Arguments to pass to methods}
+\item{...}{Arguments to pass to methods.}
 }
 \value{
-An \code{xml_document} or \code{xml_node} object whether the object is a root node or not, respectively
+An \code{xml_document} or \code{xml_node} object whether the object is a root node or not, respectively.
 }
 \description{
 Get XML representation of ddi_node objects
