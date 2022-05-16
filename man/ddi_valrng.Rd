@@ -18,6 +18,9 @@ ddi_key(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Values for a particular variable that represent legitimate responses
 (valrng) or illegitamate response (invalrng). Must include item or range as
@@ -48,6 +51,27 @@ the range of valid and invalid values. A table is permissible in this element.
 }
 }
 
+\examples{
+# ddi_valrng() and ddi_invalrng() requires either the ddi_item() or ddi_range() child node.
+
+ddi_valrng(ddi_item())
+
+ddi_invalrng(ddi_item())
+
+ddi_valrng(ddi_range())
+
+ddi_invalrng(ddi_range())
+
+# Functions that must be wrapped in ddi_valrng() or ddi_invalrng()
+
+ddi_item(VALUE = "1")
+
+ddi_key("05 (PSU) Parti Socialiste Unifie et extreme gauche (Lutte Ouvriere) 
+        [United Socialists and extreme left (Workers Struggle)] 50 Les Verts 
+        [Green Party] 80 (FN) Front National et extreme droite [National Front 
+        and extreme right]")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/valrng.html}{valrng documentation}
 

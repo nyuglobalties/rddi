@@ -12,6 +12,9 @@ ddi_mi(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 mrow or Mathematical Row is a wrapper containing the presentation expression
 \code{mi}. It creates a single string without spaces consisting of the individual
@@ -32,6 +35,14 @@ found in the references.
 \item \code{ddi_mi()} is the mathematical identifier. This is the token element
 containing the smallest unit in the mrow that carries meaning.
 }
+}
+\examples{
+ddi_mrow()
+
+# Functions that need to be wrapped in ddi_mrow()
+
+ddi_mi("1")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/mrow.html}{mrow documentation}

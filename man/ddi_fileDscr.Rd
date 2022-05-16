@@ -9,6 +9,9 @@ ddi_fileDscr(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object
+}
 \description{
 Information about the data file(s) that comprises a collection. This section
 can be repeated for collections with multiple files. More information on
@@ -28,6 +31,10 @@ this element, especially the allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_fileDscr()
+
+}
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileDscr.html}{fileDscr documentation}
 }

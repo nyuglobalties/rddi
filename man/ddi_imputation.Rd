@@ -9,6 +9,9 @@ ddi_imputation(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 According to the Statistical Terminology glossary maintained by the National
 Science Foundation, this is "the process by which one estimates missing
@@ -24,6 +27,10 @@ references.
 \emph{Parent nodes}
 
 \code{imputation} is contained in \code{nCube} and \code{var}.
+}
+\examples{
+ddi_imputation("This variable contains values that were derived by substitution.")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/imputation.html}{imputation documentation}

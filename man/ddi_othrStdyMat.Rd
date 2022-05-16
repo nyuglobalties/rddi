@@ -21,6 +21,9 @@ ddi_relStdy(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Other study description materials relating to the study description. This
 section describes other materials that are related to the study description
@@ -53,13 +56,37 @@ parts of objects (chapters or appendices in articles or documents).
 \item \code{ddi_relPubl()} are bibliographic and access information about articles
 and reports based on the data in this collection. Can take the form of
 bibliographic citations.
-\item \code{ddi_relStudy()} is information on the relationship of the current data
+\item \code{ddi_relStdy()} is information on the relationship of the current data
 collection to others (e.g., predecessors, successors, other waves or rounds)
 or to other editions of the same file. This would include the names of
 additional data collections generated from the same data collection vehicle
 plus other collections directed at the same general topic. Can take the form
 of bibliographic citations.
 }
+}
+\examples{
+ddi_othrStdyMat()
+
+# Functions that need to be wrapped in ddi_othrStdyMat()
+
+ddi_othRefs("Part II of the documentation, the Field Representative's Manual, 
+            is provided in hardcopy form only.")
+
+ddi_relMat("Full details on the research design and procedures, sampling 
+           methodology, content areas, and questionnaire design, as well as 
+           percentage distributions by respondent's sex, race, region, college 
+           plans, and drug use, appear in the annual ISR volumes MONITORING 
+           THE FUTURE: QUESTIONNAIRE RESPONSES FROM THE NATION'S HIGH SCHOOL 
+           SENIORS.")
+           
+ddi_relPubl("Economic Behavior Program Staff. SURVEYS OF CONSUMER FINANCES. 
+            Annual volumes 1960 through 1970. Ann Arbor, MI: Institute for 
+            Social Research.")
+            
+ddi_relStdy("ICPSR distributes a companion study to this collection titled 
+             FEMALE LABOR FORCE PARTICIPATION AND MARITAL INSTABILITY, 1980: 
+             [UNITED STATES] (ICPSR 9199).")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/othrStdyMat.html}{othrStdyMat documentation}

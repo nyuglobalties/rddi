@@ -18,6 +18,9 @@ ddi_outcomes(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Post Evaluation Procedures describes evaluation procedures not addressed in
 data evaluation processes. These may include issues such as timing of the
@@ -37,6 +40,22 @@ especially their allowed attributes, can be found in the references.
 evaluation.
 \item \code{ddi_outcomes()} describes the outcomes of the evaluation.
 }
+}
+\examples{
+ddi_exPostEvaluation()
+
+# Functions that need to be wrapped in ddi_exPostEvaluation()
+
+ddi_evaluationProcess("This dataset was evaluated using the following methods...")
+
+ddi_evaluator(affiliation = "United Nations",
+              abbr = "UNSD",
+              role = "consultant",
+              "United Nations Statistical Division")
+              
+ddi_outcomes("The following steps were highly effective in increasing response 
+             rates, and should be repeated in the next collection cycle...")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/exPostEvaluation.html}{exPostEvaluation documentation}

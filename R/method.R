@@ -22,6 +22,8 @@
 #' be repeated to support multiple language expressions of the content.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_anlyInfo()]
@@ -32,6 +34,17 @@
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/method.html}{method documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataProcessing.html}{dataProcessing documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyClas.html}{stdyClas documentation}
+#' 
+#' @examples
+#' ddi_method()
+#' 
+#' # Functions that need to be wrapped in ddi_method()
+#' 
+#' ddi_dataProcessing(type = "topcoding",
+#'                    "The income variables in this study (RESP_INC, HHD_INC, and 
+#'                    SS_INC) were topcoded to protect confidentiality.")
+#' 
+#' ddi_stdyClas("ICPSR Class II")
 #' 
 #' @export
 ddi_method <- function(...) {
@@ -131,7 +144,9 @@ ddi_method <- function(...) {
 #'  coefficient was developed, provide this formula, define its elements, and 
 #'  indicate how the formula is applied to data. 
 #' 
-#' @param ... Child nodes or attributes. 
+#' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object. 
 #' 
 #' @section Shared and complex child nodes:
 #' * [ddi_sampleFrame()]
@@ -154,6 +169,69 @@ ddi_method <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/timeMeth.html}{timeMeth documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/weight.html}{weight documentation}
 #'  
+#' @examples 
+#' ddi_dataColl()
+#' 
+#' # Functions that need to be wrapped in ddi_dataColl()
+#' 
+#' ddi_actMin("To minimize the number of unresolved cases and reduce the 
+#'            potential nonresponse bias, four follow-up contacts were made with 
+#'            agencies that had not responded by various stages of the data 
+#'            collection process.")
+#'            
+#' ddi_cleanOps("Checks for undocumented codes were performed, and data were 
+#'              subsequently revised in consultation with the principal investigator.")
+#'              
+#' ddi_collectorTraining(type = "interviewer training",
+#'                       "Describe research project, describe population and 
+#'                       sample, suggest methods and language for approaching 
+#'                       subjects, explain questions and key terms of survey instrument.")
+#'                       
+#' ddi_collMode("telephone interviews")
+#' 
+#' ddi_collSitu("There were 1,194 respondents who answered questions in face-to-face 
+#'              interviews lasting approximately 75 minutes each.")
+#'              
+#' ddi_ConOps(agency = "ICPSR",
+#'            "Ten percent of data entry forms were reentered to check for accuracy.")
+#'            
+#' ddi_dataCollector(abbr = "SRC",
+#'                   affiliation = "University of Michigan",
+#'                   role = "questionnaire administration",
+#'                   "Survey Research Center")
+#'                   
+#' ddi_deviat("The suitability of Ohio as a research site reflected its similarity 
+#'            to the United States as a whole. The evidence extended by Tuchfarber 
+#'            (1988) shows that Ohio is representative of the United States in 
+#'            several ways: percent urban and rural, percent of the population 
+#'            that is African American, median age, per capita income, percent 
+#'            living below the poverty level, and unemployment rate. Although 
+#'            results generated from an Ohio sample are not empirically 
+#'            generalizable to the United States, they may be suggestive of what 
+#'            might be expected nationally.")
+#'            
+#' ddi_frequenc("monthly")
+#' 
+#' ddi_instrumentDevelopment(type = "pretesting",
+#'                          "The questionnaire was pre-tested with split-panel 
+#'                          tests, as well as an analysis of non-response rates 
+#'                          for individual items, and response distributions.")
+#'                          
+#' ddi_resInstru("structured")
+#' 
+#' ddi_sampProc("National multistage area probability sample")
+#' 
+#' ddi_weight("The 1996 NES dataset includes two final person-level analysis weights 
+#'            which incorporate sampling, nonresponse, and post-stratification 
+#'            factors. One weight (variable #4) is for longitudinal micro-level 
+#'            analysis using the 1996 NES Panel. The other weight (variable #3) 
+#'            is for analysis of the 1996 NES combined sample (Panel component 
+#'            cases plus Cross-section supplement cases). In addition, a Time 
+#'            Series Weight (variable #5) which corrects for Panel attrition was 
+#'            constructed. This weight should be used in analyses which compare 
+#'            the 1996 NES to earlier unweighted National Election Study data 
+#'            collections.")
+#' 
 #' @export
 ddi_dataColl <- function(...) {
   components <- dots_to_xml_components(...)
@@ -522,6 +600,8 @@ ddi_weight <- function(...) {
 #' frame. Enter dates in YYYY-MM-DD format.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_frameUnit()]
@@ -536,6 +616,26 @@ ddi_weight <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleFrameName.html}{sampleFrameName documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/updateProcedure.html}{updateProcedure documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/validPeriod.html}{validPeriod documentation}
+#' 
+#' @examples 
+#' ddi_sampleFrame()
+#' 
+#' # Functions that need to be wrapped in ddi_sampleFrame()
+#' 
+#' ddi_custodian("DEX Publications")
+#' 
+#' ddi_referencePeriod(event = "single",
+#'                     "2009-06-01")
+#' 
+#' ddi_sampleFrameName("City of St. Paul Directory")
+#' 
+#' ddi_updateProcedure("Changes are collected as they occur through registration 
+#'                     and loss of phone number from the specified geographic 
+#'                     area. Data are compiled for the date June 1st of odd 
+#'                     numbered years, and published on July 1st for the following 
+#'                     two-year period.")
+#' 
+#' ddi_validPeriod(event = "start", "2009-07-01")
 #' 
 #' @export
 ddi_sampleFrame <- function(...) {
@@ -683,12 +783,22 @@ ddi_validPeriod <- function(...) {
 #' "numberOfUnits" provides the number of units in the sampling frame.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_txt()]
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/frameUnit.html}{frameUnit documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/unitType.html}{unitType documentation}
+#' 
+#' @examples 
+#' ddi_frameUnit()
+#' 
+#' # Functions that need to be wrapped in ddi_frameUnit()
+#' 
+#' ddi_unitType(numberOfUnits = 150000,
+#'             "Primary listed owners of published phone numbers in the City of St. Paul")
 #' 
 #' @export
 ddi_frameUnit <- function(...) {
@@ -753,10 +863,21 @@ ddi_unitType <- function(...) {
 #' the sample size.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/targetSampleSize.html}{targetSampleSize documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleSize.html}{sampleSize documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleSizeFormula.html}{sampleSizeFormula documentation}
+#' 
+#' @examples 
+#' ddi_targetSampleSize()
+#' 
+#' # Functions that need to be wrapped in ddi_targetSampleSize()
+#' 
+#' ddi_sampleSize(385)
+#' 
+#' ddi_sampleSizeFormula("n0=Z2pq/e2=(1.96)2(.5)(.5)/(.05)2=385 individuals")
 #' 
 #' @export
 ddi_targetSampleSize <- function(...) {
@@ -794,7 +915,8 @@ ddi_sampleSize <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "sampleSize")
   }
 
-  if(!is.integer(components$content)) rddi_err("sampleSize must be an integer")
+  if(components$content[[1]] == round(components$content[[1]])) components$content[[1]] <- as.integer(components$content[[1]])
+  if(!is.integer(components$content[[1]])) rddi_err("sampleSize must be an integer")
 
   build_leaf_node(
     "sampleSize",
@@ -814,7 +936,7 @@ ddi_sampleSizeFormula <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "sampleSizeFormula")
   }
 
-  if(!is.character(components$content)) rddi_err("sampleSizeFormula must be a character string")
+  if(!is.character(components$content[[1]])) rddi_err("sampleSizeFormula must be a character string")
 
   build_leaf_node(
     "sampleSizeFormula",
@@ -836,6 +958,8 @@ ddi_sampleSizeFormula <- function(...) {
 #' `sources` is contained in the following elements: `dataColl` and `sources`.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_dataSrc()]
@@ -846,6 +970,9 @@ ddi_sampleSizeFormula <- function(...) {
 #' * [ddi_srcOrig()] 
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sources.html}{sources documentation}
+#' 
+#' @examples 
+#' ddi_sources()
 #' 
 #' @export
 ddi_sources <- function(...) {
@@ -900,11 +1027,32 @@ ddi_sources <- function(...) {
 #' stratified response rates, information affecting resonse rates etc.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlyInfo.html}{anylInfo documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataAppr.html}{dataAppr documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respRate.html}{respRate documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/EstSmpErr.html}{EstSmpErr documentation}
+#' 
+#' @examples 
+#' ddi_anlyInfo()
+#' 
+#' # Functions that need to be wrapped in ddi_anlyInfo()
+#' 
+#' ddi_dataAppr("These data files were obtained from the United States House of 
+#'              Representatives, who received them from the Census Bureau 
+#'              accompanied by the following caveats...")
+#' 
+#' ddi_EstSmpErr("To assist NES analysts, the PC SUDAAN program was used to 
+#'               compute sampling errors for a wide-ranging example set of 
+#'               proportions estimated from the 1996 NES Pre-election Survey 
+#'               dataset...")
+#' 
+#' ddi_respRate("For 1993, the estimated inclusion rate for TEDS-eligible 
+#'              providers was 91 percent, with the inclusion rate for all 
+#'              treatment providers estimated at 76 percent (including privately 
+#'              and publicly funded providers).")
 #' 
 #' @export
 ddi_anlyInfo <- function(...) {
@@ -1004,12 +1152,22 @@ ddi_respRate <- function(...) {
 #' formalLanguage attribute identifies the language of the command code.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_txt()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codingInstructions.html}{codingInstructions documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/command.html}{command documentation}
+#' 
+#' @examples 
+#' ddi_codingInstructions()
+#' 
+#' # Functions that need to be wrapped in ddi_codingInstructions()
+#' 
+#' ddi_command(formalLanguage = "SPSS",
+#'             "RECODE V1 TO V100 (10 THROUGH HIGH = 0)")
 #' 
 #' @export
 ddi_codingInstructions <- function(...) {

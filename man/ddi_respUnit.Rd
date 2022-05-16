@@ -9,6 +9,9 @@ ddi_respUnit(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Provides information regarding who provided the information contained within
 the variable/nCube, e.g., respondent, proxy, interviewer. This element may be
@@ -20,6 +23,10 @@ in the references.
 \emph{Parent nodes}
 
 \code{respUnit} is contained in \code{nCube} and \code{var}.
+}
+\examples{
+ddi_respUnit("Head of household")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respUnit.html}{respUnit documentation}

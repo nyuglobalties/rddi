@@ -9,6 +9,9 @@ ddi_resource(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Resources used in the development of the activity. More information on these
 elements, especially their allowed attributes, can be found in the references.
@@ -28,6 +31,10 @@ elements, especially their allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_resource()
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/resource.html}{resource documentation}
 }

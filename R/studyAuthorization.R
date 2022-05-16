@@ -17,10 +17,28 @@
 #' authorized the study.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyAuthorization.html}{studyAuthorization docuemntation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizationStatement.html}{authorizationStatement documentation}
-#' @references \href{{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizingAgency.html}}{authorizingAgency documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizingAgency.html}{authorizingAgency documentation}
+#' 
+#' @examples 
+#' ddi_studyAuthorization()
+#' 
+#' # Functions that have to be wrapped in ddi_studyAuthorization()
+#' 
+#' ddi_authorizationStatement("Required documentation covering the study purpose, 
+#'                            disclosure information, questionnaire content, and 
+#'                            consent statements was delivered to the OUHS on 
+#'                            2010-10-01 and was reviewed by the compliance officer. 
+#'                            Statement of authorization for the described study 
+#'                            was issued on 2010-11-04.")
+#'                            
+#' ddi_authorizingAgency(affiliation = "Purdue University",
+#'                       abbr = "OUHS",
+#'                       "Office for Use of Human Subjects")
 #' 
 #' @export
 ddi_studyAuthorization <- function(...) {

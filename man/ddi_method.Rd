@@ -15,6 +15,9 @@ ddi_stdyClas(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This section describes the methodology and processing involved in a data
 collection. More information on these elements, especially their allowed
@@ -48,6 +51,18 @@ be repeated to support multiple language expressions of the content.
 }
 }
 
+\examples{
+ddi_method()
+
+# Functions that need to be wrapped in ddi_method()
+
+ddi_dataProcessing(type = "topcoding",
+                   "The income variables in this study (RESP_INC, HHD_INC, and 
+                   SS_INC) were topcoded to protect confidentiality.")
+
+ddi_stdyClas("ICPSR Class II")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/method.html}{method documentation}
 

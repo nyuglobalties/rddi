@@ -15,6 +15,9 @@ ddi_authorizingAgency(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Study Authorization provides structured information on the agency that
 authorized the study, the date of authorization, and an authorization
@@ -33,10 +36,27 @@ attributes, can be found in the references.
 authorized the study.
 }
 }
+\examples{
+ddi_studyAuthorization()
+
+# Functions that have to be wrapped in ddi_studyAuthorization()
+
+ddi_authorizationStatement("Required documentation covering the study purpose, 
+                           disclosure information, questionnaire content, and 
+                           consent statements was delivered to the OUHS on 
+                           2010-10-01 and was reviewed by the compliance officer. 
+                           Statement of authorization for the described study 
+                           was issued on 2010-11-04.")
+                           
+ddi_authorizingAgency(affiliation = "Purdue University",
+                      abbr = "OUHS",
+                      "Office for Use of Human Subjects")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyAuthorization.html}{studyAuthorization docuemntation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizationStatement.html}{authorizationStatement documentation}
 
-\href{{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizingAgency.html}}{authorizingAgency documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizingAgency.html}{authorizingAgency documentation}
 }

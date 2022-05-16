@@ -9,6 +9,9 @@ ddi_srcDocu(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Level of documentation of the original sources. May not be relevant to
 survey data. This element may be repeated to support multiple language
@@ -19,6 +22,10 @@ allowed attributes, can be found in the references.
 \emph{Parent nodes}
 
 \code{srcDocu} is contained in the following elements: \code{sources} and \code{resource}.
+}
+\examples{
+ddi_srcDocu("Description of documentation of source material(s).")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcDocu.html}{srcDocu documentation}

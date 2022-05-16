@@ -15,6 +15,9 @@ ddi_gringLon(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 0-dimensional geometric primitive, representing a position, but not having
 extent. In this declaration, point is limited to a longitude/latitude
@@ -32,6 +35,12 @@ expressed in decimal degrees is as follows: -90,0 to 90,0 degrees (latitude).
 \item \code{ddi_gringLon()} is the longitude (x coordinate) of a point. Valid range
 expressed in decimal degrees is as follows: -180,0 to 180,0 degrees (longitude).
 }
+}
+\examples{
+# ddi_point() which requires ddi_gringLat() and ddi_gringLon()
+
+ddi_point(ddi_gringLat("42.002207"), ddi_gringLon("-120.005729004"))
+           
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/point.html}{point documentation}

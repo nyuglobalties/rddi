@@ -9,6 +9,9 @@ ddi_concept(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The general subject to which the parent element may be seen as pertaining.
 This element serves the same purpose as the keywords and topic classification
@@ -25,6 +28,13 @@ allowed attributes, can be found in the references.
 \code{concept} is contained in the following elements: \code{anlyUnit}; \code{anlysUnit};
 \code{collMode}; \code{dataKind}; \code{geogCover}; \code{geogUnit}; \code{nCubeGrp}; \code{nation};
 \code{resInstru}; \code{sampProc}; \code{srcOrig}; \code{timeMeth}; \code{universe}; \code{var}; and \code{varGrp}.
+}
+\examples{
+ddi_concept(vocab = "LCSH",
+            vocabURI = "http://lcweb.loc.gov/catdir/cpso/lcco/lcco.html",
+            source = "archive",
+            "more experience")
+ 
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/concept.html}{concept documentation}

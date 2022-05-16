@@ -9,6 +9,9 @@ ddi_srcOrig(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 For historical materials, information about the origin(s) of the sources and
 the rules followed in establishing the sources should be specified. May not
@@ -20,6 +23,10 @@ especially its allowed attributes, can be found in the references.
 \emph{Parent nodes}
 
 \code{srcOrig} is contained in the following elements: \code{sources} and \code{resource}.
+}
+\examples{
+ddi_srcOrig("Origin of source material(s).")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcOrig.html}{srcOrig documentation}

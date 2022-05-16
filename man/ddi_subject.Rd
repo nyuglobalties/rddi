@@ -15,6 +15,9 @@ ddi_topcClas(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Subject describes the data collection's intellectual content. More
 information on these elements, especially their allowed attributes, can be
@@ -36,6 +39,20 @@ cover. Library of Congress subject terms may be used here. Maps to Dublin
 Core Subject element. Inclusion of this element in the codebook is
 recommended.
 }
+}
+\examples{
+ddi_subject()
+
+# Functions that need to be wrapped in ddi_subject()
+
+ddi_keyword(vocab = "ICPSR Subject Thesaurus",
+            vocabURI = "http://www.icpsr.umich.edu/thesaurus/subject.html",
+            "quality of life")
+
+ddi_topcClas(vocab = "LOC Subject Headings",
+             vocabURI = "http://www.loc.gov/catdir/cpso/lcco/lcco.html",
+             "Public opinion -- California -- Statistics")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/subject.html}{subject documentation}

@@ -18,6 +18,9 @@ ddi_participant(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Describe the activity, listing participants with their role and affiliation,
 resources used (sources of information), and the outcome of the development
@@ -43,6 +46,22 @@ development activity.
 }
 }
 
+\examples{
+ddi_developmentActivity(type = "checkDataAvailability")
+
+# Functions that need to be wrapped in ddi_developmentActivity()
+
+ddi_description("A number of potential sources were evaluated for content, 
+                consistency and quality")
+
+ddi_outcome("Due to quality issues this was determined not to be a viable 
+            source of data for the study")
+
+ddi_participant(affiliation = "NSO",
+                role = "statistician",
+                "John Doe")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/developmentActivity.html}{developmentActivity documentation}
 

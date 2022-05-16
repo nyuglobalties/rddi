@@ -12,6 +12,9 @@ ddi_defntn(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 A group of variables that may share a common subject, arise from the
 interpretation of a single question, or are linked by some other factor.
@@ -49,6 +52,14 @@ references.
 }
 }
 
+\examples{
+ddi_varGrp()
+
+# Functions that need to be wrapped in ddi_varGrp()
+
+ddi_defntn("The following eight variables were only asked in Ghana.")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}{varGrp documentation}
 

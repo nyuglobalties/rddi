@@ -15,6 +15,9 @@ ddi_sampleSizeFormula(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Provides both the target size of the sample (this is the number in the
 original sample, not the number of respondents) as well as the formula used
@@ -32,6 +35,16 @@ especially their allowed attributes, can be found in the references.
 \item \code{ddi_sampleSizeFormula()} includes the formula that was used to determine
 the sample size.
 }
+}
+\examples{
+ddi_targetSampleSize()
+
+# Functions that need to be wrapped in ddi_targetSampleSize()
+
+ddi_sampleSize(385)
+
+ddi_sampleSizeFormula("n0=Z2pq/e2=(1.96)2(.5)(.5)/(.05)2=385 individuals")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/targetSampleSize.html}{targetSampleSize documentation}

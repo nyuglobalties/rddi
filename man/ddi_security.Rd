@@ -9,6 +9,9 @@ ddi_security(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Provides information regarding levels of access, e.g., public, subscriber,
 need to know. The ISO standard for dates (YYYY-MM-DD) is recommended for use
@@ -19,6 +22,12 @@ allowed attributes, can be found in the references.
 \emph{Parent nodes}
 
 \code{security} is contained in \code{nCube} and \code{var}.
+}
+\examples{
+ddi_security(date = "1998-05-10",
+             "This variable has been recoded for reasons of confidentiality. 
+             Users should contact the archive for information on obtaining access.")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/security.html}{security documentation}

@@ -94,6 +94,9 @@ check_attribs <- function(attribs) {
 
 check_integer <- function(attribs) {
     for(name in names(attribs)) {
+        if(is.numeric(attribs[[name]]) & round(attribs[[name]] == attribs[[name]])) {
+          attribs[[name]] <- as.integer(attribs[[name]])
+        } 
         if(!is.integer(attribs[[name]])) rddi_err("{name} must be a integer")
     }
 }

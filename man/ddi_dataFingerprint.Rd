@@ -18,6 +18,9 @@ ddi_digitalFingerprintValue(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Allows for assigning a hash value (digital fingerprint) to the data or
 data file. More information on these elements, especially their allowed
@@ -34,6 +37,18 @@ attributes, can be found in the references.
 \item \code{ddi_algorithmVersion()}
 \item \code{ddi_digitalFingerprintValue()}
 }
+}
+\examples{
+ddi_dataFingerprint()
+
+# Functions that need to be wrapped in ddi_Fingerprint()
+
+ddi_algorithmSpecification()
+
+ddi_algorithmVersion()
+
+ddi_digitalFingerprintValue()
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataFingerprint.html}{dataFingerprint documentation}

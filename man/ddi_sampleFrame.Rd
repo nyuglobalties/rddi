@@ -24,6 +24,9 @@ ddi_validPeriod(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Sample frame describes the sampling frame used for identifying the population
 from which the sample was taken. More information on these elements,
@@ -59,6 +62,27 @@ frame. Enter dates in YYYY-MM-DD format.
 }
 }
 
+\examples{
+ddi_sampleFrame()
+
+# Functions that need to be wrapped in ddi_sampleFrame()
+
+ddi_custodian("DEX Publications")
+
+ddi_referencePeriod(event = "single",
+                    "2009-06-01")
+
+ddi_sampleFrameName("City of St. Paul Directory")
+
+ddi_updateProcedure("Changes are collected as they occur through registration 
+                    and loss of phone number from the specified geographic 
+                    area. Data are compiled for the date June 1st of odd 
+                    numbered years, and published on July 1st for the following 
+                    two-year period.")
+
+ddi_validPeriod(event = "start", "2009-07-01")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sampleFrame.html}{sampleFrame documentation}
 

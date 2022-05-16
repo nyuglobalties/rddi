@@ -9,6 +9,9 @@ ddi_embargo(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Provides information on variables/nCubes which are not currently available
 because of policies established by the principal investigators and/or data
@@ -19,6 +22,14 @@ expressions of the content.
 \emph{Parent nodes}
 
 \code{embargo} is contained in \code{nCube} and \code{var}.
+}
+\examples{
+ddi_embargo(event = "notBefore",
+            date = "2001-09-30",
+            "The data associated with this variable/nCube will not become 
+            available until September 30, 2001, because of embargo provisions 
+            established by the data producers.")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/embargo.html}{embargo documentation}

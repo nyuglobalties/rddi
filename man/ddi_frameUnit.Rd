@@ -12,6 +12,9 @@ ddi_unitType(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Provides information about the sampling frame unit. More information on
 these elements, especially their allowed attributes, can be found in the
@@ -35,6 +38,15 @@ references.
 }
 }
 
+\examples{
+ddi_frameUnit()
+
+# Functions that need to be wrapped in ddi_frameUnit()
+
+ddi_unitType(numberOfUnits = 150000,
+            "Primary listed owners of published phone numbers in the City of St. Paul")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/frameUnit.html}{frameUnit documentation}
 

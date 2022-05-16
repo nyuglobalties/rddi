@@ -12,6 +12,9 @@ ddi_colspec(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This is the table group. More information on this element, especially the
 allowed attributes, can be found in the references.
@@ -35,6 +38,14 @@ empty element.
 }
 }
 
+\examples{
+ddi_tgroup()
+
+# Functions that must be wrapped in ddi_tgroup()
+
+ddi_colspec(align = "left")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/tgroup.html}{tgroup documentation}
 

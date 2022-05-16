@@ -9,6 +9,9 @@ ddi_codeBook(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object
+}
 \description{
 The root node of a DDI 2.5 Codebook file. This file must contain stdyDscr.
 More information on this element, especially the allowed attributes, can
@@ -25,6 +28,13 @@ be found in the references.
 }
 }
 
+\examples{
+# All ddi_codeBook() functions must contain ddi_stdyDscr(), 
+# which also has ddi_citation() as a required child element.
+
+ddi_codeBook(ddi_stdyDscr(ddi_citation()))
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeBook.html}{codeBook documentation}
 }

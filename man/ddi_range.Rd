@@ -9,6 +9,9 @@ ddi_range(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This is the actual range of values. The "UNITS" attribute permits
 the specification of integer/real numbers. The "min" and "max" attributes
@@ -23,6 +26,10 @@ attributes, can be found in the references.
 
 \code{range} is contained in the following elements: \code{valrng}; \code{invalrng}; and
 \code{cohort}.
+}
+\examples{
+ddi_range(min = "1", maxExclusive = "20")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/range.html}{range documentation}

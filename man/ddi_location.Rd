@@ -9,6 +9,9 @@ ddi_location(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The physical or digital location of the variable. It is an empty element.
 More information on these elements, especially their allowed attributes,
@@ -18,6 +21,13 @@ can be found in the references.
 \emph{Parent nodes}
 
 \code{location} is contained in \code{nCube} and \code{var}.
+}
+\examples{
+ddi_location(StartPos = "55",
+             EndPos = "57",
+             RecSegNo = "2",
+             fileid = "CARD-IMAGE")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/location.html}{location documentation}

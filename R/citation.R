@@ -37,12 +37,36 @@
 #' * [ddi_serStmt()]
 #' * [ddi_titlStmt()]
 #' * [ddi_verStmt()]
+#' 
+#' @return A ddi_node object..
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/citation.html}{citation documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileCitation.html}{fileCitation documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sourceCitation.html}{sourceCitation documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/biblCit.html}{biblCit documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/holdings.html}{holdings documentation}
+#' 
+#' @examples 
+#' ddi_citation()
+#' 
+#' ddi_sourceCitation()
+#' 
+#' ddi_fileCitation()
+#' 
+#' # An example using the ddi_biblCit() child:
+#' 
+#' ddi_citation(
+#'    ddi_biblCit(format = "APA", "Full citation text")
+#' )
+#' 
+#' # An example using the ddi_holdings() child:
+#' 
+#' ddi_citation(
+#'    ddi_holdings(location = "ICPSR DDI Repository",
+#'                 callno = "inap.",
+#'                 URI = "http://www.icpsr.umich.edu/DDIrepository/",
+#'                 "Marked-up Codebook for Current Population Survey, 1999: Annual Demographic File")
+#' )
 #' 
 #' @export
 ddi_citation <- function(...) {
@@ -174,12 +198,14 @@ ddi_fileCitation <- function(...) {
 #' archive's number). Can be a DOI. An "agency" attribute is supplied. Identification Number 
 #' of data collection maps to Dublin Core Identifier element. 
 #' 
-#' `ddi_partTitl()` is the parallel title. Title translated into another language.
+#' `ddi_parTitl()` is the parallel title. Title translated into another language.
 #' 
 #' `ddi_subTitl()` is the subtitle. A secondary title used to amplify or state certain limitations 
 #' on the main title. It may repeat information already in the main title. 
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #' 
 #' @section Shared and complex child nodes:
 #' * [ddi_titl()]
@@ -189,6 +215,19 @@ ddi_fileCitation <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/IDNo.html}{IDNo documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/parTitl.html}{parTitl documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/subTitl.html}{subTitl documentation}
+#' 
+#' @examples 
+#' ddi_titlStmt()
+#' 
+#' # Functions that need to be wrapped in ddi_titlStmt()
+#' 
+#' ddi_altTitl("Alternative Title of work")
+#' 
+#' ddi_IDNo(agency = "agency name", "ID number")
+#' 
+#' ddi_parTitl(lang = "fr", "French translation of the title")
+#' 
+#' ddi_subTitl("Subtitle of work")
 #' 
 #' @export
 ddi_titlStmt <- function(...) {
@@ -326,9 +365,23 @@ ddi_subTitl <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #'
+#' @return A ddi_node object.
+#'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/rspStmt.html}{rspStmt documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/AuthEnty.html}{AuthEnty documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/othId.html}{othId documentation}
+#' 
+#' @examples
+#' ddi_rspStmt()
+#' 
+#' # Functions that need to be wrapped in ddi_rspStmt()
+#' 
+#' ddi_AuthEnty(affiliation = "Organization name",
+#'              "LastName, FirstName")
+#'
+#' ddi_othId(role = "Data Manager",
+#'           affiliation = "Organization name",
+#'           "LastName, FirstName")
 #' 
 #' @export
 ddi_rspStmt <- function(...) {
@@ -425,6 +478,9 @@ ddi_othId <- function(...) {
 #' with the date attribute. Production date for data collection 
 #' (codeBook/stdyDscr/citation/prodStmt/prodDate) maps to Dublin Core Date element.
 #' 
+#' `ddi_prodPlac()` is the address of the archive or organization that produced 
+#' the work.
+#' 
 #' `ddi_software()` is the software used to produce the work. A "version" 
 #' attribute permits specification of the software version number. The 
 #' "date" attribute is provided to enable specification of the date (if any) 
@@ -432,6 +488,8 @@ ddi_othId <- function(...) {
 #' recommended for use with the date attribute.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/prodStmt.html}{prodStmt documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/copyright.html}{copyright documentation}
@@ -440,6 +498,23 @@ ddi_othId <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/prodDate.html}{prodDate documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/prodPlac.html}{prodPlac documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/software.html}{software documentation}
+#' 
+#' @examples
+#' ddi_prodStmt()
+#' 
+#' # Functions that need to be wrapped in ddi_prodStmt()
+#' 
+#' ddi_copyright("Copyright(c) ICPSR, 2000")
+#' 
+#' ddi_fundAg(abbr = "NSF", role = "infrastructure", "National Science Foundation")
+#' 
+#' ddi_grantNo(agency = "Bureau of Justice Statistics", "J-LEAA-018-77")
+#' 
+#' ddi_prodDate(date = "2022-01-01", "January 1, 2022")
+#' 
+#' ddi_prodPlac("Place of production")
+#' 
+#' ddi_software(version = "6.12", "SAS")
 #' 
 #' @export
 ddi_prodStmt <- function(...) {
@@ -602,10 +677,21 @@ ddi_software <- function(...) {
 #' `ddi_serName()` is the name of the series to which the work belongs.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serStmt.html}{serStmt documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serInfo.html}{serInfo documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serName.html}{serName documentation}
+#' 
+#' @examples
+#' ddi_serStmt()
+#' 
+#' # Functions that need to be wrapped in ddi_serStmt()
+#' 
+#' ddi_serInfo("Series abstract...")
+#' 
+#' ddi_serName(abbr="SN", "Series Name")
 #' 
 #' @export
 ddi_serStmt <- function(...) {
@@ -739,6 +825,8 @@ ddi_holdings <- function(...) {
 #' ordering service or download facility on a Web site. 
 #'
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_contact()]
@@ -748,6 +836,24 @@ ddi_holdings <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/depositr.html}{depositr documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/distDate.html}{distDate documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/distrbtr.html}{distrbtr documentation}
+#' 
+#' @examples 
+#' ddi_distStmt()
+#' 
+#' # Functions that need to be wrapped in ddi_distStmt()
+#' 
+#' ddi_depDate(date = "2022-01-01", "January 1, 2022")
+#' 
+#' ddi_depositr(abbr = "BJS", 
+#'              affiliation = "U.S. Department of Justice",
+#'              "Bureau of Justice Statistics")
+#' 
+#' ddi_distDate(date = "2022-01-01", "January 1, 2022")
+#' 
+#' ddi_distrbtr(abbr = "ICPSR",
+#'              affiliation = "Institute for Social Research",
+#'              URI = "http://www.icpsr.umich.edu",
+#'              "Ann Arbor, MI: Inter-university Consortium for Political and Social Research")
 #' 
 #' @export
 ddi_distStmt <- function(...) {

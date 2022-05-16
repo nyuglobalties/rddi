@@ -21,6 +21,9 @@ ddi_distrbtr(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Distribution statement for the work at the appropriate level: marked-up
 document; marked-up document source; study; study description,
@@ -60,6 +63,25 @@ ordering service or download facility on a Web site.
 }
 }
 
+\examples{
+ddi_distStmt()
+
+# Functions that need to be wrapped in ddi_distStmt()
+
+ddi_depDate(date = "2022-01-01", "January 1, 2022")
+
+ddi_depositr(abbr = "BJS", 
+             affiliation = "U.S. Department of Justice",
+             "Bureau of Justice Statistics")
+
+ddi_distDate(date = "2022-01-01", "January 1, 2022")
+
+ddi_distrbtr(abbr = "ICPSR",
+             affiliation = "Institute for Social Research",
+             URI = "http://www.icpsr.umich.edu",
+             "Ann Arbor, MI: Inter-university Consortium for Political and Social Research")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/distStmt.html}{distStmt documentation}
 

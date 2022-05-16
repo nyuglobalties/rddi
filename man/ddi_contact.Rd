@@ -9,6 +9,9 @@ ddi_contact(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Names and addresses of individuals responsible for the work. Individuals
 listed as contact persons will be used as resource persons regarding problems
@@ -22,6 +25,12 @@ attributes, can be found in the references.
 \emph{Parent nodes}
 
 \code{contact} is contained in the following elements: \code{distStmt} and \code{useStmt}.
+}
+\examples{
+ddi_contact(affiliation = "University of Wisconson",
+            email = "jsmith@...",
+            "Jane Smith")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/contact.html}{contact documentation}

@@ -9,6 +9,9 @@ ddi_dataSrc(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Used to list the book(s), article(s), serial(s), and/or machine-readable
 data file(s)--if any--that served as the source(s) of the data collection.
@@ -19,6 +22,10 @@ found in the references.
 \emph{Parent nodes}
 
 \code{dataSrc} is contained in the following elements: \code{sources} and \code{resource}.
+}
+\examples{
+ddi_dataSrc('"Voting Scores." CONGRESSIONAL QUARTERLY ALMANAC 33 (1977), 487-498.')
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc.html}{dataSrc documentation}

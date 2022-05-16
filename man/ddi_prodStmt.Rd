@@ -27,6 +27,9 @@ ddi_software(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Production statement for the work at the appropriate level: marked-up document;
 marked-up document source; study; study description, other material;
@@ -61,11 +64,32 @@ archived). The ISO standard for dates (YYYY-MM-DD) is recommended for use
 with the date attribute. Production date for data collection
 (codeBook/stdyDscr/citation/prodStmt/prodDate) maps to Dublin Core Date element.
 
+\code{ddi_prodPlac()} is the address of the archive or organization that produced
+the work.
+
 \code{ddi_software()} is the software used to produce the work. A "version"
 attribute permits specification of the software version number. The
 "date" attribute is provided to enable specification of the date (if any)
 for the software release. The ISO standard for dates (YYYY-MM-DD) is
 recommended for use with the date attribute.
+}
+\examples{
+ddi_prodStmt()
+
+# Functions that need to be wrapped in ddi_prodStmt()
+
+ddi_copyright("Copyright(c) ICPSR, 2000")
+
+ddi_fundAg(abbr = "NSF", role = "infrastructure", "National Science Foundation")
+
+ddi_grantNo(agency = "Bureau of Justice Statistics", "J-LEAA-018-77")
+
+ddi_prodDate(date = "2022-01-01", "January 1, 2022")
+
+ddi_prodPlac("Place of production")
+
+ddi_software(version = "6.12", "SAS")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/prodStmt.html}{prodStmt documentation}

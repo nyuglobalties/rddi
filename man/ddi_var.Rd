@@ -38,6 +38,9 @@ ddi_varFormat(...)
 
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This element describes all of the features of a single variable in a social
 science data file. The following elements are repeatable to support
@@ -103,6 +106,40 @@ values are unknown.
 }
 }
 
+\examples{
+ddi_var(varname = "var01")
+
+# Functions that need to be wrapped in ddi_var()
+
+ddi_catLevel(ID = "Level1", levelnm = "Broader sectors")
+
+ddi_codInstr("Use the standard classification tables to present responses to 
+              the question: What is your occupation? into numeric codes.")
+              
+ddi_geomap(URI = "https://mapURL.com")
+
+ddi_qstn(ID = "Q125",
+         "When you get together with your friends, would you say you discuss 
+         political matters frequently, occasionally, or never?")
+         
+ddi_stdCatgry(date = "1981",
+              "U. S. Census of Population and Housing, Classified Index of 
+              Industries and Occupations")
+              
+ddi_sumStat(type = "min", "0")
+
+ddi_TotlResp("1,056")
+
+ddi_undocCod("Responses for categories 9 and 10 are unavailable.")
+
+ddi_varFormat(type = "numeric",
+              formatname = "date.iso8601",
+              schema = "XML-Data",
+              category = "date",
+              URI = "http://www.w3.org/TR/1998/NOTE-XML-data/",
+              "19541022")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/var.html}{var documentation}
 

@@ -33,20 +33,45 @@
 #' and reports based on the data in this collection. Can take the form of 
 #' bibliographic citations. 
 #' 
-#' * `ddi_relStudy()` is information on the relationship of the current data 
+#' * `ddi_relStdy()` is information on the relationship of the current data 
 #' collection to others (e.g., predecessors, successors, other waves or rounds) 
 #' or to other editions of the same file. This would include the names of 
 #' additional data collections generated from the same data collection vehicle 
 #' plus other collections directed at the same general topic. Can take the form 
 #' of bibliographic citations.
 #'
-#' @param ... Child nodes or attributes. 
+#' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object. 
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/othrStdyMat.html}{othrStdyMat documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/othRefs.html}{othRefs documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/relMat.html}{relMat documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/relPubl.html}{relPubl documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/relStdy.html}{relStdy documentation}
+#' 
+#' @examples 
+#' ddi_othrStdyMat()
+#' 
+#' # Functions that need to be wrapped in ddi_othrStdyMat()
+#' 
+#' ddi_othRefs("Part II of the documentation, the Field Representative's Manual, 
+#'             is provided in hardcopy form only.")
+#' 
+#' ddi_relMat("Full details on the research design and procedures, sampling 
+#'            methodology, content areas, and questionnaire design, as well as 
+#'            percentage distributions by respondent's sex, race, region, college 
+#'            plans, and drug use, appear in the annual ISR volumes MONITORING 
+#'            THE FUTURE: QUESTIONNAIRE RESPONSES FROM THE NATION'S HIGH SCHOOL 
+#'            SENIORS.")
+#'            
+#' ddi_relPubl("Economic Behavior Program Staff. SURVEYS OF CONSUMER FINANCES. 
+#'             Annual volumes 1960 through 1970. Ann Arbor, MI: Institute for 
+#'             Social Research.")
+#'             
+#' ddi_relStdy("ICPSR distributes a companion study to this collection titled 
+#'              FEMALE LABOR FORCE PARTICIPATION AND MARITAL INSTABILITY, 1980: 
+#'              [UNITED STATES] (ICPSR 9199).")
 #' 
 #' @export
 ddi_othrStdyMat <- function(...) {

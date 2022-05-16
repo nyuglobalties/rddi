@@ -9,6 +9,9 @@ ddi_otherMat(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object
+}
 \description{
 This section allows for the inclusion of other materials that are related to
 the study as identified and labeled by the DTD/Schema users (encoders). The
@@ -42,6 +45,10 @@ the allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_otherMat()
+
+}
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/otherMat.html}{otherMat documentation}
 }

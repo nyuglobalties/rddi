@@ -15,6 +15,9 @@ ddi_studyBudget(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 stdyInfo is the study scope. It contains information about the data
 collection's scope across several dimensions, including substantive content,
@@ -54,6 +57,30 @@ much detail as needed.
 }
 }
 
+\examples{
+ddi_stdyInfo()
+
+# Functions that need to be wrapped in ddi_stdyInfo()
+
+ddi_abstract(date = "1999-01-28",
+             contentType = "abstract",
+             "Data on labor force activity for the week prior to the survey 
+             are supplied in this collection. Information is available on the 
+             employment status, occupation, and industry of persons 15 years 
+             old and over. Demographic variables such as age, sex, race, marital 
+             status, veteran status, household relationship, educational 
+             background, and Hispanic origin are included. In addition to 
+             providing these core data, the May survey also contains a 
+             supplement on work schedules for all applicable persons aged 
+             15 years and older who were employed at the time of the survey. 
+             This supplement focuses on shift work, flexible hours, and work 
+             at home for both main and second jobs.")
+
+ddi_studyBudget("The budget for the study covers a 5 year award period 
+                distributed between direct and indirect costs including: 
+                Staff, ...")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyInfo.html}{stdyInfo documentation}
 

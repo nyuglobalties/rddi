@@ -9,6 +9,9 @@ ddi_boundPoly(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The geographic bounding polygon field allows the creation of multiple
 polygons to describe in a more detailed manner the geographic area covered
@@ -36,6 +39,19 @@ found in the references.
 }
 }
 
+\examples{
+# ddi_boundPoly requires ddi_polygon(). ddi_polygon then requires ddi_point()
+# which requires ddi_gringLat() and ddi_gringLon()
+
+ddi_boundPoly(ddi_polygon(
+                ddi_point(
+                   ddi_gringLat("42.002207"), 
+                   ddi_gringLon("-120.005729004")
+                 )
+               )
+             )
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/boundPoly.html}{boundPoly documentation}
 }

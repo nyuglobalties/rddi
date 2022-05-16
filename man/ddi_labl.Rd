@@ -9,6 +9,9 @@ ddi_labl(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 A short description of the parent element. In the variable label, the length
 of this phrase may depend on the statistical analysis system
@@ -22,6 +25,10 @@ element, especially its allowed attributes, can be found in the references.
 
 \code{labl} is contained in the following elements: \code{catgry}; \code{catgryGrp}; \code{nCube};
 \code{nCubeGrp}; \code{otherMat}; \code{recGrp}; \code{sampleFrame}; \code{var}; and \code{varGrp}.
+}
+\examples{
+ddi_labl(level = "variable", lang = "en", "short variable description")
+ 
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/labl.html}{labl documentation}

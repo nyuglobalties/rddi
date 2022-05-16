@@ -18,6 +18,9 @@ ddi_respRate(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Information on data appraisal.
 }
@@ -40,6 +43,26 @@ sample.
 who provided information. This may include a broader description of
 stratified response rates, information affecting resonse rates etc.
 }
+}
+\examples{
+ddi_anlyInfo()
+
+# Functions that need to be wrapped in ddi_anlyInfo()
+
+ddi_dataAppr("These data files were obtained from the United States House of 
+             Representatives, who received them from the Census Bureau 
+             accompanied by the following caveats...")
+
+ddi_EstSmpErr("To assist NES analysts, the PC SUDAAN program was used to 
+              compute sampling errors for a wide-ranging example set of 
+              proportions estimated from the 1996 NES Pre-election Survey 
+              dataset...")
+
+ddi_respRate("For 1993, the estimated inclusion rate for TEDS-eligible 
+             providers was 91 percent, with the inclusion rate for all 
+             treatment providers estimated at 76 percent (including privately 
+             and publicly funded providers).")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlyInfo.html}{anylInfo documentation}

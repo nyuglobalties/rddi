@@ -9,6 +9,9 @@ ddi_anlysUnit(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Provides information regarding whom or what the variable/nCube describes.
 The element may be repeated only to support multiple language expressions of
@@ -19,6 +22,10 @@ attributes, can be found in the references.
 \emph{Parent nodes}
 
 \code{anlysUnit} is contained in \code{nCube} and \code{var}.
+}
+\examples{
+ddi_anlysUnit("This variable reports election returns at the constituency level.")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlysUnit.html}{anlysUnit documentation}

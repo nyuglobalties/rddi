@@ -15,6 +15,9 @@ ddi_othId(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Responsibility statement for the creation of the work at the appropriate level: marked-up document; marked-up document source; study; study description, other material; other
 material for study. More information on these elements, especially their allowed attributes, can
@@ -48,6 +51,19 @@ name of the person who edited the marked-up documentation might be cited in
 codeBook/docDscr/rspStmt/othId, using the "role" and "affiliation" attributes.
 Other identifications/acknowledgments for data collection
 (codeBook/stdyDscr/citation/rspStmt/othId) maps to Dublin Core Contributor element.
+}
+\examples{
+ddi_rspStmt()
+
+# Functions that need to be wrapped in ddi_rspStmt()
+
+ddi_AuthEnty(affiliation = "Organization name",
+             "LastName, FirstName")
+
+ddi_othId(role = "Data Manager",
+          affiliation = "Organization name",
+          "LastName, FirstName")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/rspStmt.html}{rspStmt documentation}

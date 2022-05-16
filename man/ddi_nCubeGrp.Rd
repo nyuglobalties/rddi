@@ -9,6 +9,9 @@ ddi_nCubeGrp(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 A group of nCubes that may share a common subject, arise from the
 interpretation of a single question, or are linked by some other factor.
@@ -43,6 +46,10 @@ especially their allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_nCubeGrp(name = "Group 1")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/nCubeGrp.html}{nCubeGrp documentation}
 }

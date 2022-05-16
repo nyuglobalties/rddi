@@ -9,6 +9,9 @@ ddi_recGrp(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Used to describe record groupings if the file is hierarchical or relational.
 More information on these elements, especially their allowed attributes,
@@ -27,6 +30,10 @@ can be found in the references.
 }
 }
 
+\examples{
+ddi_recGrp()
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/recGrp.html}{recGrp documentation}
 }
