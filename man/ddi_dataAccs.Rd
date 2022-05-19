@@ -9,6 +9,9 @@ ddi_dataAccs(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This section describes data access conditions and terms of use for the data
 collection. In cases where access conditions differ across individual files
@@ -30,6 +33,10 @@ references.
 }
 }
 
+\examples{
+ddi_dataAccs()
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataAccs.html}{dataAccs documentation}
 }

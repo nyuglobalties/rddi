@@ -9,6 +9,9 @@ ddi_fileStrc(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Type of file structure. The file structure is fully described in the first
 \code{fileTxt} within the \code{fileDscr} and then the \code{fileStrc} in subsequent
@@ -29,6 +32,10 @@ their allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_fileStrc()
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileStrc.html}{fileStrc documentation}
 }

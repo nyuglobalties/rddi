@@ -15,6 +15,9 @@ ddi_serName(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Series statement for the work at the appropriate level: marked-up document;
 marked-up document source; study; study description, other material; other
@@ -33,6 +36,16 @@ allowed attributes, can be found in the references.
 the series and a summary of those features that apply to the series as a whole.
 
 \code{ddi_serName()} is the name of the series to which the work belongs.
+}
+\examples{
+ddi_serStmt()
+
+# Functions that need to be wrapped in ddi_serStmt()
+
+ddi_serInfo("Series abstract...")
+
+ddi_serName(abbr="SN", "Series Name")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/serStmt.html}{serStmt documentation}

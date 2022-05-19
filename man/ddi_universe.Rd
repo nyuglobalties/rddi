@@ -9,6 +9,9 @@ ddi_universe(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The group of persons or other elements that are the object of research and
 to which any analytic results refer. Age, nationality, and residence
@@ -27,6 +30,10 @@ in the references.
 
 \code{universe} is contained in the following elements: \code{nCube}; \code{nCubeGrp};
 \code{sampleFrame}; \code{sumDscr}; \code{var}; and \code{varGrp}.
+}
+\examples{
+ddi_universe(clusion = "I", "Individuals 15-19 years of age.")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/universe.html}{universe documentation}

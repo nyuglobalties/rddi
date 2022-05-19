@@ -51,6 +51,9 @@ ddi_weight(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Information about the data collection methodology employed in the codebook.
 More information on these elements, especially their allowed attributes, can
@@ -117,6 +120,70 @@ indicate how the formula is applied to data.
 }
 }
 
+\examples{
+ddi_dataColl()
+
+# Functions that need to be wrapped in ddi_dataColl()
+
+ddi_actMin("To minimize the number of unresolved cases and reduce the 
+           potential nonresponse bias, four follow-up contacts were made with 
+           agencies that had not responded by various stages of the data 
+           collection process.")
+           
+ddi_cleanOps("Checks for undocumented codes were performed, and data were 
+             subsequently revised in consultation with the principal investigator.")
+             
+ddi_collectorTraining(type = "interviewer training",
+                      "Describe research project, describe population and 
+                      sample, suggest methods and language for approaching 
+                      subjects, explain questions and key terms of survey instrument.")
+                      
+ddi_collMode("telephone interviews")
+
+ddi_collSitu("There were 1,194 respondents who answered questions in face-to-face 
+             interviews lasting approximately 75 minutes each.")
+             
+ddi_ConOps(agency = "ICPSR",
+           "Ten percent of data entry forms were reentered to check for accuracy.")
+           
+ddi_dataCollector(abbr = "SRC",
+                  affiliation = "University of Michigan",
+                  role = "questionnaire administration",
+                  "Survey Research Center")
+                  
+ddi_deviat("The suitability of Ohio as a research site reflected its similarity 
+           to the United States as a whole. The evidence extended by Tuchfarber 
+           (1988) shows that Ohio is representative of the United States in 
+           several ways: percent urban and rural, percent of the population 
+           that is African American, median age, per capita income, percent 
+           living below the poverty level, and unemployment rate. Although 
+           results generated from an Ohio sample are not empirically 
+           generalizable to the United States, they may be suggestive of what 
+           might be expected nationally.")
+           
+ddi_frequenc("monthly")
+
+ddi_instrumentDevelopment(type = "pretesting",
+                         "The questionnaire was pre-tested with split-panel 
+                         tests, as well as an analysis of non-response rates 
+                         for individual items, and response distributions.")
+                         
+ddi_resInstru("structured")
+
+ddi_sampProc("National multistage area probability sample")
+
+ddi_weight("The 1996 NES dataset includes two final person-level analysis weights 
+           which incorporate sampling, nonresponse, and post-stratification 
+           factors. One weight (variable #4) is for longitudinal micro-level 
+           analysis using the 1996 NES Panel. The other weight (variable #3) 
+           is for analysis of the 1996 NES combined sample (Panel component 
+           cases plus Cross-section supplement cases). In addition, a Time 
+           Series Weight (variable #5) which corrects for Panel attrition was 
+           constructed. This weight should be used in analyses which compare 
+           the 1996 NES to earlier unweighted National Election Study data 
+           collections.")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataColl.html}{dataColl documentation}
 

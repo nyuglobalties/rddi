@@ -9,6 +9,9 @@ ddi_titl(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 titl is the full authoritative title for the work at the appropriate level:
 marked-up document; marked-up document source; study; other material(s)
@@ -25,6 +28,10 @@ references.
 \emph{Parent nodes}
 
 \code{titl} is contained in the following elements: \code{table} and \code{titlStmt}.
+}
+\examples{
+ddi_titl("Census of Population, 1950 [United States]: Public Use Microdata Sample")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/titl.html}{titl documentation}

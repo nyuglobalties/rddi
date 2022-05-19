@@ -19,3 +19,8 @@ are written with the schema in mind, this is useful
 if you create your own DDI nodes (there are many and
 it will take a while to implement all of them).
 }
+\examples{
+cb <- ddi_codeBook(ddi_stdyDscr(ddi_citation(ddi_titlStmt(ddi_titl("Sample")))))
+validate_codebook(cb)
+
+}

@@ -79,6 +79,41 @@
 #' 
 #' @param varname The variable name.
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
+#' 
+#' @examples 
+#' ddi_var(varname = "var01")
+#' 
+#' # Functions that need to be wrapped in ddi_var()
+#' 
+#' ddi_catLevel(ID = "Level1", levelnm = "Broader sectors")
+#' 
+#' ddi_codInstr("Use the standard classification tables to present responses to 
+#'               the question: What is your occupation? into numeric codes.")
+#'               
+#' ddi_geomap(URI = "https://mapURL.com")
+#' 
+#' ddi_qstn(ID = "Q125",
+#'          "When you get together with your friends, would you say you discuss 
+#'          political matters frequently, occasionally, or never?")
+#'          
+#' ddi_stdCatgry(date = "1981",
+#'               "U. S. Census of Population and Housing, Classified Index of 
+#'               Industries and Occupations")
+#'               
+#' ddi_sumStat(type = "min", "0")
+#' 
+#' ddi_TotlResp("1,056")
+#' 
+#' ddi_undocCod("Responses for categories 9 and 10 are unavailable.")
+#' 
+#' ddi_varFormat(type = "numeric",
+#'               formatname = "date.iso8601",
+#'               schema = "XML-Data",
+#'               category = "date",
+#'               URI = "http://www.w3.org/TR/1998/NOTE-XML-data/",
+#'               "19541022")
 #'
 #' @export
 ddi_var <- function(varname, ...) {
@@ -142,6 +177,8 @@ ddi_var <- function(varname, ...) {
 #' * `ddi_defntn()` is the rationale for why the variable group was constituted. 
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_concept()]
@@ -149,6 +186,13 @@ ddi_var <- function(varname, ...) {
 #' * [ddi_notes()] 
 #' * [ddi_txt()]
 #' * [ddi_universe()]
+#' 
+#' @examples 
+#' ddi_varGrp()
+#' 
+#' # Functions that need to be wrapped in ddi_varGrp()
+#' 
+#' ddi_defntn("The following eight variables were only asked in Ghana.")
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/varGrp.html}{varGrp documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/defntn.html}{defntn documentation}
@@ -218,6 +262,8 @@ ddi_varGrp <- function(...) {
 #' * `ddi_purpose()` explains the purpose for which a particular nCube was created.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' 
@@ -236,7 +282,16 @@ ddi_varGrp <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/nCube.html}{nCube documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/measure.html}{measure documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/purpose.html}{purpose documentation}
-#'
+#' 
+#' @examples 
+#' ddi_nCube()
+#' 
+#' # Functions that need to be wrapped in ddi_nCube()
+#' 
+#' ddi_measure(aggrMeth = "sum", additivity = "stock")
+#' 
+#' ddi_purpose("Meets reporting requirements for the Federal Reserve Board")
+#' 
 #' @export
 ddi_nCube <- function(...) {
   components <- dots_to_xml_components(...)
@@ -298,6 +353,8 @@ ddi_nCube <- function(...) {
 #' `nCubeGrp` is contained in `dataDscr`.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' 
@@ -309,6 +366,9 @@ ddi_nCube <- function(...) {
 #' * [ddi_universe()]
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/nCubeGrp.html}{nCubeGrp documentation}
+#'
+#' @examples 
+#' ddi_nCubeGrp(name = "Group 1")
 #'
 #' @export
 ddi_nCubeGrp <- function(...) {
@@ -411,13 +471,18 @@ ddi_purpose <- function(...) {
 #' `dmns` is contained in `nCube`.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' 
 #' * [ddi_cohort()]
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dmns.html}{dmns documentation}
-#'
+#' 
+#' @examples 
+#' ddi_dmns(rank = "1", varRef = "var01")
+#' 
 #' @export
 ddi_dmns <- function(...) {
   components <- dots_to_xml_components(...)
@@ -457,12 +522,17 @@ ddi_dmns <- function(...) {
 #' `cohort` is contained in `dmns`.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' 
 #' * [ddi_range()]
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/cohort.html}{cohort documentation}
+#' 
+#' @examples 
+#' ddi_cohort(catRef = "CV24_1", value = "1")
 #'
 #' @export
 ddi_cohort <- function(...) {
@@ -567,9 +637,11 @@ ddi_geomap <- function(...) {
 #' 
 #' \emph{catgry specific child nodes}
 #' 
-#' * `ddi_catValue()` is the category value.
+#' * `ddi_catValu()` is the category value.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #' 
 #' @section Shared and complex child nodes:
 #' * [ddi_labl()] 
@@ -580,6 +652,18 @@ ddi_geomap <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgryGrp.html}{catgryGrp documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catStat.html}{catStat documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catValu.html}{catValu documentation}
+#' 
+#' @examples 
+#' ddi_catgry(missing = "Y", missType = "inap")
+#' ddi_catgryGrp(missing = "N")
+#' 
+#' # Functions that need to be wrapped in ddi_catgry() or ddi_catgryGrp()
+#' 
+#' ddi_catStat(type = "freq", "256")
+#' 
+#' # Functions that need to be wrapped in ddi_catgry()
+#' 
+#' ddi_catValu("9")
 #'
 #' @export
 ddi_catgry <- function(...)  {
@@ -637,6 +721,15 @@ ddi_catgry <- function(...)  {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
+#' @examples 
+#' ddi_mrow()
+#' 
+#' # Functions that need to be wrapped in ddi_mrow()
+#' 
+#' ddi_mi("1")
+#' 
 #' @export
 ddi_mrow <- function(...) {
   components <- dots_to_xml_components(...)
@@ -672,7 +765,12 @@ ddi_mrow <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlysUnit.html}{anlysUnit documentation}
+#' 
+#' @examples 
+#' ddi_anlysUnit("This variable reports election returns at the constituency level.")
 #' 
 #' @export
 ddi_anlysUnit <- function(...) {
@@ -744,9 +842,24 @@ ddi_catgryGrp <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}{derivation documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvcmd.html}{drvcmd documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/drvdesc.html}{drvdesc documentation}
+#' 
+#' @examples 
+#' ddi_derivation()
+#' 
+#' # Functions that need to be wrapped in ddi_derivation()
+#' 
+#' ddi_drvcmd(syntax = "SPSS",
+#'            "RECODE V1 TO V3 (0=1) (1=0) (2=-1) INTO DEFENSE WELFARE HEALTH.")
+#' 
+#' ddi_drvdesc("VAR215.01 'Outcome of first pregnancy' (1988 NSFG=VAR611 PREGOUT1) 
+#'             If R has never been pregnant (VAR203 PREGNUM EQ 0) then OUTCOM01 is 
+#'             blank/inapplicable. Else, OUTCOM01 is transferred from VAR225 
+#'             OUTCOME for R's 1st pregnancy.")
 #'
 #' @export
 ddi_derivation <- function(...) {
@@ -795,6 +908,8 @@ ddi_derivation <- function(...) {
 #' the range of valid and invalid values. A table is permissible in this element. 
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_notes()] 
@@ -804,6 +919,26 @@ ddi_derivation <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/invalrng.html}{invalrng documentation} 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/item.html}{item documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/key.html}{key documentation}
+#' 
+#' @examples 
+#' # ddi_valrng() and ddi_invalrng() requires either the ddi_item() or ddi_range() child node.
+#' 
+#' ddi_valrng(ddi_item())
+#' 
+#' ddi_invalrng(ddi_item())
+#' 
+#' ddi_valrng(ddi_range())
+#' 
+#' ddi_invalrng(ddi_range())
+#' 
+#' # Functions that must be wrapped in ddi_valrng() or ddi_invalrng()
+#' 
+#' ddi_item(VALUE = "1")
+#' 
+#' ddi_key("05 (PSU) Parti Socialiste Unifie et extreme gauche (Lutte Ouvriere) 
+#'         [United Socialists and extreme left (Workers Struggle)] 50 Les Verts 
+#'         [Green Party] 80 (FN) Front National et extreme droite [National Front 
+#'         and extreme right]")
 #' 
 #' @export
 ddi_valrng <- function(...) {
@@ -815,10 +950,15 @@ ddi_valrng <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "valrng")
   }
 
-  if(check_cardinality(components$content, "item") > 0 & check_cardinality(components$content, "range") == 0) required_children <- "item"
-  else if(check_cardinality(components$content, "item") == 0 & check_cardinality(components$content, "range") > 0) required_children <- "range"
-  else rddi_err("valrng requires at least one item or at least one range child but cannot include an item and range child")
- 
+  if(check_cardinality(components$content, "item") > 0 & check_cardinality(components$content, "range") == 0) {
+    required_children <- "item"
+  } else if(check_cardinality(components$content, "item") == 0 & check_cardinality(components$content, "range") > 0) {
+    required_children <- "range"
+  }
+  else {
+    rddi_err("valrng requires at least one item or at least one range child but cannot include an item and range child")
+  }
+  
   allowed_children <- c(
     "item",
     "range",
@@ -922,7 +1062,12 @@ ddi_catValu <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/imputation.html}{imputation documentation}
+#' 
+#' @examples 
+#' ddi_imputation("This variable contains values that were derived by substitution.")
 #' 
 #' @export
 ddi_imputation <- function(...) {
@@ -1029,7 +1174,14 @@ ddi_TotlResp <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/security.html}{security documentation}
+#' 
+#' @examples 
+#' ddi_security(date = "1998-05-10",
+#'              "This variable has been recoded for reasons of confidentiality. 
+#'              Users should contact the archive for information on obtaining access.")
 #' 
 #' @export
 ddi_security <- function(...) {
@@ -1061,7 +1213,16 @@ ddi_security <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/embargo.html}{embargo documentation}
+#' 
+#' @examples 
+#' ddi_embargo(event = "notBefore",
+#'             date = "2001-09-30",
+#'             "The data associated with this variable/nCube will not become 
+#'             available until September 30, 2001, because of embargo provisions 
+#'             established by the data producers.")
 #' 
 #' @export
 ddi_embargo <- function(...) {
@@ -1094,7 +1255,12 @@ ddi_embargo <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/respUnit.html}{respUnit documentation}
+#' 
+#' @examples 
+#' ddi_respUnit("Head of household")
 #' 
 #' @export
 ddi_respUnit <- function(...) {
@@ -1142,7 +1308,7 @@ ddi_varFormat <- function(...) {
                         "schema", "otherSchema", "type", "category", "otherCategory", "URI") 
     attribs <- validate_attributes(attribs, allowed_attribs, "varFormat")
     if("type" %in% names(attribs)) {
-      check_attribs_in_set(vals = attribs$type, attributes = c("numeric", "character"), field = "varFormat(type)")
+      check_attribs_in_set(attribs$type, c("numeric", "character"), field = "varFormat(type)")
     }
   }
 
@@ -1193,14 +1359,9 @@ ddi_drvcmd <- function(...) {
 #' @rdname ddi_valrng 
 #' @export
 ddi_item <- function(...) {
-  browser()
   components <- dots_to_xml_components(...)
   attribs <- components$attribs
 
-  if(check_cardinality(components$content, "item") > 0 & check_cardinality(components$content, "range") == 0) required_children <- "item"
-  else if(check_cardinality(components$content, "item") == 0 & check_cardinality(components$content, "range") > 0) required_children <- "range"
-  else rddi_err("valrng requires at least one item or at least one range child but cannot include an item and range child")
-  
   allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
                       "UNITS", "VALUE") 
   attribs <- validate_attributes(attribs, allowed_attribs, "item")
@@ -1228,7 +1389,12 @@ ddi_item <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/range.html}{range documentation}
+#' 
+#' @examples 
+#' ddi_range(min = "1", maxExclusive = "20")
 #'
 #' @export
 ddi_range <- function(...) {
@@ -1277,7 +1443,15 @@ ddi_key <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/location.html}{location documentation}
+#' 
+#' @examples 
+#' ddi_location(StartPos = "55",
+#'              EndPos = "57",
+#'              RecSegNo = "2",
+#'              fileid = "CARD-IMAGE")
 #' 
 #' @export
 ddi_location <- function(...) {

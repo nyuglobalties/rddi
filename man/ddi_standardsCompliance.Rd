@@ -12,6 +12,9 @@ ddi_complianceDescription(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The standards compliance section lists all specific standards complied with
 during the execution of this study.  More information on these elements,
@@ -35,6 +38,15 @@ standard.
 }
 }
 
+\examples{
+# Note: ddi_standard() is a required child for ddi_standardsCompliance()
+ddi_standardsCompliance(ddi_standard())
+
+# Functions that need to be wrapped in ddi_standardsCompliance()
+
+ddi_complianceDescription("This study complied to X standard by...")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/standardsCompliance.html}{standardsCompliance documentation}
 

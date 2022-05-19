@@ -18,6 +18,9 @@ ddi_catValu(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 \code{catgry} is a description of a particular categorical response.
 \code{ddi_catgryGrp()} groups the responses together. More information on these
@@ -42,7 +45,7 @@ the selected term belongs.
 
 \emph{catgry specific child nodes}
 \itemize{
-\item \code{ddi_catValue()} is the category value.
+\item \code{ddi_catValu()} is the category value.
 }
 }
 \section{Shared and complex child nodes}{
@@ -54,6 +57,19 @@ the selected term belongs.
 }
 }
 
+\examples{
+ddi_catgry(missing = "Y", missType = "inap")
+ddi_catgryGrp(missing = "N")
+
+# Functions that need to be wrapped in ddi_catgry() or ddi_catgryGrp()
+
+ddi_catStat(type = "freq", "256")
+
+# Functions that need to be wrapped in ddi_catgry()
+
+ddi_catValu("9")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catgry.html}{catgry documentation}
 

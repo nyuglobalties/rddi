@@ -12,6 +12,14 @@
 #' * [ddi_fileDscr()]
 #' * [ddi_otherMat()] 
 #' * [ddi_stdyDscr()]
+#' 
+#' @return A ddi_node object
+#' 
+#' @examples 
+#' # All ddi_codeBook() functions must contain ddi_stdyDscr(), 
+#' # which also has ddi_citation() as a required child element.
+#' 
+#' ddi_codeBook(ddi_stdyDscr(ddi_citation()))
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeBook.html}{codeBook documentation}
 #' 
@@ -80,6 +88,12 @@ ddi_codeBook <- function(...) {
 #' * [ddi_studyAuthorization()] 
 #' * [ddi_studyDevelopment()]
 #'
+#' @return A ddi_node object
+#' 
+#' @examples 
+#' # ddi_citation() is required in ddi_stdyDscr()
+#' ddi_stdyDscr(ddi_citation())
+#'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyDscr.html}{stdyDscr documentation}
 #' 
 #' @export
@@ -131,8 +145,12 @@ ddi_stdyDscr <- function(...) {
 #' * [ddi_notes()] 
 #' * [ddi_var()]
 #' * [ddi_varGrp()] 
+#' 
+#' @return A ddi_node object
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
+#' 
+#' @examples ddi_dataDscr()
 #' 
 #' @export
 ddi_dataDscr <- function(...) {
@@ -177,8 +195,12 @@ ddi_dataDscr <- function(...) {
 #' * [ddi_fileTxt()]
 #' * [ddi_locMap()] 
 #' * [ddi_notes()] 
+#' 
+#' @return A ddi_node object
 #'
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileDscr.html}{fileDscr documentation}
+#' 
+#' @examples ddi_fileDscr()
 #' 
 #' @export
 ddi_fileDscr <- function(...) {
@@ -238,8 +260,12 @@ ddi_fileDscr <- function(...) {
 #' * [ddi_otherMat()]
 #' * [ddi_table()]
 #' * [ddi_txt()]
+#' 
+#' @return A ddi_node object
 #'
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataDscr.html}{dataDscr documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/otherMat.html}{otherMat documentation}
+#' 
+#' @examples ddi_otherMat()
 #' 
 #' @export
 ddi_otherMat <- function(...) {

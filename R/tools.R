@@ -79,6 +79,11 @@ check_cardinality <- function(content, test) {
 #'
 #' @param codebook The codebook root node, output of `ddi_codeBook()`.
 #' @return A logical (with attributes containing any errors) that indicates passing or failing.
+#' 
+#' @examples 
+#' cb <- ddi_codeBook(ddi_stdyDscr(ddi_citation(ddi_titlStmt(ddi_titl("Sample")))))
+#' validate_codebook(cb)
+#' 
 #' @export
 validate_codebook <- function(codebook) {
   stopifnot(is_ddi_node(codebook))

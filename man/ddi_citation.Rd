@@ -21,6 +21,9 @@ ddi_holdings(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object..
+}
 \description{
 Citation entities for the study including general citations and source
 citations. Citation is a required element in the DDI-Codebook.
@@ -63,6 +66,29 @@ specified; and URI--A URN or URL for accessing the electronic copy of the cited 
 }
 }
 
+\examples{
+ddi_citation()
+
+ddi_sourceCitation()
+
+ddi_fileCitation()
+
+# An example using the ddi_biblCit() child:
+
+ddi_citation(
+   ddi_biblCit(format = "APA", "Full citation text")
+)
+
+# An example using the ddi_holdings() child:
+
+ddi_citation(
+   ddi_holdings(location = "ICPSR DDI Repository",
+                callno = "inap.",
+                URI = "http://www.icpsr.umich.edu/DDIrepository/",
+                "Marked-up Codebook for Current Population Survey, 1999: Annual Demographic File")
+)
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/citation.html}{citation documentation}
 

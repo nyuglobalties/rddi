@@ -11,6 +11,8 @@
 #' `dataAccs` is contained in `stdyDscr`.
 #'
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_notes()]
@@ -18,6 +20,9 @@
 #' * [ddi_useStmt()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataAccs.html}{dataAccs documentation}
+#' 
+#' @examples 
+#' ddi_dataAccs()
 #' 
 #' @export
 ddi_dataAccs <- function(...) {
@@ -79,10 +84,12 @@ ddi_dataAccs <- function(...) {
 #' `ddi_fileQnty()` is the total number of physical files associated with a 
 #' collection.
 #' 
-#' `ddi_orgArch()` is the archive from which the data collection was obtained; 
+#' `ddi_origArch()` is the archive from which the data collection was obtained; 
 #' the originating archive. 
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_notes()]
@@ -94,6 +101,24 @@ ddi_dataAccs <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/complete.html}{complete documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileQnty.html}{fileQnty documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/origArch.html}{origArch documentation}
+#' 
+#' @examples 
+#' ddi_setAvail()
+#' 
+#' # Functions that need to be wrapped in ddi_setAvail()
+#' 
+#' ddi_accsPlac(URI = "https://dataverse.harvard.edu/",
+#'              "Harvard Dataverse")
+#' 
+#' ddi_avlStatus("This collection is superseded by CENSUS OF POPULATION, 1880...")
+#' 
+#' ddi_collSize("1 data file + machine-readable documentation (PDF) + SAS data definition statements.")
+#' 
+#' ddi_complete("Because of embargo provisions, data values for some variables have been masked...")
+#' 
+#' ddi_fileQnty("5 files")
+#' 
+#' ddi_origArch("Zentralarchiv fuer empirische Sozialforschung")
 #' 
 #' @export
 ddi_setAvail <- function(...) {

@@ -33,6 +33,9 @@ ddi_ProcStat(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Provides descriptive information about the data file. More information on
 these elements, especially their allowed attributes, can be found in the
@@ -87,6 +90,28 @@ provide for release of data and documentation at various stages of processing.
 }
 }
 
+\examples{
+ddi_fileTxt()
+
+# Functions that need to be wrapped in ddi_fileTxt()
+
+ddi_dataChck("Consistency checks were performed by Data Producer/ Principal Investigator.")
+
+ddi_dataMsng('The codes "-1" and "-2" are used to represent missing data.')
+
+ddi_fileCont("Part 1 contains both edited and constructed variables describing demographic...")
+
+ddi_fileName(ID = "File1", "Second-Generation Children Data")
+
+ddi_filePlac("Washington, DC: United States Department of Commerce, Bureau of the Census")
+
+ddi_fileType(charset = "US-ASCII", "ASCII data file")
+
+ddi_format("comma-delimited")
+
+ddi_ProcStat("Available from the DDA. Being processed.")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileTxt.html}{fileTxt documentation}
 

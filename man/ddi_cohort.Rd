@@ -9,6 +9,9 @@ ddi_cohort(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The element cohort is used when the nCube contains a limited number of
 categories from a particular variable, as opposed to the full range of
@@ -29,6 +32,10 @@ especially their allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_cohort(catRef = "CV24_1", value = "1")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/cohort.html}{cohort documentation}
 }

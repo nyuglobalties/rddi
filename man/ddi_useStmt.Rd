@@ -30,6 +30,9 @@ ddi_specPerm(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Information on terms of use for the data collection. This element may be
 repeated only to support multiple language expressions of the content.
@@ -74,6 +77,52 @@ to access a resource.
 }
 }
 
+\examples{
+ddi_useStmt()
+
+# Functions that need to be wrapped in ddi_useStmt()
+
+ddi_citReq(lang = "en",
+           "Publications based on ICPSR data collections should acknowledge 
+           those sources by means of bibliographic citations. To ensure that 
+           such source attributions are captured for social science 
+           bibliographic utilities, citations must appear in footnotes or in 
+           the reference section of publications.")
+
+ddi_conditions(lang = "en",
+               "The data are available without restriction. Potential users 
+               of these datasets are advised, however, to contact the original 
+               principal investigator Dr. J. Smith (Institute for Social Research, 
+               The University of Michigan, Box 1248, Ann Arbor, MI 48106), 
+               about their intended uses of the data. Dr. Smith would also 
+               appreciate receiving copies of reports based on the datasets.")
+
+ddi_confDec(formNo = "1",
+            "To download this dataset, the user must sign a declaration of confidentiality.")
+
+ddi_deposReq("To provide funding agencies with essential information about 
+             use of archival resources and to facilitate the exchange of 
+             information about ICPSR participants' research activities, users 
+             of ICPSR data are requested to send to ICPSR bibliographic 
+             citations for, or copies of, each completed manuscript or thesis 
+             abstract. Please indicate in a cover letter which data were used.")
+
+ddi_disclaimer("The original collector of the data, ICPSR, and the relevant 
+               funding agency bear no responsibility for uses of this collection 
+               or for interpretations or inferences based upon such uses.")
+
+ddi_restrctn("ICPSR obtained these data from the World Bank under the terms of 
+             a contract which states that the data are for the sole use of 
+             ICPSR and may not be sold or provided to third parties outside 
+             of ICPSR membership. Individuals at institutions that are not 
+             members of the ICPSR may obtain these data directly from the 
+             World Bank.")
+
+ddi_specPerm(formNo = "4",
+             "The user must apply for special permission to use this dataset 
+             locally and must complete a confidentiality form.")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/useStmt.html}{useStmt documentation}
 

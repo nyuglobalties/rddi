@@ -27,6 +27,9 @@ ddi_varQnty(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Dimensions of the overall digital or physical file. More information on
 these elements, especially their allowed attributes, can be found in the references.
@@ -39,7 +42,7 @@ these elements, especially their allowed attributes, can be found in the referen
 \emph{dimnsns and recDimnsn shared nodes}
 \itemize{
 \item \code{ddi_caseQnty()} is the number of cases, observations, or records.
-\item \code{ddi_logRcL()} is the logical record length, i.e., number of characters of
+\item \code{ddi_logRecL()} is the logical record length, i.e., number of characters of
 data in the record.
 \item \code{ddi_varQnty()} is the overall variable count.
 }
@@ -53,6 +56,26 @@ case.
 element should be used for card-image data or other files in which there
 are multiple records per case.
 }
+}
+\examples{
+ddi_dimensns()
+
+ddi_recDimnsn()
+
+# Functions that need to be wrapped in ddi_dimensns() or ddi_recDimnsn()
+
+ddi_caseQnty("1011")
+
+ddi_logRecL("27")
+
+ddi_varQnty("27")
+
+# Functions that need to be wrapped in ddi_dimensns
+
+ddi_recNumTot("2400")
+
+ddi_recPrCas("5")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dimensns.html}{dimensns documentation}

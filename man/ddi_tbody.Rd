@@ -9,6 +9,9 @@ ddi_tbody(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This is the body of the table. More information on this element, especially
 the allowed attributes, can be found in the references.
@@ -25,6 +28,10 @@ the allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_tbody(valign = "middle")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/tbody.html}{tbody documentation}
 }

@@ -3,6 +3,10 @@
 #' @param x A `ddi_node` object (or subclass).
 #' @param ... Arguments to pass to methods.
 #' @return An `xml_document` or `xml_node` object whether the object is a root node or not, respectively.
+#' 
+#' @examples 
+#' cb <- ddi_codeBook(ddi_stdyDscr(ddi_citation(ddi_titlStmt(ddi_titl("Sample")))))
+#' as_xml(cb)
 #'
 #' @export
 as_xml <- function(x, ...) {
@@ -72,6 +76,11 @@ as_xml.ddi_unwrapped <- function(x, parent = NULL, rooted = FALSE, ...) {
 #' @param x A ddi_node object.
 #' @param ... Arguments forwarded to `as_xml()`.
 #' @return A string containing the text representation of XML.
+#' 
+#' @examples 
+#' cb <- ddi_codeBook(ddi_stdyDscr(ddi_citation(ddi_titlStmt(ddi_titl("Sample")))))
+#' as_xml_string(cb)
+#' 
 #' @export
 as_xml_string <- function(x, ...) {
   stopifnot(is_ddi_node(x))

@@ -9,6 +9,9 @@ ddi_studyDevelopment(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Describe the process of study development as a series of development
 activities. These activities can be typed using a controlled vocabulary.
@@ -27,6 +30,10 @@ attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_studyDevelopment()
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyDevelopment.html}{studyDevelopment documentation}
 }

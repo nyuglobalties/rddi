@@ -30,6 +30,9 @@ ddi_timePrd(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This is the summary data description and it contains information about the
 geographic coverage of the study and unit of analysis. More information on
@@ -81,6 +84,32 @@ element is recommended.
 }
 }
 
+\examples{
+ddi_sumDscr()
+
+# Functions that need to be wrapped in ddi_sumDscr()
+
+ddi_anlyUnit("individuals")
+
+ddi_collDate(event = "single",
+             date = "1998-11-10",
+             "10 November 1998")
+             
+ddi_dataKind(type = "numeric",
+             "survey data")
+             
+ddi_geogCover("State of California")
+
+ddi_geogUnit("state")
+
+ddi_nation(abbr = "GB",
+           "United Kingdom")
+           
+ddi_timePrd(event = "start",
+            date = "1998-05-01",
+            "May 1, 1998")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sumDscr.html}{sumDscr documentation}
 

@@ -9,6 +9,8 @@
 #' and `txt`.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_tgroup()]
@@ -16,6 +18,9 @@
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/table.html}{table documentation}
 #'  
+#' @examples 
+#' ddi_table()
+#' 
 #' @export
 ddi_table <- function(...) {
   components <- dots_to_xml_components(...)
@@ -55,6 +60,8 @@ ddi_table <- function(...) {
 #' empty element.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_tbody()] 
@@ -63,6 +70,13 @@ ddi_table <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/tgroup.html}{tgroup documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/colspec.html}{colspec documentation}
 #'  
+#' @examples 
+#' ddi_tgroup()
+#' 
+#' # Functions that must be wrapped in ddi_tgroup()
+#' 
+#' ddi_colspec(align = "left")
+#' 
 #' @export
 ddi_tgroup <- function(...) {
   components <- dots_to_xml_components(...)
@@ -115,13 +129,18 @@ ddi_colspec <-  function(...) {
 #'
 #' `tbody` is contained in `tgroup`.
 #' 
-#' @param ... Child nodes or attributes. 
+#' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object. 
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_row()] 
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/tbody.html}{tbody documentation}
 #'  
+#' @examples
+#' ddi_tbody(valign = "middle")
+#' 
 #' @export
 ddi_tbody <- function(...) {
   components <- dots_to_xml_components(...)
@@ -155,12 +174,17 @@ ddi_tbody <- function(...) {
 #' `thead` is contained in `tgroup`.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_row()] 
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/thead.html}{thead documentation}
 #'  
+#' @examples 
+#' ddi_thead(valign = "middle")
+#' 
 #' @export
 ddi_thead <- function(...) {
   components <- dots_to_xml_components(...)
@@ -198,11 +222,19 @@ ddi_thead <- function(...) {
 #' `entry` is each table entry in the row.
 #' 
 #' @param ... Child nodes or attributes. 
-#'
+#' 
+#' @return A ddi_node object.
 #' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/row.html}{row documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/entry.html}{entry documentation}
-#'  
+#' 
+#' @examples 
+#' ddi_row()
+#' 
+#' # Functions that need to be wrapped in ddi_row()
+#' 
+#' ddi_entry("row contents")
+#' 
 #' @export
 ddi_row <- function(...) {
   components <- dots_to_xml_components(...)

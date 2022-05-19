@@ -9,6 +9,9 @@ ddi_notes(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 For clarifying information/annotation regarding the parent element. More
 information on this element, especially its allowed attributes, can be found
@@ -22,6 +25,11 @@ in the references.
 \code{invalrng}; \code{method}; \code{nCube}; \code{nCubeGrp}; \code{otherMat}; \code{setAvail};
 \code{sourceCitation}; \code{stdyDscr}; \code{stdyInfo}; \code{valrng}; \code{var}; \code{varGrp}; and
 \code{verStmt}.
+}
+\examples{
+ddi_notes(resp = "Jane Smith", "The source codebook was produced from original 
+                               hardcopy materials using Optical Character Recognition (OCR).")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/notes.html}{notes documentation}

@@ -9,6 +9,9 @@ ddi_dmns(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This element defines a variable as a dimension of the nCube, and should be
 repeated to describe each of the cube's dimensions. The attribute "rank" is
@@ -29,6 +32,10 @@ attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_dmns(rank = "1", varRef = "var01")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dmns.html}{dmns documentation}
 }

@@ -15,6 +15,11 @@
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/locMap.html}{locMap documentation}
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
+#' 
+#' @examples 
+#' ddi_locMap()
 #'
 #' @export
 ddi_locMap <- function(...) {
@@ -76,6 +81,21 @@ ddi_locMap <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/physLoc.html}{physLoc documentation}
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
+#' 
+#' @examples 
+#' ddi_dataItem()
+#' 
+#' # Functions that need to be wrapped in ddi_dataItem()
+#' 
+#' ddi_CubeCoord(coordNo = "1", coordVal = "3")
+#' 
+#' ddi_physLoc(type = "rectangular", 
+#'             recRef = "R1",
+#'             startPos = "55",
+#'             endPos = "57",
+#'             width = "3")
 #'
 #' @export
 ddi_dataItem <- function(...) {

@@ -15,6 +15,9 @@ ddi_guide(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The Document Description consists of bibliographic information describing the
 DDI-compliant document itself as a whole. This Document Description can be
@@ -65,6 +68,16 @@ documentation. Provided to assist users in using the document correctly.
 }
 }
 
+\examples{
+ddi_docDscr()
+
+# Functions that need to be wrapped in ddi_docDscr()
+
+ddi_docStatus("This marked-up document includes a provisional data dictionary...")
+
+ddi_guide("List of terms and definitions")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/docDscr.html}{docDscr documentation}
 

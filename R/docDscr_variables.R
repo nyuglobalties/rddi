@@ -39,6 +39,8 @@
 #' documentation. Provided to assist users in using the document correctly. 
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' 
@@ -50,6 +52,15 @@
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/docDscr.html}{docDscr documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/docStatus.html}{docStatus documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/guide.html}{guide documentation}
+#' 
+#' @examples 
+#' ddi_docDscr()
+#' 
+#' # Functions that need to be wrapped in ddi_docDscr()
+#' 
+#' ddi_docStatus("This marked-up document includes a provisional data dictionary...")
+#' 
+#' ddi_guide("List of terms and definitions")
 #' 
 #' @export
 ddi_docDscr <- function(...) {

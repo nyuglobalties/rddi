@@ -12,6 +12,9 @@ ddi_entry(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Each row represents a table row. More information on this element,
 especially the allowed attributes, can be found in the references.
@@ -24,6 +27,14 @@ especially the allowed attributes, can be found in the references.
 \emph{Child node}
 
 \code{entry} is each table entry in the row.
+}
+\examples{
+ddi_row()
+
+# Functions that need to be wrapped in ddi_row()
+
+ddi_entry("row contents")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/row.html}{row documentation}

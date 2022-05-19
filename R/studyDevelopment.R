@@ -13,8 +13,13 @@
 #' * [ddi_developmentActivity()] 
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyDevelopment.html}{studyDevelopment documentation}
+#' 
+#' @examples 
+#' ddi_studyDevelopment()
 #' 
 #' @export
 ddi_studyDevelopment <- function(...) {
@@ -62,10 +67,27 @@ ddi_studyDevelopment <- function(...) {
 #' 
 #' @param ... Child nodes or attributes. 
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/developmentActivity.html}{developmentActivity documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/description.html}{description documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/outcome.html}{outcome documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/participant.html}{participant documentation}
+#' 
+#' @examples
+#' ddi_developmentActivity(type = "checkDataAvailability")
+#' 
+#' # Functions that need to be wrapped in ddi_developmentActivity()
+#' 
+#' ddi_description("A number of potential sources were evaluated for content, 
+#'                 consistency and quality")
+#' 
+#' ddi_outcome("Due to quality issues this was determined not to be a viable 
+#'             source of data for the study")
+#' 
+#' ddi_participant(affiliation = "NSO",
+#'                 role = "statistician",
+#'                 "John Doe")
 #' 
 #' @export
 ddi_developmentActivity <- function(...) {
@@ -158,6 +180,8 @@ ddi_participant <- function(...) {
 #' `resource` is contained in `developmentActivity`.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_dataSrc()]
@@ -166,6 +190,9 @@ ddi_participant <- function(...) {
 #' * [ddi_srcOrig()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/resource.html}{resource documentation}
+#' 
+#' @examples 
+#' ddi_resource()
 #' 
 #' @export
 ddi_resource <- function(...) {

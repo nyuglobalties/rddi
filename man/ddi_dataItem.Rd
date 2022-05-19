@@ -15,6 +15,9 @@ ddi_physLoc(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Identifies a physical storage location for an individual data entry, serving
 as a link between the physical location and the logical content description
@@ -47,6 +50,20 @@ data item), "width" (number of columns the variable/data item occupies),
 data item is located on), and "fileid" (an IDREF link to the fileDscr
 element for the file that includes this physical location).
 }
+}
+\examples{
+ddi_dataItem()
+
+# Functions that need to be wrapped in ddi_dataItem()
+
+ddi_CubeCoord(coordNo = "1", coordVal = "3")
+
+ddi_physLoc(type = "rectangular", 
+            recRef = "R1",
+            startPos = "55",
+            endPos = "57",
+            width = "3")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataItem.html}{dataItem documentation}

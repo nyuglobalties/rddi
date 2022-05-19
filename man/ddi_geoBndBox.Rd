@@ -21,6 +21,9 @@ ddi_westBL(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The fundamental geometric description for any dataset that models geography.
 GeoBndBox is the minimum box, defined by west and east longitudes and north
@@ -56,6 +59,20 @@ extent of the dataset. A valid range of values, expressed in decimal degrees
 (positive east and positive north), is: -180,0 <=West Bounding Longitude
 Value <= 180,0.
 }
+}
+\examples{
+ddi_geoBndBox()
+
+# Functions that need to be wrapped in ddi_geoBndBox()
+
+ddi_eastBL("90")
+
+ddi_northBL("17")
+
+ddi_southBL("45")
+
+ddi_westBL("-10")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoBndBox.html}{geoBndBox documentation}

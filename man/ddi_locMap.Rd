@@ -9,6 +9,9 @@ ddi_locMap(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This element maps individual data entries to one or more physical storage
 locations. It is used to describe the physical location of aggregate/tabular
@@ -27,6 +30,10 @@ elements, especially their allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_locMap()
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/locMap.html}{locMap documentation}
 }

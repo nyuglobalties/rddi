@@ -9,6 +9,9 @@ ddi_srcChar(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Assessment of characteristics and quality of source material. May not be
 relevant to survey data. This element may be repeated to support multiple
@@ -19,6 +22,10 @@ especially its allowed attributes, can be found in the references.
 \emph{Parent nodes}
 
 \code{srcChar} is contained in the following elements: \code{sources} and \code{resource}.
+}
+\examples{
+ddi_srcChar("Assessment of source material(s).")
+ 
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcChar.html}{srcChar documentation}

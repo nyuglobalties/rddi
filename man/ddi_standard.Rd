@@ -12,6 +12,9 @@ ddi_standardName(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Standard describes a standard with which the study complies. More information
 on these elements, especially their allowed attributes, can be found in the
@@ -35,6 +38,17 @@ study complies.
 }
 }
 
+\examples{
+ddi_standard()
+
+# Functions that need to be wrapped in ddi_standard()
+
+ddi_standardName(date = "2009-10-18",
+                 version = "3.1",
+                 URI = "http://www.ddialliance.org/Specification/DDI-Lifecycle/3.1/",
+                 "Data Documentation Initiative")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/standard.html}{standard documentation}
 

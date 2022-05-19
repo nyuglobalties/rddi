@@ -9,6 +9,9 @@ ddi_producer(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The producer is the person or organization with the financial or
 administrative responsibility for the physical processes whereby the
@@ -24,6 +27,13 @@ element, especially its allowed attributes, can be found in the references.
 \emph{Parent nodes}
 
 \code{producer} is contained in the following elements: \code{prodStmt} and \code{standard}.
+}
+\examples{
+ddi_producer(abbr = "MNPoll",
+             affiliation = "Minneapolis Star Tribune Newspaper",
+             role = "origianl producer",
+             "Star Tribune Minnesota Poll")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/producer.html}{producer documentation}

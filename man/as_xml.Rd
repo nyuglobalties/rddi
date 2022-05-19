@@ -17,3 +17,8 @@ An \code{xml_document} or \code{xml_node} object whether the object is a root no
 \description{
 Get XML representation of ddi_node objects
 }
+\examples{
+cb <- ddi_codeBook(ddi_stdyDscr(ddi_citation(ddi_titlStmt(ddi_titl("Sample")))))
+as_xml(cb)
+
+}

@@ -17,3 +17,8 @@ A string containing the text representation of XML.
 \description{
 Functionally equivalent to \code{as.character(as_xml(ddi_node_obj))}.
 }
+\examples{
+cb <- ddi_codeBook(ddi_stdyDscr(ddi_citation(ddi_titlStmt(ddi_titl("Sample")))))
+as_xml_string(cb)
+
+}

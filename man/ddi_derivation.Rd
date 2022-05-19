@@ -15,6 +15,9 @@ ddi_drvcmd(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Used only in the case of a derived variable, this element provides both a
 description of how the derivation was performed and the command used to
@@ -39,6 +42,20 @@ multiple language expressions of the content.
 was derived. The element may be repeated to support multiple language
 expressions of the content.
 }
+}
+\examples{
+ddi_derivation()
+
+# Functions that need to be wrapped in ddi_derivation()
+
+ddi_drvcmd(syntax = "SPSS",
+           "RECODE V1 TO V3 (0=1) (1=0) (2=-1) INTO DEFENSE WELFARE HEALTH.")
+
+ddi_drvdesc("VAR215.01 'Outcome of first pregnancy' (1988 NSFG=VAR611 PREGOUT1) 
+            If R has never been pregnant (VAR203 PREGNUM EQ 0) then OUTCOM01 is 
+            blank/inapplicable. Else, OUTCOM01 is transferred from VAR225 
+            OUTCOME for R's 1st pregnancy.")
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/derivation.html}{derivation documentation}

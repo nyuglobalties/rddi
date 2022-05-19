@@ -21,6 +21,9 @@ ddi_subTitl(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Title statement for the work at the appropriate level: marked-up document;
 marked-up document source; study; study description, other materials; other
@@ -43,7 +46,7 @@ abbreviation of the title.
 archive's number). Can be a DOI. An "agency" attribute is supplied. Identification Number
 of data collection maps to Dublin Core Identifier element.
 
-\code{ddi_partTitl()} is the parallel title. Title translated into another language.
+\code{ddi_parTitl()} is the parallel title. Title translated into another language.
 
 \code{ddi_subTitl()} is the subtitle. A secondary title used to amplify or state certain limitations
 on the main title. It may repeat information already in the main title.
@@ -55,6 +58,20 @@ on the main title. It may repeat information already in the main title.
 }
 }
 
+\examples{
+ddi_titlStmt()
+
+# Functions that need to be wrapped in ddi_titlStmt()
+
+ddi_altTitl("Alternative Title of work")
+
+ddi_IDNo(agency = "agency name", "ID number")
+
+ddi_parTitl(lang = "fr", "French translation of the title")
+
+ddi_subTitl("Subtitle of work")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/titlStmt.html}{titlStmt documentation}
 

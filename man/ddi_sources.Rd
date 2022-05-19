@@ -9,6 +9,9 @@ ddi_sources(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Description of sources used for the data collection. The element is nestable
 so that the sources statement might encompass a series of discrete source
@@ -33,6 +36,10 @@ element, especially its allowed attributes, can be found in the references.
 }
 }
 
+\examples{
+ddi_sources()
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sources.html}{sources documentation}
 }

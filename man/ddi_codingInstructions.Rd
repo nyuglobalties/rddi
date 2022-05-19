@@ -12,6 +12,9 @@ ddi_command(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Describe specific coding instructions used in data processing, cleaning,
 assession, or tabulation. Element relatedProcesses allows linking a coding
@@ -38,6 +41,15 @@ formalLanguage attribute identifies the language of the command code.
 }
 }
 
+\examples{
+ddi_codingInstructions()
+
+# Functions that need to be wrapped in ddi_codingInstructions()
+
+ddi_command(formalLanguage = "SPSS",
+            "RECODE V1 TO V100 (10 THROUGH HIGH = 0)")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codingInstructions.html}{codingInstructions documentation}
 

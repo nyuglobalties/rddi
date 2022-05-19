@@ -9,6 +9,9 @@ ddi_stdyDscr(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object
+}
 \description{
 All DDI codebooks must have a study description which contains information
 about the study overall. The Study Description consists of information about the data
@@ -39,6 +42,11 @@ on this element, especially the allowed attributes, can be found in the referenc
 }
 }
 
+\examples{
+# ddi_citation() is required in ddi_stdyDscr()
+ddi_stdyDscr(ddi_citation())
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdyDscr.html}{stdyDscr documentation}
 }

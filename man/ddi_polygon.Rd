@@ -9,6 +9,9 @@ ddi_polygon(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The minimum polygon that covers a geographical area, and is delimited by at
 least 4 points (3 sides), in which the last point coincides with the first
@@ -27,6 +30,15 @@ attributes, can be found in the references.
 }
 }
 
+\examples{
+# ddi_polygon requires ddi_point() which requires ddi_gringLat() and ddi_gringLon()
+ddi_polygon(ddi_point(
+               ddi_gringLat("42.002207"), 
+               ddi_gringLon("-120.005729004")
+             )
+           )
+           
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/polygon.html}{polygon documentation}
 }

@@ -15,6 +15,9 @@ ddi_purpose(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Describes the logical structure of an n-dimensional array, in which each
 coordinate intersects with every other dimension at a single point. The
@@ -62,6 +65,16 @@ persons by age. Measure is an empty element.
 }
 }
 
+\examples{
+ddi_nCube()
+
+# Functions that need to be wrapped in ddi_nCube()
+
+ddi_measure(aggrMeth = "sum", additivity = "stock")
+
+ddi_purpose("Meets reporting requirements for the Federal Reserve Board")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/nCube.html}{nCube documentation}
 

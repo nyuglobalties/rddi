@@ -13,8 +13,13 @@
 #' `nCubeGrp`; `otherMat`; `recGrp`; `sampleFrame`; `var`; and `varGrp`.
 #'
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/labl.html}{labl documentation}
+#' 
+#' @examples 
+#' ddi_labl(level = "variable", lang = "en", "short variable description")
 #'  
 #' @export
 ddi_labl <- function(...) {
@@ -49,9 +54,15 @@ ddi_labl <- function(...) {
 #' `verStmt`.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/notes.html}{notes documentation}
 #'  
+#' @examples 
+#' ddi_notes(resp = "Jane Smith", "The source codebook was produced from original 
+#'                                hardcopy materials using Optical Character Recognition (OCR).")
+#' 
 #' @export
 ddi_notes <- function(...) {
   components <- dots_to_xml_components(...)
@@ -92,6 +103,11 @@ ddi_notes <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/universe.html}{universe documentation}
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
+#' 
+#' @examples
+#' ddi_universe(clusion = "I", "Individuals 15-19 years of age.")
 #' 
 #' @export
 ddi_universe <- function(...) {
@@ -139,8 +155,16 @@ ddi_universe <- function(...) {
 #' `resInstru`; `sampProc`; `srcOrig`; `timeMeth`; `universe`; `var`; and `varGrp`.
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/concept.html}{concept documentation}
+#' 
+#' @examples 
+#' ddi_concept(vocab = "LCSH",
+#'             vocabURI = "http://lcweb.loc.gov/catdir/cpso/lcco/lcco.html",
+#'             source = "archive",
+#'             "more experience")
 #'  
 #' @export
 ddi_concept <- function(...) {
@@ -174,7 +198,7 @@ ddi_concept <- function(...) {
 #' 
 #' \emph{verStmt specific child nodes}
 #' 
-#' * `ddi_verRsp()` is the organization or person responsible for the version of the 
+#' * `ddi_verResp()` is the organization or person responsible for the version of the 
 #' work.
 #' 
 #' * `ddi_version()` is also known as release or edition. If there have been 
@@ -183,6 +207,8 @@ ddi_concept <- function(...) {
 #' dates (YYYY-MM-DD) is recommended for use with the "date" attribute. 
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_notes()] 
@@ -191,6 +217,17 @@ ddi_concept <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/verResp.html}{verResp documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/version.html}{version documentation}
 #'  
+#' @examples 
+#' ddi_verStmt()
+#' 
+#' # Functions that need to be wrapped in ddi_verStmt()
+#' 
+#' ddi_verResp("Zentralarchiv fuer Empirische Sozialforschung")
+#' 
+#' ddi_version(type = "edition",
+#'             date = "1999-01-25",
+#'             "Second ICPSR Edition")
+#' 
 #' @export
 ddi_verStmt <- function(...) {
   components <- dots_to_xml_components(...)
@@ -267,9 +304,16 @@ ddi_version <- function(...) {
 #' `universe`; `var`; and `varGrp`.
 #'
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/txt.html}{txt documentation}
 #'  
+#' @examples 
+#' ddi_txt("The following five variables refer to respondent attitudes toward 
+#'          national environmental policies: air pollution, urban sprawl, noise 
+#'          abatement, carbon dioxide emissions, and nuclear waste.")
+#' 
 #' @export
 ddi_txt <- function(...) {
   components <- dots_to_xml_components(...)
@@ -306,8 +350,16 @@ ddi_txt <- function(...) {
 #' `producer` is contained in the following elements: `prodStmt` and `standard`.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/producer.html}{producer documentation}
+#' 
+#' @examples 
+#' ddi_producer(abbr = "MNPoll",
+#'              affiliation = "Minneapolis Star Tribune Newspaper",
+#'              role = "origianl producer",
+#'              "Star Tribune Minnesota Poll")
 #' 
 #' @export
 ddi_producer <- function(...) {
@@ -342,8 +394,15 @@ ddi_producer <- function(...) {
 #' `contact` is contained in the following elements: `distStmt` and `useStmt`.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/contact.html}{contact documentation}
+#' 
+#' @examples 
+#' ddi_contact(affiliation = "University of Wisconson",
+#'             email = "jsmith@...",
+#'             "Jane Smith")
 #' 
 #' @export
 ddi_contact <- function(...) {
@@ -375,8 +434,13 @@ ddi_contact <- function(...) {
 #' `dataSrc` is contained in the following elements: `sources` and `resource`. 
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataSrc.html}{dataSrc documentation}
+#' 
+#' @examples 
+#' ddi_dataSrc('"Voting Scores." CONGRESSIONAL QUARTERLY ALMANAC 33 (1977), 487-498.')
 #' 
 #' @export
 ddi_dataSrc <- function(...) {
@@ -407,8 +471,13 @@ ddi_dataSrc <- function(...) {
 #' `srcChar` is contained in the following elements: `sources` and `resource`. 
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcChar.html}{srcChar documentation}
+#' 
+#' @examples 
+#' ddi_srcChar("Assessment of source material(s).")
 #'  
 #' @export
 ddi_srcChar <- function(...) {
@@ -439,8 +508,13 @@ ddi_srcChar <- function(...) {
 #' `srcDocu` is contained in the following elements: `sources` and `resource`. 
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcDocu.html}{srcDocu documentation}
+#' 
+#' @examples 
+#' ddi_srcDocu("Description of documentation of source material(s).")
 #' 
 #' @export
 ddi_srcDocu <- function(...) {
@@ -473,7 +547,12 @@ ddi_srcDocu <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/srcOrig.html}{srcOrig documentation}
+#' 
+#' @examples 
+#' ddi_srcOrig("Origin of source material(s).")
 #' 
 #' @export
 ddi_srcOrig <- function(...) {
@@ -535,6 +614,8 @@ ddi_srcOrig <- function(...) {
 #' to access a resource.
 #' 
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_contact()]
@@ -547,6 +628,51 @@ ddi_srcOrig <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/disclaimer.html}{disclaimer documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/restrctn.html}{restrctn documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/specPerm.html}{specPerm documentation}
+#' 
+#' @examples 
+#' ddi_useStmt()
+#' 
+#' # Functions that need to be wrapped in ddi_useStmt()
+#' 
+#' ddi_citReq(lang = "en",
+#'            "Publications based on ICPSR data collections should acknowledge 
+#'            those sources by means of bibliographic citations. To ensure that 
+#'            such source attributions are captured for social science 
+#'            bibliographic utilities, citations must appear in footnotes or in 
+#'            the reference section of publications.")
+#' 
+#' ddi_conditions(lang = "en",
+#'                "The data are available without restriction. Potential users 
+#'                of these datasets are advised, however, to contact the original 
+#'                principal investigator Dr. J. Smith (Institute for Social Research, 
+#'                The University of Michigan, Box 1248, Ann Arbor, MI 48106), 
+#'                about their intended uses of the data. Dr. Smith would also 
+#'                appreciate receiving copies of reports based on the datasets.")
+#' 
+#' ddi_confDec(formNo = "1",
+#'             "To download this dataset, the user must sign a declaration of confidentiality.")
+#' 
+#' ddi_deposReq("To provide funding agencies with essential information about 
+#'              use of archival resources and to facilitate the exchange of 
+#'              information about ICPSR participants' research activities, users 
+#'              of ICPSR data are requested to send to ICPSR bibliographic 
+#'              citations for, or copies of, each completed manuscript or thesis 
+#'              abstract. Please indicate in a cover letter which data were used.")
+#' 
+#' ddi_disclaimer("The original collector of the data, ICPSR, and the relevant 
+#'                funding agency bear no responsibility for uses of this collection 
+#'                or for interpretations or inferences based upon such uses.")
+#' 
+#' ddi_restrctn("ICPSR obtained these data from the World Bank under the terms of 
+#'              a contract which states that the data are for the sole use of 
+#'              ICPSR and may not be sold or provided to third parties outside 
+#'              of ICPSR membership. Individuals at institutions that are not 
+#'              members of the ICPSR may obtain these data directly from the 
+#'              World Bank.")
+#' 
+#' ddi_specPerm(formNo = "4",
+#'              "The user must apply for special permission to use this dataset 
+#'              locally and must complete a confidentiality form.")
 #' 
 #' @export
 ddi_useStmt <- function(...) {
@@ -725,7 +851,12 @@ ddi_specPerm <- function(...) {
 #' 
 #' @param ... Child nodes or attributes. 
 #' 
+#' @return A ddi_node object.
+#' 
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/titl.html}{titl documentation}
+#' 
+#' @examples 
+#' ddi_titl("Census of Population, 1950 [United States]: Public Use Microdata Sample")
 #' 
 #' @export
 ddi_titl <-  function(...) {

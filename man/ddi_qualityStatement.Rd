@@ -12,6 +12,9 @@ ddi_otherQualityStatement(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 The Quality Statement consists of two parts, standardsCompliance and
 otherQualityStatements. In standardsCompliance list all specific standards
@@ -37,6 +40,14 @@ references.
 }
 }
 
+\examples{
+ddi_qualityStatement()
+
+# Functions that need to be wrapped in ddi_qualityStatement()
+
+ddi_otherQualityStatement("Additional quality statements not addressed in standardsCompliance.")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qualityStatement.html}{qualityStatment documentation}
 

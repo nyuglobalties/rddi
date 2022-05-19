@@ -15,6 +15,9 @@ ddi_version(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 This is the version statement for the work at the appropriate level:
 marked-up document; marked-up document source; study; study description,
@@ -29,7 +32,7 @@ especially their allowed attributes, can be found in the references.
 
 \emph{verStmt specific child nodes}
 \itemize{
-\item \code{ddi_verRsp()} is the organization or person responsible for the version of the
+\item \code{ddi_verResp()} is the organization or person responsible for the version of the
 work.
 \item \code{ddi_version()} is also known as release or edition. If there have been
 substantive changes in the data/documentation since their creation, this
@@ -44,6 +47,18 @@ dates (YYYY-MM-DD) is recommended for use with the "date" attribute.
 }
 }
 
+\examples{
+ddi_verStmt()
+
+# Functions that need to be wrapped in ddi_verStmt()
+
+ddi_verResp("Zentralarchiv fuer Empirische Sozialforschung")
+
+ddi_version(type = "edition",
+            date = "1999-01-25",
+            "Second ICPSR Edition")
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/verStmt.html}{verStmt documentation}
 

@@ -65,6 +65,29 @@
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/ProcStat.html}{ProcStat documentation}
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
+#' 
+#' @examples 
+#' ddi_fileTxt()
+#'
+#' # Functions that need to be wrapped in ddi_fileTxt()
+#'
+#' ddi_dataChck("Consistency checks were performed by Data Producer/ Principal Investigator.")
+#'
+#' ddi_dataMsng('The codes "-1" and "-2" are used to represent missing data.')
+#'
+#' ddi_fileCont("Part 1 contains both edited and constructed variables describing demographic...")
+#'
+#' ddi_fileName(ID = "File1", "Second-Generation Children Data")
+#'
+#' ddi_filePlac("Washington, DC: United States Department of Commerce, Bureau of the Census")
+#'
+#' ddi_fileType(charset = "US-ASCII", "ASCII data file")
+#'
+#' ddi_format("comma-delimited")
+#'
+#' ddi_ProcStat("Available from the DDA. Being processed.")
 #'
 #' @export
 ddi_fileTxt <- function(...) {
@@ -258,12 +281,25 @@ ddi_ProcStat <- function(...) {
 #' * `ddi_digitalFingerprintValue()`
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataFingerprint.html}{dataFingerprint documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/algorithmSpecification.html}{algorithmSpecification documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/algorithmVersion.html}{algorithmVersion documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/digitalFingerprintValue.html}{digitalFingerprintValue documentation}
 #'
+#' @examples 
+#' ddi_dataFingerprint()
+#' 
+#' # Functions that need to be wrapped in ddi_Fingerprint()
+#' 
+#' ddi_algorithmSpecification()
+#' 
+#' ddi_algorithmVersion()
+#' 
+#' ddi_digitalFingerprintValue()
+#' 
 #' @export
 ddi_dataFingerprint <- function(...) {
   components <- dots_to_xml_components(...)
@@ -354,7 +390,7 @@ ddi_digitalFingerprintValue <- function(...) {
 #' 
 #' * `ddi_caseQnty()` is the number of cases, observations, or records.
 #' 
-#' * `ddi_logRcL()` is the logical record length, i.e., number of characters of 
+#' * `ddi_logRecL()` is the logical record length, i.e., number of characters of 
 #' data in the record.
 #' 
 #' * `ddi_varQnty()` is the overall variable count.
@@ -379,6 +415,27 @@ ddi_digitalFingerprintValue <- function(...) {
 #' 
 #' @param ... Child nodes or attributes.
 #'
+#' @return A ddi_node object.
+#' 
+#' @examples 
+#' ddi_dimensns()
+#' 
+#' ddi_recDimnsn()
+#' 
+#' # Functions that need to be wrapped in ddi_dimensns() or ddi_recDimnsn()
+#' 
+#' ddi_caseQnty("1011")
+#' 
+#' ddi_logRecL("27")
+#' 
+#' ddi_varQnty("27")
+#' 
+#' # Functions that need to be wrapped in ddi_dimensns
+#' 
+#' ddi_recNumTot("2400")
+#' 
+#' ddi_recPrCas("5")
+#' 
 #' @export
 ddi_dimensns <- function(...) {
   components <- dots_to_xml_components(...)
@@ -544,6 +601,11 @@ ddi_varQnty <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/fileStrc.html}{fileStrc documentation}
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
+#' 
+#' @examples 
+#' ddi_fileStrc()
 #'
 #' @export
 ddi_fileStrc <- function(...) {
@@ -589,6 +651,11 @@ ddi_fileStrc <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/recGrp.html}{recGrp documentation}
 #' 
 #' @param ... Child nodes or attributes.
+#' 
+#' @return A ddi_node object.
+#' 
+#' @examples 
+#' ddi_recGrp()
 #'
 #' @export
 ddi_recGrp <- function(...) {
