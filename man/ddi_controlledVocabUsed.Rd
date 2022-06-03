@@ -27,6 +27,9 @@ ddi_codeListVersionID(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Provides a code value, as well as a reference to the code list from which
 the value is taken. Note that the CodeValue can be restricted to reference
@@ -58,6 +61,18 @@ is 1.0).
 }
 }
 
+\examples{
+ddi_controlledVocabUsed(ddi_codeListID("TimeMethod"),
+                        ddi_codeListName("Time Method"), 
+                        ddi_codeListAgencyName("DDI Alliance"),
+                        ddi_codeListVersionID("1.2"),
+                        ddi_codeListURN("urn:ddi-cv:TimeMethod:1.2"),
+                        ddi_codeListSchemeURN("
+                               http://www.ddialliance.org/Specification/
+                               DDI-CV/TimeMethod_1.2_Genericode1.0_DDI-CVProfile1.0.xml"),
+                        ddi_usage())
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/controlledVocabUsed.html}{controlledVocabUsed documentation}
 

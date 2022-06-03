@@ -9,6 +9,9 @@ ddi_docSrc(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Citation for the source document. This element encodes the bibliographic
 information describing the source codebook, including title information,
@@ -41,6 +44,11 @@ attributes, can be found in the references.
 }
 }
 
+\examples{
+ 
+ddi_docSrc()
+
+}
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/docSrc.html}{docSrc documentation}
 }
