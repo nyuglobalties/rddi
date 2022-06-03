@@ -147,6 +147,8 @@ ddi_guide <- function(...) {
 #' `docSrc` is contained in `docDscr`.
 #'
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @section Shared and complex child nodes:
 #' * [ddi_biblCit()]
@@ -160,6 +162,9 @@ ddi_guide <- function(...) {
 #' * [ddi_verStmt()]
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/docSrc.html}{docSrc documentation}
+#' 
+#' @examples  
+#' ddi_docSrc()
 #' 
 #' @export
 ddi_docSrc <- function(...) {
@@ -227,6 +232,8 @@ ddi_docSrc <- function(...) {
 #'
 #' @param ... Child nodes or attributes. 
 #'
+#' @return A ddi_node object.
+#'
 #' @section Shared and complex child nodes:
 #' * [ddi_usage()]
 #'
@@ -237,6 +244,17 @@ ddi_docSrc <- function(...) {
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeListSchemeURN.html}{codeListSchemeURN documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeListURN.html}{codeListURN documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codeListVersionID.html}{codeListVersionID documentation}
+#' 
+#' @examples 
+#' ddi_controlledVocabUsed(ddi_codeListID("TimeMethod"),
+#'                         ddi_codeListName("Time Method"), 
+#'                         ddi_codeListAgencyName("DDI Alliance"),
+#'                         ddi_codeListVersionID("1.2"),
+#'                         ddi_codeListURN("urn:ddi-cv:TimeMethod:1.2"),
+#'                         ddi_codeListSchemeURN("
+#'                                http://www.ddialliance.org/Specification/
+#'                                DDI-CV/TimeMethod_1.2_Genericode1.0_DDI-CVProfile1.0.xml"),
+#'                         ddi_usage())
 #' 
 #' @export
 ddi_controlledVocabUsed <- function(...) {
@@ -428,11 +446,20 @@ ddi_codeListVersionID <- function(...) {
 #' valid value from the controlled vocabulary.
 #'
 #' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
 #'
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/usage.html}{usage documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/attribute.html}{attribute documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/selector.html}{selector documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/specificElements.html}{specificElements documentation}
+#' 
+#' @examples 
+#' ddi_usage(ddi_selector("/codeBook/stdyDscr/method/dataColl/timeMeth"))
+#' 
+#' ddi_usage(ddi_selector("/codeBook/stdyDscr/method/dataProcessing"), ddi_attribute("type"))
+#' 
+#' ddi_usage(ddi_specificElements(refs = "ICPSR4328timeMeth", authorizedCodeValue = "CrossSection"))
 #' 
 #' @export
 ddi_usage <- function(...) {

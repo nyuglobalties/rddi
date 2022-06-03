@@ -18,6 +18,9 @@ ddi_specificElements(...)
 \arguments{
 \item{...}{Child nodes or attributes.}
 }
+\value{
+A ddi_node object.
+}
 \description{
 Defines where in the instance the controlled vocabulary which is identified
 is utilized. A controlled vocabulary may occur either in the content of an
@@ -60,6 +63,14 @@ code value corresponding to the meaning of the content in the element or
 attribute when the identified element or attribute does not use an actual
 valid value from the controlled vocabulary.
 }
+}
+\examples{
+ddi_usage(ddi_selector("/codeBook/stdyDscr/method/dataColl/timeMeth"))
+
+ddi_usage(ddi_selector("/codeBook/stdyDscr/method/dataProcessing"), ddi_attribute("type"))
+
+ddi_usage(ddi_specificElements(refs = "ICPSR4328timeMeth", authorizedCodeValue = "CrossSection"))
+
 }
 \references{
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/usage.html}{usage documentation}
