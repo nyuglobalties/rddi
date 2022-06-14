@@ -1482,7 +1482,7 @@ ddi_defntn <- function(...) {
   }
 
   build_leaf_node(
-    "dfntn",
+    "defntn",
     attribs = attribs,
     content = components$content
   )
