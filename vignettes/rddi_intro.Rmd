@@ -20,7 +20,7 @@ library(rddi)
 
 ## Introduction
 
-The `rddi` package is developer-focused package provides R representations of DDI Codebook 2.5 elements to safely construct fully-validated XML while still being flexible. This package covers all elements in the DDI codebook schema, including the attributes and constraints of each element. 
+The `rddi` package is developer-focused package provides R representations of DDI Codebook 2.5 elements to construct fully-validated XML while still being flexible. This package covers all elements in the DDI codebook schema, including the attributes and constraints of each element. 
 
 ## Installation
 
@@ -61,7 +61,7 @@ splat <- function(x, f) {
 }
 ```
 
-## Example
+Below is an example of splatting one child node into the parent node.
 
 ```{r example, eval = FALSE}
 library(purrr)
@@ -89,7 +89,54 @@ codebook <- ddi_codeBook(
       )
     )
   ),
-  splat(descr_many_var, ddi_dataDscr) # var elements in data description
+  splat(descr_var, ddi_dataDscr) 
+)
+```
+
+In cases where a parent node has multiple child nodes, there are two options 1) splat multiple functions into the parent node or 2) create the parent node and append directly to the content.
+
+```{r example, eval = FALSE}
+
+# splatting two or more node types into the parent node
+codebook <- ddi_codeBook(
+  ddi_stdyDscr(
+    ddi_citation(
+      ddi_titlStmt(
+        ddi_titl("test")
+      )
+    )
+  ),
+  splat(c(descr_varGrp, descr_var), ddi_dataDscr) 
+)
+```
+
+```{r example, eval = FALSE}
+
+# Creating a parent node in a function and then appending other child nodes to the content. The below works best with a YAML or JSON data source.
+generate_stdyInfo <- function(dat) {
+  stdyInfo <- ddi_stdyInfo(
+    splat(
+      c(descr_dataKind(dat), descr_anlyUnit(dat), descr_universe(dat$stdyDscr$stdyInfo$sumDscr$universe),
+        descr_nation(dat), descr_geogCover(dat),descr_geogUnit(dat),
+        descr_timePrd(dat), descr_collDate(dat)),
+      ddi_sumDscr),
+    splat(descr_keyword(dat), ddi_subject)
+  )
+  
+  stdyInfo$content <- append(stdyInfo$content, descr_abstract(dat))
+  stdyInfo
+}
+
+# splatting two or more node types into the parent node
+codebook <- ddi_codeBook(
+  ddi_stdyDscr(
+    ddi_citation(
+      ddi_titlStmt(
+        ddi_titl("test")
+      )
+    ),
+    generate_stdyInfo(dat)
+  )
 )
 ```
 
