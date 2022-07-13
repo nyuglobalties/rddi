@@ -22,15 +22,6 @@
 #' * `ddi_geomap()` is a geographic map. This element is used to point, using a 
 #' "URI" attribute, to an external map that displays the geography in question.
 #' 
-#' * `ddi_qstn()` is the question asked. The element may have mixed content. The 
-#' element itself may contain text for the question, with the subelements being 
-#' used to provide further information about the question. Alternatively, the 
-#' question element may be empty and only the subelements used. The element has 
-#' a unique question ID attribute which can be used to link a variable with 
-#' other variables where the same question has been asked. This would allow 
-#' searching for all variables that share the same question ID, perhaps because 
-#' the questions was asked several times in a panel design.
-#' 
 #' * `ddi_stdCatgry()` are standard category codes used in the variable, like 
 #' industry codes, employment codes, or social class codes.
 #' 
@@ -59,6 +50,7 @@
 #' * [ddi_labl()] 
 #' * [ddi_location()]
 #' * [ddi_notes()] 
+#' * [ddi_qstn()]
 #' * [ddi_respUnit()]
 #' * [ddi_security()]
 #' * [ddi_txt()]
@@ -70,7 +62,6 @@
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/catLevel.html}{catLevel documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codInstr.html}{codInstr documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoMap.html}{geomap documentation}
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstn.html}{qstn documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdCatgry.html}{stdCatgry documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/sumStat.html}{sumStat documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/TotlResp.html}{TotlResp documentation}
@@ -93,10 +84,6 @@
 #'               the question: What is your occupation? into numeric codes.")
 #'               
 #' ddi_geomap(URI = "https://mapURL.com")
-#' 
-#' ddi_qstn(ID = "Q125",
-#'          "When you get together with your friends, would you say you discuss 
-#'          political matters frequently, occasionally, or never?")
 #'          
 #' ddi_stdCatgry(date = "1981",
 #'               "U. S. Census of Population and Housing, Classified Index of 
@@ -133,11 +120,33 @@ ddi_var <- function(varname, ...) {
 
   attribs <- validate_attributes(attribs, allowed_attribs, "var")
 
-  allowed_children <- c(
-    "catgry", "catLevel", "labl", "qstn", "sumStat", "notes", "anlysUnit", "imputation", "txt",
-    "codInstr", "TotlResp", "security", "embargo", "respUnit", "undocCod", "stdCatgry", "concept", "varFormat",
-    "valrng", "invalrng", "universe", "catgryGrp", "verStmt", "derivation", "geomap", "location"
-  )
+  allowed_children <- c("location",
+                        "labl",
+                        "imputation",
+                        "security", 
+                        "embargo",
+                        "respUnit",
+                        "anlysUnit",
+                        "qstn",
+                        "valrng",
+                        "invalrng",
+                        "UndocCod",
+                        "universe",
+                        "TotlResp",
+                        "sumStat",
+                        "txt",
+                        "stdCatgry",
+                        "catgryGrp",
+                        "catgry",
+                        "codInstr",
+                        "verStmt",
+                        "concept",
+                        "derivation",
+                        "varFormat",
+                        "geoMap",
+                        "catLevel",
+                        "notes"
+                        )
 
   # derivation and varFormat are only allowed once in var according to DDI 2.5
   if(check_cardinality(components$content, "derivation") > 1) rddi_err("Only 0 or 1 derivation children are allowed in var")
@@ -205,7 +214,7 @@ ddi_varGrp <- function(...) {
   if(!is.null(attribs)) {
     allowed_attribs <- c(
       "ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn", 
-      "type", "otherType", "var", "varGroup", "name", "sdatrefs", "methrefs", "pubrefs", "access" 
+      "type", "otherType", "var", "varGrp", "name", "sdatrefs", "methrefs", "pubrefs", "access" 
     )
     attribs <- validate_attributes(attribs, allowed_attribs, "varGrp")    
     if("type" %in% names(attribs)) {
@@ -671,11 +680,11 @@ ddi_catgry <- function(...)  {
   attribs <- components$attribs
 
   allowed_children <- c(
-    "catStat",
-    "catValu", # allowed once
+    "catValu", 
     "labl",
     "txt",
-    "mrow" # allowed once
+    "catStat",
+    "mrow" 
   )
   
   # catValu and mrow are only allowed once in var according to DDI 2.5
@@ -782,11 +791,21 @@ ddi_anlysUnit <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "anlysUnit")
   }
 
-  build_leaf_node(
-    "anlysUnit",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "anlysUnit",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("concept", "txt")
+    build_branch_node(
+      "anlysUnit",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' @rdname ddi_catgry 
@@ -1086,7 +1105,79 @@ ddi_imputation <- function(...) {
   )
 }
 
-#' @rdname ddi_var 
+#' qstn and its child nodes
+#' 
+#' * `ddi_qstn()` is the question asked. The element may have mixed content. The 
+#' element itself may contain text for the question, with the subelements being 
+#' used to provide further information about the question. Alternatively, the 
+#' question element may be empty and only the subelements used. The element has 
+#' a unique question ID attribute which can be used to link a variable with 
+#' other variables where the same question has been asked. This would allow 
+#' searching for all variables that share the same question ID, perhaps because 
+#' the questions was asked several times in a panel design.
+#' 
+#' #' \emph{Parent nodes}
+#' 
+#' `qstn` is contained in `var`.
+#' 
+#' \emph{qstn specific child nodes}
+#' 
+#' * `ddi_backward()` contains a reference to IDs of possible preceding questions. 
+#' The "qstn" IDREFS may be used to specify the question IDs.
+#' 
+#' * `ddi_forward()` contains a reference to IDs of possible following questions.
+#' The "qstn" IDREFS may be used to specify the question IDs.
+#' 
+#' * `ddi_ivuInstr()` are specific instructions to the individual conducting an 
+#' interview.
+#' 
+#' * `ddi_postQTxt()` is the text describing what occurs after the literal question
+#' has been asked.
+#' 
+#' * `ddi_preQTxt()` is the pre-question text. This is the text describing a set 
+#' of conditions under which a question might be asked.
+#' 
+#' * `ddi_qstnLit()` is the text of the actual, literal question asked.
+#' 
+#' @param ... Child nodes or attributes. 
+#' 
+#' @return A ddi_node object.
+#' 
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstn.html}{qstn documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/backward.html}{backward documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/forward.html}{forward documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/ivuInstr.html}{ivuInstr documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/postQTxt.html}{postQTxt documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/preQTxt.html}{preQTxt documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstnLit.html}{qstnLit documentation}
+#' 
+#' @examples 
+#' ddi_qstn("When you get together with your friends, would you say you discuss 
+#' political matters frequently, occasionally, or never", ID = "Q125")
+#' 
+#' # Functions that need to be wrapped in ddi_qstn()
+#' 
+#' # Including ddi_preQTxt within a ddi_qstn with content
+#' ddi_qstn("When you get together with your friends, would you say you discuss 
+#' political matters frequently, occasionally, or never", ID = "Q125",
+#'          ddi_preQTxt("For those who did not go away on a holiday of four days or more in 1985..."))
+#' 
+#` # Including ddi_postQTxt within a ddi_qstn without content
+#' ddi_qstn(ddi_postQTxt("The next set of questions will ask about your financial situation")) 
+#' 
+#' # Using IDREFS in ddi_backward() and ddi_forward()
+#' 
+#' ddi_backward(qstn = "Q143")
+#' 
+#' ddi_forward("If yes, please ask questions 120-124", qstn = "Q120 Q121 Q122 Q123 Q124")
+#' 
+#' # Other child elements
+#' 
+#' ddi_ivuInstr("Please prompt the respondent if they are reticent to answer this question.", 
+#'               lang = "en")
+#' 
+#' ddi_qstnLit("Why didn't you go away in 1985?")
+#' 
 #' @export
 ddi_qstn <- function(...) {
   components <- dots_to_xml_components(...)
@@ -1097,13 +1188,142 @@ ddi_qstn <- function(...) {
                         "responseDomainType", "otherResponseDomainType")
     attribs <- validate_attributes(attribs, allowed_attribs, "var")
   }
+  
+  allowed_children = c("preQTxt", "qstnLit", "postQTxt", "forward", "backward", "ivuInstr")
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "qstn",
+      attribs = attribs,
+      content = components$content
+    )
+  } else if(any(sapply(components$content, is.character))) {
+    build_branch_node(
+      "qstn",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  } else {
+    build_branch_node(
+      "qstn",
+      content = components$content,
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
+}
 
+#' @rdname ddi_qstn 
+#' @export
+ddi_backward <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "qstn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "backward")
+  }
+  
   build_leaf_node(
-    "qstn",
+    "backward",
     attribs = attribs,
     content = components$content
   )
 }
+
+#' @rdname ddi_qstn 
+#' @export
+ddi_forward <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "qstn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "forward")
+  }
+  
+  build_leaf_node(
+    "forward",
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' @rdname ddi_qstn 
+#' @export
+ddi_ivuInstr <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "ivuInstr")
+  }
+  
+  build_leaf_node(
+    "ivuInstr",
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' @rdname ddi_qstn 
+#' @export
+ddi_postQTxt <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "postQTxt")
+  }
+  
+  build_leaf_node(
+    "postQTxt",
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' @rdname ddi_qstn 
+#' @export
+ddi_preQTxt <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
+    attribs <- validate_attributes(attribs, allowed_attribs, "preQTxt")
+  }
+  
+  build_leaf_node(
+    "preQTxt",
+    attribs = attribs,
+    content = components$content
+  )
+}
+
+#' @rdname ddi_qstn 
+#' @export
+ddi_qstnLit <- function(...) {
+  components <- dots_to_xml_components(...)
+  attribs <- components$attribs
+  
+  if(!is.null(attribs)) {
+    allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn",
+                         "sdatrefs")
+    attribs <- validate_attributes(attribs, allowed_attribs, "qstnLit")
+  }
+  
+  build_leaf_node(
+    "qstnLit",
+    attribs = attribs,
+    content = components$content
+  )
+}
+
 
 #' @rdname ddi_var 
 #' @export

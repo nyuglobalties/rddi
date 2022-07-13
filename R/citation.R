@@ -124,7 +124,8 @@ ddi_sourceCitation <- function(...) {
     "serStmt",
     "verStmt",
     "biblCit",
-    "holdings"
+    "holdings",
+    "notes"
   )
 
   # rspStmt, prodStmt, and distStmt are only allowed once in citation according to DDI 2.5

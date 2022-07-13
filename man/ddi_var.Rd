@@ -5,7 +5,6 @@
 \alias{ddi_catLevel}
 \alias{ddi_codInstr}
 \alias{ddi_geomap}
-\alias{ddi_qstn}
 \alias{ddi_stdCatgry}
 \alias{ddi_sumStat}
 \alias{ddi_TotlResp}
@@ -20,8 +19,6 @@ ddi_catLevel(...)
 ddi_codInstr(...)
 
 ddi_geomap(...)
-
-ddi_qstn(...)
 
 ddi_stdCatgry(...)
 
@@ -62,14 +59,6 @@ variable. This might include the reordering of numeric information into
 another form or the conversion of textual information into numeric information.
 \item \code{ddi_geomap()} is a geographic map. This element is used to point, using a
 "URI" attribute, to an external map that displays the geography in question.
-\item \code{ddi_qstn()} is the question asked. The element may have mixed content. The
-element itself may contain text for the question, with the subelements being
-used to provide further information about the question. Alternatively, the
-question element may be empty and only the subelements used. The element has
-a unique question ID attribute which can be used to link a variable with
-other variables where the same question has been asked. This would allow
-searching for all variables that share the same question ID, perhaps because
-the questions was asked several times in a panel design.
 \item \code{ddi_stdCatgry()} are standard category codes used in the variable, like
 industry codes, employment codes, or social class codes.
 \item \code{ddi_sumStat()} is one or more statistical measures that describe the
@@ -97,6 +86,7 @@ values are unknown.
 \item \code{\link[=ddi_labl]{ddi_labl()}}
 \item \code{\link[=ddi_location]{ddi_location()}}
 \item \code{\link[=ddi_notes]{ddi_notes()}}
+\item \code{\link[=ddi_qstn]{ddi_qstn()}}
 \item \code{\link[=ddi_respUnit]{ddi_respUnit()}}
 \item \code{\link[=ddi_security]{ddi_security()}}
 \item \code{\link[=ddi_txt]{ddi_txt()}}
@@ -117,10 +107,6 @@ ddi_codInstr("Use the standard classification tables to present responses to
               the question: What is your occupation? into numeric codes.")
               
 ddi_geomap(URI = "https://mapURL.com")
-
-ddi_qstn(ID = "Q125",
-         "When you get together with your friends, would you say you discuss 
-         political matters frequently, occasionally, or never?")
          
 ddi_stdCatgry(date = "1981",
               "U. S. Census of Population and Housing, Classified Index of 
@@ -148,8 +134,6 @@ ddi_varFormat(type = "numeric",
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/codInstr.html}{codInstr documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/geoMap.html}{geomap documentation}
-
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qstn.html}{qstn documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/stdCatgry.html}{stdCatgry documentation}
 

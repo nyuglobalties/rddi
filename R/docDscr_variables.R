@@ -66,10 +66,10 @@
 ddi_docDscr <- function(...) {
   allowed_children <- c(
     "citation",
-    "controlledVocabUsed",
-    "docSrc",
-    "docStatus",
     "guide",
+    "docStatus",
+    "docSrc",
+    "controlledVocabUsed",
     "notes"
   )
   
@@ -259,12 +259,12 @@ ddi_docSrc <- function(...) {
 #' @export
 ddi_controlledVocabUsed <- function(...) {
   allowed_children <- c(
-    "codeListAgencyName",
     "codeListID",
     "codeListName",
-    "codeListSchemeURN",
-    "codeListURN",
+    "codeListAgencyName",
     "codeListVersionID",
+    "codeListURN",
+    "codeListSchemeURN",
     "usage"
   )
   
@@ -464,9 +464,9 @@ ddi_codeListVersionID <- function(...) {
 #' @export
 ddi_usage <- function(...) {
   allowed_children <- c(
-    "attribute",
     "selector",
-    "specificElements"
+    "specificElements",
+    "attribute"
   )
   
   components <- dots_to_xml_components(...)

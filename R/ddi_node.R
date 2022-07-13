@@ -125,6 +125,8 @@ build_branch_node <- function(tagname,
 
   check_allowed_content(content, branch_node, allowed_children)
   check_required_content(content, branch_node, required_children)
+  
+  content <- content[order(match(lapply(content, "[[", "tag"), allowed_children))]
 
   if (!is.null(content)) {
     for (child in content) {

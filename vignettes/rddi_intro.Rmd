@@ -63,7 +63,7 @@ splat <- function(x, f) {
 
 Below is an example of splatting one child node into the parent node.
 
-```{r example, eval = FALSE}
+```{r example1, eval = FALSE}
 library(purrr)
 
 # to convert to dots (...)
@@ -95,7 +95,7 @@ codebook <- ddi_codeBook(
 
 In cases where a parent node has multiple child nodes, there are two options 1) splat multiple functions into the parent node or 2) create the parent node and append directly to the content.
 
-```{r example, eval = FALSE}
+```{r example2, eval = FALSE}
 
 # splatting two or more node types into the parent node
 codebook <- ddi_codeBook(
@@ -110,7 +110,7 @@ codebook <- ddi_codeBook(
 )
 ```
 
-```{r example, eval = FALSE}
+```{r example3, eval = FALSE}
 
 # Creating a parent node in a function and then appending other child nodes to the content. The below works best with a YAML or JSON data source.
 generate_stdyInfo <- function(dat) {

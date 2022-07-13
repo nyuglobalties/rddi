@@ -42,11 +42,11 @@ ddi_codeBook <- function(...) {
   }
   
   allowed_children <- c(
-    "dataDscr",
     "docDscr",
+    "stdyDscr",
     "fileDscr",
-    "otherMat",
-    "stdyDscr"
+    "dataDscr",
+    "otherMat"
   )
 
   build_branch_node(
@@ -155,11 +155,11 @@ ddi_stdyDscr <- function(...) {
 #' @export
 ddi_dataDscr <- function(...) {
   allowed_children <- c(
-    "nCube",
+    "varGrp",
     "nCubeGrp",
-    "notes",
     "var",
-    "varGrp"
+    "nCube",
+    "notes"
   )
 
   components <- dots_to_xml_components(...)
@@ -270,12 +270,12 @@ ddi_fileDscr <- function(...) {
 #' @export
 ddi_otherMat <- function(...) {
   allowed_children <- c(
-    "citation",
     "labl",
+    "txt",
     "notes",
-    "otherMat",
     "table",
-    "txt"
+    "citation",
+    "otherMat"
   )
   
   components <- dots_to_xml_components(...)

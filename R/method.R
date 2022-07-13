@@ -346,7 +346,7 @@ ddi_collMode <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "collMode",
       content = unwrap_content(components$content),
@@ -487,7 +487,7 @@ ddi_resInstru <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "resInstru",
       content = unwrap_content(components$content),
@@ -515,7 +515,7 @@ ddi_sampProc <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "sampProc",
       content = unwrap_content(components$content),
@@ -544,7 +544,7 @@ ddi_timeMeth <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "timeMeth",
       content = unwrap_content(components$content),
@@ -812,8 +812,8 @@ ddi_frameUnit <- function(...) {
   }
 
   allowed_children <- c(
-    "txt",
-    "unitType"
+    "unitType",
+    "txt"
   )
 
   build_branch_node(
@@ -1181,8 +1181,8 @@ ddi_codingInstructions <- function(...) {
   }
 
   allowed_children <- c(
-    "command",
-    "txt"
+    "txt",
+    "command"
   )
 
   build_branch_node(

@@ -206,8 +206,8 @@ ddi_resource <- function(...) {
 
   allowed_children <- c(
     "dataSrc",
-    "srcChar",
-    "srcDocu", 
+    "srcOrig",
+    "srcChar", 
     "srcDocu"
   )
 
