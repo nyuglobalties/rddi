@@ -127,7 +127,7 @@ ddi_universe <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "universe",
       content = unwrap_content(components$content),
@@ -564,11 +564,21 @@ ddi_srcOrig <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "srcOrig")
   }
 
-  build_leaf_node(
-    "srcOrig",
-    attribs = attribs,
-    content = components$content
-  )
+  if(length(components$content) == 1 & is.character(components$content[[1]])) {
+    build_leaf_node(
+      "srcOrig",
+      attribs = attribs,
+      content = components$content
+    )
+  } else {
+    allowed_children = c("concept", "txt")
+    build_branch_node(
+      "srcOrig",
+      content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  }
 }
 
 #' useStmt and its children

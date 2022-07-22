@@ -100,8 +100,20 @@ ddi_fileTxt <- function(...) {
   }
 
   allowed_children <- c(
-      "fileName", "fileCitation", "dataFingerprint", "fileCont", "fileStrc", "dimensns", "fileType",
-      "format", "filePlac", "dataChck", "ProcStat", "dataMsng", "software", "verStmt"
+      "fileName", 
+      "fileCitation", 
+      "dataFingerprint", 
+      "fileCont", 
+      "fileStrc", 
+      "dimensns", 
+      "fileType",
+      "format", 
+      "filePlac", 
+      "dataChck", 
+      "ProcStat", 
+      "dataMsng", 
+      "software", 
+      "verStmt"
   )
 
   if(check_cardinality(components$content, "fileCitation") > 1) rddi_err("Only 0 or 1 fileCitation children are allowed in fileTxt")
@@ -511,9 +523,9 @@ ddi_recDimnsn <- function(...) {
   }
   
   allowed_children <- c(
+    "varQnty",
     "caseQnty",
-    "logRecL",
-    "varQnty"
+    "logRecL"
   )
   
   if(check_cardinality(components$content, "caseQnty") > 1) rddi_err("Only 0 or 1 caseQnty children are allowed in recDimnsn")
@@ -669,9 +681,9 @@ ddi_recGrp <- function(...) {
   }
 
   allowed_children <- c(
-      "recDimnsn",
-      "labl"
-      )
+    "labl",
+    "recDimnsn"
+    )
 
   if(check_cardinality(components$content, "recDimnsn") > 1) rddi_err("Only 0 or 1 recDimnsn children are allowed in recGrp")
 

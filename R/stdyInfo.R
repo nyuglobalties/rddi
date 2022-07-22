@@ -426,8 +426,8 @@ ddi_complianceDescription <- function(...) {
 #' @export
 ddi_standard <- function(...) {
   allowed_children <- c(
-    "producer",
-    "standardName"
+    "standardName",
+    "producer"
   )
 
   components <- dots_to_xml_components(...)
@@ -530,7 +530,7 @@ ddi_studyBudget <- function(...) {
 ddi_subject <- function(...) {
   allowed_children <- c(
     "keyword",
-    "TopcClas"
+    "topcClas"
   )
 
   components <- dots_to_xml_components(...)
@@ -729,7 +729,7 @@ ddi_anlyUnit <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "anlyUnit",
       content = unwrap_content(components$content),
@@ -976,7 +976,7 @@ ddi_dataKind<- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "dataKind",
       content = unwrap_content(components$content),
@@ -1166,7 +1166,7 @@ ddi_geogCover <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "geogCover",
       content = unwrap_content(components$content),
@@ -1194,7 +1194,7 @@ ddi_geogUnit <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "geogUnit",
       content = unwrap_content(components$content),
@@ -1223,7 +1223,7 @@ ddi_nation <- function(...) {
       content = components$content
     )
   } else {
-    allowed_children = c("txt", "concept")
+    allowed_children = c("concept", "txt")
     build_branch_node(
       "nation",
       content = unwrap_content(components$content),

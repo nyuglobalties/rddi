@@ -43,25 +43,26 @@ especially their allowed attributes, can be found in the references.
 
 \emph{othrStdyMat specific child nodes}
 \itemize{
-\item \code{ddi_othRefs()} indicates other pertinent references. Can take the form of
-bibliographic citations.
+\item \code{ddi_othRefs()} indicates other pertinent references. can take the form of
+natural language text and/or bibliographic citations using ddi_citation().
 \item \code{ddi_relMat()} describes materials related to the study description, such
 as appendices, additional information on sampling found in other documents,
-etc. Can take the form of bibliographic citations. This element can contain
-either PCDATA or a citation or both, and there can be multiple occurrences of
-both the citation and PCDATA within a single element. May consist of a single
-URI or a series of URIs comprising a series of citations/references to
-external materials which can be objects as a whole (journal articles) or
-parts of objects (chapters or appendices in articles or documents).
+etc. Can take the form of natural language text and/or bibliographic citations
+using ddi_citation(). This element can contain either PCDATA or a citation or
+both, and there can be multiple occurrences of both the citation and PCDATA
+within a single element. May consist of a single URI or a series of URIs
+comprising a series of citations/references to external materials which can
+be objects as a whole (journal articles) or parts of objects (chapters or
+appendices in articles or documents).
 \item \code{ddi_relPubl()} are bibliographic and access information about articles
 and reports based on the data in this collection. Can take the form of
-bibliographic citations.
+natural language text and/or bibliographic citations using ddi_citation().
 \item \code{ddi_relStdy()} is information on the relationship of the current data
 collection to others (e.g., predecessors, successors, other waves or rounds)
 or to other editions of the same file. This would include the names of
 additional data collections generated from the same data collection vehicle
 plus other collections directed at the same general topic. Can take the form
-of bibliographic citations.
+of natural language text and/or bibliographic citations using ddi_citation().
 }
 }
 \examples{

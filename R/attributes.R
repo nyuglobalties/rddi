@@ -111,7 +111,7 @@ check_ncname <- function(attribs) {
     reg_expr <- "^[A-Za-z_][-._A-Za-z0-9]*$"
     idrefs <- c("wgt-var", "weight", "qstn", "files", "sdatrefs", "methrefs", 
                 "pubrefs", "access", "catgry", "catGrp", "relatedProcesses", 
-                "recGrp", "keyvar", "refs", "nCube", "nCubeGrp")
+                "recGrp", "keyvar", "refs", "nCube", "nCubeGrp", "var", "varGrp")
     for(name in names(attribs)) {
         if(any(name %in% idrefs)) {
             for(a in unlist(strsplit(attribs[[name]], " "))) {

@@ -27,9 +27,9 @@
 #' @export
 ddi_dataAccs <- function(...) {
   allowed_children <- c(
-    "notes",
     "setAvail", 
-    "useStmt"
+    "useStmt",
+    "notes"
   )
 
   components <- dots_to_xml_components(...)

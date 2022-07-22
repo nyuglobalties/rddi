@@ -17,28 +17,29 @@
 #' 
 #' \emph{othrStdyMat specific child nodes}
 #' 
-#' * `ddi_othRefs()` indicates other pertinent references. Can take the form of 
-#' bibliographic citations. 
+#' * `ddi_othRefs()` indicates other pertinent references. can take the form of 
+#' natural language text and/or bibliographic citations using ddi_citation().
 #' 
 #' * `ddi_relMat()` describes materials related to the study description, such 
 #' as appendices, additional information on sampling found in other documents, 
-#' etc. Can take the form of bibliographic citations. This element can contain 
-#' either PCDATA or a citation or both, and there can be multiple occurrences of 
-#' both the citation and PCDATA within a single element. May consist of a single 
-#' URI or a series of URIs comprising a series of citations/references to 
-#' external materials which can be objects as a whole (journal articles) or 
-#' parts of objects (chapters or appendices in articles or documents).
+#' etc. Can take the form of natural language text and/or bibliographic citations 
+#' using ddi_citation(). This element can contain either PCDATA or a citation or 
+#' both, and there can be multiple occurrences of both the citation and PCDATA 
+#' within a single element. May consist of a single URI or a series of URIs 
+#' comprising a series of citations/references to external materials which can 
+#' be objects as a whole (journal articles) or parts of objects (chapters or 
+#' appendices in articles or documents).
 #' 
 #' * `ddi_relPubl()` are bibliographic and access information about articles 
 #' and reports based on the data in this collection. Can take the form of 
-#' bibliographic citations. 
+#' natural language text and/or bibliographic citations using ddi_citation(). 
 #' 
 #' * `ddi_relStdy()` is information on the relationship of the current data 
 #' collection to others (e.g., predecessors, successors, other waves or rounds) 
 #' or to other editions of the same file. This would include the names of 
 #' additional data collections generated from the same data collection vehicle 
 #' plus other collections directed at the same general topic. Can take the form 
-#' of bibliographic citations.
+#' of natural language text and/or bibliographic citations using ddi_citation(). 
 #'
 #' @param ... Child nodes or attributes.
 #' 
@@ -108,18 +109,25 @@ ddi_othRefs <- function(...) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
     attribs <- validate_attributes(attribs, allowed_attribs, "othRefs")
   }
-
+  
+  allowed_children = c("citation")
   if(length(components$content) == 1 & is.character(components$content[[1]])) {
     build_leaf_node(
       "othRefs",
       attribs = attribs,
       content = components$content
     )
-  } else {
-    allowed_children = c("citation")
+  } else if(any(sapply(components$content, is.character))) {
     build_branch_node(
       "othRefs",
       content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  } else {
+    build_branch_node(
+      "othRefs",
+      content = components$content,
       attribs = components$attribs,
       allowed_children = allowed_children
     )
@@ -138,17 +146,24 @@ ddi_relMat <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "relMat")
   }
 
+  allowed_children = c("citation")
   if(length(components$content) == 1 & is.character(components$content[[1]])) {
     build_leaf_node(
       "relMat",
       attribs = attribs,
       content = components$content
     )
-  } else {
-    allowed_children = c("citation")
+  } else if(any(sapply(components$content, is.character))) {
     build_branch_node(
       "relMat",
       content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  } else {
+    build_branch_node(
+      "relMat",
+      content = components$content,
       attribs = components$attribs,
       allowed_children = allowed_children
     )
@@ -165,18 +180,25 @@ ddi_relPubl <- function(...) {
     allowed_attribs <- c("ID", "xml:lang", "source", "elementVersion", "elementVersionDate", "ddiLifecycleUrn", "ddiCodebookUrn")
     attribs <- validate_attributes(attribs, allowed_attribs, "relPubl")
   }
-
+  
+  allowed_children = c("citation")
   if(length(components$content) == 1 & is.character(components$content[[1]])) {
     build_leaf_node(
       "relPubl",
       attribs = attribs,
       content = components$content
     )
-  } else {
-    allowed_children = c("citation")
+  } else if(any(sapply(components$content, is.character))) {
     build_branch_node(
       "relPubl",
       content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  } else {
+    build_branch_node(
+      "relPubl",
+      content = components$content,
       attribs = components$attribs,
       allowed_children = allowed_children
     )
@@ -194,17 +216,28 @@ ddi_relStdy <- function(...) {
     attribs <- validate_attributes(attribs, allowed_attribs, "relStdy")
   }
 
+  for(c in components$content) {
+    if(is.character(c)) unwrapped = TRUE
+  }
+  
+  allowed_children = c("citation")
   if(length(components$content) == 1 & is.character(components$content[[1]])) {
     build_leaf_node(
       "relStdy",
       attribs = attribs,
       content = components$content
     )
-  } else {
-    allowed_children = c("citation")
+  } else if(any(sapply(components$content, is.character))) {
     build_branch_node(
       "relStdy",
       content = unwrap_content(components$content),
+      attribs = components$attribs,
+      allowed_children = allowed_children
+    )
+  } else {
+    build_branch_node(
+      "relStdy",
+      content = components$content,
       attribs = components$attribs,
       allowed_children = allowed_children
     )

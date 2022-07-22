@@ -90,8 +90,8 @@ ddi_tgroup <- function(...) {
   
   allowed_children <- c(
     "colspec",
-    "tbody",
-    "thead"
+    "thead",
+    "tbody"
   )
   
   build_branch_node(
