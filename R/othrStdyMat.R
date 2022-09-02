@@ -121,14 +121,14 @@ ddi_othRefs <- function(...) {
     build_branch_node(
       "othRefs",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   } else {
     build_branch_node(
       "othRefs",
       content = components$content,
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -157,14 +157,14 @@ ddi_relMat <- function(...) {
     build_branch_node(
       "relMat",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   } else {
     build_branch_node(
       "relMat",
       content = components$content,
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -192,14 +192,14 @@ ddi_relPubl <- function(...) {
     build_branch_node(
       "relPubl",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   } else {
     build_branch_node(
       "relPubl",
       content = components$content,
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -231,14 +231,14 @@ ddi_relStdy <- function(...) {
     build_branch_node(
       "relStdy",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   } else {
     build_branch_node(
       "relStdy",
       content = components$content,
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }

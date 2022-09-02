@@ -350,7 +350,7 @@ ddi_collMode <- function(...) {
     build_branch_node(
       "collMode",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -491,7 +491,7 @@ ddi_resInstru <- function(...) {
     build_branch_node(
       "resInstru",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -519,7 +519,7 @@ ddi_sampProc <- function(...) {
     build_branch_node(
       "sampProc",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -548,7 +548,7 @@ ddi_timeMeth <- function(...) {
     build_branch_node(
       "timeMeth",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
