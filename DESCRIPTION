@@ -1,19 +1,20 @@
 Package: rddi
 Title: R Interface to DDI Codebook 2.5
 Version: 0.1.1
+Date: 2022-09-07
 Authors@R:
     c(person(
-            given = "Patrick", 
-            family = "Anker", 
-            role = "aut",
-            email = "psanker@nyu.edu",
-            comment = c(ORCID = "0000-0003-2302-0445")),
-        person(
             given = "Daniel",
             family = "Woulfin",
             role = c("aut", "cre"),
             email = "dw2896@nyu.edu",
             comment = c(ORCID = "0000-0001-5502-9861")),
+        person(
+            given = "Patrick", 
+            family = "Anker", 
+            role = "aut",
+            email = "psanker@nyu.edu",
+            comment = c(ORCID = "0000-0003-2302-0445")),
         person(
             given = "Global TIES for Children", 
             role = "cph",

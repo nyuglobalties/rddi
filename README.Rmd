@@ -17,18 +17,26 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/nyuglobalties/rddi/workflows/R-CMD-check/badge.svg)](https://github.com/nyuglobalties/rddi/actions)
+[![DOI](https://zenodo.org/badge/238541864.svg)](https://zenodo.org/badge/latestdoi/238541864)
 <!-- badges: end -->
 
 This developer-focused package provides R representations of [DDI Codebook 2.5](https://ddialliance.org/Specification/DDI-Codebook/2.5/) elements to safely construct fully-validated XML while still being flexible. There are 351 elements in the codebook schema, and while it is the intention of the package to ultimately cover most (if not all) of these, rddi also provides safe node creation tools to quickly create missing elements of the schema.
 
 ## Installation
 
-rddi is not yet on CRAN, so please download the development version with:
+Install the latest stable version from CRAN:
+
+```r
+install.packages("rddi")
+```
+
+Install the development from this repository with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("nyuglobalties/rddi")
 ```
+
 ## Example
 
 Building components is quick and simple:
@@ -69,3 +77,8 @@ ddi_codeBook(ddi_stdyDscr(main_citation)) %>%
   validate_codebook()
 ```
 
+Convert to XML
+
+```{r example4}
+xml <- as_xml(ddi_codeBook(ddi_stdyDscr(main_citation)))
+```

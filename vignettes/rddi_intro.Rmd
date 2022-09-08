@@ -140,6 +140,34 @@ codebook <- ddi_codeBook(
 )
 ```
 
+## Mixed Content DDI elements
+
+The following DDI nodes are mixed content which means that they can attributes, elements, and text - `ddi_universe`, `ddi_srcOrig`, `ddi_sampProc`, `ddi_timeMeth`, `ddi_collMode`, `ddi_resInstru`, `ddi_relMat`, `ddi_relPubl`, `ddi_relStdy`, `ddi_othRefs`, `ddi_anlyUnit`, `ddi_dataKind`, `ddi_geogCover`, `ddi_geogUnit`, `ddi_nation`, `ddi_anlysUnit`, and `ddi_qstn`.
+
+You can treat mixed content nodes similar to regular branch nodes but with a character value along with child nodes.
+
+```{r example4, eval = FALSE}
+mixed_content_cb <- ddi_codeBook(
+  ddi_stdyDscr(
+    ddi_citation(
+      ddi_titlStmt(
+        ddi_titl("Study title")
+      )
+    ),
+    ddi_othrStdyMat(
+      ddi_relMat(
+        "description of related material",
+        ddi_citation(
+          ddi_titlStmt(
+            ddi_titl("Title of Related Material")
+          )
+        )
+      )
+    )
+  )
+)
+```
+
 ## Validate against the DDI-Codebook schema 
 
 ```{r validate, eval = FALSE}
@@ -152,10 +180,17 @@ codebook %>%
 
 ## Export as XML
 
-Use the `as_xml()` and `write_xml` functions in `xml2` package to convert to xml and export.
+Use the `rddi::as_xml()` and `xml2::write_xml` functions to convert to xml and export. If using mixed content nodes you have to replace the html special entities with "<" and ">" before using `xml2::write_xml`.
 
 ```{r export, eval = FALSE}
 library(xml2)
 
 write_xml(as_xml(codebook), "codebook.xml")
+
+# for codebooks with mixed content elements
+xml <- as_xml(mixed_content_cb)
+xml <- gsub("&lt;", "<", xml)
+xml <- gsub("&gt;", ">", xml)
+
+write_xml(xml, "codebook.xml")
 ```
