@@ -110,3 +110,65 @@ test_that("Child inspection forwarding occurs correctly", {
     txt("text")
   ), class = "rddi_missing_required_child_error")
 })
+
+test_that("mixed content variables produce valid DDI", {
+  mixed_content_cb_othrStdyMat <- ddi_codeBook(
+    ddi_stdyDscr(
+      ddi_citation(
+        ddi_titlStmt(
+          ddi_titl("Study title")
+        )
+      ),
+      ddi_othrStdyMat(
+        ddi_relMat(
+          "description of related material",
+          ddi_citation(
+            ddi_titlStmt(
+              ddi_titl("Title of Related Material")
+            )
+          )
+        )
+      )
+    )
+  )
+  
+  mixed_content_cb_sumDscr <- ddi_codeBook(
+    ddi_stdyDscr(
+      ddi_citation(
+        ddi_titlStmt(
+          ddi_titl("Study title")
+        )
+      ),
+      ddi_stdyInfo(
+        ddi_sumDscr(
+          ddi_dataKind(
+            "survey data",
+            ddi_txt("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
+                  do eiusmod tempor incididunt...")
+          )
+        )
+      )
+    )
+  )
+  
+  mixed_content_cb_data <- ddi_codeBook(
+    ddi_stdyDscr(
+      ddi_citation(
+        ddi_titlStmt(
+          ddi_titl("Study title")
+        )
+      )
+    ),
+    ddi_dataDscr(
+      ddi_var(varname = "var1", 
+              ddi_labl("Label of variable 1"),
+              ddi_qstn(ID = "Q1", "Please answer question 1",
+                       ddi_postQTxt("Question 2 will follow"))
+              )
+    )
+  )
+    
+  expect_equivalent(validate_codebook(mixed_content_cb_othrStdyMat), TRUE)
+  expect_equivalent(validate_codebook(mixed_content_cb_sumDscr), TRUE)
+  expect_equivalent(validate_codebook(mixed_content_cb_data), TRUE)
+})

@@ -180,7 +180,7 @@ codebook %>%
 
 ## Export as XML
 
-Use the `rddi::as_xml()` and `xml2::write_xml` functions to convert to xml and export. If using mixed content nodes you have to replace the html special entities with "<" and ">" before using `xml2::write_xml`.
+Use the `as_xml()` and `xml2::write_xml` functions to convert to xml and export. If using mixed content nodes you have to replace the html special entities with "<" and ">" before using `xml2::write_xml`.
 
 ```{r export, eval = FALSE}
 library(xml2)
