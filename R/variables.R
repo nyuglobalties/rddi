@@ -802,7 +802,7 @@ ddi_anlysUnit <- function(...) {
     build_branch_node(
       "anlysUnit",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -1200,7 +1200,7 @@ ddi_qstn <- function(...) {
     build_branch_node(
       "qstn",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   } else {

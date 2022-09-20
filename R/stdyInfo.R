@@ -733,7 +733,7 @@ ddi_anlyUnit <- function(...) {
     build_branch_node(
       "anlyUnit",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -980,7 +980,7 @@ ddi_dataKind<- function(...) {
     build_branch_node(
       "dataKind",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -1170,7 +1170,7 @@ ddi_geogCover <- function(...) {
     build_branch_node(
       "geogCover",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -1198,7 +1198,7 @@ ddi_geogUnit <- function(...) {
     build_branch_node(
       "geogUnit",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -1227,7 +1227,7 @@ ddi_nation <- function(...) {
     build_branch_node(
       "nation",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }

@@ -131,7 +131,7 @@ ddi_universe <- function(...) {
     build_branch_node(
       "universe",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }
@@ -575,7 +575,7 @@ ddi_srcOrig <- function(...) {
     build_branch_node(
       "srcOrig",
       content = unwrap_content(components$content),
-      attribs = components$attribs,
+      attribs = attribs,
       allowed_children = allowed_children
     )
   }

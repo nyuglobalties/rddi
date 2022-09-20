@@ -77,3 +77,8 @@ ddi_codeBook(ddi_stdyDscr(main_citation)) %>%
   validate_codebook()
 ```
 
+Convert to XML
+
+```{r example4}
+xml <- as_xml(ddi_codeBook(ddi_stdyDscr(main_citation)))
+```
