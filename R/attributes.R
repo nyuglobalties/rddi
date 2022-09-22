@@ -1,4 +1,7 @@
 validate_attributes <- function(attribs, allowed_attribs, field) {
+  # remove attributes with NA values
+  attribs <- Filter(Negate(is.na), attribs) 
+  
   if("lang" %in% names(attribs)) attribs <- change_lang(attribs)
   check_attribs_in_set(names(attribs), allowed_attribs, field)
   check_attribs(attribs)
