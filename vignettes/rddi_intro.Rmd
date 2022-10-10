@@ -192,5 +192,8 @@ xml <- as_xml(mixed_content_cb)
 xml <- gsub("&lt;", "<", xml)
 xml <- gsub("&gt;", ">", xml)
 
+# gsub converts xml variable to string so we have to change it back to xml
+xml <- xml2::read_xml(xml)
+
 write_xml(xml, "codebook.xml")
 ```
