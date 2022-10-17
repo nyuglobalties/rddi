@@ -241,7 +241,7 @@ ddi_outcomes <- function(...) {
 #' qualityStatement and its child nodes
 #'
 #' The Quality Statement consists of two parts, standardsCompliance and 
-#' otherQualityStatements. In standardsCompliance list all specific standards 
+#' otherQualityStatement. In standardsCompliance list all specific standards 
 #' complied with during the execution of this study. Note the standard name and 
 #' producer and how the study complied with the standard. More information on 
 #' these elements, especially their allowed attributes, can be found in the 
@@ -251,7 +251,7 @@ ddi_outcomes <- function(...) {
 #' 
 #' `qualiyStatement` is contained in `stdyInfo`.
 #' 
-#' \emph{qualityStatment specific child nodes}
+#' \emph{qualityStatement specific child nodes}
 #' 
 #' * `ddi_otherQualityStatement()` holds additional quality statements. 
 #'
@@ -262,7 +262,7 @@ ddi_outcomes <- function(...) {
 #' @section Shared and complex child nodes:
 #' * [ddi_standardsCompliance()]
 #'
-#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qualityStatement.html}{qualityStatment documentation}
+#' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qualityStatement.html}{qualityStatement documentation}
 #' @references \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/otherQualityStatement.html}{otherQualityStatement documentation}
 #' 
 #' @examples 
@@ -990,7 +990,7 @@ ddi_dataKind<- function(...) {
 #' geoBndBox and its child nodes
 #' 
 #' The fundamental geometric description for any dataset that models geography. 
-#' GeoBndBox is the minimum box, defined by west and east longitudes and north 
+#' geoBndBox is the minimum box, defined by west and east longitudes and north 
 #' and south latitudes, that includes the largest geographic extent of the 
 #' dataset's geographic coverage. This element is used in the first pass of a 
 #' coordinate-based search. If the boundPoly element is included, then the 

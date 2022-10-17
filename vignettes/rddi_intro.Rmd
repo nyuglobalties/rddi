@@ -24,7 +24,13 @@ The `rddi` package is developer-focused package provides R representations of DD
 
 ## Installation
 
-`rddi` is not yet on CRAN, so please download the devleopment version with: 
+Install the latest stable version from CRAN:
+
+```{r eval = FALSE}
+install.packages("rddi")
+```
+
+Install the development from this repository with:
 
 ```{r eval = FALSE}
 # install.packages("devtools")
@@ -43,7 +49,7 @@ A DDI-Codebook is structured as follows
 |----fileDscr
 |----dataDscr
 
-codeBook serves as the root node, the stdyDscr holds study level metadata, dataDscr holds variable level metadata, and the fileDscr and docDscr holds administrative metadata about the dataset. The only required element is titl in stdyDscr/citation/titleStmt.
+codeBook serves as the root node, the stdyDscr holds study level metadata, dataDscr holds variable level metadata, and the fileDscr and docDscr holds administrative metadata about the dataset. The only required element is titl in stdyDscr/citation/titlStmt.
 
 ## Designed uses of rddi
 

@@ -17,7 +17,7 @@ A ddi_node object.
 }
 \description{
 The Quality Statement consists of two parts, standardsCompliance and
-otherQualityStatements. In standardsCompliance list all specific standards
+otherQualityStatement. In standardsCompliance list all specific standards
 complied with during the execution of this study. Note the standard name and
 producer and how the study complied with the standard. More information on
 these elements, especially their allowed attributes, can be found in the
@@ -28,7 +28,7 @@ references.
 
 \code{qualiyStatement} is contained in \code{stdyInfo}.
 
-\emph{qualityStatment specific child nodes}
+\emph{qualityStatement specific child nodes}
 \itemize{
 \item \code{ddi_otherQualityStatement()} holds additional quality statements.
 }
@@ -49,7 +49,7 @@ ddi_otherQualityStatement("Additional quality statements not addressed in standa
 
 }
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qualityStatement.html}{qualityStatment documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/qualityStatement.html}{qualityStatement documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/otherQualityStatement.html}{otherQualityStatement documentation}
 }

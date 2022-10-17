@@ -48,7 +48,7 @@ attributes, can be found in the references.
 \item \code{ddi_codeListName()} identifies the code list that the value is taken from
 with a human-readable name.
 \item \code{ddi_codeListSchemeURN()} identifies the code list scheme using a URN.
-\item \code{ddi_codeListURN()} identifies the code list that the vlaue is taken from
+\item \code{ddi_codeListURN()} identifies the code list that the value is taken from
 with a URN.
 \item \code{ddi_codeListVersionID()} is the version of the code list. (Default value
 is 1.0).

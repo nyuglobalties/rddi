@@ -23,7 +23,7 @@ A ddi_node object.
 }
 \description{
 Values for a particular variable that represent legitimate responses
-(valrng) or illegitamate response (invalrng). Must include item or range as
+(valrng) or illegitimate response (invalrng). Must include item or range as
 a child element.
 }
 \details{

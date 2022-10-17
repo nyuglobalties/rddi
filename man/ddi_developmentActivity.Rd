@@ -35,7 +35,7 @@ activity.
 \itemize{
 \item \code{ddi_description()} describes the development activity.
 \item \code{ddi_outcome()} describes the outcome of the development activity.
-\item \code{ddi_participant()} lists teh participants conducting or designing the
+\item \code{ddi_participant()} lists the participants conducting or designing the
 development activity.
 }
 }
