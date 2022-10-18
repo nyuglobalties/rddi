@@ -54,7 +54,7 @@ ddi_authorizingAgency(affiliation = "Purdue University",
 
 }
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyAuthorization.html}{studyAuthorization docuemntation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/studyAuthorization.html}{studyAuthorization documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/authorizationStatement.html}{authorizationStatement documentation}
 

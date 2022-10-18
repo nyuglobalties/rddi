@@ -41,7 +41,7 @@ measure of how precisely one can estimate a population value from a given
 sample.
 \item \code{ddi_respRate()} is the response rate. The percentage of sample members
 who provided information. This may include a broader description of
-stratified response rates, information affecting resonse rates etc.
+stratified response rates, information affecting response rates etc.
 }
 }
 \examples{
@@ -65,7 +65,7 @@ ddi_respRate("For 1993, the estimated inclusion rate for TEDS-eligible
 
 }
 \references{
-\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlyInfo.html}{anylInfo documentation}
+\href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/anlyInfo.html}{anlyInfo documentation}
 
 \href{https://ddialliance.org/Specification/DDI-Codebook/2.5/XMLSchema/field_level_documentation_files/schemas/codebook_xsd/elements/dataAppr.html}{dataAppr documentation}
 

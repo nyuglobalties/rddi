@@ -59,7 +59,7 @@ ddi_studyDevelopment <- function(...) {
 #' 
 #' * `ddi_outcome()` describes the outcome of the development activity.
 #' 
-#' * `ddi_participant()` lists teh participants conducting or designing the 
+#' * `ddi_participant()` lists the participants conducting or designing the 
 #' development activity.
 #'
 #' @section Shared and complex child nodes:

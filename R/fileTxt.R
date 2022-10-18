@@ -398,7 +398,7 @@ ddi_digitalFingerprintValue <- function(...) {
 #' 
 #' `dimensns` is contained in `fileTxt`. `recDimensn` is contained in `recGrp`.
 #' 
-#' \emph{dimnsns and recDimnsn shared nodes}
+#' \emph{dimensns and recDimnsn shared nodes}
 #' 
 #' * `ddi_caseQnty()` is the number of cases, observations, or records.
 #' 
@@ -407,7 +407,7 @@ ddi_digitalFingerprintValue <- function(...) {
 #' 
 #' * `ddi_varQnty()` is the overall variable count.
 #' 
-#' \emph{dimnsns specific nodes}
+#' \emph{dimensns specific nodes}
 #' 
 #' * `ddi_recNumTot()` is the overall record count in file. Particularly 
 #' helpful in instances such as files with multiple cards/decks or records per 

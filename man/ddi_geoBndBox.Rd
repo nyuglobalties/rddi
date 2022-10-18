@@ -26,7 +26,7 @@ A ddi_node object.
 }
 \description{
 The fundamental geometric description for any dataset that models geography.
-GeoBndBox is the minimum box, defined by west and east longitudes and north
+geoBndBox is the minimum box, defined by west and east longitudes and north
 and south latitudes, that includes the largest geographic extent of the
 dataset's geographic coverage. This element is used in the first pass of a
 coordinate-based search. If the boundPoly element is included, then the

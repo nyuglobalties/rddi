@@ -224,7 +224,7 @@ ddi_docSrc <- function(...) {
 #' 
 #' * `ddi_codeListSchemeURN()` identifies the code list scheme using a URN.
 #' 
-#' * `ddi_codeListURN()` identifies the code list that the vlaue is taken from 
+#' * `ddi_codeListURN()` identifies the code list that the value is taken from 
 #' with a URN.
 #' 
 #' * `ddi_codeListVersionID()` is the version of the code list. (Default value 

@@ -39,7 +39,7 @@ these elements, especially their allowed attributes, can be found in the referen
 
 \code{dimensns} is contained in \code{fileTxt}. \code{recDimensn} is contained in \code{recGrp}.
 
-\emph{dimnsns and recDimnsn shared nodes}
+\emph{dimensns and recDimnsn shared nodes}
 \itemize{
 \item \code{ddi_caseQnty()} is the number of cases, observations, or records.
 \item \code{ddi_logRecL()} is the logical record length, i.e., number of characters of
@@ -47,7 +47,7 @@ data in the record.
 \item \code{ddi_varQnty()} is the overall variable count.
 }
 
-\emph{dimnsns specific nodes}
+\emph{dimensns specific nodes}
 \itemize{
 \item \code{ddi_recNumTot()} is the overall record count in file. Particularly
 helpful in instances such as files with multiple cards/decks or records per
